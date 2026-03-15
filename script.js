@@ -153,27 +153,53 @@ function renderGeneratedMatchups(matchups){
 
 div.innerHTML=`
 
+div.innerHTML=`
+
 <div class="teamRow">
 
   <div class="redTeam">
-  <strong>RED TEAM</strong><br>
-  ${m.redTeam.map(p=>p.name).join(", ")}
+
+    <strong>RED TEAM</strong><br><br>
+
+    ${m.redTeam.map(p=>p.name).join("<br>")}
+
+    <br><br>
+
+    <small>
+    Players: ${m.redTeam.length}<br>
+    Skill Total: ${m.redSkill}
+    </small>
+
   </div>
 
   <div class="vs">VS</div>
 
   <div class="blueTeam">
-  <strong>BLUE TEAM</strong><br>
-  ${m.blueTeam.map(p=>p.name).join(", ")}
+
+    <strong>BLUE TEAM</strong><br><br>
+
+    ${m.blueTeam.map(p=>p.name).join("<br>")}
+
+    <br><br>
+
+    <small>
+    Players: ${m.blueTeam.length}<br>
+    Skill Total: ${m.blueSkill}
+    </small>
+
   </div>
 
 </div>
 
 <div class="badges">
 
-  <span class="badge">Gap ${m.skillGap}</span>
+  <span class="badge gap-${m.skillGap}">
+  Skill Gap ${m.skillGap}
+  </span>
 
-  <span class="badge">${m.pickCount} Picks</span>
+  <span class="badge picks">
+  Picked ${m.pickCount} times
+  </span>
 
 </div>
 
