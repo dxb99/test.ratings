@@ -81,10 +81,12 @@ function populatePlayers(players){
 function renderMatchup(match){
 
   const el=document.getElementById("matchupContent");
+  const countdown=document.getElementById("matchCountdown");
 
   if(!match){
 
     el.innerHTML="NO MATCHUP YET<br><br>CLICK GENERATOR TO GET STARTED";
+    countdown.innerHTML="";
     return;
 
   }
@@ -98,6 +100,10 @@ function renderMatchup(match){
   BLUE TEAM: ${match.blueTeam.join(", ")}
 
   `;
+
+  const expiry=new Date(match.expiresAt);
+
+  startCountdown(expiry);
 
 }
 
@@ -221,5 +227,33 @@ async function selectMatchup(match){
   alert("MATCHUP SAVED");
 
   loadInitialData();
+
+}
+
+function startCountdown(expiry){
+
+  const el=document.getElementById("matchCountdown");
+
+  setInterval(()=>{
+
+    const now=new Date();
+
+    const diff=expiry-now;
+
+    if(diff<=0){
+
+      el.innerHTML="MATCHUP EXPIRED";
+
+      return;
+
+    }
+
+    const hours=Math.floor(diff/3600000);
+    const mins=Math.floor((diff%3600000)/60000);
+    const secs=Math.floor((diff%60000)/1000);
+
+    el.innerHTML=`MATCHUP EXPIRES IN ${hours}:${mins}:${secs}`;
+
+  },1000);
 
 }
