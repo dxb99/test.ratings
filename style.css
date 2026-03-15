@@ -388,3 +388,13 @@ font-size:24px;
 }
 
 }
+
+.badge.gap-0{background:#1b5e20;}
+.badge.gap-1{background:#2e7d32;}
+.badge.gap-2{background:#f9a825;}
+.badge.gap-3{background:#ef6c00;}
+.badge.gap-4{background:#c62828;}
+
+.badge.picks{
+background:#1e3a8a;
+}
