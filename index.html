@@ -1,177 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>DXB99 Matchup Generator</title>
-
-<link rel="stylesheet" href="style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DXB99 Matchup Generator</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-<!-- LOADING SCREEN -->
-
-<div id="loadingScreen">
-
-<img src="DXB99MATCHUP.png" id="logo">
-
-<div class="loadingText">
-LOADING<span class="dots"></span>
-</div>
-
-</div>
-
-
-<!-- MAIN APP -->
-
-<div id="app" class="hidden">
-
-<header>
-
-<h1>DXB99 MATCHUP GENERATOR</h1>
-
-<div class="tabs">
-
-<button class="tabButton active" onclick="showTab('matchupTab')">MATCHUP</button>
-
-<button class="tabButton" onclick="showTab('generatorTab')">GENERATOR</button>
-
-<button class="tabButton" onclick="showTab('historyTab')">HISTORY</button>
-
-<button class="tabButton" onclick="showTab('adminTab')">ADMIN</button>
-
-</div>
-
-</header>
-
-
-<!-- MATCHUP TAB -->
-
-<div id="matchupTab" class="tabContent active">
-
-<h2>CURRENT MATCHUP</h2>
-
-<div id="matchupContent">
-
-NO MATCHUP YET
-
-<br><br>
-
-CLICK GENERATOR TO GET STARTED
-
-</div>
-
-<div id="matchCountdown"></div>
-
-</div>
-
-<!-- GENERATOR TAB -->
-
-<div id="generatorTab" class="tabContent">
-
-<h2>MATCH MAKER</h2>
-
-<select id="matchMakerSelect"></select>
-
-<h2>PLAYERS</h2>
-
-<div class="playerSort">
-
-Sort:
-
-<select id="playerSort">
-
-<option value="skill">Skill (Strongest)</option>
-<option value="alpha">Alphabetical</option>
-
-</select>
-
-</div>
-
-<div id="playersCheckboxes"></div>
-
-<button id="generateButton">GENERATE MATCHUP</button>
-
-<div class="radioRow">
-
-<label><input type="radio" name="gapFilter" value="0" checked> All options</label>
-<label><input type="radio" name="gapFilter" value="1"> Skill Gap1</label>
-<label><input type="radio" name="gapFilter" value="2"> Skill Gap2</label>
-<label><input type="radio" name="gapFilter" value="3"> Skill Gap3</label>
-<label><input type="radio" name="gapFilter" value="4"> Skill Gap4</label>
-
-</div>
-
-<div id="generatedMatchups"></div>
-
-</div>
-
-
-<!-- HISTORY TAB -->
-
-<div id="historyTab" class="tabContent">
-
-<div class="historyControls">
-
-<select id="historySort">
-
-<option value="newest">Newest</option>
-<option value="picker">Match Maker</option>
-
-</select>
-
-<button id="clearHistory">CLEAR HISTORY</button>
-
-</div>
-
-<div id="historyList"></div>
-
-</div>
-
-
-<!-- ADMIN TAB -->
-
-<div id="adminTab" class="tabContent">
-
-<div class="adminControls">
-
-<button id="addPlayer">ADD PLAYER</button>
-
-<span id="playerCount"></span>
-
-<button id="savePlayers">SAVE</button>
-
-</div>
-
-<table id="adminTable">
-
-<thead>
-
-<tr>
-
-<th>Name</th>
-<th>Skill</th>
-<th>Remove</th>
-<th>Reset Pin</th>
-<th>Status</th>
-
-</tr>
-
-</thead>
-
-<tbody></tbody>
-
-</table>
-
-</div>
-
-</div>
-
-<script src="script.js"></script>
-
-</body>
+  <div id="loadingScreen" class="loading-screen">
+    <img src="DXB99MATCHUP.png" alt="DXB99 Logo" id="logo" class="logo">
+    <div class="loadingText">LOADING <span class="dots"></span></div>
+  </div>
+
+  <div id="pinModal" class="modal hidden">
+    <div class="modal-card">
+      <h3 id="pinModalTitle">ENTER PIN</h3>
+      <p id="pinModalText">Enter your PIN.</p>
+      <input id="pinInput" type="password" maxlength="20" placeholder="Enter PIN">
+      <div class="modal-actions">
+        <button id="pinCancelBtn" class="btn secondary">Cancel</button>
+        <button id="pinConfirmBtn" class="btn">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="app" class="app hidden">
+    <header class="app-header">
+      <h1>DXB99 MATCHUP GENERATOR</h1>
+      <div class="tabs">
+        <button class="tabButton active" data-tab="matchupTab">MATCHUP</button>
+        <button class="tabButton" data-tab="generatorTab">GENERATOR</button>
+        <button class="tabButton" data-tab="historyTab">HISTORY</button>
+        <button class="tabButton" data-tab="adminTab">ADMIN</button>
+      </div>
+    </header>
+
+    <main class="page-wrap">
+      <section id="matchupTab" class="tabContent active">
+        <div class="card">
+          <h2>CURRENT MATCHUP</h2>
+          <div id="matchupContent" class="matchup-content">
+            NO MATCHUP YET
+            <br><br>
+            CLICK GENERATOR TO GET STARTED
+          </div>
+          <div id="matchCountdown" class="countdown"></div>
+        </div>
+      </section>
+
+      <section id="generatorTab" class="tabContent">
+        <div class="card">
+          <h2>MATCH MAKER</h2>
+          <select id="matchMakerSelect" class="input"></select>
+
+          <div class="section-row">
+            <h2>PLAYERS</h2>
+            <div class="playerSort">
+              <label for="playerSort">Sort</label>
+              <select id="playerSort" class="input compact">
+                <option value="skill">Skill (Strongest)</option>
+                <option value="alpha">Alphabetical</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="playersCheckboxes" class="player-grid"></div>
+
+          <button id="generateButton" class="btn big danger">GENERATE MATCHUP</button>
 </html>
