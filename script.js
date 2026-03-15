@@ -100,3 +100,79 @@ function renderMatchup(match){
   `;
 
 }
+
+document.getElementById("generateButton").onclick = generateMatchups;
+
+async function generateMatchups(){
+
+  const selectedPlayers=[];
+
+  document.querySelectorAll("#playersCheckboxes input:checked").forEach(x=>{
+    selectedPlayers.push(x.value);
+  });
+
+  if(selectedPlayers.length < 2){
+    alert("Select at least 2 players.");
+    return;
+  }
+
+  const data = await api({
+    action:"generateMatchups",
+    selectedPlayers:selectedPlayers,
+    filterGap:0
+  });
+
+  if(!data.ok){
+    alert(data.error || "Could not generate matchups.");
+    return;
+  }
+
+  renderGeneratedMatchups(data.matchups);
+
+}
+
+function renderGeneratedMatchups(matchups){
+
+  const container=document.getElementById("generatedMatchups");
+
+  container.innerHTML="";
+
+  matchups.forEach(m=>{
+
+    const div=document.createElement("div");
+
+    div.className="matchOption";
+
+    div.innerHTML=`
+
+    <div class="teamRow">
+
+      <div class="redTeam">
+      <strong>RED TEAM</strong><br>
+      ${m.redTeam.map(p=>p.name).join(", ")}
+      </div>
+
+      <div class="vs">VS</div>
+
+      <div class="blueTeam">
+      <strong>BLUE TEAM</strong><br>
+      ${m.blueTeam.map(p=>p.name).join(", ")}
+      </div>
+
+    </div>
+
+    <div class="badges">
+
+      <span class="badge">Gap ${m.skillGap}</span>
+
+      <span class="badge">${m.pickCount} Picks</span>
+
+    </div>
+
+    `;
+
+    container.appendChild(div);
+
+  });
+
+}
