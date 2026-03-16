@@ -498,7 +498,7 @@ async function openHistoryTab(btn){
   showTab("historyTab", btn);
 
   const data = await api({
-    action:"getMatchHistory"
+    action:"getHistory"
   });
 
   if(!data.ok){
