@@ -3,6 +3,7 @@ const API_URL = "https://script.google.com/macros/s/AKfycbzIyBeXAVeSLtxW8jR9OnQL
 let allPlayers = [];
 let adminLoaded = false;
 let countdownTimer = null;
+let lastMatchTimestamp = null;
 
 window.addEventListener("load", async () => {
 
@@ -108,9 +109,15 @@ function renderMatchup(match){
 
   `;
 
+if(match.selectedAt !== lastMatchTimestamp){
+
+  lastMatchTimestamp = match.selectedAt;
+
   const expiry=new Date(match.expiresAt);
 
   startCountdown(expiry);
+
+}
 
 }
 
