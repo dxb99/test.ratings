@@ -154,6 +154,13 @@ background:#cc0000;
 
 /* PLAYER LIST */
 
+.playerSort{
+
+margin-top:5px;
+margin-bottom:5px;
+
+}
+
 #playersCheckboxes{
 
 display:flex;
