@@ -64,6 +64,11 @@ border-radius:5px;
 
 }
 
+.tabIcon{
+
+display:none;
+
+}
 
 .tabButton:hover{
 
@@ -383,6 +388,62 @@ flex-direction:column;
 .vs{
 
 font-size:24px;
+
+}
+
+/* Move navigation to bottom */
+
+.tabs{
+
+position:fixed;
+
+bottom:0;
+
+left:0;
+
+width:100%;
+
+background:#000;
+
+display:flex;
+
+justify-content:space-around;
+
+border-top:1px solid #333;
+
+padding:6px 0;
+
+}
+
+/* Mobile tab buttons */
+
+.tabButton{
+
+flex-direction:column;
+
+display:flex;
+
+align-items:center;
+
+font-size:12px;
+
+padding:6px 4px;
+
+margin:0;
+
+background:none;
+
+}
+
+/* Show icons on mobile */
+
+.tabIcon{
+
+display:block;
+
+font-size:26px;
+
+margin-bottom:2px;
 
 }
 
