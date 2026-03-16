@@ -418,6 +418,15 @@ text-align:center;
 
 @media(max-width:700px){
 
+/* Keep main title on one line */
+
+h1{
+
+white-space:nowrap;
+font-size:20px;
+
+}
+
 /* Matchups become 1 per row */
 
 #generatedMatchups{
