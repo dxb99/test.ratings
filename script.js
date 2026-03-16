@@ -317,3 +317,88 @@ function renderPlayers(players){
   });
 
 }
+
+async function openAdminTab(){
+
+  showTab("adminTab");
+
+  const data = await api({
+    action:"getPlayersAdmin"
+  });
+
+  if(!data.ok){
+    alert("Failed loading players");
+    return;
+  }
+
+  const table = document.querySelector("#adminTable tbody");
+
+  table.innerHTML="";
+
+  data.players.forEach(p=>{
+
+    const row=document.createElement("tr");
+
+    row.innerHTML=`
+
+    <td contenteditable="true">${p.name}</td>
+
+    <td contenteditable="true">${p.skill}</td>
+
+    <td><button class="admin-inline-btn remove">Remove</button></td>
+
+    <td><button class="admin-inline-btn resetPin">RESET PIN</button></td>
+
+    <td>${p.pinStatus}</td>
+
+    `;
+
+    row.querySelector(".remove").onclick=()=>{
+
+      row.remove();
+      updatePlayerCount();
+
+    };
+
+    row.querySelector(".resetPin").onclick=()=>{
+
+      resetPin(p.name);
+
+    };
+
+    table.appendChild(row);
+
+  });
+
+  updatePlayerCount();
+
+}
+
+async function resetPin(player){
+
+  const pass = prompt("Enter Admin Password");
+
+  if(!pass) return;
+
+  const data = await api({
+
+    action:"resetPlayerPin",
+
+    playerName:player,
+
+    password:pass
+
+  });
+
+  if(!data.ok){
+
+    alert(data.error);
+    return;
+
+  }
+
+  alert("PIN reset");
+
+  openAdminTab();
+
+}
