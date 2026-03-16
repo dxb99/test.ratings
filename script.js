@@ -165,6 +165,8 @@ const matchups = generateMatchupsLocal(selectedPlayers, gap);
 
 lastGeneratedMatchups = matchups;
 
+updateGapCounts();
+
 applyGapFilter();
 
 document.getElementById("generatingOverlay").style.display = "none";
@@ -762,5 +764,44 @@ function applyGapFilter(){
   }
 
   renderGeneratedMatchups(filtered);
+
+}
+
+function updateGapCounts(){
+
+  const radios = document.querySelectorAll('input[name="gapFilter"]');
+
+  const counts = {
+    all: lastGeneratedMatchups.length,
+    0: 0,
+    1: 0,
+    2: 0,
+    3: 0,
+    4: 0
+  };
+
+  lastGeneratedMatchups.forEach(m=>{
+    if(counts.hasOwnProperty(m.skillGap)){
+      counts[m.skillGap]++;
+    }
+  });
+
+  radios.forEach(radio=>{
+
+    const value = radio.value;
+
+    const label = radio.parentElement;
+
+    if(value === "all"){
+      label.childNodes[1].nodeValue = ` All options [${counts.all}]`;
+      radio.disabled = counts.all === 0;
+    }else{
+
+      label.childNodes[1].nodeValue = ` Skill Gap ${value} [${counts[value]}]`;
+      radio.disabled = counts[value] === 0;
+
+    }
+
+  });
 
 }
