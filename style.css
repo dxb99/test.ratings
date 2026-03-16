@@ -456,4 +456,22 @@ margin-bottom:2px;
 
 }
 
+/* Player grid on mobile */
+
+#playersCheckboxes{
+
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+max-width:400px;
+
+}
+
+#playersCheckboxes label{
+
+justify-content:center;
+width:100%;
+
+}
+
 }
