@@ -698,9 +698,7 @@ function generateMatchupsLocal(selectedPlayers, filterGap){
 
     if(gap >= 5) return;
 
-    if(filterGap != 0 && gap != filterGap) return;
-
-    results.push({
+      results.push({
       redTeam:red,
       blueTeam:blue,
       redSkill:redSkill,
