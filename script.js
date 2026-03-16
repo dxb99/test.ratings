@@ -187,58 +187,46 @@ function renderGeneratedMatchups(matchups){
 
 div.innerHTML=`
 
-<div class="teamRow">
+<div class="matchCompact">
 
-  <div class="redTeam">
+<div class="teamLine">
 
-    <strong>RED TEAM</strong><br><br>
+<span class="redTeam"><strong>RED TEAM:</strong></span>
 
-    ${m.redTeam.map(p=>p.name).join("<br>")}
+<span class="teamPlayers">
+${m.redTeam.map(p=>p.name).join(", ")}
+</span>
 
-    <br><br>
+<button class="selectMatch">SELECT MATCHUP</button>
 
-    <small>
-    Players: ${m.redTeam.length}<br>
-    Skill Total: ${m.redSkill}
-    </small>
+</div>
 
-  </div>
+<div class="teamLine">
 
-  <div class="vs">VS</div>
+<span class="blueTeam"><strong>BLUE TEAM:</strong></span>
 
-  <div class="blueTeam">
-
-    <strong>BLUE TEAM</strong><br><br>
-
-    ${m.blueTeam.map(p=>p.name).join("<br>")}
-
-    <br><br>
-
-    <small>
-    Players: ${m.blueTeam.length}<br>
-    Skill Total: ${m.blueSkill}
-    </small>
-
-  </div>
+<span class="teamPlayers">
+${m.blueTeam.map(p=>p.name).join(", ")}
+</span>
 
 </div>
 
 <div class="badges">
 
-  <span class="badge gap-${m.skillGap}">
-  Skill Gap ${m.skillGap}
-  </span>
+<span class="badge gap-${m.skillGap}">
+Skill Gap ${m.skillGap}
+</span>
 
-  <span class="badge picks">
-  Picked ${m.pickCount} times
-  </span>
+<span class="badge picks">
+Picked ${m.pickCount} times
+</span>
 
 </div>
 
-<button class="selectMatch">SELECT MATCHUP</button>
+</div>
 
 `;
-
+    
 div.querySelector(".selectMatch").onclick = () => selectMatchup(m);
 
 container.appendChild(div);
