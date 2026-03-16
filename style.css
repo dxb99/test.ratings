@@ -152,6 +152,12 @@ border-radius:6px;
 
 }
 
+.radioRow{
+
+margin-top:20px;
+
+}
+
 #generateButton:hover{
 
 background:#cc0000;
