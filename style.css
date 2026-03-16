@@ -598,7 +598,7 @@ white-space:nowrap;
 .teamLine{
 
 display:flex;
-flex-wrap:nowrap;
+flex-wrap:wrap;
 align-items:center;
 
 }
@@ -606,7 +606,9 @@ align-items:center;
 .teamPlayers{
 
 flex:1;
-white-space:nowrap;
+white-space:normal;
+font-size:13px;
+line-height:1.2;
 
 }
 
