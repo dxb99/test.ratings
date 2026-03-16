@@ -427,6 +427,12 @@ font-size:20px;
 
 }
 
+header{
+
+padding:10px 10px 60px 10px;
+
+}
+
 /* Matchups become 1 per row */
 
 #generatedMatchups{
