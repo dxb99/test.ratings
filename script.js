@@ -12,6 +12,8 @@ window.addEventListener("load", async () => {
     document.getElementById("loadingScreen").style.display = "none";
     document.getElementById("app").classList.remove("hidden");
 
+    startMatchAutoRefresh();
+
   } catch (err) {
 
     console.error(err);
@@ -615,3 +617,29 @@ document.getElementById("historySort").onchange = function(){
   openHistoryTab();
 
 };
+
+function startMatchAutoRefresh(){
+
+  setInterval(async ()=>{
+
+    try{
+
+      const data = await api({
+        action:"getInitialData"
+      });
+
+      if(data.ok){
+
+        renderMatchup(data.currentMatchup);
+
+      }
+
+    }catch(e){
+
+      console.log("Auto refresh error");
+
+    }
+
+  },10000);
+
+}
