@@ -317,6 +317,13 @@ function renderPlayers(players){
   maker.innerHTML="";
   list.innerHTML="";
 
+  const placeholder = document.createElement("option");
+  placeholder.value = "";
+  placeholder.textContent = "Select Match Maker";
+  placeholder.selected = true;
+  placeholder.disabled = true;
+  maker.appendChild(placeholder);
+
   players.forEach(p=>{
 
     const opt=document.createElement("option");
