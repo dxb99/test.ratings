@@ -318,9 +318,9 @@ function renderPlayers(players){
 
 }
 
-async function openAdminTab(){
+async function openAdminTab(btn){
 
-  showTab("adminTab");
+  showTab("adminTab", btn);
 
   const data = await api({
     action:"getPlayersAdmin"
