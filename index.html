@@ -42,13 +42,13 @@ LOADING<span class="dots"></span>
 
 <div class="tabs">
 
-<button onclick="showTab('matchupTab')" class="tabButton active">MATCHUP</button>
+<button onclick="showTab('matchupTab', this)" class="tabButton active">MATCHUP</button>
 
-<button onclick="showTab('generatorTab')" class="tabButton">GENERATOR</button>
+<button onclick="showTab('generatorTab', this)" class="tabButton">GENERATOR</button>
 
-<button onclick="showTab('historyTab')" class="tabButton">HISTORY</button>
+<button onclick="showTab('historyTab', this)" class="tabButton">HISTORY</button>
 
-<button onclick="openAdminTab()" class="tabButton">ADMIN</button>
+<button onclick="openAdminTab(this)" class="tabButton">ADMIN</button>
 
 </div>
 
@@ -192,7 +192,7 @@ GENERATE MATCHUP
 
 <script>
 
-function showTab(tab){
+function showTab(tab, btn){
 
 document.querySelectorAll(".tabContent").forEach(x=>x.classList.remove("active"));
 
@@ -200,7 +200,7 @@ document.querySelectorAll(".tabButton").forEach(x=>x.classList.remove("active"))
 
 document.getElementById(tab).classList.add("active");
 
-event.target.classList.add("active");
+if(btn) btn.classList.add("active");
 
 }
 
