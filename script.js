@@ -99,21 +99,30 @@ function renderMatchup(match){
 
   }
 
-  el.innerHTML=`
+el.innerHTML=`
 
-  MATCH MAKER: ${match.matchMaker}<br><br>
+MATCH MAKER: ${match.matchMaker}<br><br>
 
-  RED TEAM: ${match.redTeam.join(", ")}<br>
+RED TEAM: ${match.redTeam.join(", ")}<br>
 
-  BLUE TEAM: ${match.blueTeam.join(", ")}
+BLUE TEAM: ${match.blueTeam.join(", ")}
 
-  `;
+`;
+
+const expiry = new Date(match.expiresAt);
+const now = new Date();
+
+if(expiry <= now){
+
+  el.innerHTML="NO MATCHUP YET<br><br>CLICK GENERATOR TO GET STARTED";
+  countdown.innerHTML="";
+  return;
+
+}
 
 if(match.selectedAt !== lastMatchTimestamp){
 
   lastMatchTimestamp = match.selectedAt;
-
-  const expiry=new Date(match.expiresAt);
 
   startCountdown(expiry);
 
