@@ -410,3 +410,50 @@ function updatePlayerCount(){
   document.getElementById("playerCount").innerText = "Players: " + rows;
 
 }
+
+document.getElementById("savePlayers").onclick = savePlayers;
+
+async function savePlayers(){
+
+  const pass = prompt("Enter Admin Password");
+
+  if(!pass) return;
+
+  const players = [];
+
+  document.querySelectorAll("#adminTable tbody tr").forEach(row=>{
+
+    const name = row.cells[0].innerText.trim();
+    const skill = parseInt(row.cells[1].innerText.trim());
+
+    if(!name) return;
+
+    players.push({
+      name:name,
+      skill:skill
+    });
+
+  });
+
+  const data = await api({
+
+    action:"savePlayersAdmin",
+
+    password:pass,
+
+    players:players
+
+  });
+
+  if(!data.ok){
+
+    alert(data.error);
+    return;
+
+  }
+
+  alert("Players saved successfully");
+
+  openAdminTab();
+
+}
