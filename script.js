@@ -518,6 +518,18 @@ function renderHistory(history){
 
   container.innerHTML = "";
 
+  const sortType = document.getElementById("historySort").value;
+
+if(sortType === "maker"){
+
+  history.sort((a,b)=>a.matchMaker.localeCompare(b.matchMaker));
+
+}else{
+
+  history.sort((a,b)=>new Date(b.selectedAt) - new Date(a.selectedAt));
+
+}
+
   if(!history || history.length === 0){
 
     container.innerHTML = "No match history yet.";
@@ -597,3 +609,9 @@ async function clearHistory(){
   document.getElementById("historyList").innerHTML = "No match history yet.";
 
 }
+
+document.getElementById("historySort").onchange = function(){
+
+  openHistoryTab();
+
+};
