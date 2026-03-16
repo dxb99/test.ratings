@@ -511,3 +511,60 @@ async function openHistoryTab(btn){
   renderHistory(data.history);
 
 }
+
+function renderHistory(history){
+
+  const container = document.getElementById("historyList");
+
+  container.innerHTML = "";
+
+  if(!history || history.length === 0){
+
+    container.innerHTML = "No match history yet.";
+
+    return;
+
+  }
+
+  history.forEach(match=>{
+
+    const div = document.createElement("div");
+
+    div.className = "historyItem";
+
+    div.innerHTML = `
+
+    <strong>${formatDate(match.selectedAt)}</strong><br>
+    Match Maker: ${match.matchMaker}<br><br>
+
+    <span class="redTeam">
+    RED TEAM<br>
+    ${match.redTeam}
+    </span>
+
+    <br><br>
+
+    <span class="blueTeam">
+    BLUE TEAM<br>
+    ${match.blueTeam}
+    </span>
+
+    <br><br>
+
+    Skill Gap: ${match.skillGap}
+
+    `;
+
+    container.appendChild(div);
+
+  });
+
+}
+
+function formatDate(date){
+
+  const d = new Date(date);
+
+  return d.toLocaleString();
+
+}
