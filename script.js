@@ -2,6 +2,7 @@ const API_URL = "https://script.google.com/macros/s/AKfycbzIyBeXAVeSLtxW8jR9OnQL
 
 let allPlayers = [];
 let adminLoaded = false;
+let countdownTimer = null;
 
 window.addEventListener("load", async () => {
 
@@ -262,9 +263,13 @@ async function selectMatchup(match){
 
 function startCountdown(expiry){
 
+  if(countdownTimer){
+  clearInterval(countdownTimer);
+}
+
   const el=document.getElementById("matchCountdown");
 
-  setInterval(()=>{
+  countdownTimer = setInterval(()=>{
 
     const now=new Date();
 
