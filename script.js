@@ -156,20 +156,11 @@ if(!maker){
 
   const gap = document.querySelector('input[name="gapFilter"]:checked').value;
 
-  const data = await api({
-    action:"generateMatchups",
-    selectedPlayers:selectedPlayers,
-    filterGap:gap
-  });
+const matchups = generateMatchupsLocal(selectedPlayers, gap);
 
-  if(!data.ok){
-    alert(data.error || "Could not generate matchups.");
-    return;
-  }
+renderGeneratedMatchups(matchups);
 
-  renderGeneratedMatchups(data.matchups);
-
-  document.getElementById("generatingOverlay").style.display = "none";
+document.getElementById("generatingOverlay").style.display = "none";
 
 }
 
