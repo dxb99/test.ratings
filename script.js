@@ -15,6 +15,10 @@ window.addEventListener("load", async () => {
     document.getElementById("loadingScreen").style.display = "none";
     document.getElementById("app").classList.remove("hidden");
 
+    document.querySelectorAll('input[name="gapFilter"]').forEach(radio => {
+      radio.addEventListener("change", applyGapFilter);
+    });
+
     startMatchAutoRefresh();
 
   } catch (err) {
