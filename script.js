@@ -740,3 +740,21 @@ function getCombinationsLocal(arr,size){
   return result;
 
 }
+
+function applyGapFilter(){
+
+  const filter = document.querySelector('input[name="gapFilter"]:checked').value;
+
+  let filtered = lastGeneratedMatchups;
+
+  if(filter !== "all"){
+
+    const gapValue = Number(filter);
+
+    filtered = lastGeneratedMatchups.filter(m => m.skillGap === gapValue);
+
+  }
+
+  renderGeneratedMatchups(filtered);
+
+}
