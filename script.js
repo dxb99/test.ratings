@@ -134,6 +134,8 @@ document.getElementById("generateButton").onclick = generateMatchups;
 
 async function generateMatchups(){
 
+  document.getElementById("generatingOverlay").style.display = "flex";
+
   const selectedPlayers=[];
 
   const maker = document.getElementById("matchMakerSelect").value;
@@ -166,6 +168,8 @@ if(!maker){
   }
 
   renderGeneratedMatchups(data.matchups);
+
+  document.getElementById("generatingOverlay").style.display = "none";
 
 }
 
