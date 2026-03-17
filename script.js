@@ -758,8 +758,6 @@ function generateMatchupsLocal(selectedPlayers, filterGap){
 
     const gap = Math.abs(redSkill - blueSkill);
 
-    if(gap >= 5) return;
-
       results.push({
       redTeam:red,
       blueTeam:blue,
