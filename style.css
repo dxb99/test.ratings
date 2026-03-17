@@ -390,8 +390,9 @@ background:#992222;
 
 #generatingOverlay,
 #historyLoadingOverlay,
-#clearHistoryOverlay{
-
+#clearHistoryOverlay,
+#savingOverlay{
+  
 position:fixed;
 top:0;
 left:0;
