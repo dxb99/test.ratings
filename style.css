@@ -283,6 +283,28 @@ background:#1e3a8a;
 
 }
 
+/* Color Skill Gap filter labels */
+
+.radioRow label:has(input[value="0"]){
+color:#2563eb;
+}
+
+.radioRow label:has(input[value="1"]){
+color:#22c55e;
+}
+
+.radioRow label:has(input[value="2"]){
+color:#eab308;
+}
+
+.radioRow label:has(input[value="3"]){
+color:#f97316;
+}
+
+.radioRow label:has(input[value="4"]){
+color:#ef4444;
+}
+
 .selectMatch{
 
 background:#444;
