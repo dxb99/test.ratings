@@ -122,7 +122,7 @@ z-index:1000;
 
 #logo{
 
-width:220px;
+width:clamp(180px, 25vw, 420px);
 margin-bottom:20px;
 
 }
