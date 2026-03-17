@@ -385,9 +385,17 @@ async function openAdminTab(btn){
 
   showTab("adminTab", btn);
 
+  /* SHOW LOADING OVERLAY */
+
+  document.getElementById("historyLoadingOverlay").style.display = "flex";
+
   const data = await api({
     action:"getPlayersAdmin"
   });
+
+  /* HIDE LOADING OVERLAY */
+
+  document.getElementById("historyLoadingOverlay").style.display = "none";
 
   if(!data.ok){
     alert("Failed loading players");
