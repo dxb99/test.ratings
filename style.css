@@ -630,11 +630,11 @@ align-items:flex-start;
 
 .teamPlayers{
 
-display:-webkit-box;
--webkit-line-clamp:2;
--webkit-box-orient:vertical;
+flex:1;
+white-space:nowrap;
 overflow:hidden;
-line-height:1.2;
+text-overflow:ellipsis;
+font-size:clamp(10px,3vw,13px);
 
 }
 
@@ -705,8 +705,11 @@ padding:3px 8px;
 .redTeam,
 .blueTeam{
 
-font-size:13px;
+font-size:clamp(10px,3vw,13px);
 font-weight:600;
+white-space:nowrap;
+
+}9
 
 }
 
