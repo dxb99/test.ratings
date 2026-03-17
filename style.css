@@ -152,6 +152,65 @@ border-radius:6px;
 
 }
 
+/* STANDARD BUTTON SYSTEM */
+
+.btn{
+
+padding:8px 16px;
+font-size:14px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+color:white;
+min-width:110px;
+transition:all 0.15s ease;
+
+}
+
+/* GREEN (positive actions) */
+
+.btn-green{
+background:#15803d;
+}
+
+.btn-green:hover{
+background:#166534;
+box-shadow:0 0 6px rgba(34,197,94,0.6);
+}
+
+/* BLUE (add/create) */
+
+.btn-blue{
+background:#2563eb;
+}
+
+.btn-blue:hover{
+background:#1d4ed8;
+box-shadow:0 0 6px rgba(59,130,246,0.6);
+}
+
+/* ORANGE (utility) */
+
+.btn-orange{
+background:#ea580c;
+}
+
+.btn-orange:hover{
+background:#c2410c;
+box-shadow:0 0 6px rgba(249,115,22,0.6);
+}
+
+/* RED (danger) */
+
+.btn-red{
+background:#dc2626;
+}
+
+.btn-red:hover{
+background:#b91c1c;
+box-shadow:0 0 6px rgba(239,68,68,0.6);
+}
+
 .radioRow{
 
 margin-top:20px;
