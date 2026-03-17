@@ -741,11 +741,13 @@ function generateMatchupsLocal(selectedPlayers, filterGap){
 
   const size = Math.floor(players.length / 2);
 
-  const combos = getCombinationsLocal(players, size);
+const combos = getCombinationsLocal(players, size);
 
-  const results = [];
+const results = [];
 
-  combos.forEach(red => {
+const seen = new Set();
+
+combos.forEach(red => {
 
   const blue = players.filter(p => !red.includes(p));
 
@@ -754,14 +756,26 @@ function generateMatchupsLocal(selectedPlayers, filterGap){
 
     const gap = Math.abs(redSkill - blueSkill);
 
-      results.push({
-      redTeam:red,
-      blueTeam:blue,
-      redSkill:redSkill,
-      blueSkill:blueSkill,
-      skillGap:gap,
-      pickCount:0
-    });
+/* Prevent mirrored duplicates */
+
+const redNames = red.map(p=>p.name).sort().join(",");
+const blueNames = blue.map(p=>p.name).sort().join(",");
+
+const key1 = redNames + "|" + blueNames;
+const key2 = blueNames + "|" + redNames;
+
+if(seen.has(key1) || seen.has(key2)) return;
+
+seen.add(key1);
+
+results.push({
+  redTeam:red,
+  blueTeam:blue,
+  redSkill:redSkill,
+  blueSkill:blueSkill,
+  skillGap:gap,
+  pickCount:0
+});
 
   });
 
