@@ -357,27 +357,33 @@ function renderPlayers(players){
   placeholder.disabled = true;
   maker.appendChild(placeholder);
 
-  players.forEach(p=>{
+players.forEach(p=>{
 
-    const opt=document.createElement("option");
+  const opt=document.createElement("option");
 
-    opt.value=p.name;
-    opt.innerText=p.name;
+  opt.value=p.name;
+  opt.innerText=p.name;
 
-    maker.appendChild(opt);
+  maker.appendChild(opt);
 
-    const div=document.createElement("div");
+  const div=document.createElement("div");
 
-    div.innerHTML=`
-    <label>
-    <input type="checkbox" checked value="${p.name}">
-    ${p.name} (${p.skill})
-    </label>
-    `;
+  div.innerHTML=`
+  <label>
+  <input type="checkbox" checked value="${p.name}">
+  ${p.name} (${p.skill})
+  </label>
+  `;
 
-    list.appendChild(div);
+  /* ADD THIS LINE */
 
-  });
+  div.querySelector("input").addEventListener("change", updateSelectedPlayerCount);
+
+  list.appendChild(div);
+
+});
+
+updateSelectedPlayerCount();
 
 }
 
@@ -810,6 +816,14 @@ function applyGapFilter(){
   }
 
   renderGeneratedMatchups(filtered);
+
+}
+
+function updateSelectedPlayerCount(){
+
+  const count = document.querySelectorAll("#playersCheckboxes input:checked").length;
+
+  document.getElementById("selectedPlayerCount").innerText = count;
 
 }
 
