@@ -231,6 +231,11 @@ box-shadow:0 0 6px rgba(239,68,68,0.6);
 .radioRow{
 
 margin-top:20px;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+width:100%;
 
 }
 
@@ -597,8 +602,9 @@ display:grid;
 grid-template-columns:repeat(3,1fr);
 row-gap:8px;
 column-gap:8px;
-max-width:420px;
-margin:20px auto 0 auto;
+width:100%;
+margin:20px 0 0 0;
+padding:0 20px;
 
 }
 
