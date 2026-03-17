@@ -180,7 +180,7 @@ setTimeout(() => {
 
   document.getElementById("generatingOverlay").style.display = "none";
 
-}, 3000);
+}, 2000);
 
 }
 
