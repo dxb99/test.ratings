@@ -5,6 +5,7 @@ let adminLoaded = false;
 let countdownTimer = null;
 let lastMatchTimestamp = null;
 let lastGeneratedMatchups = [];
+let selectedMatchKey = null;
 
 window.addEventListener("load", async () => {
 
@@ -231,7 +232,30 @@ Picked ${m.pickCount} times
 
 `;
     
-div.querySelector(".selectMatch").onclick = () => selectMatchup(m);
+const btn = div.querySelector(".selectMatch");
+
+const key = m.redTeam.map(p=>p.name).join("|") + "-" + m.blueTeam.map(p=>p.name).join("|");
+
+if(selectedMatchKey === key){
+  btn.classList.add("selected");
+  btn.innerText = "SELECTED";
+}
+
+btn.onclick = () => {
+
+  selectedMatchKey = key;
+
+  document.querySelectorAll(".selectMatch").forEach(b=>{
+    b.classList.remove("selected");
+    b.innerText = "SELECT MATCHUP";
+  });
+
+  btn.classList.add("selected");
+  btn.innerText = "SELECTED";
+
+  selectMatchup(m);
+
+};
 
 container.appendChild(div);
 
