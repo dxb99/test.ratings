@@ -416,9 +416,9 @@ async function openAdminTab(btn){
 
     <td contenteditable="true">${p.skill}</td>
 
-    <td><button class="admin-inline-btn remove">Remove</button></td>
+    <td><button class="btn btn-red remove">REMOVE</button></td>
 
-    <td><button class="admin-inline-btn resetPin">RESET PIN</button></td>
+    <td><button class="btn btn-orange resetPin">RESET PIN</button></td>
 
     <td>${p.pinStatus}</td>
 
@@ -494,7 +494,7 @@ function addAdminPlayerRow(){
 
   <td contenteditable="true">0</td>
 
-  <td><button class="admin-inline-btn remove">Remove</button></td>
+  <td><button class="btn btn-red remove">REMOVE</button></td>
 
   <td></td>
 
