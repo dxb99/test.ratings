@@ -204,8 +204,7 @@ padding:15px;
 background:#111;
 border-radius:6px;
 
-/* allow content to scale slightly */
-font-size: clamp(12px, 0.9vw, 15px);
+font-size: clamp(11px, 0.85vw, 15px);
 
 }
 
@@ -232,7 +231,6 @@ flex-wrap:nowrap;
 
 flex:1;
 text-align:left;
-white-space:nowrap;
 
 }
 
