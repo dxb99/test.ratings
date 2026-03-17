@@ -582,7 +582,8 @@ margin-bottom:2px;
 
 display:grid;
 grid-template-columns:repeat(2,1fr);
-gap:10px;
+row-gap:10px;
+column-gap:14px;
 max-width:400px;
 
 }
