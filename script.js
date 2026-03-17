@@ -530,6 +530,8 @@ async function openHistoryTab(btn){
 
   showTab("historyTab", btn);
 
+  document.getElementById("historyLoadingOverlay").style.display = "flex";
+
   const data = await api({
     action:"getHistory"
   });
@@ -542,6 +544,8 @@ async function openHistoryTab(btn){
   }
 
   renderHistory(data.history);
+
+  document.getElementById("historyLoadingOverlay").style.display = "none";
 
 }
 
