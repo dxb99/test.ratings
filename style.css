@@ -732,6 +732,12 @@ h2{
 font-size:16px;
 }
 
+.historyControls,
+.adminControls{
+flex-wrap:nowrap;
+overflow-x:auto;
+}
+  
 .historyControls .btn,
 .adminControls .btn{
 
