@@ -461,15 +461,16 @@ flex-wrap:wrap;
 .historyItem{
 
 border-bottom:1px solid #333;
-padding:8px 20px;
+padding:6px 20px;
 width:100%;
 text-align:left;
-line-height:1.4;
+line-height:1.3;
+font-size:14px;
 
 }
 
 .historyLine1{
-font-weight:bold;
+font-weight:500;
 }
 
 .historyLine2,
@@ -607,7 +608,7 @@ margin-left:6px;
 
 padding:1px 5px;
 
-font-size:0.78em;
+font-size:0.8em;
 font-weight:bold;
 
 color:#ffffff;
