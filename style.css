@@ -532,33 +532,30 @@ animation:spin 1s linear infinite;
 
 /* PLAYER BUTTON STYLE */
 
-/* SKILL SHIELD BADGE */
+/* GOLD MEDAL BADGE */
 
-.skillShield{
+.skillMedal{
 
 display:inline-flex;
 align-items:center;
 justify-content:center;
 
-width:26px;
-height:30px;
+width:28px;
+height:28px;
 
 margin-left:6px;
 
 font-size:12px;
 font-weight:bold;
-color:white;
+color:#000;
 
-background:#15803d;
+background:linear-gradient(145deg,#ffd700,#f4b400);
 
-clip-path:polygon(
-50% 0%,
-90% 20%,
-90% 65%,
-50% 100%,
-10% 65%,
-10% 20%
-);
+border-radius:50%;
+
+box-shadow:
+0 0 3px rgba(0,0,0,0.5),
+inset 0 1px 2px rgba(255,255,255,0.7);
 
 }
 
