@@ -482,7 +482,8 @@ margin-top:2px;
 
 .historyTop{
 
-grid-template-columns:1fr auto auto;
+grid-template-columns:auto auto auto;
+column-gap:20px;
 
 }
 
