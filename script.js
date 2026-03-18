@@ -897,6 +897,14 @@ function applyGapFilter(){
 
   }
 
+/* Restore normal sorting when BLITZ is OFF */
+
+if(!blitzEnabled){
+
+  filtered.sort((a,b)=>a.skillGap - b.skillGap);
+
+}  
+  
   renderGeneratedMatchups(filtered);
 
 }
