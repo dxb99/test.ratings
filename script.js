@@ -916,6 +916,7 @@ function updateSelectedPlayerCount(){
   document.getElementById("selectedPlayerCount").innerText = count;
 
   const blitzToggle = document.getElementById("blitzToggle");
+  const blitzContainer = document.querySelector(".blitzToggle");
 
   if(blitzToggle){
 
@@ -925,9 +926,17 @@ function updateSelectedPlayerCount(){
       blitzToggle.disabled = true;
       blitzEnabled = false;
 
+      if(blitzContainer){
+        blitzContainer.classList.add("disabled");
+      }
+
     }else{
 
       blitzToggle.disabled = false;
+
+      if(blitzContainer){
+        blitzContainer.classList.remove("disabled");
+      }
 
     }
 
