@@ -458,6 +458,18 @@ flex-wrap:wrap;
 
 }
 
+.historyControls .btn{
+
+min-width:180px;
+height:42px;
+font-size:14px;
+padding:0 16px;
+display:flex;
+align-items:center;
+justify-content:center;
+
+}
+
 .historyItem{
 
 border-bottom:1px solid #333;
@@ -497,6 +509,23 @@ font-weight:600;
 .adminControls{
 
 margin-bottom:20px;
+display:flex;
+justify-content:center;
+align-items:center;
+gap:12px;
+flex-wrap:wrap;
+
+}
+
+.adminControls .btn{
+
+min-width:180px;
+height:42px;
+font-size:14px;
+padding:0 16px;
+display:flex;
+align-items:center;
+justify-content:center;
 
 }
 
@@ -699,6 +728,15 @@ font-size:20px;
 
 h2{
 font-size:16px;
+}
+
+.historyControls .btn,
+.adminControls .btn{
+
+min-width:140px;
+height:38px;
+font-size:13px;
+
 }
 
 #generateButton{
