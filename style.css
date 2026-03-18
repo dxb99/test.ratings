@@ -468,6 +468,39 @@ line-height:1.4;
 
 }
 
+/* HISTORY ROW LAYOUT */
+
+.historyRow{
+
+display:grid;
+grid-template-columns:auto auto 1fr;
+align-items:center;
+column-gap:10px;
+margin-top:2px;
+
+}
+
+.historyTop{
+
+grid-template-columns:1fr auto auto;
+
+}
+
+.historyLabel{
+
+font-weight:600;
+white-space:nowrap;
+
+}
+
+.historyPlayers{
+
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+
+}
+
 .historyLine1{
 font-weight:bold;
 }
