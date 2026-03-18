@@ -665,13 +665,13 @@ div.innerHTML = `
 <div class="historyRow redTeam">
 <span class="skillMedal">${match.redSkill}</span>
 <span class="historyLabel">RED TEAM:</span>
-<span class="historyPlayers">${match.redTeam}</span>
+<span class="historyPlayers">${Array.isArray(match.redTeam) ? match.redTeam.join(", ") : match.redTeam}</span>
 </div>
 
 <div class="historyRow blueTeam">
 <span class="skillMedal">${match.blueSkill}</span>
 <span class="historyLabel">BLUE TEAM:</span>
-<span class="historyPlayers">${match.blueTeam}</span>
+<span class="historyPlayers">${Array.isArray(match.blueTeam) ? match.blueTeam.join(", ") : match.blueTeam}</span>
 </div>
 
 `;
