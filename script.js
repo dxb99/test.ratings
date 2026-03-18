@@ -7,6 +7,8 @@ let lastMatchTimestamp = null;
 let lastGeneratedMatchups = [];
 let selectedMatchKey = null;
 
+let blitzEnabled = false;
+
 window.addEventListener("load", async () => {
 
   try {
@@ -19,6 +21,20 @@ window.addEventListener("load", async () => {
     document.querySelectorAll('input[name="gapFilter"]').forEach(radio => {
       radio.addEventListener("change", applyGapFilter);
     });
+
+const blitzToggle = document.getElementById("blitzToggle");
+
+if(blitzToggle){
+
+  blitzToggle.addEventListener("change", () => {
+
+    blitzEnabled = blitzToggle.checked;
+
+    applyGapFilter();
+
+  });
+
+}
 
     startMatchAutoRefresh();
 
