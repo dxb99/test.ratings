@@ -802,6 +802,16 @@ font-size:14px;
 font-size:14px;
 }
 
+.historyLine2,
+.historyLine3{
+
+display:block;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+
+}
+
 td, th{
 font-size:14px;
 padding:6px;
