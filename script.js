@@ -656,24 +656,17 @@ if(sortType === "maker"){
 
     div.innerHTML = `
 
-    <strong>${formatDate(match.selectedAt)}</strong><br>
-    Match Maker: ${match.matchMaker}<br><br>
+    <div class="historyLine1">
+    ${formatDate(match.selectedAt)} | Match Maker: ${match.matchMaker} | Skill Gap: ${match.skillGap}
+    </div>
 
-    <span class="redTeam">
-    RED TEAM<br>
-    ${match.redTeam}
-    </span>
+    <div class="historyLine2 redTeam">
+    <span class="skillMedal">${match.redSkill}</span> RED TEAM: ${match.redTeam}
+    </div>
 
-    <br><br>
-
-    <span class="blueTeam">
-    BLUE TEAM<br>
-    ${match.blueTeam}
-    </span>
-
-    <br><br>
-
-    Skill Gap: ${match.skillGap}
+    <div class="historyLine3 blueTeam">
+    <span class="skillMedal">${match.blueSkill}</span> BLUE TEAM: ${match.blueTeam}
+    </div>
 
     `;
 
