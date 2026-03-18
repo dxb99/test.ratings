@@ -461,10 +461,20 @@ flex-wrap:wrap;
 .historyItem{
 
 border-bottom:1px solid #333;
-padding:10px 20px;
+padding:8px 20px;
 width:100%;
 text-align:left;
+line-height:1.4;
 
+}
+
+.historyLine1{
+font-weight:bold;
+}
+
+.historyLine2,
+.historyLine3{
+margin-top:2px;
 }
 
 /* ADMIN */
