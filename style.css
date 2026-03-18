@@ -799,15 +799,13 @@ font-size:14px;
 }
 
 .historyItem{
-font-size:14px;
+font-size:clamp(11px, 3vw, 13px);
+line-height:1.2;
+letter-spacing:-0.2px;
 }
 
 .historyLine1{
-
 white-space:nowrap;
-overflow:hidden;
-text-overflow:ellipsis;
-
 }
 
 .historyLine2,
@@ -815,8 +813,6 @@ text-overflow:ellipsis;
 
 display:block;
 white-space:nowrap;
-overflow:hidden;
-text-overflow:ellipsis;
 
 }
 
