@@ -530,8 +530,6 @@ animation:spin 1s linear infinite;
 
 }
 
-/* PLAYER BUTTON STYLE */
-
 /* TROPHY SKILL BADGE */
 
 .skillMedal{
@@ -568,25 +566,6 @@ border:1px solid #444;
 border-radius:6px;
 white-space:nowrap;
 cursor:pointer;
-
-}
-
-/* MEDAL RIBBON */
-
-.skillMedal::before{
-
-content:"";
-position:absolute;
-top:-0.45em;
-left:50%;
-transform:translateX(-50%);
-
-width:0.4em;
-height:0.5em;
-
-background:linear-gradient(#e11d48,#2563eb);
-
-clip-path:polygon(0 0,100% 0,100% 100%,50% 75%,0 100%);
 
 }
 
