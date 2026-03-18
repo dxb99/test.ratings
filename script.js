@@ -915,6 +915,24 @@ function updateSelectedPlayerCount(){
 
   document.getElementById("selectedPlayerCount").innerText = count;
 
+  const blitzToggle = document.getElementById("blitzToggle");
+
+  if(blitzToggle){
+
+    if(count % 2 === 0){
+
+      blitzToggle.checked = false;
+      blitzToggle.disabled = true;
+      blitzEnabled = false;
+
+    }else{
+
+      blitzToggle.disabled = false;
+
+    }
+
+  }
+
 }
 
 function updateGapCounts(){
