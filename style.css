@@ -549,15 +549,15 @@ padding:1px 5px;
 font-size:0.78em;
 font-weight:bold;
 
-color:#ffd700;
+color:#ffffff;
 
-background:rgba(255,215,0,0.08);
+background:rgba(255,255,255,0.06);
 
-border:1px solid rgba(255,215,0,0.35);
+border:1px solid rgba(255,255,255,0.25);
 
 border-radius:6px;
 
-box-shadow:0 0 4px rgba(255,215,0,0.25);
+box-shadow:0 0 4px rgba(255,255,255,0.25);
 
 }
 
