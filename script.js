@@ -73,6 +73,7 @@ populatePlayers(allPlayers);
 
 document.querySelectorAll('input[name="gapFilter"]').forEach(r=>{
   r.disabled = true;
+  r.parentElement.classList.add("disabled");
 });
 
 renderMatchup(data.currentMatchup);
@@ -198,13 +199,14 @@ matchups.sort((a,b)=>a.skillGap - b.skillGap);
 
 lastGeneratedMatchups = matchups;
 
-/* Force overlay to stay visible for 3 seconds */
+/* Force overlay to stay visible for 1 seconds */
 
   setTimeout(() => {
 
   document.querySelectorAll('input[name="gapFilter"]').forEach(r=>{
   r.disabled = false;
-  });
+  r.parentElement.classList.remove("disabled");
+});
 
   updateGapCounts();
 
