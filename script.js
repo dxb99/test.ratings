@@ -81,10 +81,11 @@ if(lastGeneratedMatchups.length === 0){
 
 }else{
 
-  document.querySelectorAll('input[name="gapFilter"]').forEach(r=>{
-    r.disabled = false;
-    r.parentElement.classList.remove("disabled");
-  });
+  // Re-apply correct radio states based on matchups
+  updateGapCounts();
+
+  // Re-render filtered matchups
+  applyGapFilter();
 
 }
 
