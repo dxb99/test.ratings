@@ -274,7 +274,7 @@ ${m.blueTeam.map(p=>p.name).join(", ")}
 <div class="badges">
 
 <span class="badge gap-${m.skillGap}">
-Diff ${m.skillGap}
+Difference ${m.skillGap}
 </span>
 
 <span class="badge picks">
@@ -744,7 +744,7 @@ if(sortType === "maker"){
 div.innerHTML = `
 
 <div class="historyLine1">
-${formatDate(match.selectedAt)} | Match Maker: ${match.matchMaker} | Skill Gap: ${match.skillGap}
+${formatDate(match.selectedAt)} | Match Maker: ${match.matchMaker} | Difference: ${match.skillGap}
 </div>
 
 <div class="historyLine2">
