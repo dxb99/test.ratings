@@ -165,7 +165,18 @@ el.innerHTML=`
     RED TEAM <span class="teamBadge">${match.redSkill}</span>
   </div>
       <div class="teamPlayers">
-        ${match.redTeam.map(p => `<div class="playerRow">${p}</div>`).join("")}
+        ${match.redTeam.map(name => {
+
+  const player = allPlayers.find(p => p.name === name);
+
+  return `
+    <div class="playerRow">
+      ${name}
+      <span class="skillMedal">${player ? player.skill : ""}</span>
+    </div>
+  `;
+
+}).join("")}
       </div>
     </div>
 
@@ -176,7 +187,18 @@ el.innerHTML=`
     BLUE TEAM <span class="teamBadge">${match.blueSkill}</span>
   </div>
       <div class="teamPlayers">
-        ${match.blueTeam.map(p => `<div class="playerRow">${p}</div>`).join("")}
+        ${match.blueTeam.map(name => {
+
+  const player = allPlayers.find(p => p.name === name);
+
+  return `
+    <div class="playerRow">
+      ${name}
+      <span class="skillMedal">${player ? player.skill : ""}</span>
+    </div>
+  `;
+
+}).join("")}
       </div>
     </div>
 
