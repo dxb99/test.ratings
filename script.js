@@ -8,6 +8,7 @@ let lastGeneratedMatchups = [];
 let selectedMatchKey = null;
 let matchHistory = [];
 let lastSelectedPlayers = [];
+let lastSelectedMatchMaker = "";
 
 let blitzEnabled = false;
 
@@ -429,6 +430,22 @@ players.forEach(p=>{
   opt.innerText=p.name;
 
   maker.appendChild(opt);
+
+  });
+
+  /* SAVE MATCH MAKER SELECTION */
+
+maker.onchange = function(){
+  sessionStorage.setItem("selectedMatchMaker", this.value);
+};
+
+/* RESTORE MATCH MAKER SELECTION */
+
+const savedMaker = sessionStorage.getItem("selectedMatchMaker");
+
+if(savedMaker){
+  maker.value = savedMaker;
+}
 
   const div=document.createElement("div");
 
