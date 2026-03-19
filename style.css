@@ -529,6 +529,14 @@ box-shadow:0 0 10px rgba(255,215,0,0.8);
   text-align:center;
 }
 
+/* REMOVE CHIP STYLE ONLY IN MATCHUP CARD */
+
+.matchCard .playerRow{
+  background:none;
+  padding:0;
+  border-radius:0;
+}
+
 .vs{
   font-size:28px;
   font-weight:bold;
