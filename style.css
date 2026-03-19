@@ -551,7 +551,6 @@ box-shadow:0 0 10px rgba(255,215,0,0.8);
 .matchFooter{
   margin-top:15px;
   font-size:18px;
-  font-weight:bold;
 }
 
 /* HISTORY */
@@ -784,6 +783,12 @@ border-radius:6px;
 
 box-shadow:0 0 4px rgba(255,255,255,0.25);
 
+}
+
+/* REMOVE BADGE GLOW IN MATCHUP CARD ONLY */
+
+.matchCard .skillMedal{
+  box-shadow:none;
 }
 
 /* PLAYER BUTTON STYLE */
