@@ -464,21 +464,20 @@ box-shadow:0 0 10px rgba(255,215,0,0.8);
 
 .matchCard{
   background:
-linear-gradient(90deg,
-  rgba(255,75,75,0.30) 0%,
-  rgba(255,75,75,0.18) 28%,
-  rgba(17,17,17,1) 50%,
-  rgba(75,163,255,0.18) 72%,
-  rgba(75,163,255,0.30) 100%
-),
-radial-gradient(circle at 10% 50%, rgba(255,75,75,0.25), transparent 40%),
-radial-gradient(circle at 90% 50%, rgba(75,163,255,0.25), transparent 40%);
+  linear-gradient(90deg,
+    rgba(255,75,75,0.30) 0%,
+    rgba(255,75,75,0.18) 28%,
+    rgba(17,17,17,1) 50%,
+    rgba(75,163,255,0.18) 72%,
+    rgba(75,163,255,0.30) 100%
+  ),
+  radial-gradient(circle at 10% 50%, rgba(255,75,75,0.25), transparent 40%),
+  radial-gradient(circle at 90% 50%, rgba(75,163,255,0.25), transparent 40%);
   
   border:1px solid #333;
   border-radius:10px;
   padding:20px;
-  width:95%;
-  max-width:600px;
+  width:clamp(320px, 90%, 650px);
   margin:20px auto;
   box-shadow:0 0 15px rgba(0,0,0,0.6);
 }
