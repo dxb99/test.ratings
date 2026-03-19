@@ -465,11 +465,11 @@ box-shadow:0 0 10px rgba(255,215,0,0.8);
 .matchCard{
   background:
   linear-gradient(90deg,
-  rgba(255,75,75,0.12) 0%,
-  rgba(255,75,75,0.05) 20%,
+  rgba(255,75,75,0.25) 0%,
+  rgba(255,75,75,0.15) 25%,
   rgba(17,17,17,1) 50%,
-  rgba(75,163,255,0.05) 80%,
-  rgba(75,163,255,0.12) 100%
+  rgba(75,163,255,0.15) 75%,
+  rgba(75,163,255,0.25) 100%
 );
   border:1px solid #333;
   border-radius:10px;
