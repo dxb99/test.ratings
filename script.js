@@ -142,13 +142,22 @@ function renderMatchup(match){
   const el=document.getElementById("matchupContent");
   const countdown=document.getElementById("matchCountdown");
 
-  if(!match){
+if(!match){
 
-    el.innerHTML="NO MATCHUP YET<br><br>CLICK GENERATOR TO GET STARTED";
-    countdown.innerHTML="";
-    return;
+  el.innerHTML=`
 
-  }
+  <div class="matchCard">
+    <div class="matchHeader">
+      NO CURRENT MATCHUP
+    </div>
+  </div>
+
+  `;
+
+  countdown.innerHTML="";
+  return;
+
+}
 
 el.innerHTML=`
 
@@ -219,7 +228,16 @@ const now = new Date();
 
 if(expiry <= now){
 
-  el.innerHTML="NO MATCHUP YET<br><br>CLICK GENERATOR TO GET STARTED";
+  el.innerHTML=`
+
+  <div class="matchCard">
+    <div class="matchHeader">
+      NO CURRENT MATCHUP
+    </div>
+  </div>
+
+  `;
+
   countdown.innerHTML="";
   return;
 
