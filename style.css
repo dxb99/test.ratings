@@ -514,8 +514,10 @@ box-shadow:0 0 10px rgba(255,215,0,0.8);
 /* MATCHUP: WHITE TEAM BADGE */
 
 .matchCard .teamBadge{
-  background:white;
-  color:black;
+  background:rgba(255,255,255,0.06);
+  color:#ffffff;
+  border:1px solid rgba(255,255,255,0.25);
+  box-shadow:none;
 }
 
 .team.red .teamTitle{
