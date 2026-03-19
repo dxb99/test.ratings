@@ -736,6 +736,16 @@ min-width:220px;
 
 }
 
+/* 🔥 APPLY SAME DARK STYLE TO ALL DROPDOWNS */
+
+select{
+
+background:#111;
+color:white;
+border:1px solid #444;
+
+}
+
 #matchMakerSelect option{
 
 text-align:center;
