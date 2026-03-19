@@ -161,7 +161,9 @@ el.innerHTML=`
   <div class="teamsRow">
 
     <div class="team red">
-      <div class="teamTitle">RED</div>
+  <div class="teamTitle">
+    RED TEAM <span class="teamBadge">${match.redSkill}</span>
+  </div>
       <div class="teamPlayers">
         ${match.redTeam.map(p => `<div class="playerRow">${p}</div>`).join("")}
       </div>
@@ -170,7 +172,9 @@ el.innerHTML=`
     <div class="vs">VS</div>
 
     <div class="team blue">
-      <div class="teamTitle">BLUE</div>
+  <div class="teamTitle">
+    BLUE TEAM <span class="teamBadge">${match.blueSkill}</span>
+  </div>
       <div class="teamPlayers">
         ${match.blueTeam.map(p => `<div class="playerRow">${p}</div>`).join("")}
       </div>
