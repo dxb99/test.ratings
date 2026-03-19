@@ -520,6 +520,13 @@ font-weight:600;
 
 /* ADMIN */
 
+.status-active{
+
+color:#22c55e;
+font-weight:600;
+
+}
+
 .adminControls{
 
 margin-bottom:20px;
