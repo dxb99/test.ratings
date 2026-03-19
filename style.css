@@ -515,14 +515,17 @@ box-shadow:0 0 10px rgba(255,215,0,0.8);
 }
 
 .vs{
-  font-size:22px;
+  font-size:28px;
   font-weight:bold;
   align-self:center;
+  color:#aaa;
+  letter-spacing:2px;
 }
 
 .matchFooter{
   margin-top:15px;
-  font-size:16px;
+  font-size:18px;
+  font-weight:bold;
 }
 
 /* HISTORY */
