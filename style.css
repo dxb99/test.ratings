@@ -478,6 +478,7 @@ radial-gradient(circle at 90% 50%, rgba(75,163,255,0.25), transparent 40%);
   border-radius:10px;
   padding:20px;
   width:95%;
+  max-width:900px;
   margin:20px auto;
   box-shadow:0 0 15px rgba(0,0,0,0.6);
 }
