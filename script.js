@@ -1021,15 +1021,35 @@ function updateGapCounts(){
 
     const label = radio.parentElement;
 
-    if(value === "all"){
-      label.childNodes[1].nodeValue = ` All options [${counts.all}]`;
-      radio.disabled = counts.all === 0;
-    }else{
+if(value === "all"){
 
-      label.childNodes[1].nodeValue = ` Skill Gap ${value} [${counts[value]}]`;
-      radio.disabled = counts[value] === 0;
+  label.childNodes[1].nodeValue = ` All options [${counts.all}]`;
 
-    }
+  const isDisabled = counts.all === 0;
+
+  radio.disabled = isDisabled;
+
+  if(isDisabled){
+    label.classList.add("disabled");
+  }else{
+    label.classList.remove("disabled");
+  }
+
+}else{
+
+  label.childNodes[1].nodeValue = ` Skill Gap ${value} [${counts[value]}]`;
+
+  const isDisabled = counts[value] === 0;
+
+  radio.disabled = isDisabled;
+
+  if(isDisabled){
+    label.classList.add("disabled");
+  }else{
+    label.classList.remove("disabled");
+  }
+
+}
 
   });
 
