@@ -152,13 +152,37 @@ function renderMatchup(match){
 
 el.innerHTML=`
 
-MATCH MAKER: ${match.matchMaker}<br><br>
+<div class="matchCard">
 
-RED TEAM: ${match.redTeam.join(", ")}<br>
+  <div class="matchHeader">
+    Match Maker: <strong>${match.matchMaker}</strong>
+  </div>
 
-BLUE TEAM: ${match.blueTeam.join(", ")}<br><br>
+  <div class="teamsRow">
 
-Difference: ${match.skillGap}
+    <div class="team red">
+      <div class="teamTitle">RED</div>
+      <div class="teamPlayers">
+        ${match.redTeam.map(p => `<div class="playerRow">${p}</div>`).join("")}
+      </div>
+    </div>
+
+    <div class="vs">VS</div>
+
+    <div class="team blue">
+      <div class="teamTitle">BLUE</div>
+      <div class="teamPlayers">
+        ${match.blueTeam.map(p => `<div class="playerRow">${p}</div>`).join("")}
+      </div>
+    </div>
+
+  </div>
+
+  <div class="matchFooter">
+    Difference: ${match.skillGap}
+  </div>
+
+</div>
 
 `;
 
