@@ -459,7 +459,7 @@ box-shadow:0 0 10px rgba(255,215,0,0.8);
   border:1px solid #333;
   border-radius:10px;
   padding:20px;
-  max-width:700px;
+  width:95%;
   margin:20px auto;
   box-shadow:0 0 15px rgba(0,0,0,0.6);
 }
@@ -485,6 +485,14 @@ box-shadow:0 0 10px rgba(255,215,0,0.8);
   margin-bottom:8px;
 }
 
+.teamBadge{
+  margin-left:8px;
+  padding:2px 8px;
+  border-radius:6px;
+  font-size:12px;
+  background:#333;
+}
+
 .team.red .teamTitle{
   color:#ff4b4b;
 }
@@ -503,7 +511,7 @@ box-shadow:0 0 10px rgba(255,215,0,0.8);
   background:#1a1a1a;
   padding:6px 10px;
   border-radius:6px;
-  text-align:left;
+  text-align:center;
 }
 
 .vs{
