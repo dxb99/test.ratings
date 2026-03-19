@@ -501,6 +501,11 @@ box-shadow:0 0 10px rgba(255,215,0,0.8);
 .teamTitle{
   font-weight:bold;
   margin-bottom:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  white-space:nowrap;
 }
 
 .teamBadge{
