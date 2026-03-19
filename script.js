@@ -793,10 +793,6 @@ async function clearHistory(){
 
   });
 
-  /* HIDE OVERLAY */
-
-  document.getElementById("clearHistoryOverlay").style.display = "none";
-
 if(!data.ok){
 
   document.getElementById("clearHistoryOverlay").style.display = "none";
