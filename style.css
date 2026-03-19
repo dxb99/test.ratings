@@ -590,7 +590,8 @@ background:#992222;
 #generatingOverlay,
 #historyLoadingOverlay,
 #clearHistoryOverlay,
-#savingOverlay{
+#savingOverlay,
+#savingMatchOverlay{
   
 position:fixed;
 top:0;
