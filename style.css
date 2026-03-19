@@ -555,8 +555,9 @@ width:95%;
 td,th{
 
 border:1px solid #444;
-padding:8px;
-font-size:14px;
+padding:6px;
+font-size:13px;
+line-height:1.2;
 
 }
 
@@ -817,8 +818,19 @@ white-space:nowrap;
 }
 
 td, th{
-font-size:14px;
-padding:6px;
+
+font-size:clamp(10px, 2.5vw, 12px);
+padding:4px;
+white-space:nowrap;
+
+}
+
+#adminTable td{
+
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+
 }
 
 header{
