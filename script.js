@@ -9,7 +9,6 @@ let selectedMatchKey = null;
 let matchHistory = [];
 let lastSelectedPlayers = [];
 let lastSelectedMatchMaker = "";
-let currentMatchKeyFromServer = null;
 
 let blitzEnabled = false;
 
@@ -151,9 +150,6 @@ function renderMatchup(match){
   const el=document.getElementById("matchupContent");
   const countdown=document.getElementById("matchCountdown");
 
-// 🔥 RESET server key if no matchup
-currentMatchKeyFromServer = null;
-  
 if(!match){
 
   /* 🔥 STOP COUNTDOWN */
@@ -244,12 +240,6 @@ el.innerHTML=`
 const expiry = new Date(match.expiresAt);
 const now = new Date();
 
-// 🔥 BUILD KEY FROM SERVER MATCH
-const redKey = match.redTeam.slice().sort().join("|");
-const blueKey = match.blueTeam.slice().sort().join("|");
-
-currentMatchKeyFromServer = redKey + "-" + blueKey;
-  
 if(expiry <= now){
 
   el.innerHTML=`
@@ -419,39 +409,14 @@ Picked ${m.pickCount} times
     
 const btn = div.querySelector(".selectMatch");
 
-const redKey = m.redTeam.map(p=>p.name).sort().join("|");
-const blueKey = m.blueTeam.map(p=>p.name).sort().join("|");
+const key = m.redTeam.map(p=>p.name).join("|") + "-" + m.blueTeam.map(p=>p.name).join("|");
 
-const key = redKey + "-" + blueKey;
-
-const isServerSelected = currentMatchKeyFromServer === key;
-const isLocalSelected = selectedMatchKey === key;
-
-if(isServerSelected || isLocalSelected){
+if(selectedMatchKey === key){
   btn.classList.add("selected");
   btn.innerText = "SELECTED";
-
-  // 🔥 DISABLE CLICK + TOOLTIP IF ACTIVE SERVER MATCH
-  if(isServerSelected){
-
-  btn.style.cursor = "not-allowed";
-
-  // 🔥 DO NOT disable — we need click for tooltip
-  btn.style.opacity = "0.7"; // optional visual feedback
-
-}
-
 }
 
 btn.onclick = () => {
-
-  // 🔥 BLOCK IF THIS IS CURRENT ACTIVE MATCH
-  if(currentMatchKeyFromServer === key){
-
-    showClickTooltip(btn, "This matchup is already active");
-
-    return;
-  }
 
   const maker = document.getElementById("matchMakerSelect").value;
 
@@ -460,7 +425,17 @@ btn.onclick = () => {
     return;
   }
 
-  selectMatchup(m, key, btn);
+  selectedMatchKey = key;
+
+  document.querySelectorAll(".selectMatch").forEach(b=>{
+    b.classList.remove("selected");
+    b.innerText = "SELECT MATCHUP";
+  });
+
+  btn.classList.add("selected");
+  btn.innerText = "SELECTED";
+
+  selectMatchup(m);
 
 };
 
@@ -508,17 +483,6 @@ async function selectMatchup(match){
   return;
 
 }
-
-// 🔥 ONLY mark selected AFTER SUCCESS
-selectedMatchKey = key;
-
-document.querySelectorAll(".selectMatch").forEach(b=>{
-  b.classList.remove("selected");
-  b.innerText = "SELECT MATCHUP";
-});
-
-btn.classList.add("selected");
-btn.innerText = "SELECTED";
 
 /* CHANGE OVERLAY TEXT TO SAVED */
 
@@ -1303,44 +1267,5 @@ if(blitzToggle && blitzContainer){
   },300);
 
 }
-
-}
-
-function showClickTooltip(button, message){
-
-  // Remove existing tooltip
-  const old = document.getElementById("clickTooltip");
-  if(old) old.remove();
-
-  const tooltip = document.createElement("div");
-  tooltip.id = "clickTooltip";
-  tooltip.innerText = message;
-
-  tooltip.style.position = "absolute";
-  tooltip.style.background = "#222";
-  tooltip.style.color = "#fff";
-  tooltip.style.padding = "6px 10px";
-  tooltip.style.borderRadius = "6px";
-  tooltip.style.fontSize = "12px";
-  tooltip.style.whiteSpace = "nowrap";
-  tooltip.style.zIndex = "9999";
-  tooltip.style.opacity = "0";
-  tooltip.style.transition = "opacity 0.2s ease";
-
-  document.body.appendChild(tooltip);
-
-  const rect = button.getBoundingClientRect();
-
-  tooltip.style.top = (rect.top + window.scrollY - 35) + "px";
-  tooltip.style.left = (rect.left + window.scrollX + rect.width / 2 - tooltip.offsetWidth / 2) + "px";
-
-  // Fade in
-  setTimeout(()=> tooltip.style.opacity = "1", 10);
-
-  // Fade out
-  setTimeout(()=>{
-    tooltip.style.opacity = "0";
-    setTimeout(()=> tooltip.remove(), 200);
-  }, 2000);
 
 }
