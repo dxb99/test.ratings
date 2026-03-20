@@ -1,5 +1,3 @@
-alert("NEW SCRIPT LOADED");
-
 const API_URL = "https://script.google.com/macros/s/AKfycbzIyBeXAVeSLtxW8jR9OnQL_Iz6cawGiaZSlkoZ2hTYy5dwo-0n_GH6F15H7tfXojIl/exec";
 
 let allPlayers = [];
@@ -434,13 +432,7 @@ async function selectMatchup(match){
 
   document.getElementById("savingMatchOverlay").style.display = "none";
 
-  let message = data.error;
-
-  if(data.debug){
-    message += "\n\nDEBUG:\n" + JSON.stringify(data.debug, null, 2);
-  }
-
-  alert(message);
+  alert(data.error);
 
   return;
 
