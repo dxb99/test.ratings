@@ -424,13 +424,29 @@ const blueKey = m.blueTeam.map(p=>p.name).sort().join("|");
 
 const key = redKey + "-" + blueKey;
 
-// 🔥 PRIORITY: server match > local match
-if(currentMatchKeyFromServer === key || selectedMatchKey === key){
+const isServerSelected = currentMatchKeyFromServer === key;
+const isLocalSelected = selectedMatchKey === key;
+
+if(isServerSelected || isLocalSelected){
   btn.classList.add("selected");
   btn.innerText = "SELECTED";
+
+  // 🔥 DISABLE CLICK IF ACTIVE SERVER MATCH
+  if(isServerSelected){
+
+    btn.style.cursor = "not-allowed";
+    btn.disabled = true;
+
+  }
+
 }
 
 btn.onclick = () => {
+
+  // 🔥 BLOCK IF THIS IS CURRENT ACTIVE MATCH
+  if(currentMatchKeyFromServer === key){
+    return; // do nothing
+  }
 
   const maker = document.getElementById("matchMakerSelect").value;
 
@@ -439,7 +455,6 @@ btn.onclick = () => {
     return;
   }
 
-  // 🔥 DO NOT mark selected yet
   selectMatchup(m, key, btn);
 
 };
