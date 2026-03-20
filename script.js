@@ -14,7 +14,8 @@ let blitzEnabled = false;
 
 window.addEventListener("load", async () => {
 
-  sessionStorage.removeItem("selectedMatchMaker");
+sessionStorage.removeItem("selectedMatchMaker");
+sessionStorage.removeItem("selectedPlayers");
 
   try {
 
