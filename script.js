@@ -431,11 +431,14 @@ if(isServerSelected || isLocalSelected){
   btn.classList.add("selected");
   btn.innerText = "SELECTED";
 
-  // 🔥 DISABLE CLICK IF ACTIVE SERVER MATCH
+  // 🔥 DISABLE CLICK + TOOLTIP IF ACTIVE SERVER MATCH
   if(isServerSelected){
 
     btn.style.cursor = "not-allowed";
     btn.disabled = true;
+
+    // 🔥 ADD TOOLTIP
+    btn.title = "This matchup is already active";
 
   }
 
