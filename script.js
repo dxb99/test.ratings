@@ -1073,58 +1073,29 @@ function applyGapFilter(){
 
   }
 
-  /* BLITZ ADVANTAGE SORT */
+/* 🔥 BLITZ FILTER (ONLY SHOW ADVANTAGED SMALL TEAM) */
 
-  if(blitzEnabled && filtered.length){
+if(blitzEnabled){
 
-    const totalPlayers =
-      filtered[0].redTeam.length + filtered[0].blueTeam.length;
+  filtered = filtered.filter(m => {
 
-    /* Only apply BLITZ if uneven players */
+    const small =
+      m.redTeam.length < m.blueTeam.length ? m.redTeam : m.blueTeam;
 
-    if(totalPlayers % 2 !== 0){
+    const large =
+      m.redTeam.length > m.blueTeam.length ? m.redTeam : m.blueTeam;
 
-      filtered.sort((a,b)=>{
+    /* if equal teams, ignore */
+    if(m.redTeam.length === m.blueTeam.length) return false;
 
-        const aSmall =
-          a.redTeam.length < a.blueTeam.length ? a.redTeam : a.blueTeam;
+    const smallSkill = small.reduce((s,p)=>s+p.skill,0);
+    const largeSkill = large.reduce((s,p)=>s+p.skill,0);
 
-        const aLarge =
-          a.redTeam.length > a.blueTeam.length ? a.redTeam : a.blueTeam;
+    return smallSkill >= largeSkill;
 
-        const bSmall =
-          b.redTeam.length < b.blueTeam.length ? b.redTeam : b.blueTeam;
+  });
 
-        const bLarge =
-          b.redTeam.length > b.blueTeam.length ? b.redTeam : b.blueTeam;
-
-        const aSmallSkill =
-          aSmall.reduce((s,p)=>s+p.skill,0);
-
-        const aLargeSkill =
-          aLarge.reduce((s,p)=>s+p.skill,0);
-
-        const bSmallSkill =
-          bSmall.reduce((s,p)=>s+p.skill,0);
-
-        const bLargeSkill =
-          bLarge.reduce((s,p)=>s+p.skill,0);
-
-        const aType =
-          aSmallSkill > aLargeSkill ? 0 :
-          aSmallSkill === aLargeSkill ? 1 : 2;
-
-        const bType =
-          bSmallSkill > bLargeSkill ? 0 :
-          bSmallSkill === bLargeSkill ? 1 : 2;
-
-        return aType - bType;
-
-      });
-
-    }
-
-  }
+}
 
 /* Restore normal sorting when BLITZ is OFF */
 
