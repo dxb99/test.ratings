@@ -101,7 +101,22 @@ if(lastGeneratedMatchups.length === 0){
 
 }
 
-currentMatchupGlobal = data.currentMatchup || null;
+/* 🔥 EXPIRE MATCHUP IF TIME PASSED */
+
+if(data.currentMatchup){
+
+  const expiry = new Date(data.currentMatchup.expiresAt);
+  const now = new Date();
+
+  if(expiry <= now){
+    currentMatchupGlobal = null;
+  }else{
+    currentMatchupGlobal = data.currentMatchup;
+  }
+
+}else{
+  currentMatchupGlobal = null;
+}
   
 renderMatchup(data.currentMatchup);
 
