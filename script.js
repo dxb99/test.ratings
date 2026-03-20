@@ -9,6 +9,7 @@ let selectedMatchKey = null;
 let matchHistory = [];
 let lastSelectedPlayers = [];
 let lastSelectedMatchMaker = "";
+let currentMatchKeyFromServer = null;
 
 let blitzEnabled = false;
 
@@ -150,6 +151,9 @@ function renderMatchup(match){
   const el=document.getElementById("matchupContent");
   const countdown=document.getElementById("matchCountdown");
 
+// 🔥 RESET server key if no matchup
+currentMatchKeyFromServer = null;
+  
 if(!match){
 
   /* 🔥 STOP COUNTDOWN */
@@ -240,6 +244,12 @@ el.innerHTML=`
 const expiry = new Date(match.expiresAt);
 const now = new Date();
 
+// 🔥 BUILD KEY FROM SERVER MATCH
+const redKey = match.redTeam.slice().sort().join("|");
+const blueKey = match.blueTeam.slice().sort().join("|");
+
+currentMatchKeyFromServer = redKey + "-" + blueKey;
+  
 if(expiry <= now){
 
   el.innerHTML=`
@@ -409,9 +419,13 @@ Picked ${m.pickCount} times
     
 const btn = div.querySelector(".selectMatch");
 
-const key = m.redTeam.map(p=>p.name).join("|") + "-" + m.blueTeam.map(p=>p.name).join("|");
+const redKey = m.redTeam.map(p=>p.name).sort().join("|");
+const blueKey = m.blueTeam.map(p=>p.name).sort().join("|");
 
-if(selectedMatchKey === key){
+const key = redKey + "-" + blueKey;
+
+// 🔥 PRIORITY: server match > local match
+if(currentMatchKeyFromServer === key || selectedMatchKey === key){
   btn.classList.add("selected");
   btn.innerText = "SELECTED";
 }
