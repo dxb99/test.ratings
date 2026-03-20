@@ -300,11 +300,11 @@ padding:0 20px;
 #generatedMatchups{
 
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(420px,1fr));
+grid-template-columns:1fr; /* 🔥 FORCE NO OVERFLOW ON MOBILE */
 gap:20px;
 width:100%;
 margin:20px 0;
-padding:0 20px;
+padding:0 10px; /* 🔥 REDUCE SIDE PUSH */
 
 }
 
@@ -613,11 +613,12 @@ flex-shrink:0;
 .historyItem{
 
 border-bottom:1px solid #333;
-padding:6px 20px;
+padding:6px 10px; /* 🔥 REDUCE SIDE PUSH */
 width:100%;
 text-align:left;
 line-height:1.3;
 font-size:14px;
+overflow:hidden; /* 🔥 PREVENT HORIZONTAL SCROLL */
 
 }
 
@@ -882,6 +883,13 @@ text-align:center;
 /* MOBILE */
 
 @media(max-width:700px){
+
+/* 🔥 FIX: prevent horizontal scroll breaking layout */
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw; /* 🔥 LOCK TO VIEWPORT */
+}
 
 /* Keep main title on one line */
 
