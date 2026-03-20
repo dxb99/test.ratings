@@ -1051,28 +1051,11 @@ function startMatchAutoRefresh(){
         action:"getInitialData"
       });
 
-if(data.ok){
+      if(data.ok){
 
-  /* 🔥 KEEP GLOBAL MATCH IN SYNC */
+        renderMatchup(data.currentMatchup);
 
-  if(data.currentMatchup){
-
-    const expiry = new Date(data.currentMatchup.expiresAt);
-    const now = new Date();
-
-    if(expiry <= now){
-      currentMatchupGlobal = null;
-    }else{
-      currentMatchupGlobal = data.currentMatchup;
-    }
-
-  }else{
-    currentMatchupGlobal = null;
-  }
-
-  renderMatchup(data.currentMatchup);
-
-}
+      }
 
     }catch(e){
 
