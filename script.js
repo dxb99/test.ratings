@@ -425,17 +425,8 @@ btn.onclick = () => {
     return;
   }
 
-  selectedMatchKey = key;
-
-  document.querySelectorAll(".selectMatch").forEach(b=>{
-    b.classList.remove("selected");
-    b.innerText = "SELECT MATCHUP";
-  });
-
-  btn.classList.add("selected");
-  btn.innerText = "SELECTED";
-
-  selectMatchup(m);
+  // 🔥 DO NOT mark selected yet
+  selectMatchup(m, key, btn);
 
 };
 
@@ -483,6 +474,17 @@ async function selectMatchup(match){
   return;
 
 }
+
+// 🔥 ONLY mark selected AFTER SUCCESS
+selectedMatchKey = key;
+
+document.querySelectorAll(".selectMatch").forEach(b=>{
+  b.classList.remove("selected");
+  b.innerText = "SELECT MATCHUP";
+});
+
+btn.classList.add("selected");
+btn.innerText = "SELECTED";
 
 /* CHANGE OVERLAY TEXT TO SAVED */
 
