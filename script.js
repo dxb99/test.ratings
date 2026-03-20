@@ -1144,32 +1144,26 @@ function updateSelectedPlayerCount(){
 
   document.getElementById("selectedPlayerCount").innerText = count;
 
-  const blitzToggle = document.getElementById("blitzToggle");
-  const blitzContainer = document.querySelector(".blitzToggle");
+const blitzToggle = document.getElementById("blitzToggle");
+const blitzContainer = document.querySelector(".blitzToggle");
 
-  if(blitzToggle){
+if(blitzToggle && blitzContainer){
 
-    if(count % 2 === 0){
+  if(count % 2 === 0){
 
-      blitzToggle.checked = false;
-      blitzToggle.disabled = true;
-      blitzEnabled = false;
+    /* 🔥 EVEN → HIDE BLITZ */
+    blitzToggle.checked = false;
+    blitzEnabled = false;
+    blitzContainer.style.display = "none";
 
-      if(blitzContainer){
-        blitzContainer.classList.add("disabled");
-      }
+  }else{
 
-    }else{
-
-      blitzToggle.disabled = false;
-
-      if(blitzContainer){
-        blitzContainer.classList.remove("disabled");
-      }
-
-    }
+    /* 🔥 ODD → SHOW BLITZ */
+    blitzContainer.style.display = "block";
 
   }
+
+}
 
 }
 
