@@ -1232,4 +1232,15 @@ function resetGeneratedMatchups(){
     r.parentElement.classList.add("disabled");
   });
 
+/* 🔥 RESET + HIDE BLITZ */
+
+const blitzToggle = document.getElementById("blitzToggle");
+const blitzContainer = document.querySelector(".blitzToggle");
+
+if(blitzToggle && blitzContainer){
+  blitzToggle.checked = false;
+  blitzEnabled = false;
+  blitzContainer.style.display = "none";
+}
+
 }
