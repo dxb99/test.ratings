@@ -20,6 +20,13 @@ window.addEventListener("load", async () => {
 
     await loadInitialData();
 
+/* 🔥 HIDE BLITZ ON LOAD */
+
+const blitzContainer = document.querySelector(".blitzToggle");
+if(blitzContainer){
+  blitzContainer.style.display = "none";
+}
+
     document.getElementById("loadingScreen").style.display = "none";
     document.getElementById("app").classList.remove("hidden");
 
@@ -286,6 +293,25 @@ if(!maker){
   const gap = document.querySelector('input[name="gapFilter"]:checked').value;
 
 const matchups = generateMatchupsLocal(selectedPlayers, gap);
+
+/* 🔥 CONTROL BLITZ VISIBILITY AFTER GENERATE */
+
+const blitzToggle = document.getElementById("blitzToggle");
+const blitzContainer = document.querySelector(".blitzToggle");
+
+if(blitzToggle && blitzContainer){
+
+  if(selectedPlayers.length % 2 !== 0){
+    /* ODD → SHOW BLITZ */
+    blitzContainer.style.display = "block";
+  }else{
+    /* EVEN → HIDE BLITZ */
+    blitzToggle.checked = false;
+    blitzEnabled = false;
+    blitzContainer.style.display = "none";
+  }
+
+}
 
 /* Sort matchups by skill gap */
 
@@ -1128,27 +1154,6 @@ function updateSelectedPlayerCount(){
   const count = document.querySelectorAll("#playersCheckboxes input:checked").length;
 
   document.getElementById("selectedPlayerCount").innerText = count;
-
-const blitzToggle = document.getElementById("blitzToggle");
-const blitzContainer = document.querySelector(".blitzToggle");
-
-if(blitzToggle && blitzContainer){
-
-  if(count % 2 === 0){
-
-    /* 🔥 EVEN → HIDE BLITZ */
-    blitzToggle.checked = false;
-    blitzEnabled = false;
-    blitzContainer.style.display = "none";
-
-  }else{
-
-    /* 🔥 ODD → SHOW BLITZ */
-    blitzContainer.style.display = "block";
-
-  }
-
-}
 
 }
 
