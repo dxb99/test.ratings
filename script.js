@@ -440,7 +440,7 @@ const key = m.redTeam.map(p=>p.name).join("|") + "-" + m.blueTeam.map(p=>p.name)
 if(isActiveMatch){
 
   btn.classList.add("selected");
-  btn.innerText = "ACTIVE";
+  btn.innerText = "SELECTED"; // 🔥 changed
   btn.disabled = true;
   btn.style.cursor = "not-allowed";
 
