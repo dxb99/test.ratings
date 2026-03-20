@@ -7,6 +7,7 @@ let lastMatchTimestamp = null;
 let lastGeneratedMatchups = [];
 let selectedMatchKey = null;
 let matchHistory = [];
+let currentMatchupGlobal = null; // 🔥 track active matchup
 let lastSelectedPlayers = [];
 let lastSelectedMatchMaker = "";
 
@@ -100,6 +101,8 @@ if(lastGeneratedMatchups.length === 0){
 
 }
 
+currentMatchupGlobal = data.currentMatchup || null;
+  
 renderMatchup(data.currentMatchup);
 
 /* LOAD MATCH HISTORY */
@@ -409,14 +412,48 @@ Picked ${m.pickCount} times
     
 const btn = div.querySelector(".selectMatch");
 
+/* 🔥 CHECK IF THIS MATCHUP IS CURRENT ACTIVE */
+
+let isActiveMatch = false;
+
+if(currentMatchupGlobal){
+
+  const currentRed = [...currentMatchupGlobal.redTeam].sort().join(",");
+  const currentBlue = [...currentMatchupGlobal.blueTeam].sort().join(",");
+
+  const thisRed = m.redTeam.map(p=>p.name).sort().join(",");
+  const thisBlue = m.blueTeam.map(p=>p.name).sort().join(",");
+
+  if(
+    (thisRed === currentRed && thisBlue === currentBlue) ||
+    (thisRed === currentBlue && thisBlue === currentRed)
+  ){
+    isActiveMatch = true;
+  }
+
+}
+
 const key = m.redTeam.map(p=>p.name).join("|") + "-" + m.blueTeam.map(p=>p.name).join("|");
 
-if(selectedMatchKey === key){
+/* 🔥 ACTIVE MATCH TAKES PRIORITY */
+
+if(isActiveMatch){
+
+  btn.classList.add("selected");
+  btn.innerText = "ACTIVE";
+  btn.disabled = true;
+  btn.style.cursor = "not-allowed";
+
+}else if(selectedMatchKey === key){
+
   btn.classList.add("selected");
   btn.innerText = "SELECTED";
+
 }
 
 btn.onclick = () => {
+
+  if(isActiveMatch) return; // 🔥 block click
 
   const maker = document.getElementById("matchMakerSelect").value;
 
