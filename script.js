@@ -511,7 +511,7 @@ async function selectMatchup(match){
 
 }
 
-/ * 🔥 MARK AS SELECTED ONLY AFTER SUCCESS * /
+/* 🔥 MARK AS SELECTED ONLY AFTER SUCCESS */
 
 selectedMatchKey =
   match.redTeam.map(p=>p.name).join("|") +
@@ -636,7 +636,7 @@ div.innerHTML=`
       resetGeneratedMatchups();
     }
 
-/ * 🔥 SAVE PLAYER SELECTION * /
+/* 🔥 SAVE PLAYER SELECTION */
 
 sessionStorage.setItem(
   "selectedPlayers",
