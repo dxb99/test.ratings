@@ -1003,7 +1003,7 @@ padding:10px 10px 60px 10px;
 
 .tabContent{
   padding-top:10px;
-  padding-bottom:110px;
+  padding-bottom:90px; /* 🔥 MATCH NAV HEIGHT */
 }
 
 /* Matchups become 1 per row */
@@ -1023,13 +1023,13 @@ bottom:0;
 left:0;
 right:0;
 width:100%;
-height:60px; /* 🔥 ADD THIS */
+height:70px; /* 🔥 FINAL HEIGHT */
 background:#000;
 display:flex;
 justify-content:space-around;
 align-items:center;
 border-top:1px solid #333;
-padding:10px 0;
+padding:0; /* 🔥 REMOVE EXTRA HEIGHT */
 z-index:2000;
 
 }
