@@ -462,6 +462,16 @@ btn.onclick = () => {
     return;
   }
 
+  selectedMatchKey = key;
+
+  document.querySelectorAll(".selectMatch").forEach(b=>{
+    b.classList.remove("selected");
+    b.innerText = "SELECT MATCHUP";
+  });
+
+  btn.classList.add("selected");
+  btn.innerText = "SELECTED";
+
   selectMatchup(m);
 
 };
@@ -510,13 +520,6 @@ async function selectMatchup(match){
   return;
 
 }
-
-/ * 🔥 MARK AS SELECTED ONLY AFTER SUCCESS * /
-
-selectedMatchKey =
-  match.redTeam.map(p=>p.name).join("|") +
-  "-" +
-  match.blueTeam.map(p=>p.name).join("|");
 
 /* CHANGE OVERLAY TEXT TO SAVED */
 
