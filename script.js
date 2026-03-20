@@ -437,9 +437,6 @@ if(isServerSelected || isLocalSelected){
     btn.style.cursor = "not-allowed";
     btn.disabled = true;
 
-    // 🔥 ADD TOOLTIP
-    btn.title = "This matchup is already active";
-
   }
 
 }
@@ -448,7 +445,10 @@ btn.onclick = () => {
 
   // 🔥 BLOCK IF THIS IS CURRENT ACTIVE MATCH
   if(currentMatchKeyFromServer === key){
-    return; // do nothing
+
+    showClickTooltip(btn, "This matchup is already active");
+
+    return;
   }
 
   const maker = document.getElementById("matchMakerSelect").value;
@@ -1301,5 +1301,44 @@ if(blitzToggle && blitzContainer){
   },300);
 
 }
+
+}
+
+function showClickTooltip(button, message){
+
+  // Remove existing tooltip
+  const old = document.getElementById("clickTooltip");
+  if(old) old.remove();
+
+  const tooltip = document.createElement("div");
+  tooltip.id = "clickTooltip";
+  tooltip.innerText = message;
+
+  tooltip.style.position = "absolute";
+  tooltip.style.background = "#222";
+  tooltip.style.color = "#fff";
+  tooltip.style.padding = "6px 10px";
+  tooltip.style.borderRadius = "6px";
+  tooltip.style.fontSize = "12px";
+  tooltip.style.whiteSpace = "nowrap";
+  tooltip.style.zIndex = "9999";
+  tooltip.style.opacity = "0";
+  tooltip.style.transition = "opacity 0.2s ease";
+
+  document.body.appendChild(tooltip);
+
+  const rect = button.getBoundingClientRect();
+
+  tooltip.style.top = (rect.top + window.scrollY - 35) + "px";
+  tooltip.style.left = (rect.left + window.scrollX + rect.width / 2 - tooltip.offsetWidth / 2) + "px";
+
+  // Fade in
+  setTimeout(()=> tooltip.style.opacity = "1", 10);
+
+  // Fade out
+  setTimeout(()=>{
+    tooltip.style.opacity = "0";
+    setTimeout(()=> tooltip.remove(), 200);
+  }, 2000);
 
 }
