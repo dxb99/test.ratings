@@ -891,7 +891,7 @@ if(!data.ok){
 
 const overlay = document.getElementById("clearHistoryOverlay");
 
-overlay.querySelector("div:last-child").innerHTML = "CLEARED ✓";
+overlay.querySelector("div:last-child").innerHTML = "CLEARED & SESSION RESET ✓";
 
 /* WAIT THEN RESET UI */
 
