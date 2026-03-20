@@ -1187,7 +1187,7 @@ min-width:auto;
 .blitzText {
   font-weight: 700;
   color: white;
-  animation: blitzPulse 1.2s infinite;
+  animation: blitzPulse 2.2s infinite;
 }
 
 @keyframes blitzPulse {
