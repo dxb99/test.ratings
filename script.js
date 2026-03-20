@@ -1214,21 +1214,3 @@ function resetGeneratedMatchups(){
   });
 
 }
-/* 🔥 BLITZ PULSE EFFECT */
-
-.blitzText {
-  font-weight: 600;
-  animation: blitzPulse 1.5s infinite;
-}
-
-@keyframes blitzPulse {
-  0% {
-    text-shadow: 0 0 0px rgba(255, 215, 0, 0.5);
-  }
-  50% {
-    text-shadow: 0 0 8px rgba(255, 215, 0, 1);
-  }
-  100% {
-    text-shadow: 0 0 0px rgba(255, 215, 0, 0.5);
-  }
-}
