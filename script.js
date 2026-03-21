@@ -287,21 +287,6 @@ async function generateMatchups(){
 
   const selectedPlayers=[];
 
-  // 🔥 RESET BLITZ EVERY TIME GENERATE IS CLICKED
-  const blitzToggle = document.getElementById("blitzToggle");
-  const blitzContainer = document.querySelector(".blitzToggle");
-
-  if(blitzToggle && blitzContainer){
-    blitzToggle.checked = false;
-    blitzEnabled = false;
-
-    blitzContainer.classList.remove("show");
-
-    setTimeout(()=>{
-      blitzContainer.style.display = "none";
-    },300);
-  }
-
   const maker = document.getElementById("matchMakerSelect").value;
 
 if(!maker){
