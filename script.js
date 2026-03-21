@@ -244,13 +244,10 @@ el.innerHTML=`
 const expiry = new Date(match.expiresAt);
 const now = new Date();
 
-// 🔥 BUILD KEY FROM SERVER MATCH
-const redKey = match.redTeam.slice().sort().join("|");
-const blueKey = match.blueTeam.slice().sort().join("|");
-
-currentMatchKeyFromServer = redKey + "-" + blueKey;
-  
 if(expiry <= now){
+
+  // 🔥 CLEAR SERVER MATCH KEY (THIS FIXES YOUR ISSUE)
+  currentMatchKeyFromServer = null;
 
   el.innerHTML=`
 
@@ -266,6 +263,12 @@ if(expiry <= now){
   return;
 
 }
+
+// 🔥 BUILD KEY FROM SERVER MATCH (ONLY IF NOT EXPIRED)
+const redKey = match.redTeam.slice().sort().join("|");
+const blueKey = match.blueTeam.slice().sort().join("|");
+
+currentMatchKeyFromServer = redKey + "-" + blueKey;
 
 if(match.selectedAt !== lastMatchTimestamp){
 
