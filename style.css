@@ -1215,7 +1215,7 @@ min-width:auto;
 /* 🔥 BLITZ RED PULSE (WHITE ↔ RED GLOW) */
 
 .blitzText {
-  font-weight: 700;
+  font-weight: 400; /* 🔥 NOT BOLD */
   color: white;
   animation: blitzPulse 2.2s infinite;
 }
