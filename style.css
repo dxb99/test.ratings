@@ -870,9 +870,9 @@ font-size:18px;
 padding:8px 12px;
 margin-top:10px;
 border-radius:6px;
-background:#1a1a1a; /* 🔥 match new dropdown color */
+background:#2a2a2a; /* 🔥 medium grey */
 color:white;
-border:1px solid #555;
+border:1px solid #666;
 text-align:center;
 min-width:220px;
 
@@ -882,9 +882,9 @@ min-width:220px;
 
 select{
 
-background:#1a1a1a; /* 🔥 lighter than #111 */
+background:#2a2a2a; /* 🔥 medium grey */
 color:white;
-border:1px solid #555; /* slightly lighter border */
+border:1px solid #666;
 
 }
 
