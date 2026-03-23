@@ -126,20 +126,24 @@ overflow:hidden;
 
 #logo{
 position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
 
-/* 🔥 BACKGROUND COLOR (fills empty space) */
-background-color:#0b0b0b;
+/* 🔥 center the logo */
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
 
+/* 🔥 control size */
+width:90%;
+height:90%;
+
+/* 🔥 image */
 background-image:url("DXB99.MATCHUP.png");
 background-size:contain;
 background-position:center;
 background-repeat:no-repeat;
 
-filter:brightness(0.7);
+/* 🔥 bring ABOVE blurred background */
+z-index:2;
 }
 
 #logoBg{
