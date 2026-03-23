@@ -449,11 +449,35 @@ white-space:nowrap;
 
 }
 
-.badge.gap-0{background:#2563eb;}   /* Blue */
-.badge.gap-1{background:#22c55e;}   /* Green */
-.badge.gap-2{background:#eab308;}   /* Yellow */
-.badge.gap-3{background:#f97316;}   /* Orange */
-.badge.gap-4{background:#ef4444;}   /* Red */
+.badge.gap-0{
+border:1px solid #2563eb;
+color:#2563eb;
+background:transparent;
+}
+
+.badge.gap-1{
+border:1px solid #22c55e;
+color:#22c55e;
+background:transparent;
+}
+
+.badge.gap-2{
+border:1px solid #eab308;
+color:#eab308;
+background:transparent;
+}
+
+.badge.gap-3{
+border:1px solid #f97316;
+color:#f97316;
+background:transparent;
+}
+
+.badge.gap-4{
+border:1px solid #ef4444;
+color:#ef4444;
+background:transparent;
+}
 
 /* DIFFERENCE COLORS (MATCHUP CARD) */
 
