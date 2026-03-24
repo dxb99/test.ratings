@@ -378,7 +378,7 @@ padding:15px;
 background:#111;
 border-radius:6px;
 
-font-size: 13px;
+font-size: clamp(12px, 0.5vw, 14px);
 
 }
 
