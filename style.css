@@ -1327,7 +1327,7 @@ white-space:nowrap;
 .blitzText {
   font-weight: 400; /* 🔥 NOT BOLD */
   color: white;
-  animation: blitzPulse 2.2s infinite;
+  animation: blitzPulse 3s infinite;
 }
 
 @keyframes blitzPulse {
