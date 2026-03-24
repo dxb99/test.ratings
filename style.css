@@ -1328,6 +1328,7 @@ white-space:nowrap;
   font-weight: 400; /* 🔥 NOT BOLD */
   color: white;
   animation: blitzPulse 3s infinite;
+  animation-delay: 1.5s;
 }
 
 @keyframes blitzPulse {
