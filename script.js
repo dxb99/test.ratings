@@ -897,6 +897,46 @@ if(sortType === "maker"){
 
   history.sort((a,b)=>a.matchMaker.localeCompare(b.matchMaker));
 
+}else if(sortType === "mostPicked"){
+
+  // 🔥 COUNT MATCHUP FREQUENCY
+  const counts = {};
+
+  history.forEach(h => {
+
+    const red = h.redTeam.split(", ").sort().join(",");
+    const blue = h.blueTeam.split(", ").sort().join(",");
+
+    const key1 = red + "|" + blue;
+    const key2 = blue + "|" + red;
+
+    if(counts[key1] || counts[key2]){
+      counts[key1] = (counts[key1] || counts[key2]) + 1;
+    }else{
+      counts[key1] = 1;
+    }
+
+  });
+
+  // 🔥 SORT BY COUNT DESC
+  history.sort((a,b)=>{
+
+    const aRed = a.redTeam.split(", ").sort().join(",");
+    const aBlue = a.blueTeam.split(", ").sort().join(",");
+
+    const bRed = b.redTeam.split(", ").sort().join(",");
+    const bBlue = b.blueTeam.split(", ").sort().join(",");
+
+    const aKey = aRed + "|" + aBlue;
+    const bKey = bRed + "|" + bBlue;
+
+    const aCount = counts[aKey] || counts[aBlue + "|" + aRed] || 0;
+    const bCount = counts[bKey] || counts[bBlue + "|" + bRed] || 0;
+
+    return bCount - aCount;
+
+  });
+
 }else{
 
   history.sort((a,b)=>new Date(b.selectedAt) - new Date(a.selectedAt));
