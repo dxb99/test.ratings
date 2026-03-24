@@ -362,12 +362,10 @@ padding:0 20px;
 #generatedMatchups{
 
 display:grid;
-grid-template-columns:repeat(3, 420px);
-justify-content:center;
+grid-template-columns:repeat(auto-fit,minmax(420px,1fr));
 gap:20px;
 width:100%;
-max-width:1400px;
-margin:20px auto;
+margin:20px 0;
 padding:0 20px;
 
 }
@@ -391,9 +389,6 @@ flex-direction:column;
 justify-content:space-between;
 gap:8px;
 min-height:90px;
-
-max-width: 420px; /* 🔥 KEY FIX */
-margin: 0 auto;   /* 🔥 center inside grid cell */
 
 }
 
