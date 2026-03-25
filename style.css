@@ -261,18 +261,32 @@ background:linear-gradient(
 );
 
 /* 🔥 AUTO LOOP */
-animation:shineMove 1.5s linear infinite;
+animation:shineMove 3s ease-in-out infinite;
 
 }
 
 /* 🔥 SHINE ANIMATION */
 @keyframes shineMove{
+
 0%{
   left:-120%;
 }
+
+/* 🔥 HOLD BEFORE SWEEP */
+40%{
+  left:-120%;
+}
+
+/* 🔥 FAST SWEEP */
+55%{
+  left:120%;
+}
+
+/* 🔥 HOLD AFTER */
 100%{
   left:120%;
 }
+
 }
 
 /* OPTIONAL: subtle hover feedback */
