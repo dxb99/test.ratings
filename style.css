@@ -220,6 +220,47 @@ animation:generateGlow 2s infinite;
 
 }
 
+/* 🔥 GET STARTED BUTTON */
+
+.getStartedBtn{
+
+background:linear-gradient(180deg,#111,#000);
+
+border:none;
+padding:15px 30px;
+font-size:18px;
+margin-top:20px;
+cursor:pointer;
+border-radius:6px;
+
+color:white;
+font-weight:bold;
+
+/* WHITE GLOW */
+box-shadow:0 4px 12px rgba(255,255,255,0.25);
+transition:all 0.15s ease;
+
+/* Glow animation (reuse but override color visually) */
+animation:generateGlow 2s infinite;
+
+}
+
+/* Hover */
+.getStartedBtn:hover{
+
+transform:translateY(-2px);
+box-shadow:0 6px 16px rgba(255,255,255,0.5);
+
+}
+
+/* Click */
+.getStartedBtn:active{
+
+transform:translateY(1px);
+box-shadow:0 2px 6px rgba(255,255,255,0.25);
+
+}
+
 /* STANDARD BUTTON SYSTEM */
 
 .btn{
