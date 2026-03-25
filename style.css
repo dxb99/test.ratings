@@ -220,13 +220,16 @@ animation:generateGlow 2s infinite;
 
 }
 
-/* 🔥 GET STARTED BUTTON */
+/* 🔥 GET STARTED BUTTON (SLIDE SHINE EFFECT) */
 
 .getStartedBtn{
 
-background:linear-gradient(180deg,#111,#000);
+position:relative;
+overflow:hidden;
 
-border:none;
+background:#000;
+border:1px solid rgba(255,255,255,0.3);
+
 padding:15px 30px;
 font-size:18px;
 margin-top:20px;
@@ -236,29 +239,42 @@ border-radius:6px;
 color:white;
 font-weight:bold;
 
-/* WHITE GLOW */
-box-shadow:0 4px 12px rgba(255,255,255,0.25);
-transition:all 0.15s ease;
-
-/* Glow animation (reuse but override color visually) */
-animation:generateGlow 2s infinite;
+transition:all 0.2s ease;
 
 }
 
-/* Hover */
+/* 🔥 SHINE EFFECT */
+.getStartedBtn::before{
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+
+background:linear-gradient(
+  120deg,
+  transparent,
+  rgba(255,255,255,0.25),
+  transparent
+);
+
+transition:all 0.6s ease;
+}
+
+/* 🔥 TRIGGER SHINE */
+.getStartedBtn:hover::before{
+left:100%;
+}
+
+/* OPTIONAL: slight lift */
 .getStartedBtn:hover{
-
 transform:translateY(-2px);
-box-shadow:0 6px 16px rgba(255,255,255,0.5);
-
+border-color:white;
 }
 
-/* Click */
 .getStartedBtn:active{
-
 transform:translateY(1px);
-box-shadow:0 2px 6px rgba(255,255,255,0.25);
-
 }
 
 /* STANDARD BUTTON SYSTEM */
