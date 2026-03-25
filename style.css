@@ -249,8 +249,8 @@ transition:all 0.2s ease;
 content:"";
 position:absolute;
 top:0;
-left:-120%;
-width:120%;
+left:-100%;
+width:100%;
 height:100%;
 
 background:linear-gradient(
@@ -261,7 +261,7 @@ background:linear-gradient(
 );
 
 /* 🔥 AUTO LOOP */
-animation:shineMove 3s linear infinite;
+animation:shineMove 1.5s linear infinite;
 
 }
 
