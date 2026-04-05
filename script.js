@@ -448,7 +448,7 @@ Difference ${m.skillGap}
 Picked ${m.pickCount} times
 </span>
 
-<button class="selectMatch">SELECT MATCHUP</button>
+<button class="selectMatch">CLICK TO SELECT</button>
 
 </div>
 
@@ -542,7 +542,7 @@ selectedMatchKey = key;
 
 document.querySelectorAll(".selectMatch").forEach(b=>{
   b.classList.remove("selected");
-  b.innerText = "SELECT MATCHUP";
+  b.innerText = "CLICK TO SELECT";
 });
 
 btn.classList.add("selected");
