@@ -171,7 +171,7 @@ el.innerHTML=`
     </div>
 
     <button id="getStartedBtn" class="getStartedBtn">
-      GET STARTED
+      CLICK TO GET STARTED
     </button>
 
   </div>
@@ -276,7 +276,7 @@ if(expiry <= now){
     </div>
 
     <button id="getStartedBtn" class="getStartedBtn">
-      GET STARTED
+      CLICK TO GET STARTED
     </button>
 
   </div>
