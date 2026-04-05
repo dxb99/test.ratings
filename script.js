@@ -406,6 +406,8 @@ function renderGeneratedMatchups(matchups){
 
   const container=document.getElementById("generatedMatchups");
 
+  armedMatchKey = null; // 🔥 reset when rendering new matchups
+
   container.innerHTML="";
 
   matchups.forEach(m=>{
