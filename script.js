@@ -466,20 +466,13 @@ const blueKey = m.blueTeam.map(p=>p.name).sort().join("|");
 const key = redKey + "-" + blueKey;
 
 const isServerSelected = currentMatchKeyFromServer === key;
-const isLocalSelected = selectedMatchKey === key;
 
-if(isServerSelected || isLocalSelected){
+if(isServerSelected){
   btn.classList.add("selected");
   btn.innerText = "SELECTED";
 
-  // 🔥 DISABLE CLICK IF ACTIVE SERVER MATCH
-  if(isServerSelected){
-
-    btn.style.cursor = "not-allowed";
-    btn.disabled = true;
-
-  }
-
+  btn.style.cursor = "not-allowed";
+  btn.disabled = true;
 }
 
 btn.onclick = () => {
