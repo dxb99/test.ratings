@@ -565,11 +565,12 @@ const data = await api({
 }
 
 // 🔥 ONLY mark selected AFTER SUCCESS
-selectedMatchKey = key;
+currentMatchKeyFromServer = key; // 🔥 FORCE SYNC IMMEDIATELY
 
 document.querySelectorAll(".selectMatch").forEach(b=>{
   b.classList.remove("selected");
   b.innerText = "CLICK TO SELECT";
+  b.disabled = false; // 🔥 reset disabled state
 });
 
 btn.classList.add("selected");
