@@ -10,8 +10,8 @@ let matchHistory = [];
 let lastSelectedPlayers = [];
 let lastSelectedMatchMaker = "";
 let currentMatchKeyFromServer = null;
-
 let blitzEnabled = false;
+let armedMatchKey = null; // 🔥 tracks first click before confirm
 
 window.addEventListener("load", async () => {
 
@@ -484,7 +484,7 @@ btn.onclick = () => {
 
   // 🔥 BLOCK IF THIS IS CURRENT ACTIVE MATCH
   if(currentMatchKeyFromServer === key){
-    return; // do nothing
+    return;
   }
 
   const maker = document.getElementById("matchMakerSelect").value;
@@ -494,6 +494,25 @@ btn.onclick = () => {
     return;
   }
 
+  // 🔥 FIRST CLICK → ARM
+  if(armedMatchKey !== key){
+
+    armedMatchKey = key;
+
+    // reset all buttons
+    document.querySelectorAll(".selectMatch").forEach(b=>{
+      b.classList.remove("selected");
+      b.innerText = "CLICK TO SELECT";
+    });
+
+    // highlight this one
+    btn.innerText = "CONFIRM SELECTION";
+    btn.classList.add("selected");
+
+    return; // 🚨 STOP HERE (no save yet)
+  }
+
+  // 🔥 SECOND CLICK → SAVE
   selectMatchup(m, key, btn);
 
 };
