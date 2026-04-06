@@ -717,7 +717,7 @@ width:0%;
 background:linear-gradient(90deg,#facc15,#d4af37);
 
 /* 🔥 animate fill */
-animation:confirmFill 0.6s forwards;
+animation:confirmFill 2.5s ease-in-out infinite;
 
 }
 
@@ -726,16 +726,37 @@ animation:confirmFill 0.6s forwards;
 z-index:1;
 }
 
-.selectMatch.confirming span,
 .selectMatch.confirming{
 position:relative;
 z-index:2;
 }
 
+/* 🔥 ensure text always above fill */
+.selectMatch.confirming::after{
+content:attr(data-text);
+position:absolute;
+inset:0;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:3;
+pointer-events:none;
+}
+
 /* 🔥 KEYFRAMES */
 @keyframes confirmFill{
+
 0%{ width:0%; }
-100%{ width:100%; }
+
+/* 🔥 slow fill */
+70%{ width:100%; }
+
+/* 🔥 slight pause at full */
+85%{ width:100%; }
+
+/* 🔥 reset */
+100%{ width:0%; }
+
 }
 
 .selectMatch.selected{
