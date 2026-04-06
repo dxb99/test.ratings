@@ -451,6 +451,19 @@ padding:0 20px;
 
 .matchOption{
 
+border:1px solid #333;
+margin:0;
+padding:15px;
+background:#111;
+border-radius:6px;
+
+font-size: clamp(12px, 0.5vw, 14px);
+
+cursor:pointer;
+transition:all 0.2s ease;
+
+}
+
 /* 🔥 SELECTED CARD (ACTIVE MATCHUP) */
 .matchOption.selectedCard{
 
@@ -483,27 +496,8 @@ transform:scale(1.01);
 
 }
 
-border:1px solid #333;
-margin:0;
-padding:15px;
-background:#111;
-border-radius:6px;
-
-font-size: clamp(12px, 0.5vw, 14px);
-
-/* 🔥 NEW */
-cursor:pointer;
-transition:all 0.2s ease;
-
-}
-
 /* 🔥 HOVER GLOW EFFECT */
 .matchOption:not(.selectedCard):hover{
-
-transform:translateY(-2px);
-box-shadow:0 0 12px rgba(34,197,94,0.6);
-
-}
 
 transform:translateY(-2px);
 box-shadow:0 0 12px rgba(34,197,94,0.6);
