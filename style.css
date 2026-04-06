@@ -712,6 +712,24 @@ display:flex;
 align-items:center;
 justify-content:center;
 
+animation:confirmGlow 2.5s ease-in-out infinite;
+  
+}
+
+@keyframes confirmGlow{
+
+0%{
+  box-shadow:0 0 6px rgba(255,215,0,0.3);
+}
+
+50%{
+  box-shadow:0 0 16px rgba(255,215,0,0.9);
+}
+
+100%{
+  box-shadow:0 0 6px rgba(255,215,0,0.3);
+}
+
 }
 
 /* 🔥 FILL ANIMATION LAYER */
@@ -724,28 +742,76 @@ left:0;
 height:100%;
 width:0%;
 
-background:linear-gradient(90deg,#facc15,#d4af37);
+/* 🔥 base fill */
+background:linear-gradient(
+  90deg,
+  #facc15 0%,
+  #fde68a 50%,
+  #d4af37 100%
+);
 
-/* 🔥 FORCE UNDER EVERYTHING */
+/* 🔥 under text */
 z-index:-1;
 
-animation:confirmFill 4s linear infinite;
+/* 🔥 animation */
+animation:confirmFill 4s ease-in-out infinite;
+
+}
+
+.selectMatch.confirming::after{
+
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+
+/* 🔥 light sweep */
+background:linear-gradient(
+  120deg,
+  transparent,
+  rgba(255,255,255,0.4),
+  transparent
+);
+
+z-index:0;
+
+animation:confirmShimmer 2.5s linear infinite;
 
 }
 
 /* 🔥 KEYFRAMES */
 @keyframes confirmFill{
 
-0%{ width:0%; }
+0%{ 
+  width:0%;
+  left:0%;
+}
 
-/* 🔥 slow fill */
-70%{ width:100%; }
+/* fill left → right */
+40%{ 
+  width:100%;
+  left:0%;
+}
 
-/* 🔥 slight pause at full */
-85%{ width:100%; }
+/* hold */
+50%{ 
+  width:100%;
+  left:0%;
+}
 
-/* 🔥 reset */
-100%{ width:0%; }
+/* drain right → left */
+90%{ 
+  width:0%;
+  left:100%;
+}
+
+/* reset */
+100%{ 
+  width:0%;
+  left:0%;
+}
 
 }
 
@@ -1083,6 +1149,18 @@ box-shadow:0 4px 10px rgba(34,197,94,0.4);
 
 0%{transform:rotate(0deg);}
 100%{transform:rotate(360deg);}
+
+}
+
+@keyframes confirmShimmer{
+
+0%{
+  left:-120%;
+}
+
+100%{
+  left:120%;
+}
 
 }
 
