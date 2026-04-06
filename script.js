@@ -468,6 +468,7 @@ const key = redKey + "-" + blueKey;
 const isServerSelected = currentMatchKeyFromServer === key;
 
 if(isServerSelected){
+  div.classList.add("selectedCard");
   btn.classList.add("selected");
   btn.innerText = "SELECTED";
 
@@ -494,24 +495,28 @@ btn.onclick = () => {
 
   armedMatchKey = key;
 
-  document.querySelectorAll(".selectMatch").forEach(b=>{
+  document.querySelectorAll(".matchOption").forEach(card=>{
+  card.classList.remove("armedCard");
+});
 
-    // 🔥 DO NOT RESET SERVER-SELECTED BUTTON
-    if(b.disabled) return;
+document.querySelectorAll(".selectMatch").forEach(b=>{
 
-    b.classList.remove("selected");
-    b.innerText = "CLICK TO SELECT";
+  // 🔥 DO NOT RESET SERVER-SELECTED BUTTON
+  if(b.disabled) return;
 
-  });
+  b.classList.remove("selected");
+  b.innerText = "CLICK TO SELECT";
 
-  btn.innerText = "CONFIRM SELECTION";
-  btn.classList.add("selected");
+});
 
-  return;
-}
+div.classList.add("armedCard");
+btn.innerText = "CONFIRM SELECTION";
+btn.classList.add("selected");
+
+return;
 
   // 🔥 SECOND CLICK → SAVE
-  selectMatchup(m, key, btn);
+  selectMatchup(m, key, btn, div);
 
 };
 
@@ -531,7 +536,7 @@ container.appendChild(div);
 
 }
 
-async function selectMatchup(match, key, btn){
+async function selectMatchup(match, key, btn, div){
 
   const maker=document.getElementById("matchMakerSelect").value;
 
@@ -567,14 +572,23 @@ const data = await api({
 // 🔥 ONLY mark selected AFTER SUCCESS
 currentMatchKeyFromServer = key; // 🔥 FORCE SYNC IMMEDIATELY
 
+document.querySelectorAll(".matchOption").forEach(card=>{
+  card.classList.remove("armedCard");
+  card.classList.remove("selectedCard");
+});
+
 document.querySelectorAll(".selectMatch").forEach(b=>{
   b.classList.remove("selected");
   b.innerText = "CLICK TO SELECT";
   b.disabled = false; // 🔥 reset disabled state
+  b.style.cursor = "pointer";
 });
 
+div.classList.add("selectedCard");
 btn.classList.add("selected");
 btn.innerText = "SELECTED";
+btn.disabled = true;
+btn.style.cursor = "not-allowed";
 
 /* CHANGE OVERLAY TEXT TO SAVED */
 
