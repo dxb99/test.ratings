@@ -514,6 +514,7 @@ btn.innerText = "CONFIRM SELECTION";
 btn.classList.add("selected");
 
 return;
+  }
 
   // 🔥 SECOND CLICK → SAVE
   selectMatchup(m, key, btn, div);
