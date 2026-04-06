@@ -684,19 +684,58 @@ box-shadow:0 2px 6px rgba(34,197,94,0.4);
 }
 
 /* 🔥 selected state */
-/* 🔥 CONFIRM STATE (SOFTER GOLD) */
+
+/* 🔥 CONFIRM STATE (LOADING FILL EFFECT) */
 
 .selectMatch.confirming{
 
-background:linear-gradient(180deg,#fde68a,#facc15);
+position:relative;
+overflow:hidden;
+
+background:#fde68a; /* 🔥 light yellow base */
 color:black;
 
 /* 🔥 STOP GREEN ANIMATION */
 animation:none;
 
-/* 🔥 SOFT GOLD GLOW */
-box-shadow:0 0 8px rgba(255,215,0,0.5);
+/* 🔥 subtle glow */
+box-shadow:0 0 8px rgba(255,215,0,0.4);
 
+}
+
+/* 🔥 FILL ANIMATION LAYER */
+.selectMatch.confirming::before{
+
+content:"";
+position:absolute;
+top:0;
+left:0;
+height:100%;
+width:0%;
+
+/* 🔥 darker gold fill */
+background:linear-gradient(90deg,#facc15,#d4af37);
+
+/* 🔥 animate fill */
+animation:confirmFill 0.6s forwards;
+
+}
+
+/* 🔥 KEEP TEXT ABOVE FILL */
+.selectMatch.confirming{
+z-index:1;
+}
+
+.selectMatch.confirming span,
+.selectMatch.confirming{
+position:relative;
+z-index:2;
+}
+
+/* 🔥 KEYFRAMES */
+@keyframes confirmFill{
+0%{ width:0%; }
+100%{ width:100%; }
 }
 
 .selectMatch.selected{
