@@ -662,8 +662,11 @@ white-space:nowrap;
 box-shadow:0 4px 10px rgba(34,197,94,0.4);
 transition:all 0.15s ease;
 
-/* 🔥 ADD THIS (slower than generate button) */
 animation:generateGlow 3s infinite;
+
+/* 🔥 ADD THIS */
+position:relative;
+z-index:1;
 
 }
 
@@ -695,14 +698,16 @@ overflow:hidden;
 background:#fde68a;
 color:black;
 
-/* 🔥 STOP GREEN ANIMATION */
 animation:none;
 
-/* 🔥 subtle glow */
 box-shadow:0 0 8px rgba(255,215,0,0.4);
 
-/* 🔥 ensures text stays above */
 z-index:2;
+
+/* 🔥 ADD THESE */
+display:flex;
+align-items:center;
+justify-content:center;
 
 }
 
@@ -718,10 +723,10 @@ width:0%;
 
 background:linear-gradient(90deg,#facc15,#d4af37);
 
-/* 🔥 PUT FILL BEHIND TEXT */
-z-index:1;
+/* 🔥 LOWER THAN TEXT */
+z-index:0;
 
-animation:confirmFill 2.5s ease-in-out infinite;
+animation:confirmFill 4s linear infinite;
 
 }
 
