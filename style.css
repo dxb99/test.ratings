@@ -531,13 +531,6 @@ flex-wrap:nowrap;
 
 }
 
-.teamPlayers{
-
-flex:1;
-text-align:left;
-
-}
-
 .redTeam{
 
 color:#ff4b4b;
@@ -798,6 +791,8 @@ transform:none;
 }
 
 .teamPlayers{
+  flex:1;
+  text-align:left;
   display:flex;
   flex-direction:column;
   gap:6px;
@@ -1077,20 +1072,6 @@ box-shadow:0 0 4px rgba(255,255,255,0.25);
 }
 
 /* PLAYER BUTTON STYLE */
-
-#playersCheckboxes label{
-
-display:flex;
-align-items:center;
-justify-content:flex-start;
-padding:6px 12px;
-background:#111;
-border:1px solid #444;
-border-radius:6px;
-white-space:nowrap;
-cursor:pointer;
-
-}
 
 #playersCheckboxes label{
 
@@ -1403,14 +1384,6 @@ font-size:clamp(10px,3vw,13px);
 
 flex-wrap:nowrap;
 gap:6px;
-
-}
-
-.selectMatch{
-
-font-size:12px;
-padding:5px 10px;
-white-space:nowrap;
 
 }
 
