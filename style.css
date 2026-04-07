@@ -1391,6 +1391,12 @@ font-size:14px;
 font-size:14px;
 }
 
+/* 🔥 FIX BLITZ TEXT WRAP ON MOBILE */
+.blitzText{
+  white-space:normal;
+  text-align:center;
+}
+
 #playersCheckboxes label{
 font-size:14px;
 }
@@ -1608,10 +1614,9 @@ white-space:nowrap;
   font-weight: 400;
   color: white;
 
-  /* 🔥 KEEP EVERYTHING INLINE */
   display:inline-block;
 
-  /* 🔥 PREVENT LINE BREAK */
+  /* 🔥 DESKTOP DEFAULT */
   white-space:nowrap;
 
   animation: blitzPulse 3s infinite;
