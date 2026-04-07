@@ -431,14 +431,15 @@ transform:translateY(-2px);
 .blitzToggle label{
   display:flex;
 
-  /* 🔥 KEY FIX */
-  align-items:center;
+  align-items:center; /* ✅ vertical center */
 
   justify-content:center;
   gap:10px;
   width:100%;
 
   flex-wrap:wrap;
+
+  text-align:center; /* ✅ helps when wrapping */
 }
 
 #blitzToggle{
@@ -1619,8 +1620,8 @@ white-space:nowrap;
   font-weight:400;
   color:white;
 
-  /* 🔥 stays inline until forced */
-  white-space:nowrap;
+  white-space:nowrap; /* ✅ stay one line when possible */
+  max-width:100%;     /* ✅ prevent overflow */
 
   font-size:15px;
   line-height:1.2;
@@ -1642,16 +1643,12 @@ white-space:nowrap;
     justify-content:flex-start;
   }
 
-  .blitzText{
-    white-space:normal;
-
-    /* 🔥 FORCE TEXT TO NEXT LINE WHEN NEEDED */
-    flex-basis:100%;
-
-    text-align:center;
-    font-size:13px;
-    line-height:1.3;
-  }
+.blitzText{
+  white-space:normal;
+  text-align:center;
+  font-size:13px;
+  line-height:1.3;
+}
 
 }
 
