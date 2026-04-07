@@ -1325,6 +1325,13 @@ text-align:center;
   padding:12px;
 }
 
+/* 🔥 ALLOW WRAP ONLY ON MOBILE */
+.blitzText{
+  white-space:normal;
+  overflow:visible;
+  text-overflow:unset;
+}
+
 /* 🔥 FIX: prevent horizontal scroll breaking layout */
 
 html, body {
@@ -1627,17 +1634,16 @@ white-space:nowrap;
   font-weight: 400;
   color: white;
 
-  /* 🔥 FLEX CHILD */
   flex:1;
 
-  /* 🔥 ALLOW WRAP WHEN NEEDED */
-  white-space:normal;
+  /* 🔥 DEFAULT = SINGLE LINE */
+  white-space:nowrap;
 
-  /* 🔥 CLEAN LINE HEIGHT */
-  line-height:1.3;
+  /* 🔥 CLEAN TRUNCATION (JUST IN CASE) */
+  overflow:hidden;
+  text-overflow:ellipsis;
 
-  /* 🔥 RESPONSIVE SIZE */
-  font-size:clamp(12px, 2.5vw, 15px);
+  font-size:clamp(12px, 1.2vw, 15px);
 
   animation: blitzPulse 3s infinite;
   animation-delay: 1.5s;
