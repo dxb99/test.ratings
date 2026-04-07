@@ -785,10 +785,6 @@ async function openAdminTab(btn){
 
     <td><button class="btn btn-red remove">REMOVE</button></td>
 
-    <td><button class="btn btn-orange resetPin">RESET PIN</button></td>
-
-    <td class="${p.pinStatus === 'ACTIVE' ? 'status-active' : ''}">${p.pinStatus}</td>
-
     `;
 
     row.querySelector(".remove").onclick=()=>{
@@ -798,46 +794,11 @@ async function openAdminTab(btn){
 
     };
 
-    row.querySelector(".resetPin").onclick=()=>{
-
-      resetPin(p.name);
-
-    };
-
     table.appendChild(row);
 
   });
 
   updatePlayerCount();
-
-}
-
-async function resetPin(player){
-
-  const pass = prompt("Enter Admin Password");
-
-  if(!pass) return;
-
-  const data = await api({
-
-    action:"resetPlayerPin",
-
-    playerName:player,
-
-    password:pass
-
-  });
-
-  if(!data.ok){
-
-    alert(data.error);
-    return;
-
-  }
-
-  alert("PIN reset");
-
-  openAdminTab();
 
 }
 
@@ -862,10 +823,6 @@ function addAdminPlayerRow(){
   <td contenteditable="true">0</td>
 
   <td><button class="btn btn-red remove">REMOVE</button></td>
-
-  <td></td>
-
-  <td>NOT CREATED</td>
 
   `;
 
