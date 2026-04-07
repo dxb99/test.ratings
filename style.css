@@ -439,9 +439,6 @@ transform:translateY(-2px);
 
   /* 🔥 LEFT ALIGN (CRITICAL FIX) */
   justify-content:flex-start;
-
-  /* 🔥 PREVENT OVERFLOW */
-  overflow:hidden;
 }
 
 /* 🔥 BIGGER CLEAN CHECKBOX */
