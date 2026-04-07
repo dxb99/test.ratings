@@ -381,6 +381,7 @@ font-size:15px;
 display:flex;
 justify-content:center;
 align-items:center;
+gap:10px;
 
 /* 🔥 NEW BACKGROUND CARD */
 background:linear-gradient(
@@ -424,6 +425,13 @@ box-shadow:
 /* 🔥 SLIGHT LIFT */
 transform:translateY(-2px);
 
+}
+
+/* 🔥 BIGGER CLEAN CHECKBOX */
+#blitzToggle{
+  width:18px;
+  height:18px;
+  cursor:pointer;
 }
 
 .blitzToggle.disabled{
@@ -1587,8 +1595,17 @@ white-space:nowrap;
 /* 🔥 BLITZ RED PULSE (WHITE ↔ RED GLOW) */
 
 .blitzText {
-  font-weight: 400; /* 🔥 NOT BOLD */
+  font-weight: 400;
   color: white;
+
+  /* 🔥 BETTER ALIGNMENT */
+  display:flex;
+  align-items:center;
+
+  /* 🔥 SPACING FROM CHECKBOX */
+  gap:8px;
+
+  /* 🔥 KEEP ANIMATION */
   animation: blitzPulse 3s infinite;
   animation-delay: 1.5s;
 }
