@@ -438,7 +438,7 @@ transform:translateY(-2px);
   width:100%;
 
   /* 🔥 LEFT ALIGN (CRITICAL FIX) */
-  justify-content:flex-start;
+  justify-content:center;
 }
 
 /* 🔥 BIGGER CLEAN CHECKBOX */
@@ -1318,10 +1318,20 @@ text-align:center;
 }
 
 /* 🔥 ALLOW WRAP ONLY ON MOBILE */
+/* 🔥 MOBILE: ALLOW CLEAN 2-LINE WRAP */
 .blitzText{
   white-space:normal;
-  overflow:visible;
-  text-overflow:unset;
+
+  /* 🔥 FORCE NICE WRAPPING */
+  word-break:break-word;
+
+  /* 🔥 SLIGHTLY SMALLER FOR MOBILE */
+  font-size:13px;
+
+  /* 🔥 BETTER READABILITY */
+  line-height:1.3;
+
+  text-align:left;
 }
 
 /* 🔥 FIX: prevent horizontal scroll breaking layout */
@@ -1614,14 +1624,11 @@ white-space:nowrap;
 
   flex:1;
 
-  /* 🔥 DEFAULT = SINGLE LINE */
+  /* 🔥 DESKTOP = FORCE ONE LINE */
   white-space:nowrap;
 
-  /* 🔥 CLEAN TRUNCATION (JUST IN CASE) */
-  overflow:hidden;
-  text-overflow:ellipsis;
-
-  font-size:clamp(12px, 1.2vw, 15px);
+  /* 🔥 CLEAN SIZE */
+  font-size:15px;
 
   animation: blitzPulse 3s infinite;
   animation-delay: 1.5s;
