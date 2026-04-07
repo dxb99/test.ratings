@@ -1313,11 +1313,6 @@ text-align:center;
 
 @media(max-width:700px){
 
-/* 🔥 BLITZ MOBILE IMPROVEMENT */
-.blitzToggle{
-  padding:10px 12px;
-}
-
 /* 🔥 ALIGN BLITZ WITH MATCH CARDS */
 .blitzToggle{
   max-width:500px;
