@@ -518,7 +518,7 @@ box-sizing:border-box;
 
 border:1px solid #333;
 margin:0;
-padding:15px;
+padding: clamp(10px, 1.2vw, 15px);
 background:#111;
 border-radius:6px;
 
@@ -636,10 +636,10 @@ flex-wrap:nowrap;
 
 .badge{
 
-padding:4px 10px;
+padding: clamp(3px, 0.5vw, 6px) clamp(6px, 0.8vw, 10px);
 background:#333;
 border-radius:4px;
-font-size:13px;
+font-size: clamp(10px, 0.7vw, 13px);
 white-space:nowrap;
 
 }
@@ -724,10 +724,10 @@ opacity:0.5;
 background:linear-gradient(180deg,#22c55e,#15803d);
 border:none;
 color:white;
-padding:8px 16px;
+padding: clamp(4px, 0.6vw, 8px) clamp(8px, 1vw, 16px);
 border-radius:6px;
 cursor:pointer;
-font-size:13px;
+font-size: clamp(10px, 0.7vw, 13px);
 font-weight:bold;
 white-space:nowrap;
 
