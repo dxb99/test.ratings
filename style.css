@@ -402,9 +402,6 @@ border:1px solid rgba(255, 235, 59, 0.9);
 
 border-radius:10px;
 
-box-shadow:
-0 0 14px rgba(255, 235, 59, 0.7);
-
 /* 🔥 ANIMATION DEFAULT (HIDDEN STATE) */
 opacity:0;
 transform:translateY(10px);
