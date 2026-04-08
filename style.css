@@ -1624,7 +1624,7 @@ white-space:nowrap;
 
   white-space:nowrap; /* 🔥 FORCE SINGLE LINE */
 
-  flex:1; /* 🔥 ALLOW IT TO USE SPACE */
+  flex:0;
 
   font-size:15px;
   line-height:1.2;
