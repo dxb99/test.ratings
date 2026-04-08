@@ -1627,24 +1627,27 @@ white-space:nowrap;
 }
 
 .blitzText {
-  font-weight:400;
-  color:white;
 
-  white-space:nowrap; /* ✅ stay one line */
-  overflow:hidden;
-  text-overflow:ellipsis;
+font-weight:600;
 
-  min-width:0; /* ✅ allows flex to shrink properly */
+color:#1a1a1a;
 
-  flex:1;
+text-shadow:none;
 
-  font-size:15px;
-  line-height:1.2;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
 
-  text-align:center;
+min-width:0;
+flex:1;
 
-  animation: blitzPulse 3s infinite;
-  animation-delay: 1.5s;
+font-size:15px;
+line-height:1.2;
+
+text-align:center;
+
+animation:none;
+
 }
 
 @media(max-width:700px){
