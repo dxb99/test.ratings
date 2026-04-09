@@ -387,8 +387,7 @@ align-items:center;
 width:100%;
 
 /* 🔥 DESKTOP WIDTH */
-max-width:650px; /* 🔥 MATCH MATCHUP CARDS */
-margin:16px auto;
+margin:16px 0;
 box-sizing:border-box;
 
 /* 🔥 NEW BACKGROUND CARD */
