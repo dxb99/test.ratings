@@ -438,16 +438,13 @@ transform:translateY(-2px);
 
 .blitzToggle label{
   display:flex;
-
   align-items:center;
-  justify-content:center;
+  justify-content:flex-start; /* 🔥 LEFT ALIGN */
 
   gap:10px;
   width:100%;
 
-  flex-wrap:wrap; /* ✅ allow wrap ONLY when needed */
-
-  text-align:center;
+  flex-wrap:nowrap; /* 🔥 FORCE SAME LINE */
 }
 
 #blitzToggle{
@@ -1652,7 +1649,7 @@ white-space:nowrap;
 
 }
 
-.blitzText {
+.blitzText{
 
 font-weight:600;
 
@@ -1673,24 +1670,6 @@ line-height:1.2;
 text-align:center;
 
 animation:none;
-
-}
-
-@media(max-width:700px){
-
-  .blitzToggle label{
-    justify-content:flex-start;
-  }
-
-.blitzText{
-  white-space:normal;
-
-  grid-column:1 / -1; /* 🔥 FORCE TEXT FULL WIDTH */
-
-  text-align:center;
-  font-size:13px;
-  line-height:1.3;
-}
 
 }
 
