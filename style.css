@@ -429,13 +429,6 @@ opacity:1;
 transform:translateY(0);
 }
 
-.blitzToggle.show:hover{
-
-/* 🔥 SLIGHT LIFT */
-transform:translateY(-2px);
-
-}
-
 .blitzToggle label{
   display:flex;
   align-items:center;
