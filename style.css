@@ -417,7 +417,7 @@ transition:opacity 0.4s ease, transform 0.4s ease, box-shadow 0.3s ease;
 .blitzTrack{
   display:flex;
   width:max-content;
-  animation: blitzScroll 12s linear infinite;
+  animation: blitzScroll 26s linear infinite;
 }
 
 /* 🔥 WHEN ACTIVE (FADE IN) */
