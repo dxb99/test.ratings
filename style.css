@@ -1651,8 +1651,9 @@ white-space:nowrap;
 
 flex:0 0 50%;
 
-/* 🔥 REMOVE CENTERING */
 display:block;
+
+padding-left:40px; /* 🔥 spacing between loops */
 
 font-size:15px;
 line-height:1.2;
