@@ -1649,11 +1649,12 @@ color:#1a1a1a;
 
 white-space:nowrap;
 
-flex:0 0 50%;
+/* 🔥 KEY FIX */
+flex:0 0 auto;
 
 display:block;
 
-padding-left:40px; /* 🔥 spacing between loops */
+padding-right:80px; /* spacing between repeats */
 
 font-size:15px;
 line-height:1.2;
