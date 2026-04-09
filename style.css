@@ -384,10 +384,10 @@ font-size:15px;
 display:flex;
 justify-content:center;
 align-items:center;
-width:100%;
+width:clamp(320px, 90%, 650px);
 
 /* 🔥 DESKTOP WIDTH */
-margin:16px 0;
+margin:16px auto;
 box-sizing:border-box;
 
 /* 🔥 NEW BACKGROUND CARD */
