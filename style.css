@@ -1649,10 +1649,10 @@ color:#1a1a1a;
 
 white-space:nowrap;
 
-flex:0 0 50%; /* 🔥 KEY FIX */
+flex:0 0 50%;
 
-display:flex;
-justify-content:center;
+/* 🔥 REMOVE CENTERING */
+display:block;
 
 font-size:15px;
 line-height:1.2;
