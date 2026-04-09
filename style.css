@@ -1666,19 +1666,3 @@ text-align:center;
 animation:none;
 
 }
-
-@keyframes blitzPulse {
-  0% {
-    color: white;
-    text-shadow: 0 0 0px rgba(255, 0, 0, 0);
-  }
-  50% {
-    color: #ff4d4d;
-    text-shadow: 0 0 10px rgba(255, 0, 0, 0.9),
-                 0 0 20px rgba(255, 0, 0, 0.7);
-  }
-  100% {
-    color: white;
-    text-shadow: 0 0 0px rgba(255, 0, 0, 0);
-  }
-}
