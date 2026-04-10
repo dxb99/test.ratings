@@ -347,26 +347,6 @@ if(!maker){
 
 const matchups = generateMatchupsLocal(selectedPlayers, gap);
 
-// 🔥 FETCH REAL MID FOR EACH MATCHUP
-for(let m of matchups){
-
-  try{
-    const res = await api({
-      action: "getMIDForMatch",
-      redTeam: m.redTeam.map(p=>p.name),
-      blueTeam: m.blueTeam.map(p=>p.name)
-    });
-
-    if(res.ok){
-      m.MID = res.MID;
-    }
-
-  }catch(e){
-    console.log("MID fetch failed");
-  }
-
-}
-
 /* 🔥 CONTROL BLITZ VISIBILITY AFTER GENERATE */
 
 const blitzToggle = document.getElementById("blitzToggle");
@@ -444,7 +424,7 @@ div.innerHTML=`
 <div class="matchCompact">
 
 <div class="midTag">
-  MID# ${String(m.MID).padStart(4, "0")}
+  MID# ----
 </div>
 
 <div class="teamLine">
