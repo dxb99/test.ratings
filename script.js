@@ -347,6 +347,26 @@ if(!maker){
 
 const matchups = generateMatchupsLocal(selectedPlayers, gap);
 
+// 🔥 FETCH REAL MID FOR EACH MATCHUP
+for(let m of matchups){
+
+  try{
+    const res = await api({
+      action: "getMIDForMatch",
+      redTeam: m.redTeam.map(p=>p.name),
+      blueTeam: m.blueTeam.map(p=>p.name)
+    });
+
+    if(res.ok){
+      m.MID = res.MID;
+    }
+
+  }catch(e){
+    console.log("MID fetch failed");
+  }
+
+}
+
 /* 🔥 CONTROL BLITZ VISIBILITY AFTER GENERATE */
 
 const blitzToggle = document.getElementById("blitzToggle");
@@ -424,7 +444,7 @@ div.innerHTML=`
 <div class="matchCompact">
 
 <div class="midTag">
-  MID# ${generatePreviewMID(m)}
+  MID# ${String(m.MID).padStart(4, "0")}
 </div>
 
 <div class="teamLine">
@@ -1431,27 +1451,4 @@ if(blitzToggle && blitzContainer){
 
 }
 
-}
-
-function generatePreviewMID(match){
-
-  const red = match.redTeam.map(p=>p.name).sort();
-  const blue = match.blueTeam.map(p=>p.name).sort();
-
-  const key1 = red.join("|") + "||" + blue.join("|");
-  const key2 = blue.join("|") + "||" + red.join("|");
-
-  const key = key1 < key2 ? key1 : key2;
-
-  // simple hash → stable number
-  let hash = 0;
-
-  for(let i=0;i<key.length;i++){
-    hash = (hash << 5) - hash + key.charCodeAt(i);
-    hash |= 0;
-  }
-
-  const id = Math.abs(hash % 10000);
-
-  return String(id).padStart(4,"0");
 }
