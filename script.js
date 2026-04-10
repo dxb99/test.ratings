@@ -979,7 +979,6 @@ if(sortType === "maker"){
     return bMID - aMID; // 🔥 HIGH → LOW
   });
 
-}
 }else{
 
   history.sort((a,b)=>new Date(b.selectedAt) - new Date(a.selectedAt));
