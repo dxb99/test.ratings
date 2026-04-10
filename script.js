@@ -423,10 +423,6 @@ div.innerHTML=`
 
 <div class="matchCompact">
 
-<div class="midTag">
-  MID# ----
-</div>
-
 <div class="teamLine">
 
 <span class="redTeam"><strong><span class="skillMedal">${m.redSkill}</span> RED TEAM :</strong></span>
