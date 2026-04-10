@@ -607,19 +607,25 @@ setTimeout(async () => {
 
   overlay.style.display = "none";
 
-  // 🔥 REFRESH HISTORY FIRST
+  // 🔥 REFRESH HISTORY
   const historyData = await api({ action: "getHistory" });
   if(historyData.ok){
     matchHistory = historyData.history || [];
   }
 
-  // 🔥 REGENERATE MATCHUPS WITH UPDATED PICK COUNTS
+  // 🔥 UPDATE GENERATED MATCHUPS (so counts stay accurate)
   const updatedMatchups = generateMatchupsLocal(lastSelectedPlayers, "all");
 
-  // 🔥 RE-APPLY FILTER
   lastGeneratedMatchups = updatedMatchups;
   updateGapCounts();
   applyGapFilter();
+
+  // 🔥 NOW GO TO MATCHUP TAB
+  const matchupBtn = document.querySelector('.tabButton[onclick*="matchupTab"]');
+  showTab("matchupTab", matchupBtn);
+
+  // 🔥 REFRESH CURRENT MATCH DISPLAY
+  await loadInitialData();
 
 }, 1000);
 
