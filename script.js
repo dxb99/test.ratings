@@ -157,22 +157,17 @@ currentMatchKeyFromServer = null;
   
 if(!match){
 
-  /* 🔥 STOP COUNTDOWN */
   if(countdownTimer){
     clearInterval(countdownTimer);
     countdownTimer = null;
   }
 
-el.innerHTML=`
+  el.innerHTML=`
 
   <div class="matchCard">
     <div class="matchHeader">
-  Match Maker: <strong>${match.matchMaker}</strong>
-
-  <span class="midTag">
-    MID# ${String(match.MID).padStart(4, "0")}
-  </span>
-</div>
+      NO CURRENT MATCHUP
+    </div>
 
     <button id="getStartedBtn" class="getStartedBtn">
       CLICK TO GET STARTED
@@ -205,8 +200,12 @@ el.innerHTML=`
 <div class="matchCard">
 
   <div class="matchHeader">
-    Match Maker: <strong>${match.matchMaker}</strong>
-  </div>
+  Match Maker: <strong>${match.matchMaker}</strong>
+
+  <span class="midTag">
+    MID# ${String(match.MID).padStart(4, "0")}
+  </span>
+</div>
 
   <div class="teamsRow">
 
