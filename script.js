@@ -970,6 +970,16 @@ if(sortType === "maker"){
 
   });
 
+}else if(sortType === "mid"){
+
+  history.sort((a,b)=>{
+    const aMID = parseInt(a.MID || 0);
+    const bMID = parseInt(b.MID || 0);
+
+    return bMID - aMID; // 🔥 HIGH → LOW
+  });
+
+}
 }else{
 
   history.sort((a,b)=>new Date(b.selectedAt) - new Date(a.selectedAt));
