@@ -981,6 +981,26 @@ if(sortType === "maker"){
 
   }
 
+  /* 🔥 COUNT HOW MANY TIMES EACH MATCHUP APPEARS */
+
+const counts = {};
+
+history.forEach(h => {
+
+  const red = h.redTeam.split(", ").sort().join(",");
+  const blue = h.blueTeam.split(", ").sort().join(",");
+
+  const key1 = red + "|" + blue;
+  const key2 = blue + "|" + red;
+
+  if(counts[key1] || counts[key2]){
+    counts[key1] = (counts[key1] || counts[key2]) + 1;
+  }else{
+    counts[key1] = 1;
+  }
+
+});
+  
   history.forEach(match=>{
 
     const div = document.createElement("div");
@@ -990,7 +1010,11 @@ if(sortType === "maker"){
 div.innerHTML = `
 
 <div class="historyLine1">
-${formatDate(match.selectedAt)} | Match Maker: ${match.matchMaker} | Difference: ${match.skillGap}
+${formatDate(match.selectedAt)} | Match Maker: ${match.matchMaker} | Difference: ${match.skillGap} | Picked ${counts[
+  match.redTeam.split(", ").sort().join(",") + "|" + match.blueTeam.split(", ").sort().join(",")
+] || counts[
+  match.blueTeam.split(", ").sort().join(",") + "|" + match.redTeam.split(", ").sort().join(",")
+] || 0} times
 </div>
 
 <div class="historyLine2">
