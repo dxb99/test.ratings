@@ -1044,25 +1044,69 @@ history.forEach(match => {
   detailRow.className = "historyDetailRow";
   detailRow.style.display = "none";
 
-  detailRow.innerHTML = `
-    <td colspan="5">
+detailRow.innerHTML = `
+  <td colspan="5">
 
-      <div class="historyDetailBox">
+    <div class="matchCard">
 
-        <div class="historyTeam red">
-          <strong>RED (${match.redSkill})</strong><br>
-          ${match.redTeam}
+      <div class="teamsRow">
+
+        <div class="team red">
+          <div class="teamTitle">
+            RED TEAM <span class="teamBadge">${match.redSkill}</span>
+          </div>
+
+          <div class="teamPlayers">
+            ${match.redTeam.split(", ").map(name => {
+
+              const player = allPlayers.find(p => p.name === name);
+
+              return `
+                <div class="playerRow">
+                  ${name}
+                  <span class="skillMedal">${player ? player.skill : ""}</span>
+                </div>
+              `;
+
+            }).join("")}
+          </div>
         </div>
 
-        <div class="historyTeam blue">
-          <strong>BLUE (${match.blueSkill})</strong><br>
-          ${match.blueTeam}
+        <div class="vs">VS</div>
+
+        <div class="team blue">
+          <div class="teamTitle">
+            BLUE TEAM <span class="teamBadge">${match.blueSkill}</span>
+          </div>
+
+          <div class="teamPlayers">
+            ${match.blueTeam.split(", ").map(name => {
+
+              const player = allPlayers.find(p => p.name === name);
+
+              return `
+                <div class="playerRow">
+                  ${name}
+                  <span class="skillMedal">${player ? player.skill : ""}</span>
+                </div>
+              `;
+
+            }).join("")}
+          </div>
         </div>
 
       </div>
 
-    </td>
-  `;
+      <div class="matchFooter">
+        <span class="diff diff-${match.skillGap}">
+          Difference: ${match.skillGap}
+        </span>
+      </div>
+
+    </div>
+
+  </td>
+`;
 
   /* 🔥 CLICK TO TOGGLE */
 
