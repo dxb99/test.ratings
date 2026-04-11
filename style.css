@@ -1689,6 +1689,10 @@ line-height:1.2;
   user-select: none;
   transition: all 0.15s ease;
   position: relative;
+
+  position: sticky;
+  top: 0;
+  z-index: 5;
 }
 
 /* 🔥 subtle underline base */
