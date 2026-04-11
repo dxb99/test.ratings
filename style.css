@@ -1669,3 +1669,59 @@ line-height:1.2;
 
   padding: 3px 8px;
 }
+
+/* 🔥 HISTORY TABLE STYLE */
+
+#historyTable {
+  width: 95%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+/* HEADER */
+
+#historyTable th {
+  background: #111;
+  border-bottom: 2px solid #333;
+  padding: 10px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s ease;
+}
+
+/* 🔥 HEADER HOVER */
+#historyTable th:hover {
+  background: #1a1a1a;
+  color: #22c55e;
+}
+
+/* ROWS */
+
+#historyTable td {
+  padding: 10px;
+  border-bottom: 1px solid #333;
+}
+
+/* 🔥 CLICKABLE ROW */
+#historyTable tbody tr:not(.historyDetailRow) {
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+/* 🔥 ROW HOVER EFFECT */
+#historyTable tbody tr:not(.historyDetailRow):hover {
+  background: #1a1a1a;
+  box-shadow: inset 0 0 10px rgba(34,197,94,0.2);
+}
+
+/* DETAIL ROW (EXPANDED MATCH) */
+.historyDetailRow td {
+  background: #0b0b0b;
+  padding: 15px;
+}
+
+/* MATCH CARD INSIDE TABLE */
+.historyDetailRow .matchCard {
+  margin: 10px auto;
+}
