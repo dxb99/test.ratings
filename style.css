@@ -1639,25 +1639,46 @@ white-space:nowrap;
 
 }
 
-/* 🔥 HISTORY TABLE HORIZONTAL SCROLL */
+/* 🔥 HISTORY TABLE MOBILE (TIGHT + SCROLL BACKUP) */
 
 #historyTable {
   display: block;
   overflow-x: auto;
-  white-space: nowrap;
   width: 100%;
 }
 
-/* keep cells readable */
+/* tighter text */
 #historyTable th,
 #historyTable td {
-  min-width: 140px;
+  font-size: 10px;
+  padding: 4px 3px;
   white-space: nowrap;
 }
-  
+
+/* shrink columns intelligently */
+#historyTable th:nth-child(1),
+#historyTable td:nth-child(1) {
+  min-width: 95px; /* Date */
+}
+
+#historyTable th:nth-child(2),
+#historyTable td:nth-child(2) {
+  min-width: 60px; /* MID */
+}
+
+#historyTable th:nth-child(3),
+#historyTable td:nth-child(3) {
+  min-width: 90px; /* Maker */
+}
+
+#historyTable th:nth-child(4),
+#historyTable td:nth-child(4) {
+  min-width: 70px; /* Picked */
+}
+
 #historyTable th:nth-child(5),
 #historyTable td:nth-child(5) {
-  width: 15%;
+  min-width: 55px; /* Gap */
 }
   
 }
