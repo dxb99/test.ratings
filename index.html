@@ -170,22 +170,26 @@ CLICK TO GENERATE MATCHUP
 
 <div class="historyControls">
 
-Sort by:
-
-<select id="historySort">
-
-<option value="newest">Newest</option>
-<option value="mid">MID# (High → Low)</option>
-<option value="maker">Match Maker (A-Z)</option>
-<option value="mostPicked">Most Picked (High → Low)</option>
-
-</select>
-
 <button id="clearHistoryBtn" class="btn btn-red">CLEAR HISTORY</button>
 
 </div>
 
-<div id="historyList"></div>
+<table id="historyTable">
+
+<thead>
+<tr>
+<th data-sort="date">Date / Time</th>
+<th data-sort="mid">Match ID</th>
+<th data-sort="maker">Match Maker</th>
+<th data-sort="picked">Times Picked</th>
+<th data-sort="gap">Difference</th>
+</tr>
+</thead>
+
+<tbody id="historyTableBody">
+</tbody>
+
+</table>
 
 </div>
 
