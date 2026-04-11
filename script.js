@@ -1141,12 +1141,6 @@ setTimeout(async () => {
 
 }
 
-document.getElementById("historySort").onchange = function(){
-
-  openHistoryTab();
-
-};
-
 function startMatchAutoRefresh(){
 
   setInterval(async ()=>{
