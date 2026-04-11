@@ -931,80 +931,16 @@ async function openHistoryTab(btn){
 
 function renderHistory(history){
 
-  const container = document.getElementById("historyList");
+const tbody = document.getElementById("historyTableBody");
 
-  container.innerHTML = "";
+tbody.innerHTML = "";
 
-  const sortType = document.getElementById("historySort").value;
-
-if(sortType === "maker"){
-
-  history.sort((a,b)=>a.matchMaker.localeCompare(b.matchMaker));
-
-}else if(sortType === "mostPicked"){
-
-  // 🔥 COUNT MATCHUP FREQUENCY
-  const counts = {};
-
-  history.forEach(h => {
-
-    const red = h.redTeam.split(", ").sort().join(",");
-    const blue = h.blueTeam.split(", ").sort().join(",");
-
-    const key1 = red + "|" + blue;
-    const key2 = blue + "|" + red;
-
-    if(counts[key1] || counts[key2]){
-      counts[key1] = (counts[key1] || counts[key2]) + 1;
-    }else{
-      counts[key1] = 1;
-    }
-
-  });
-
-  // 🔥 SORT BY COUNT DESC
-  history.sort((a,b)=>{
-
-    const aRed = a.redTeam.split(", ").sort().join(",");
-    const aBlue = a.blueTeam.split(", ").sort().join(",");
-
-    const bRed = b.redTeam.split(", ").sort().join(",");
-    const bBlue = b.blueTeam.split(", ").sort().join(",");
-
-    const aKey = aRed + "|" + aBlue;
-    const bKey = bRed + "|" + bBlue;
-
-    const aCount = counts[aKey] || counts[aBlue + "|" + aRed] || 0;
-    const bCount = counts[bKey] || counts[bBlue + "|" + bRed] || 0;
-
-    return bCount - aCount;
-
-  });
-
-}else if(sortType === "mid"){
-
-  history.sort((a,b)=>{
-    const aMID = parseInt(a.MID || 0);
-    const bMID = parseInt(b.MID || 0);
-
-    return bMID - aMID; // 🔥 HIGH → LOW
-  });
-
-}else{
-
-  history.sort((a,b)=>new Date(b.selectedAt) - new Date(a.selectedAt));
-
+if(!history || history.length === 0){
+  tbody.innerHTML = `<tr><td colspan="5">No match history yet.</td></tr>`;
+  return;
 }
 
-  if(!history || history.length === 0){
-
-    container.innerHTML = "No match history yet.";
-
-    return;
-
-  }
-
-  /* 🔥 COUNT HOW MANY TIMES EACH MATCHUP APPEARS */
+/* 🔥 COUNT MATCHUP FREQUENCY */
 
 const counts = {};
 
@@ -1023,45 +959,66 @@ history.forEach(h => {
   }
 
 });
-  
-  history.forEach(match=>{
 
-    const div = document.createElement("div");
+/* 🔥 DEFAULT SORT (NEWEST FIRST) */
 
-    div.className = "historyItem";
+history.sort((a,b)=>new Date(b.selectedAt) - new Date(a.selectedAt));
 
-div.innerHTML = `
+history.forEach(match => {
 
-<div class="historyLine1">
-${(() => {
+  const row = document.createElement("tr");
+
   const key1 = match.redTeam.split(", ").sort().join(",") + "|" + match.blueTeam.split(", ").sort().join(",");
   const key2 = match.blueTeam.split(", ").sort().join(",") + "|" + match.redTeam.split(", ").sort().join(",");
 
   const count = counts[key1] || counts[key2] || 0;
 
-  return `${formatDate(match.selectedAt)} | MID# ${String(match.MID || "----").padStart(4, "0")} | Match Maker: ${match.matchMaker} | Picked ${count} ${count === 1 ? "time" : "times"} | Difference: ${match.skillGap}`;
-})()}
-</div>
+  row.innerHTML = `
+    <td>${formatDate(match.selectedAt)}</td>
+    <td>${String(match.MID || "----").padStart(4, "0")}</td>
+    <td>${match.matchMaker}</td>
+    <td>${count}</td>
+    <td>${match.skillGap}</td>
+  `;
 
-<div class="historyLine2">
-<span class="skillMedal">${match.redSkill}</span>
-<span class="historyRedLabel">RED TEAM:</span>
-${match.redTeam}
-</div>
+  /* 🔥 DETAIL ROW */
 
-<div class="historyLine3">
-<span class="skillMedal">${match.blueSkill}</span>
-<span class="historyBlueLabel">BLUE TEAM:</span>
-${match.blueTeam}
-</div>
+  const detailRow = document.createElement("tr");
 
-`;
+  detailRow.className = "historyDetailRow";
+  detailRow.style.display = "none";
 
-    container.appendChild(div);
+  detailRow.innerHTML = `
+    <td colspan="5">
 
-  });
+      <div class="historyDetailBox">
 
-}
+        <div class="historyTeam red">
+          <strong>RED (${match.redSkill})</strong><br>
+          ${match.redTeam}
+        </div>
+
+        <div class="historyTeam blue">
+          <strong>BLUE (${match.blueSkill})</strong><br>
+          ${match.blueTeam}
+        </div>
+
+      </div>
+
+    </td>
+  `;
+
+  /* 🔥 CLICK TO TOGGLE */
+
+  row.onclick = () => {
+    detailRow.style.display =
+      detailRow.style.display === "none" ? "table-row" : "none";
+  };
+
+  tbody.appendChild(row);
+  tbody.appendChild(detailRow);
+
+});
 
 function formatDate(date){
 
