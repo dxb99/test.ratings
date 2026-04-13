@@ -1915,27 +1915,14 @@ line-height:1.2;
 
 .mapSessionCompactRow{
   display:grid;
-  grid-template-columns: 24px 1fr 24px; /* 🔥 LEFT SPACE | TEXT | ✕ */
+  grid-template-columns: 1fr 24px;
   align-items:center;
 
   width:100%;
   padding:3px 0;
 }
 
-.mapSessionCompactName{
-  grid-column:2;
-
-  text-align:center;
-  font-size:13px;
-  line-height:1.2;
-
-  white-space:nowrap;       /* 🔥 FIX BREAKING */
-  overflow:hidden;          /* 🔥 PREVENT OVERFLOW */
-  text-overflow:ellipsis;   /* 🔥 CLEAN CUT IF TOO LONG */
-}
-
 .mapDeleteMini{
-  grid-column:3;
   justify-self:end;
 
   background:none;
@@ -1968,7 +1955,9 @@ line-height:1.2;
   line-height:1.2;
   font-weight:400;
 
-  padding-right:4px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
 .mapSessionEmpty{
