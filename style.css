@@ -1923,16 +1923,20 @@ line-height:1.2;
 }
 
 .mapSessionCompactName{
-  grid-column:2;        /* 🔥 FORCE CENTER COLUMN */
+  grid-column:2;
+
   text-align:center;
   font-size:13px;
   line-height:1.2;
+
+  white-space:nowrap;       /* 🔥 FIX BREAKING */
+  overflow:hidden;          /* 🔥 PREVENT OVERFLOW */
+  text-overflow:ellipsis;   /* 🔥 CLEAN CUT IF TOO LONG */
 }
 
 .mapDeleteMini{
-  grid-column:3;        /* 🔥 RIGHT COLUMN */
-
-  justify-self:center;
+  grid-column:3;
+  justify-self:end;
 
   background:none;
   border:none;
@@ -1948,6 +1952,10 @@ line-height:1.2;
   justify-content:center;
 
   padding:0;
+}
+
+.mapDeleteMini:hover{
+  color:#ff4b4b;
 }
 
 .mapDeleteMini:hover{
@@ -1979,25 +1987,6 @@ line-height:1.2;
 
   width:18px;
   height:18px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:0;
-}
-
-.mapDeleteMini{
-  justify-self:center;   /* 🔥 CENTER INSIDE FIXED COLUMN */
-
-  background:none;
-  border:none;
-  color:#777;
-  font-size:12px;
-  cursor:pointer;
-
-  width:16px;
-  height:16px;
 
   display:flex;
   align-items:center;
