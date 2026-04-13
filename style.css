@@ -1910,12 +1910,44 @@ line-height:1.2;
   gap:8px;
 }
 
-.mapSessionRow{
-  display:grid;
-  grid-template-columns: 1fr 24px;   /* 🔥 FIXED WIDTH FOR ✕ */
+/* 🔥 FIX SESSION ROW STRUCTURE */
+
+.mapSessionCompactRow{
+  display:flex;
   align-items:center;
 
-  padding:2px 0;
+  width:100%;
+  padding:3px 0;
+}
+
+.mapSessionCompactName{
+  flex:1;
+  text-align:center;
+  font-size:13px;
+  line-height:1.2;
+}
+
+.mapDeleteMini{
+  margin-left:auto;
+
+  background:none;
+  border:none;
+  color:#777;
+  font-size:12px;
+  cursor:pointer;
+
+  width:16px;
+  height:16px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:0;
+}
+
+.mapDeleteMini:hover{
+  color:#ff4b4b;
 }
 
 .mapSessionName{
