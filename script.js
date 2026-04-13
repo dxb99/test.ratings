@@ -1618,6 +1618,7 @@ function renderSessionMaps(data){
 }
 
 // 🔥 RENDER ONE MODE
+
 function renderModeSessionList(containerId, maps, mode){
 
   const container = document.getElementById(containerId);
@@ -1626,46 +1627,49 @@ function renderModeSessionList(containerId, maps, mode){
 
   container.innerHTML = "";
 
+  // 🔥 Create ONE compact card
+  const card = document.createElement("div");
+  card.className = "mapSessionCompactCard";
+
   maps.forEach((mapName, index) => {
 
+    if(!mapName) return;
+
     const row = document.createElement("div");
-    row.className = "mapSessionRow";
+    row.className = "mapSessionCompactRow";
 
-    if(mapName){
+    row.innerHTML = `
+      <span class="mapSessionCompactName">${mapName}</span>
+      <button class="mapDeleteMini">✕</button>
+    `;
 
-      row.innerHTML = `
-        <span class="mapSessionName">${mapName}</span>
-        <button class="btn btn-red mapDeleteBtn">DELETE</button>
-      `;
+    row.querySelector(".mapDeleteMini").onclick = async () => {
 
-      row.querySelector(".mapDeleteBtn").onclick = async () => {
+      const res = await api({
+        action:"deleteSessionMap",
+        mode: mode,
+        slot: index + 1
+      });
 
-        const res = await api({
-          action:"deleteSessionMap",
-          mode: mode,
-          slot: index + 1
-        });
+      if(!res.ok){
+        alert(res.error || "Delete failed");
+        return;
+      }
 
-        if(!res.ok){
-          alert(res.error || "Delete failed");
-          return;
-        }
+      renderSessionMaps(res);
 
-        renderSessionMaps(res);
+    };
 
-      };
-
-    } else {
-
-      row.innerHTML = `
-        <span class="mapSessionEmpty">—</span>
-      `;
-
-    }
-
-    container.appendChild(row);
+    card.appendChild(row);
 
   });
+
+  // If empty
+  if(card.children.length === 0){
+    card.innerHTML = `<div class="mapSessionEmpty">—</div>`;
+  }
+
+  container.appendChild(card);
 
 }
 
