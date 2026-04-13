@@ -1905,7 +1905,10 @@ line-height:1.2;
   margin-top:16px;
   display:flex;
   flex-direction:column;
-  gap:14px;  /* 🔥 MORE SPACE */
+  gap:14px;
+
+  width:100%;              /* 🔥 match card width */
+  max-width:380px;         /* 🔥 same as left column */
 }
 
 #sessionControls .btn{
