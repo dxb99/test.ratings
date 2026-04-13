@@ -256,22 +256,57 @@ CLICK TO GENERATE MATCHUP
 
 </div>
 
-<div id="mapListContent">
+<div id="mapListTab" class="tabContent">
 
-<div class="mapModeBlock">
-  <div class="mapModeHeader eliminationHeader">Elimination</div>
-  <div id="eliminationSessionList" class="mapSessionList"></div>
-</div>
+<h2>MAPLIST</h2>
 
-<div class="mapModeBlock">
-  <div class="mapModeHeader blitzHeader">Blitz</div>
-  <div id="blitzSessionList" class="mapSessionList"></div>
-</div>
+<div id="mapListLayout">
 
-<div class="mapModeBlock">
-  <div class="mapModeHeader ctfHeader">CTF</div>
-  <div id="ctfSessionList" class="mapSessionList"></div>
-</div>
+  <!-- LEFT: FULL MAP LIST -->
+  <div id="mapMasterList">
+
+    <div class="mapMasterColumn">
+      <div class="mapModeHeader eliminationHeader">Elimination</div>
+      <div id="eliminationMasterList" class="mapMasterRows"></div>
+    </div>
+
+    <div class="mapMasterColumn">
+      <div class="mapModeHeader blitzHeader">Blitz</div>
+      <div id="blitzMasterList" class="mapMasterRows"></div>
+    </div>
+
+    <div class="mapMasterColumn">
+      <div class="mapModeHeader ctfHeader">CTF</div>
+      <div id="ctfMasterList" class="mapMasterRows"></div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: SESSION MAPS -->
+  <div id="mapSessionPanel">
+
+    <div class="mapSessionSection">
+      <div class="mapSessionSectionTitle eliminationHeader">Elimination</div>
+      <div id="eliminationSessionList" class="mapSessionList"></div>
+    </div>
+
+    <div class="mapSessionSection">
+      <div class="mapSessionSectionTitle blitzHeader">Blitz</div>
+      <div id="blitzSessionList" class="mapSessionList"></div>
+    </div>
+
+    <div class="mapSessionSection">
+      <div class="mapSessionSectionTitle ctfHeader">CTF</div>
+      <div id="ctfSessionList" class="mapSessionList"></div>
+    </div>
+
+    <div class="mapListControls">
+      <button id="generateSessionMapsBtn" class="btn btn-green">GENERATE SESSION MAPS</button>
+      <button id="saveSessionProgressBtn" class="btn btn-orange">SAVE SESSION PROGRESS</button>
+      <button id="copySessionMapsBtn" class="btn btn-blue">COPY SESSION MAPS</button>
+    </div>
+
+  </div>
 
 </div>
 
