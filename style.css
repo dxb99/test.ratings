@@ -1945,10 +1945,6 @@ line-height:1.2;
   color:#ff4b4b;
 }
 
-.mapDeleteMini:hover{
-  color:#ff4b4b;
-}
-
 .mapSessionName{
   text-align:center;
   font-size:13px;
@@ -1965,35 +1961,6 @@ line-height:1.2;
   flex:1;
   color:#777;
   font-size:14px;
-}
-
-.mapDeleteBtn{
-  background:none;
-  border:none;
-  color:#777;
-  font-size:12px;
-  cursor:pointer;
-
-  width:18px;
-  height:18px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:0;
-}
-
-.mapDeleteMini:hover{
-  color:#ff4b4b;
-}
-
-.mapDeleteMini:hover{
-  color:#ff4b4b;
-}
-
-.mapDeleteMini:hover{
-  color:#ff4b4b;
 }
 
 .mapDeleteBtn:hover{
@@ -2065,19 +2032,9 @@ line-height:1.2;
     padding:9px 10px;
   }
 
-  .mapSessionRow{
-    padding:9px 10px;
-  }
-
   .mapSessionName,
   .mapSessionEmpty{
     font-size:13px;
   }
 
-  .mapDeleteBtn{
-    min-width:72px;
-    font-size:11px;
-    padding:4px 8px;
   }
-
-}
