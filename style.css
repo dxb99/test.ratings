@@ -1804,3 +1804,134 @@ line-height:1.2;
   transition: transform 0.15s ease;
   font-size: 12px;
 }
+
+/* 🔥 MAPLIST TAB */
+
+.mapListControls{
+  margin:20px auto;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+#mapListContent{
+  width:100%;
+  max-width:900px;
+  margin:20px auto 0 auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+  box-sizing:border-box;
+}
+
+.mapModeBlock{
+  background:#111;
+  border:1px solid #333;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 0 10px rgba(0,0,0,0.35);
+}
+
+.mapModeHeader{
+  padding:12px 14px;
+  font-size:16px;
+  font-weight:bold;
+  text-align:center;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.eliminationHeader{
+  color:#ff4b4b;
+  background:linear-gradient(180deg, rgba(255,75,75,0.18), rgba(255,75,75,0.06));
+}
+
+.blitzHeader{
+  color:#facc15;
+  background:linear-gradient(180deg, rgba(250,204,21,0.18), rgba(250,204,21,0.06));
+}
+
+.ctfHeader{
+  color:#4ba3ff;
+  background:linear-gradient(180deg, rgba(75,163,255,0.18), rgba(75,163,255,0.06));
+}
+
+.mapSessionList{
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.mapSessionRow{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  background:#1a1a1a;
+  border:1px solid #2d2d2d;
+  border-radius:8px;
+  padding:10px 12px;
+  min-height:44px;
+}
+
+.mapSessionName{
+  text-align:left;
+  flex:1;
+  font-size:14px;
+  line-height:1.2;
+}
+
+.mapSessionEmpty{
+  text-align:left;
+  flex:1;
+  color:#777;
+  font-size:14px;
+}
+
+.mapDeleteBtn{
+  min-width:84px;
+  flex-shrink:0;
+}
+
+/* MOBILE */
+@media(max-width:700px){
+
+  .mapListControls{
+    gap:8px;
+  }
+
+  .mapListControls .btn{
+    min-width:unset;
+    width:100%;
+    max-width:500px;
+  }
+
+  #mapListContent{
+    grid-template-columns:1fr;
+    max-width:500px;
+    gap:14px;
+  }
+
+  .mapModeHeader{
+    font-size:14px;
+    padding:10px 12px;
+  }
+
+  .mapSessionRow{
+    padding:9px 10px;
+  }
+
+  .mapSessionName,
+  .mapSessionEmpty{
+    font-size:13px;
+  }
+
+  .mapDeleteBtn{
+    min-width:72px;
+    font-size:11px;
+    padding:4px 8px;
+  }
+
+}
