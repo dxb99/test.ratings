@@ -1828,7 +1828,15 @@ line-height:1.2;
   padding-top:4px;
 }
 
-.completeMapHeader,
+.completeMapHeader{
+  grid-column:1 / -1; /* 🔥 THIS FIXES YOUR LAYOUT */
+  font-size:18px;
+  font-weight:bold;
+  margin:0 0 16px 0;
+  text-align:center;
+  letter-spacing:1px;
+}
+
 .sessionMapsHeading{
   font-size:18px;
   font-weight:bold;
