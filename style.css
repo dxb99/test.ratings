@@ -1912,11 +1912,10 @@ line-height:1.2;
 
 .mapSessionRow{
   display:grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr 24px;   /* 🔥 FIXED WIDTH FOR ✕ */
   align-items:center;
 
-  padding:2px 0;        /* 🔥 tighter */
-  min-height:unset;     /* 🔥 remove forced height */
+  padding:2px 0;
 }
 
 .mapSessionName{
@@ -1924,6 +1923,8 @@ line-height:1.2;
   font-size:13px;
   line-height:1.2;
   font-weight:400;
+
+  padding-right:4px;
 }
 
 .mapSessionEmpty{
@@ -1951,7 +1952,7 @@ line-height:1.2;
 }
 
 .mapDeleteMini{
-  justify-self:end;   /* 🔥 PERFECT RIGHT ALIGN */
+  justify-self:center;   /* 🔥 CENTER INSIDE FIXED COLUMN */
 
   background:none;
   border:none;
