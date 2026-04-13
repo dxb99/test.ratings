@@ -1828,19 +1828,11 @@ line-height:1.2;
   padding-top:4px;
 }
 
-.completeMapHeader{
-  grid-column:1 / -1;
-  text-align:center;
-  font-size:18px;
-  font-weight:bold;
-  margin:0 0 16px 0;
-  letter-spacing:1px;
-}
-
+.completeMapHeader,
 .sessionMapsHeading{
   font-size:18px;
   font-weight:bold;
-  margin:0 0 12px 0;
+  margin:0 0 16px 0;
   text-align:center;
   letter-spacing:1px;
 }
@@ -1879,6 +1871,14 @@ line-height:1.2;
   border:none;
   box-shadow:none;
   padding-top:4px;
+}
+
+.sessionMapsCard{
+  background:#111;
+  border:1px solid #333;
+  border-radius:10px;
+  padding:16px;
+  box-shadow:0 0 12px rgba(0,0,0,0.4);
 }
 
 .mapSessionSection{
