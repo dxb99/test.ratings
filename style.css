@@ -1825,6 +1825,7 @@ line-height:1.2;
   grid-template-columns:repeat(3, minmax(0, 1fr));
   gap:16px;
   width:100%;
+  padding-top:4px;
 }
 
 .completeMapHeader{
@@ -1832,7 +1833,7 @@ line-height:1.2;
   text-align:center;
   font-size:18px;
   font-weight:bold;
-  margin:0 0 12px 0;
+  margin:0 0 16px 0;
   letter-spacing:1px;
 }
 
@@ -1876,7 +1877,7 @@ line-height:1.2;
   background:transparent;
   border:none;
   box-shadow:none;
-  padding:0;
+  padding-top:4px;
 }
 
 .mapSessionSection{
@@ -2030,7 +2031,7 @@ line-height:1.2;
 .sessionMapsHeading{
   font-size:18px;
   font-weight:bold;
-  margin-bottom:12px;
+  margin:0 0 16px 0;
   text-align:center;
   letter-spacing:1px;
 }
