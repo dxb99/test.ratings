@@ -1587,16 +1587,24 @@ if(blitzToggle && blitzContainer){
 // 🔥 LOAD CURRENT SESSION MAPS
 async function loadSessionMaps(){
 
-  const data = await api({
+  const sessionData = await api({
     action:"getSessionMaps"
   });
 
-  if(!data.ok){
+  if(!sessionData.ok){
     console.log("Failed loading session maps");
     return;
   }
 
-  renderSessionMaps(data);
+  renderSessionMaps(sessionData);
+
+  const initialData = await api({
+    action:"getInitialData"
+  });
+
+  if(initialData.ok && initialData.mapList){
+    renderMasterMapList(initialData.mapList);
+  }
 
 }
 
@@ -1654,6 +1662,36 @@ function renderModeSessionList(containerId, maps, mode){
       `;
 
     }
+
+    container.appendChild(row);
+
+  });
+
+}
+
+// 🔥 RENDER FULL MASTER MAP LIST
+function renderMasterMapList(mapList){
+
+  renderMasterModeList("eliminationMasterList", mapList.elimination || []);
+  renderMasterModeList("blitzMasterList", mapList.blitz || []);
+  renderMasterModeList("ctfMasterList", mapList.ctf || []);
+
+}
+
+// 🔥 RENDER ONE MASTER MODE COLUMN
+function renderMasterModeList(containerId, maps){
+
+  const container = document.getElementById(containerId);
+
+  if(!container) return;
+
+  container.innerHTML = "";
+
+  maps.forEach(mapName => {
+
+    const row = document.createElement("div");
+    row.className = "mapMasterRow";
+    row.textContent = mapName;
 
     container.appendChild(row);
 
