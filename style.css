@@ -1810,12 +1810,14 @@ line-height:1.2;
 #mapListLayout{
   width:100%;
   max-width:1400px;
-  margin:20px auto 0 auto;
+
+  margin:30px auto 0 auto; /* 🔥 more breathing room */
+
   display:grid;
   grid-template-columns:380px 1fr;
-  gap:24px;
+  gap:28px; /* 🔥 slightly wider spacing */
 
-  align-items:start;   /* 🔥 THIS IS CRITICAL */
+  align-items:start;
 }
 
 /* LEFT: MASTER MAP LIST */
@@ -1823,16 +1825,17 @@ line-height:1.2;
 #mapMasterList{
   display:grid;
   grid-template-columns:repeat(3, minmax(0, 1fr));
-  gap:16px;
+  gap:18px;
+
   width:100%;
-  padding-top:4px;
+  padding-top:0; /* 🔥 align with SESSION MAPS */
 }
 
 .completeMapHeader{
   grid-column:1 / -1;
   font-size:18px;
   font-weight:bold;
-  margin:0 0 28px 0;
+  margin:0 0 18px 0;
   text-align:center;
   letter-spacing:1px;
 
@@ -1958,7 +1961,7 @@ line-height:1.2;
   border:none;
   border-radius:0;
   padding:6px 0;
-  margin-bottom:6px;
+  margin-bottom:10px;
 }
 
 .mapSessionSection:last-of-type{
