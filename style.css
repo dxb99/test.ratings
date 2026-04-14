@@ -1954,7 +1954,7 @@ line-height:1.2;
   background:transparent;
   border:none;
   border-radius:0;
-  padding:6px 0;
+  padding:0 0 6px 0; /* 🔥 REMOVE TOP PADDING ONLY */
   margin-bottom:10px;
 }
 
