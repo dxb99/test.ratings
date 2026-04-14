@@ -1769,3 +1769,8 @@ function setupMapListButtons(){
   }
 
 }
+
+// 🔥 STEP 2: placeholder (no logic yet)
+function handleSessionHighlightUpdate(){
+  console.log("Highlight update triggered");
+}
