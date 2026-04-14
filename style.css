@@ -1825,7 +1825,7 @@ line-height:1.2;
 #mapMasterList{
   display:grid;
   grid-template-columns:repeat(3, minmax(0, 1fr));
-  gap:18px;
+  gap:24px;
 
   width:100%;
   padding-top:0; /* 🔥 align with SESSION MAPS */
