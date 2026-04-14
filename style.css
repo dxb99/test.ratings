@@ -1943,11 +1943,16 @@ line-height:1.2;
 }
 
 .mapSessionSection{
-  background:transparent;
-  border:none;
-  border-radius:0;
-  padding:6px 0;
-  margin-bottom:10px;
+  background:#111; /* 🔥 match right cards */
+  border:1px solid #333;
+  border-radius:10px;
+  overflow:hidden;
+
+  padding:0; /* 🔥 match right */
+
+  margin-bottom:14px;
+
+  box-shadow:0 0 10px rgba(0,0,0,0.35);
 }
 
 .mapSessionSection:last-of-type{
@@ -1983,15 +1988,10 @@ line-height:1.2;
   font-size:15px;
   font-weight:bold;
   text-align:center;
-  margin-bottom:8px;
 
   border-bottom:1px solid rgba(255,255,255,0.08);
-  border-top-left-radius:10px;
-  border-top-right-radius:10px;
 
-  /* 🔥 REMOVE BLEED */
-  margin-left:0;
-  margin-right:0;
+  margin:0; /* 🔥 match right */
 }
 
 .mapSessionList{
@@ -2008,7 +2008,15 @@ line-height:1.2;
   align-items:center;
 
   width:100%;
-  padding:3px 0;
+
+  padding:7px 10px; /* 🔥 MATCH RIGHT ROW HEIGHT */
+  font-size:13px;
+
+  border-bottom:1px solid #222; /* 🔥 match right rows */
+}
+
+.mapSessionCompactRow:last-child{
+  border-bottom:none;
 }
 
 .mapDeleteMini{
