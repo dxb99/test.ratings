@@ -1941,6 +1941,8 @@ line-height:1.2;
 
   padding:16px;
 
+  margin-top:-16px; /* 🔥 THIS IS THE FIX */
+
   box-shadow:0 0 12px rgba(0,0,0,0.4);
 }
 
