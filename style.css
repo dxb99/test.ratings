@@ -1881,6 +1881,7 @@ line-height:1.2;
   overflow:hidden;
   box-shadow:0 0 10px rgba(0,0,0,0.35);
   margin-top:6px;
+  padding:4px;
 }
 
 .mapMasterRows{
