@@ -1978,8 +1978,7 @@ line-height:1.2;
   font-size:15px;
   font-weight:bold;
   text-align:center;
-
-  margin:0 0 8px 0; /* 🔥 FIX: remove top spacing */
+  margin-bottom:8px;
 
   border-bottom:1px solid rgba(255,255,255,0.08);
   border-top-left-radius:10px;
@@ -2065,9 +2064,6 @@ line-height:1.2;
   font-size:15px;
   font-weight:bold;
   text-align:center;
-
-  margin-top:0; /* 🔥 ADDED */
-
   border-bottom:1px solid rgba(255,255,255,0.08);
 
   border-top-left-radius:10px;
