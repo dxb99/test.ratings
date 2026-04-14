@@ -1644,7 +1644,9 @@ function renderModeSessionList(containerId, maps, mode){
     row.className = "mapSessionCompactRow";
 
     row.innerHTML = `
-      <span class="mapSessionName">${mapName}</span>
+      <span class="mapSessionName" data-index="${index + 1}">
+      ${mapName}
+      </span>
       <button class="mapDeleteMini">✕</button>
     `;
 
@@ -1696,11 +1698,12 @@ function renderMasterModeList(containerId, maps){
 
   container.innerHTML = "";
 
-  maps.forEach(mapName => {
+  maps.forEach((mapName, index) => {
 
     const row = document.createElement("div");
     row.className = "mapMasterRow";
     row.textContent = mapName;
+    row.setAttribute("data-index", index + 1);
 
     container.appendChild(row);
 
