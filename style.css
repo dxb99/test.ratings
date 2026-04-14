@@ -1814,7 +1814,7 @@ line-height:1.2;
   margin:30px auto 0 auto; /* 🔥 more breathing room */
 
   display:grid;
-  grid-template-columns:320px 1fr;
+  grid-template-columns:330px 1fr;
   gap:28px; /* 🔥 slightly wider spacing */
 
   align-items:start;
@@ -1824,8 +1824,8 @@ line-height:1.2;
 
 #mapMasterList{
   display:grid;
-  grid-template-columns:repeat(3, minmax(280px, 1fr));
-  gap:24px;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:18px;
 
   width:100%;
   padding-top:0; /* 🔥 align with SESSION MAPS */
@@ -1881,7 +1881,6 @@ line-height:1.2;
   overflow:hidden;
   box-shadow:0 0 10px rgba(0,0,0,0.35);
   margin-top:6px;
-  padding:4px;
 }
 
 .mapMasterRows{
