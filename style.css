@@ -1811,7 +1811,7 @@ line-height:1.2;
   width:100%;
   max-width:1400px;
 
-  margin:0 auto; /* 🔥 REMOVE TOP GAP */
+  margin:30px auto 0 auto;
 
   display:grid;
   grid-template-columns:330px 1fr;
