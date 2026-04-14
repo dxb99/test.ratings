@@ -1778,10 +1778,7 @@ function setupMapListButtons(){
 
 }
 
-// 🔥 STEP 2: placeholder (no logic yet)
 function handleSessionHighlightUpdate(){
-
-  console.log("Highlight update triggered");
 
   processMode("elimination", "eliminationSessionList", "eliminationMasterList");
   processMode("blitz", "blitzSessionList", "blitzMasterList");
@@ -1813,7 +1810,6 @@ function processMode(mode, sessionId, masterId){
   const index = masterMaps.indexOf(firstMap);
 
   if(index === -1){
-    console.log(mode, "map not found in master list:", firstMap);
     return;
   }
 
@@ -1821,8 +1817,6 @@ function processMode(mode, sessionId, masterId){
   const prevIndex = (index - 1 + masterMaps.length) % masterMaps.length;
 
   const prevMap = masterMaps[prevIndex];
-
-  console.log(`🔥 ${mode.toUpperCase()} → highlight:`, prevMap);
 
   // 🔥 REMOVE OLD HIGHLIGHTS
 masterContainer.querySelectorAll(".mapMasterRow").forEach(row=>{
