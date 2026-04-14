@@ -1785,8 +1785,11 @@ deleteBtns.forEach(btn => btn.style.display = "none");
 // 🔥 wrap in temp container for padding
 const wrapper = document.createElement("div");
 wrapper.style.padding = "30px";
-wrapper.style.background = "#0b0b0b"; // match your app background
-wrapper.style.display = "inline-block";
+wrapper.style.background = "#0b0b0b";
+
+/* 🔥 FIX WIDTH */
+wrapper.style.width = sessionCard.offsetWidth + "px";
+wrapper.style.display = "block";
 
 sessionCard.parentNode.insertBefore(wrapper, sessionCard);
 wrapper.appendChild(sessionCard);
