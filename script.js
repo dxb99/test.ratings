@@ -1771,7 +1771,7 @@ function setupMapListButtons(){
 if(copyBtn){
   copyBtn.onclick = async () => {
 
-const sessionCard = document.querySelector(".sessionMapsCard");
+const sessionCard = document.getElementById("sessionMapsContainer");
 
 if(!sessionCard){
   alert("Session maps not found");
@@ -1785,7 +1785,7 @@ deleteBtns.forEach(btn => btn.style.display = "none");
 // 🔥 wrap in temp container for padding
 const wrapper = document.createElement("div");
 wrapper.style.padding = "30px";
-wrapper.style.background = "#0b0b0b";
+wrapper.style.background = "#000";
 
 /* 🔥 FIX WIDTH */
 wrapper.style.width = sessionCard.offsetWidth + "px";
