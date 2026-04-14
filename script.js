@@ -1772,5 +1772,48 @@ function setupMapListButtons(){
 
 // 🔥 STEP 2: placeholder (no logic yet)
 function handleSessionHighlightUpdate(){
+
   console.log("Highlight update triggered");
+
+  processMode("elimination", "eliminationSessionList", "eliminationMasterList");
+  processMode("blitz", "blitzSessionList", "blitzMasterList");
+  processMode("ctf", "ctfSessionList", "ctfMasterList");
+
+}
+
+function processMode(mode, sessionId, masterId){
+
+  const sessionContainer = document.getElementById(sessionId);
+  const masterContainer = document.getElementById(masterId);
+
+  if(!sessionContainer || !masterContainer) return;
+
+  // 🔥 get session maps
+  const sessionMaps = Array.from(
+    sessionContainer.querySelectorAll(".mapSessionName")
+  ).map(el => el.innerText.trim());
+
+  if(sessionMaps.length === 0) return;
+
+  const firstMap = sessionMaps[0];
+
+  // 🔥 get full map list
+  const masterMaps = Array.from(
+    masterContainer.querySelectorAll(".mapMasterRow")
+  ).map(el => el.innerText.trim());
+
+  const index = masterMaps.indexOf(firstMap);
+
+  if(index === -1){
+    console.log(mode, "map not found in master list:", firstMap);
+    return;
+  }
+
+  // 🔥 get previous (with wrap-around)
+  const prevIndex = (index - 1 + masterMaps.length) % masterMaps.length;
+
+  const prevMap = masterMaps[prevIndex];
+
+  console.log(`🔥 ${mode.toUpperCase()} → highlight:`, prevMap);
+
 }
