@@ -1816,4 +1816,18 @@ function processMode(mode, sessionId, masterId){
 
   console.log(`🔥 ${mode.toUpperCase()} → highlight:`, prevMap);
 
+  // 🔥 REMOVE OLD HIGHLIGHTS
+masterContainer.querySelectorAll(".mapMasterRow").forEach(row=>{
+  row.classList.remove("lastPlayedMap");
+});
+
+// 🔥 APPLY NEW HIGHLIGHT
+const rows = masterContainer.querySelectorAll(".mapMasterRow");
+
+rows.forEach(row => {
+  if(row.innerText.trim() === prevMap){
+    row.classList.add("lastPlayedMap");
+  }
+});
+
 }
