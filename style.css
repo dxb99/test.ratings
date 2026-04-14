@@ -1939,7 +1939,7 @@ line-height:1.2;
   border:1px solid #333;
   border-radius:10px;
 
-  padding:16px 0; /* 🔥 REMOVE LEFT/RIGHT PADDING */
+  padding:16px; /* 🔥 RESTORE THIS */
 
   box-shadow:0 0 12px rgba(0,0,0,0.4);
 }
@@ -1987,7 +1987,7 @@ line-height:1.2;
 }
 
 .mapSessionSectionTitle{
-  padding:9px 0; /* 🔥 MATCH RIGHT SIDE EDGE-TO-EDGE */
+  padding:9px 12px; /* 🔥 RESTORE SIDE PADDING */
   font-size:15px;
   font-weight:bold;
   text-align:center;
