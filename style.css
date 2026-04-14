@@ -2000,6 +2000,8 @@ line-height:1.2;
   /* 🔥 NEW (MATCH FIX) */
   margin-left:-16px;
   margin-right:-16px;
+
+  margin-top:-16px;
 }
 
 .mapSessionList{
