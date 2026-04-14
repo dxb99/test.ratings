@@ -1938,6 +1938,9 @@ line-height:1.2;
   background:#111;
   border:1px solid #333;
   border-radius:10px;
+
+  padding:0 16px 16px 16px; /* 🔥 TOP REMOVED */
+
   box-shadow:0 0 12px rgba(0,0,0,0.4);
 }
 
