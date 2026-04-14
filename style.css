@@ -1989,8 +1989,9 @@ line-height:1.2;
   border-top-left-radius:10px;
   border-top-right-radius:10px;
 
-  margin-left:-16px;
-  margin-right:-16px;
+  /* 🔥 REMOVE BLEED */
+  margin-left:0;
+  margin-right:0;
 }
 
 .mapSessionList{
