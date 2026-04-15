@@ -1587,6 +1587,12 @@ if(blitzToggle && blitzContainer){
 // 🔥 LOAD CURRENT SESSION MAPS
 async function loadSessionMaps(){
 
+const overlay = document.getElementById("mapListLoadingOverlay");
+
+if(overlay){
+  overlay.style.display = "flex";
+}
+
   const sessionData = await api({
     action:"getSessionMaps"
   });
@@ -1611,6 +1617,11 @@ renderSessionMaps(sessionData);
 setTimeout(()=>{
   handleSessionHighlightUpdate();
 }, 100);
+
+// 🔥 HIDE LOADER
+if(overlay){
+  overlay.style.display = "none";
+}
 
 }
 
