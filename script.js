@@ -465,10 +465,10 @@ Picked ${m.pickCount} ${m.pickCount === 1 ? "time" : "times"}
     
 const btn = div.querySelector(".selectMatch");
 
-const redKey = m.redTeam.map(p=>p.name).sort().join("|");
-const blueKey = m.blueTeam.map(p=>p.name).sort().join("|");
-
-const key = redKey + "-" + blueKey;
+const key = getMatchKey(
+  m.redTeam.map(p=>p.name),
+  m.blueTeam.map(p=>p.name)
+);
 
 const isServerSelected = currentMatchKeyFromServer === key;
 
