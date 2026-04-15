@@ -341,12 +341,12 @@ if(!maker){
     selectedPlayers.push(x.value);
   });
 
-  document.getElementById("generatingOverlay").style.display = "flex";
-  
   if(selectedPlayers.length < 2){
     alert("Select at least 2 players.");
     return;
   }
+
+  document.getElementById("generatingOverlay").style.display = "flex";
 
   const gap = document.querySelector('input[name="gapFilter"]:checked').value;
 
