@@ -2000,10 +2000,8 @@ line-height:1.2;
   grid-template-columns:1fr 24px;
   align-items:center;
 
-  padding:0 10px;
+  padding:0 10px; /* 🔥 let .mapMasterRow control row height feel */
 
-  font-size:13px;
-  border-bottom:1px solid #222;
   background:#111;
 }
 
@@ -2013,8 +2011,8 @@ line-height:1.2;
   overflow:hidden;
   text-overflow:ellipsis;
 
-  /* keeps text visually centered even with delete button on right */
   padding-left:24px;
+  display:block;
 }
 
 .sessionUnifiedRow:last-child{
