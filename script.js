@@ -498,31 +498,33 @@ btn.onclick = () => {
     return;
   }
 
-  // 🔥 FIRST CLICK → ARM
-  if(armedMatchKey !== key){
+// 🔥 FIRST CLICK → ARM
+if(armedMatchKey !== key){
 
-  armedMatchKey = key;
+  // 🔥 RESET GLOBAL STATE FIRST
+  armedMatchKey = null;
 
   document.querySelectorAll(".matchOption").forEach(card=>{
-  card.classList.remove("armedCard");
-});
+    card.classList.remove("armedCard");
+  });
 
-document.querySelectorAll(".selectMatch").forEach(b=>{
+  document.querySelectorAll(".selectMatch").forEach(b=>{
+    if(b.disabled) return;
 
-  if(b.disabled) return;
+    b.classList.remove("selected");
+    b.classList.remove("confirming");
+    b.innerText = "CLICK TO SELECT";
+  });
 
-  b.classList.remove("selected");
-  b.classList.remove("confirming"); // 🔥 ADD THIS
-  b.innerText = "CLICK TO SELECT";
+  // 🔥 NOW SET NEW ONE
+  armedMatchKey = key;
 
-});
+  div.classList.add("armedCard");
+  btn.innerText = "CONFIRM SELECTION";
+  btn.classList.add("confirming");
 
-div.classList.add("armedCard");
-btn.innerText = "CONFIRM SELECTION";
-btn.classList.add("confirming"); // 🔥 NEW CLASS
-
-return;
-  }
+  return;
+}
 
   // 🔥 SECOND CLICK → SAVE
   selectMatchup(m, key, btn, div);
