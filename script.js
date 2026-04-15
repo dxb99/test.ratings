@@ -1617,9 +1617,90 @@ setTimeout(()=>{
 // 🔥 RENDER SESSION MAPS
 function renderSessionMaps(data){
 
+  // Keep legacy hidden lists updated for existing highlight logic
   renderModeSessionList("eliminationSessionList", data.elimination || [], "elimination");
   renderModeSessionList("blitzSessionList", data.blitz || [], "blitz");
   renderModeSessionList("ctfSessionList", data.ctf || [], "ctf");
+
+  // Render new visible single-card layout
+  renderUnifiedSessionMaps(data);
+
+}
+
+function renderUnifiedSessionMaps(data){
+
+  const container = document.getElementById("sessionMapsUnifiedRows");
+
+  if(!container) return;
+
+  container.innerHTML = "";
+
+  const sections = [
+    {
+      label: "Elimination",
+      mode: "elimination",
+      headerClass: "eliminationHeader",
+      maps: data.elimination || []
+    },
+    {
+      label: "Blitz",
+      mode: "blitz",
+      headerClass: "blitzHeader",
+      maps: data.blitz || []
+    },
+    {
+      label: "CTF",
+      mode: "ctf",
+      headerClass: "ctfHeader",
+      maps: data.ctf || []
+    }
+  ];
+
+  sections.forEach((section, sectionIndex) => {
+
+    const header = document.createElement("div");
+    header.className = `sessionUnifiedHeader ${section.headerClass}`;
+
+    if(sectionIndex === 0){
+      header.classList.add("firstHeader");
+    }
+
+    header.textContent = section.label;
+    container.appendChild(header);
+
+    section.maps.forEach((mapName, index) => {
+
+      if(!mapName) return;
+
+      const row = document.createElement("div");
+      row.className = "sessionUnifiedRow";
+
+      row.innerHTML = `
+        <span class="sessionUnifiedName">${mapName}</span>
+        <button class="mapDeleteMini">✕</button>
+      `;
+
+      row.querySelector(".mapDeleteMini").onclick = async () => {
+
+        const res = await api({
+          action:"deleteSessionMap",
+          mode: section.mode,
+          slot: index + 1
+        });
+
+        if(!res.ok){
+          alert(res.error || "Delete failed");
+          return;
+        }
+
+        renderSessionMaps(res);
+      };
+
+      container.appendChild(row);
+
+    });
+
+  });
 
 }
 
