@@ -1900,8 +1900,6 @@ line-height:1.2;
   border-bottom:1px solid #222;
   line-height:1.2;
   background:#111;
-
-  height:40px; /* 🔥 FORCE CONSISTENT ROW HEIGHT */
 }
 
 /* 🔥 SHOW INDEX ON HOVER (MASTER LIST) */
