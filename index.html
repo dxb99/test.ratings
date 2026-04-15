@@ -252,27 +252,37 @@ CLICK TO GENERATE MATCHUP
 
   <div class="sessionMapsHeading">SESSION MAPS</div>
     
-    <div id="sessionMapsContainer">
+<div id="sessionMapsContainer">
 
-      <!-- ELIMINATION -->
-      <div class="mapSessionSection">
-        <div class="mapSessionSectionTitle eliminationHeader">Elimination</div>
-        <div id="eliminationSessionList" class="mapSessionList"></div>
-      </div>
+  <!-- NEW VISIBLE SINGLE CARD -->
+  <div id="sessionMapsUnifiedCard" class="mapMasterColumn">
+    <div id="sessionMapsUnifiedRows" class="mapMasterRows"></div>
+  </div>
 
-      <!-- BLITZ -->
-      <div class="mapSessionSection">
-        <div class="mapSessionSectionTitle blitzHeader">Blitz</div>
-        <div id="blitzSessionList" class="mapSessionList"></div>
-      </div>
+  <!-- LEGACY HIDDEN CONTAINERS (kept for existing highlight logic) -->
+  <div id="sessionMapsLegacy" style="display:none;">
 
-      <!-- CTF -->
-      <div class="mapSessionSection">
-        <div class="mapSessionSectionTitle ctfHeader">CTF</div>
-        <div id="ctfSessionList" class="mapSessionList"></div>
-      </div>
-
+    <!-- ELIMINATION -->
+    <div class="mapSessionSection">
+      <div class="mapSessionSectionTitle eliminationHeader">Elimination</div>
+      <div id="eliminationSessionList" class="mapSessionList"></div>
     </div>
+
+    <!-- BLITZ -->
+    <div class="mapSessionSection">
+      <div class="mapSessionSectionTitle blitzHeader">Blitz</div>
+      <div id="blitzSessionList" class="mapSessionList"></div>
+    </div>
+
+    <!-- CTF -->
+    <div class="mapSessionSection">
+      <div class="mapSessionSectionTitle ctfHeader">CTF</div>
+      <div id="ctfSessionList" class="mapSessionList"></div>
+    </div>
+
+  </div>
+
+</div>
 
     <div id="sessionControls">
 
