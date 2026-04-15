@@ -56,6 +56,7 @@ blitzToggle.addEventListener("change", () => {
 }
 
     setupMapListButtons();
+    await loadSessionMaps();
         
     startMatchAutoRefresh();
 
