@@ -1675,7 +1675,21 @@ function renderUnifiedSessionMaps(data){
      const row = document.createElement("div");
      row.className = "mapMasterRow sessionUnifiedRow";
       
-     row.setAttribute("data-index", index + 1);
+     const masterContainer = document.getElementById(section.mode + "MasterList");
+
+let masterIndex = "";
+
+if(masterContainer){
+  const masterRows = Array.from(masterContainer.querySelectorAll(".mapMasterRow"));
+
+  const foundIndex = masterRows.findIndex(r => r.innerText.trim() === mapName);
+
+  if(foundIndex !== -1){
+    masterIndex = foundIndex + 1;
+  }
+}
+
+row.setAttribute("data-index", masterIndex);
 
      row.innerHTML = `
        <span class="sessionUnifiedName">${mapName}</span>
