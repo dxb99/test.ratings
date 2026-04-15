@@ -1903,7 +1903,7 @@ line-height:1.2;
 }
 
 /* 🔥 SHOW INDEX ON HOVER (MASTER LIST) */
-.mapMasterRow:hover::before{
+#mapMasterList .mapMasterRow:hover::before{
   content: attr(data-index) ". ";
   color:#888;
   margin-right:4px;
