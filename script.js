@@ -198,8 +198,6 @@ setTimeout(() => {
 }, 0);
 
 return;
-  return;
-
 }
 
 el.innerHTML=`
