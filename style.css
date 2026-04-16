@@ -1654,9 +1654,9 @@ white-space:nowrap;
 /* tighter text */
 #historyTable th,
 #historyTable td {
-  font-size: 10px;
-  padding: 4px 3px;
-  white-space: nowrap;
+  padding: 8px 6px; /* 🔥 REDUCE HORIZONTAL SPACE */
+  border-bottom: 1px solid #333;
+  text-align: center; /* 🔥 CENTER ALL BY DEFAULT */
 }
 
 /* shrink columns intelligently */
@@ -1782,8 +1782,9 @@ line-height:1.2;
 /* ROWS */
 
 #historyTable td {
-  padding: 10px;
+  padding: 8px 6px; /* 🔥 tighter spacing */
   border-bottom: 1px solid #333;
+  text-align: center; /* 🔥 center all columns */
 }
 
 /* 🔥 LEFT ALIGN FIRST COLUMN (DATE/TIME ONLY) */
