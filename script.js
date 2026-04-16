@@ -67,6 +67,37 @@ blitzToggle.addEventListener("change", () => {
 
   }
 
+/* 🔥 MATCH MAKER CYCLER */
+
+const matchMakers = [
+  "Arshad",
+  "Basith",
+  "Bijo",
+  "Garry",
+  "Hamad",
+  "Sameer"
+];
+
+let currentMakerIndex = 0;
+
+const cycleEl = document.getElementById("matchMakerCycle");
+
+if(cycleEl){
+
+  cycleEl.addEventListener("click", () => {
+
+    currentMakerIndex++;
+
+    if(currentMakerIndex >= matchMakers.length){
+      currentMakerIndex = 0;
+    }
+
+    cycleEl.innerText = "Match Maker: " + matchMakers[currentMakerIndex];
+
+  });
+
+}
+  
 });
 
 async function api(data){
