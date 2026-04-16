@@ -1876,7 +1876,7 @@ line-height:1.2;
 }
 
 .sessionMapsHeading::after{
-  content:"Match Maker: Arshad";
+  content: var(--match-maker-text, "Match Maker: Arshad");
 
   position:absolute;
   left:50%;
