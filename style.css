@@ -2233,11 +2233,15 @@ line-height:1.2;
 
   #mapSessionPanel{
   width:100%;
-  max-width:100%;   /* 🔥 remove width cap */
-  margin:0;         /* 🔥 remove centering offset */
-  padding:0 12px;   /* 🔥 optional: adds nice side spacing */
+  max-width:600px;     /* 🔥 match visual width of right side */
+  margin:0 auto;       /* 🔥 center it properly */
+  padding:0 12px;
   box-sizing:border-box;
 }
+
+  .mapSessionSection{
+    width:100%;
+  }
 
   #sessionCaptureArea{
   width:100%;
