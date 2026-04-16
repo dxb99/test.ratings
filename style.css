@@ -2218,54 +2218,54 @@ line-height:1.2;
 @media(max-width:1000px){
 
   #mapListLayout{
-  grid-template-columns:1fr;
+    grid-template-columns:1fr;
 
-  max-width:100%;        /* 🔥 OVERRIDE DESKTOP */
-  margin:0;              /* 🔥 REMOVE CENTERING */
-  padding:0 12px;        /* 🔥 MATCH RIGHT SIDE SPACING */
+    max-width:100%;
+    margin:0 auto;        /* 🔥 keep centered */
+    padding:0 12px;
 
-  box-sizing:border-box;
-}
+    box-sizing:border-box;
+  }
 
   #mapMasterList{
     grid-template-columns:1fr;
   }
 
   #mapSessionPanel{
-  width:100%;
-  max-width:600px;     /* 🔥 match visual width of right side */
-  margin:0 auto;       /* 🔥 center it properly */
-  padding:0 12px;
-  box-sizing:border-box;
-}
+    width:100%;
+    max-width:600px;
+    margin:0 auto;
+    padding:0 12px;
+    box-sizing:border-box;
+  }
 
   .mapSessionSection{
     width:100%;
   }
 
   #sessionCaptureArea{
-  width:100%;
-}
+    width:100%;
+  }
 
-#sessionMapsUnifiedCard{
-  width:100%;
-}
+  #sessionMapsUnifiedCard{
+    width:100%;
+  }
 
-.sessionMapsHeading{
-  font-size:18px;
-  font-weight:bold;
-  margin:0 0 16px 0;
-  text-align:center;
-  letter-spacing:1px;
-}
+  .sessionMapsHeading{
+    font-size:18px;
+    font-weight:bold;
+    margin:0 0 16px 0;
+    text-align:center;
+    letter-spacing:1px;
+  }
 
-#sessionControls{
-  width:100%;
-  max-width:100%;
-}
+  #sessionControls{
+    width:100%;
+    max-width:100%;
+  }
 
-#sessionControls .btn{
-  width:100%;
-}
+  #sessionControls .btn{
+    width:100%;
+  }
 
 }
