@@ -1926,7 +1926,7 @@ function setupMapListButtons(){
 if(copyBtn){
   copyBtn.onclick = async () => {
 
-const sessionCard = document.getElementById("sessionMapsContainer");
+const sessionCard = document.getElementById("sessionCaptureArea");
 
 if(!sessionCard){
   alert("Session maps not found");
@@ -1941,7 +1941,8 @@ deleteBtns.forEach(btn => btn.style.display = "none");
 const wrapper = document.createElement("div");
 wrapper.style.padding = "30px";
 wrapper.style.background = "#000";
-
+wrapper.style.borderRadius = "12px"; // 🔥 ADD THIS
+    
 /* 🔥 FIX WIDTH */
 wrapper.style.width = sessionCard.offsetWidth + "px";
 wrapper.style.display = "block";
