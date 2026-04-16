@@ -2218,11 +2218,13 @@ line-height:1.2;
 @media(max-width:1000px){
 
   #mapListLayout{
-    grid-template-columns:1fr;
-  }
+  grid-template-columns:1fr;
 
-  #mapListLayout{
-  padding:0;     /* 🔥 remove any inherited spacing */
+  max-width:100%;        /* 🔥 OVERRIDE DESKTOP */
+  margin:0;              /* 🔥 REMOVE CENTERING */
+  padding:0 12px;        /* 🔥 MATCH RIGHT SIDE SPACING */
+
+  box-sizing:border-box;
 }
 
   #mapMasterList{
