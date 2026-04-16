@@ -2217,51 +2217,41 @@ line-height:1.2;
 
 @media(max-width:1000px){
 
+  /* 🔥 MOBILE MAP LAYOUT FIX */
   #mapListLayout{
-    grid-template-columns:1fr;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
 
-    max-width:100%;
-    margin:0 auto;        /* 🔥 keep centered */
+    width:100%;
     padding:0 12px;
-
     box-sizing:border-box;
   }
 
+  /* 🔥 FORCE COMPLETE MAP LIST TO STACK */
   #mapMasterList{
+    display:grid;
     grid-template-columns:1fr;
+    width:100%;
+    max-width:600px;
   }
 
+  /* BOTH SECTIONS MATCH WIDTH */
   #mapSessionPanel{
     width:100%;
     max-width:600px;
-    margin:0 auto;
-    padding:0 12px;
-    box-sizing:border-box;
   }
 
-  .mapSessionSection{
-    width:100%;
-  }
-
-  #sessionCaptureArea{
-    width:100%;
-  }
-
+  /* ENSURE CARDS FILL */
+  .mapMasterColumn,
   #sessionMapsUnifiedCard{
     width:100%;
   }
 
-  .sessionMapsHeading{
-    font-size:18px;
-    font-weight:bold;
-    margin:0 0 16px 0;
-    text-align:center;
-    letter-spacing:1px;
-  }
-
+  /* BUTTONS FULL WIDTH */
   #sessionControls{
     width:100%;
-    max-width:100%;
   }
 
   #sessionControls .btn{
