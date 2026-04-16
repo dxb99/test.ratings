@@ -1730,6 +1730,13 @@ line-height:1.2;
   margin: 20px auto;
   border-collapse: collapse;
   font-size: 14px;
+  table-layout: auto;
+}
+
+#historyTable th,
+#historyTable td {
+  white-space: nowrap; /* 🔥 prevents stretching */
+  width: 1%;           /* 🔥 forces shrink-to-content */
 }
 
 /* HEADER */
