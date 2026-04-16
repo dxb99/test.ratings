@@ -1875,25 +1875,6 @@ line-height:1.2;
   white-space:nowrap;
 }
 
-.sessionMapsHeading::after{
-  content: var(--match-maker-text, "Match Maker: Arshad");
-
-  position:absolute;
-  left:50%;
-  top:100%;
-  transform:translateX(-50%);
-
-  margin-top:2px;
-
-  font-size:11px;
-  font-weight:400;
-  color:#888;
-  letter-spacing:0.5px;
-  white-space:nowrap;
-
-  transition:all 0.15s ease;
-}
-
 .sessionSubtext{
   font-size:11px;
   font-weight:400;
@@ -1902,9 +1883,8 @@ line-height:1.2;
   white-space:nowrap;
 
   text-align:center;
-
-  margin-top:-6px;   /* 🔥 pull it UP */
-  margin-bottom:14px;
+  margin-top:-20px; /* 🔥 aligns like right side */
+  margin-bottom:10px;
 
   cursor:pointer;
   transition:all 0.15s ease;
@@ -1926,9 +1906,7 @@ line-height:1.2;
   width:100%;
   display:block;
 
-  padding-bottom:25px;
-
-  position:relative; /* 🔥 REQUIRED */
+  padding-bottom:25px; /* 🔥 increased for perfect alignment */
 }
 
 .mapMasterColumn{
