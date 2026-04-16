@@ -1085,21 +1085,13 @@ font-weight:600;
 
 /* ADMIN */
 
-#adminTable{
-  margin:0 auto; /* 🔥 CENTER TABLE */
-}
-
 #adminTable td,
 #adminTable th{
+
   padding:8px;
   font-size:13px;
   line-height:1.3;
-  text-align:center; /* 🔥 CENTER TEXT */
-}
 
-#adminTable td{
-  text-align:center;
-  vertical-align:middle;
 }
 
 .status-active{
@@ -1651,6 +1643,14 @@ white-space:nowrap;
   width: 100%;
 }
 
+/* tighter text */
+#historyTable th,
+#historyTable td {
+  font-size: 10px;
+  padding: 4px 3px;
+  white-space: nowrap;
+}
+
 /* shrink columns intelligently */
 #historyTable th:nth-child(1),
 #historyTable td:nth-child(1) {
@@ -1730,13 +1730,6 @@ line-height:1.2;
   margin: 20px auto;
   border-collapse: collapse;
   font-size: 14px;
-  table-layout: auto;
-}
-
-#historyTable th,
-#historyTable td {
-  white-space: nowrap; /* 🔥 prevents stretching */
-  width: 1%;           /* 🔥 forces shrink-to-content */
 }
 
 /* HEADER */
@@ -1744,7 +1737,7 @@ line-height:1.2;
 #historyTable th {
   background: #111;
   border-bottom: 2px solid #333;
-  padding: 8px 6px; /* 🔥 tighter like td */
+  padding: 10px;
   cursor: pointer;
   user-select: none;
   transition: all 0.15s ease;
@@ -1781,9 +1774,8 @@ line-height:1.2;
 /* ROWS */
 
 #historyTable td {
-  padding: 8px 6px; /* 🔥 tighter spacing */
+  padding: 10px;
   border-bottom: 1px solid #333;
-  text-align: center; /* 🔥 center all columns */
 }
 
 /* 🔥 LEFT ALIGN FIRST COLUMN (DATE/TIME ONLY) */
