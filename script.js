@@ -67,37 +67,6 @@ blitzToggle.addEventListener("change", () => {
 
   }
 
-/* 🔥 MATCH MAKER CYCLER */
-
-const matchMakers = [
-  "Arshad",
-  "Basith",
-  "Bijo",
-  "Garry",
-  "Hamad",
-  "Sameer"
-];
-
-let currentMakerIndex = 0;
-
-const cycleEl = document.getElementById("matchMakerCycle");
-
-if(cycleEl){
-
-  cycleEl.addEventListener("click", () => {
-
-    currentMakerIndex++;
-
-    if(currentMakerIndex >= matchMakers.length){
-      currentMakerIndex = 0;
-    }
-
-    cycleEl.innerText = "Match Maker: " + matchMakers[currentMakerIndex];
-
-  });
-
-}
-  
 });
 
 async function api(data){
@@ -1926,7 +1895,7 @@ function setupMapListButtons(){
 if(copyBtn){
   copyBtn.onclick = async () => {
 
-const sessionCard = document.getElementById("sessionCaptureArea");
+const sessionCard = document.getElementById("sessionMapsContainer");
 
 if(!sessionCard){
   alert("Session maps not found");
