@@ -1941,6 +1941,7 @@ deleteBtns.forEach(btn => btn.style.display = "none");
 const wrapper = document.createElement("div");
 wrapper.style.padding = "30px";
 wrapper.style.background = "#000";
+wrapper.style.borderRadius = "12px";
 
 /* 🔥 FIX WIDTH */
 wrapper.style.width = sessionCard.offsetWidth + "px";
