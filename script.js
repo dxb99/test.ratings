@@ -36,6 +36,12 @@ if(blitzContainer){
     document.getElementById("loadingScreen").style.display = "none";
     document.getElementById("app").classList.remove("hidden");
 
+/* 🔥 FORCE SCROLL TO TOP ON LOAD */
+window.scrollTo({
+  top: 0,
+  behavior: "instant"
+});
+
     document.querySelectorAll('input[name="gapFilter"]').forEach(radio => {
       radio.addEventListener("change", applyGapFilter);
     });
