@@ -2269,6 +2269,11 @@ line-height:1.2;
   margin-bottom:25px;
 }
 
+/* 🔥 HIDE MATCH MAKER TEXT IN MATCHUP TAB */
+#matchupSessionMaps .sessionSubtext{
+  display:none;
+}
+
 #matchupSessionMaps > div{
   width:100%;
   max-width:420px; /* 🔥 controls card width */
