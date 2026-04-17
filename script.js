@@ -1984,13 +1984,15 @@ deleteBtns.forEach(btn => btn.style.display = "none");
 
 // 🔥 wrap in temp container for padding
 const wrapper = document.createElement("div");
-wrapper.style.padding = "30px";
-wrapper.style.background = "#000";
+wrapper.style.padding = "50px 40px";
+wrapper.style.background = "#0a0a0a"; // slightly lifted black
 wrapper.style.borderRadius = "12px"; // 🔥 ADD THIS
     
 /* 🔥 FIX WIDTH */
 wrapper.style.width = "800px";
-wrapper.style.display = "block";
+wrapper.style.display = "flex";
+wrapper.style.flexDirection = "column";
+wrapper.style.alignItems = "center";
 
 sessionCard.parentNode.insertBefore(wrapper, sessionCard);
 sessionCard.style.transform = "scale(1.4)";
