@@ -1700,11 +1700,23 @@ const matchupContainer = document.getElementById("matchupSessionMaps");
 
 if(matchupContainer){
 
-  const source = document.getElementById("sessionCaptureArea");
+const source = document.getElementById("sessionCaptureArea");
 
-  if(source){
-    matchupContainer.innerHTML = source.outerHTML;
-  }
+if(source){
+
+  // 🔥 CLONE (not direct copy)
+  const clone = source.cloneNode(true);
+
+  // 🔥 REMOVE DELETE BUTTONS
+  clone.querySelectorAll(".mapDeleteMini").forEach(btn => btn.remove());
+
+  // 🔥 REMOVE DUPLICATE ID (VERY IMPORTANT)
+  clone.removeAttribute("id");
+
+  matchupContainer.innerHTML = "";
+  matchupContainer.appendChild(clone);
+
+}
 
 }
 
