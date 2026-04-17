@@ -91,17 +91,22 @@ const cycleEl = document.getElementById("matchMakerCycle");
 
 if(cycleEl){
 
-  cycleEl.addEventListener("click", () => {
+cycleEl.addEventListener("click", () => {
 
+  // 🔥 FIRST CLICK: skip "Not Selected"
+  if(currentMakerIndex === 0){
+    currentMakerIndex = 1;
+  } else {
     currentMakerIndex++;
 
     if(currentMakerIndex >= matchMakers.length){
-      currentMakerIndex = 0;
+      currentMakerIndex = 1; // 🔥 LOOP BACK TO FIRST REAL NAME
     }
+  }
 
-    cycleEl.innerText = "Match Maker: " + matchMakers[currentMakerIndex];
+  cycleEl.innerText = "Match Maker: " + matchMakers[currentMakerIndex];
 
-  });
+});
 
 }
   
