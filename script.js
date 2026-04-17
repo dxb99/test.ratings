@@ -1695,6 +1695,19 @@ function renderSessionMaps(data){
   // Render new visible single-card layout
   renderUnifiedSessionMaps(data);
 
+// 🔥 ALSO RENDER INTO MATCHUP TAB
+const matchupContainer = document.getElementById("matchupSessionMaps");
+
+if(matchupContainer){
+
+  const source = document.getElementById("sessionMapsUnifiedCard");
+
+  if(source){
+    matchupContainer.innerHTML = source.outerHTML;
+  }
+
+}
+
 }
 
 function renderUnifiedSessionMaps(data){
