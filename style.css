@@ -16,6 +16,10 @@ min-height:100dvh; /* 🔥 MOBILE FIX */
 
 header{
 
+position:sticky;   /* 🔥 KEY LINE */
+top:0;             /* 🔥 stick to top */
+z-index:1000;      /* 🔥 stay above everything */
+
 padding:20px;
 background:#000;
 border-bottom:1px solid #333;
@@ -91,12 +95,11 @@ border-radius:2px;
 
 }
 
-/* TABS CONTENT */
-
 .tabContent{
 
 display:none;
 padding:25px;
+padding-top:90px; /* 🔥 ADD THIS LINE */
 
 }
 
