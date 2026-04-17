@@ -73,7 +73,7 @@ blitzToggle.addEventListener("change", () => {
 
   }
 
-/* 🔥 MATCH MAKER CYCLER */
+/* 🔥 MATCH MAKER CYCLER (DELEGATED - ALWAYS WORKS) */
 
 const matchMakers = [
   "Not Selected",
@@ -87,11 +87,11 @@ const matchMakers = [
 
 let currentMakerIndex = 0;
 
-const cycleEl = document.getElementById("matchMakerCycle");
+document.addEventListener("click", (e) => {
 
-if(cycleEl){
+  const cycleEl = e.target.closest("#matchMakerCycle");
 
-cycleEl.addEventListener("click", () => {
+  if(!cycleEl) return;
 
   // 🔥 FIRST CLICK: skip "Not Selected"
   if(currentMakerIndex === 0){
@@ -100,7 +100,7 @@ cycleEl.addEventListener("click", () => {
     currentMakerIndex++;
 
     if(currentMakerIndex >= matchMakers.length){
-      currentMakerIndex = 1; // 🔥 LOOP BACK TO FIRST REAL NAME
+      currentMakerIndex = 1;
     }
   }
 
