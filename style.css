@@ -2261,3 +2261,15 @@ line-height:1.2;
   }
 
 }
+
+/* 🔥 MATCHUP TAB - SESSION MAP CARD FIX */
+#matchupSessionMaps{
+  display:flex;
+  justify-content:center;
+  margin-bottom:25px;
+}
+
+#matchupSessionMaps > div{
+  width:100%;
+  max-width:420px; /* 🔥 controls card width */
+}
