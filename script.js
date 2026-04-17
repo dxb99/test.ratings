@@ -87,22 +87,7 @@ const matchMakers = [
 
 let currentMakerIndex = 0;
 
-// 🔥 SYNC WITH GENERATOR SELECTION (MOVE THIS UP)
-const savedMaker = sessionStorage.getItem("selectedMatchMaker");
-
-if(savedMaker){
-  const index = matchMakers.indexOf(savedMaker);
-  if(index !== -1){
-    currentMakerIndex = index;
-  }
-}
-
 const cycleEl = document.getElementById("matchMakerCycle");
-
-// 🔥 NOW SET TEXT AFTER SYNC
-if(cycleEl){
-  cycleEl.innerText = "Match Maker: " + matchMakers[currentMakerIndex];
-}
 
 if(cycleEl){
 
@@ -120,8 +105,6 @@ cycleEl.addEventListener("click", () => {
   }
 
   cycleEl.innerText = "Match Maker: " + matchMakers[currentMakerIndex];
-
-  sessionStorage.setItem("selectedMatchMaker", matchMakers[currentMakerIndex]);
 
 });
 
