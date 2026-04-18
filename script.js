@@ -1770,11 +1770,8 @@ row.querySelector(".mapDeleteMini").onclick = async () => {
     return;
   }
 
-  // 🔥 RE-RENDER SESSION
-  renderSessionMaps(res);
-
-  // 🔥 RE-APPLY HIGHLIGHTS (THIS WAS MISSING)
-  handleSessionHighlightUpdate();
+  // 🔥 FORCE FULL REFRESH FROM SHEET
+  await loadSessionMaps();
 
 };
 
@@ -1840,11 +1837,8 @@ row.querySelector(".mapDeleteMini").onclick = async () => {
     return;
   }
 
-  // 🔥 RE-RENDER SESSION
-  renderSessionMaps(res);
-
-  // 🔥 RE-APPLY HIGHLIGHTS
-  handleSessionHighlightUpdate();
+  // 🔥 FORCE FULL REFRESH FROM SHEET
+  await loadSessionMaps();
 
 };
 
