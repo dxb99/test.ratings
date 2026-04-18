@@ -36,12 +36,6 @@ if(blitzContainer){
     document.getElementById("loadingScreen").style.display = "none";
     document.getElementById("app").classList.remove("hidden");
 
-/* 🔥 FORCE SCROLL TO TOP ON LOAD */
-window.scrollTo({
-  top: 0,
-  behavior: "instant"
-});
-
     document.querySelectorAll('input[name="gapFilter"]').forEach(radio => {
       radio.addEventListener("change", applyGapFilter);
     });
@@ -72,41 +66,6 @@ blitzToggle.addEventListener("change", () => {
     alert("Startup error. Open console (F12).");
 
   }
-
-/* 🔥 MATCH MAKER CYCLER (DELEGATED - ALWAYS WORKS) */
-
-const matchMakers = [
-  "Not Selected",
-  "Arshad",
-  "Basith",
-  "Bijo",
-  "Garry",
-  "Hamad",
-  "Sameer"
-];
-
-let currentMakerIndex = 0;
-
-document.addEventListener("click", (e) => {
-
-  const cycleEl = e.target.closest("#matchMakerCycle");
-
-  if(!cycleEl) return;
-
-  // 🔥 FIRST CLICK: skip "Not Selected"
-  if(currentMakerIndex === 0){
-    currentMakerIndex = 1;
-  } else {
-    currentMakerIndex++;
-
-    if(currentMakerIndex >= matchMakers.length){
-      currentMakerIndex = 1;
-    }
-  }
-
-  cycleEl.innerText = "Match Maker: " + matchMakers[currentMakerIndex];
-
-});
 
 });
 
@@ -239,6 +198,8 @@ setTimeout(() => {
 }, 0);
 
 return;
+  return;
+
 }
 
 el.innerHTML=`
@@ -350,7 +311,10 @@ if(expiry <= now){
 }
 
 // 🔥 BUILD KEY FROM SERVER MATCH (ONLY IF NOT EXPIRED)
-currentMatchKeyFromServer = getMatchKey(match.redTeam, match.blueTeam);
+const redKey = match.redTeam.slice().sort().join("|");
+const blueKey = match.blueTeam.slice().sort().join("|");
+
+currentMatchKeyFromServer = redKey + "-" + blueKey;
 
 if(match.selectedAt !== lastMatchTimestamp){
 
@@ -379,12 +343,12 @@ if(!maker){
     selectedPlayers.push(x.value);
   });
 
+  document.getElementById("generatingOverlay").style.display = "flex";
+  
   if(selectedPlayers.length < 2){
     alert("Select at least 2 players.");
     return;
   }
-
-  document.getElementById("generatingOverlay").style.display = "flex";
 
   const gap = document.querySelector('input[name="gapFilter"]:checked').value;
 
@@ -506,10 +470,10 @@ Picked ${m.pickCount} ${m.pickCount === 1 ? "time" : "times"}
     
 const btn = div.querySelector(".selectMatch");
 
-const key = getMatchKey(
-  m.redTeam.map(p=>p.name),
-  m.blueTeam.map(p=>p.name)
-);
+const redKey = m.redTeam.map(p=>p.name).sort().join("|");
+const blueKey = m.blueTeam.map(p=>p.name).sort().join("|");
+
+const key = redKey + "-" + blueKey;
 
 const isServerSelected = currentMatchKeyFromServer === key;
 
@@ -536,33 +500,31 @@ btn.onclick = () => {
     return;
   }
 
-// 🔥 FIRST CLICK → ARM
-if(armedMatchKey !== key){
+  // 🔥 FIRST CLICK → ARM
+  if(armedMatchKey !== key){
 
-  // 🔥 RESET GLOBAL STATE FIRST
-  armedMatchKey = null;
-
-  document.querySelectorAll(".matchOption").forEach(card=>{
-    card.classList.remove("armedCard");
-  });
-
-  document.querySelectorAll(".selectMatch").forEach(b=>{
-    if(b.disabled) return;
-
-    b.classList.remove("selected");
-    b.classList.remove("confirming");
-    b.innerText = "CLICK TO SELECT";
-  });
-
-  // 🔥 NOW SET NEW ONE
   armedMatchKey = key;
 
-  div.classList.add("armedCard");
-  btn.innerText = "CONFIRM SELECTION";
-  btn.classList.add("confirming");
+  document.querySelectorAll(".matchOption").forEach(card=>{
+  card.classList.remove("armedCard");
+});
 
-  return;
-}
+document.querySelectorAll(".selectMatch").forEach(b=>{
+
+  if(b.disabled) return;
+
+  b.classList.remove("selected");
+  b.classList.remove("confirming"); // 🔥 ADD THIS
+  b.innerText = "CLICK TO SELECT";
+
+});
+
+div.classList.add("armedCard");
+btn.innerText = "CONFIRM SELECTION";
+btn.classList.add("confirming"); // 🔥 NEW CLASS
+
+return;
+  }
 
   // 🔥 SECOND CLICK → SAVE
   selectMatchup(m, key, btn, div);
@@ -658,35 +620,12 @@ setTimeout(async () => {
     matchHistory = historyData.history || [];
   }
 
-// ✅ UPDATE PICK COUNTS WITHOUT REGENERATING
+  // 🔥 UPDATE GENERATED MATCHUPS (so counts stay accurate)
+  const updatedMatchups = generateMatchupsLocal(lastSelectedPlayers, "all");
 
-lastGeneratedMatchups.forEach(m => {
-
-  const redNames = m.redTeam.map(p=>p.name).sort().join(",");
-  const blueNames = m.blueTeam.map(p=>p.name).sort().join(",");
-
-  let count = 0;
-
-  matchHistory.forEach(h => {
-
-    const hRed = h.redTeam.split(", ").sort().join(",");
-    const hBlue = h.blueTeam.split(", ").sort().join(",");
-
-    if(
-      (hRed === redNames && hBlue === blueNames) ||
-      (hRed === blueNames && hBlue === redNames)
-    ){
-      count++;
-    }
-
-  });
-
-  m.pickCount = count;
-
-});
-
-updateGapCounts();
-applyGapFilter();  
+  lastGeneratedMatchups = updatedMatchups;
+  updateGapCounts();
+  applyGapFilter();
 
   // 🔥 NOW GO TO MATCHUP TAB
   const matchupBtn = document.querySelector('.tabButton[onclick*="matchupTab"]');
@@ -1442,15 +1381,6 @@ results.push({
 
 }
 
-function getMatchKey(redTeam, blueTeam){
-
-  const redKey = redTeam.slice().sort().join("|");
-  const blueKey = blueTeam.slice().sort().join("|");
-
-  return redKey + "-" + blueKey;
-
-}
-
 function getCombinationsLocal(arr,size){
 
   const result = [];
@@ -1477,28 +1407,6 @@ function getCombinationsLocal(arr,size){
 
 }
 
-function filterBlitzMatchups(matchups){
-
-  return matchups.filter(m => {
-
-    const small =
-      m.redTeam.length < m.blueTeam.length ? m.redTeam : m.blueTeam;
-
-    const large =
-      m.redTeam.length > m.blueTeam.length ? m.redTeam : m.blueTeam;
-
-    // ignore equal teams
-    if(m.redTeam.length === m.blueTeam.length) return false;
-
-    const smallSkill = small.reduce((s,p)=>s+p.skill,0);
-    const largeSkill = large.reduce((s,p)=>s+p.skill,0);
-
-    return smallSkill > largeSkill;
-
-  });
-
-}
-
 function applyGapFilter(){
 
   const filter = document.querySelector('input[name="gapFilter"]:checked').value;
@@ -1516,7 +1424,25 @@ function applyGapFilter(){
 /* 🔥 BLITZ FILTER (ONLY SHOW ADVANTAGED SMALL TEAM) */
 
 if(blitzEnabled){
-  filtered = filterBlitzMatchups(filtered);
+
+  filtered = filtered.filter(m => {
+
+    const small =
+      m.redTeam.length < m.blueTeam.length ? m.redTeam : m.blueTeam;
+
+    const large =
+      m.redTeam.length > m.blueTeam.length ? m.redTeam : m.blueTeam;
+
+    /* if equal teams, ignore */
+    if(m.redTeam.length === m.blueTeam.length) return false;
+
+    const smallSkill = small.reduce((s,p)=>s+p.skill,0);
+    const largeSkill = large.reduce((s,p)=>s+p.skill,0);
+
+    return smallSkill > largeSkill;
+
+  });
+
 }
 
 /* Restore normal sorting when BLITZ is OFF */
@@ -1547,7 +1473,24 @@ function updateGapCounts(){
 let source = lastGeneratedMatchups;
 
 if(blitzEnabled){
-  source = filterBlitzMatchups(lastGeneratedMatchups);
+
+  source = lastGeneratedMatchups.filter(m => {
+
+    const small =
+      m.redTeam.length < m.blueTeam.length ? m.redTeam : m.blueTeam;
+
+    const large =
+      m.redTeam.length > m.blueTeam.length ? m.redTeam : m.blueTeam;
+
+    if(m.redTeam.length === m.blueTeam.length) return false;
+
+    const smallSkill = small.reduce((s,p)=>s+p.skill,0);
+    const largeSkill = large.reduce((s,p)=>s+p.skill,0);
+
+    return smallSkill > largeSkill;
+
+  });
+
 }
 
 const counts = {
@@ -1692,31 +1635,6 @@ function renderSessionMaps(data){
 
   // Render new visible single-card layout
   renderUnifiedSessionMaps(data);
-
-// 🔥 ALSO RENDER INTO MATCHUP TAB
-const matchupContainer = document.getElementById("matchupSessionMaps");
-
-if(matchupContainer){
-
-const source = document.getElementById("sessionCaptureArea");
-
-if(source){
-
-  // 🔥 CLONE (not direct copy)
-  const clone = source.cloneNode(true);
-
-  // 🔥 REMOVE DELETE BUTTONS
-  clone.querySelectorAll(".mapDeleteMini").forEach(btn => btn.remove());
-
-  // 🔥 REMOVE DUPLICATE ID (VERY IMPORTANT)
-  clone.removeAttribute("id");
-
-  matchupContainer.innerHTML = "";
-  matchupContainer.appendChild(clone);
-
-}
-
-}
 
 }
 
@@ -1922,56 +1840,46 @@ function setupMapListButtons(){
   const saveBtn = document.getElementById("saveSessionProgressBtn");
   const copyBtn = document.getElementById("copySessionMapsBtn");
 
-if(generateBtn){
-  generateBtn.onclick = async () => {
+  if(generateBtn){
+    generateBtn.onclick = async () => {
 
-    const pass = prompt("Enter Admin Password");
+      const res = await api({
+        action:"generateSessionMaps"
+      });
 
-    if(!pass) return;
+      if(!res.ok){
+        alert(res.error || "Generate failed");
+        return;
+      }
 
-    const res = await api({
-      action:"generateSessionMaps",
-      password: pass
-    });
+      renderSessionMaps(res);
 
-    if(!res.ok){
-      alert(res.error || "Generate failed");
-      return;
-    }
+    };
+  }
 
-    renderSessionMaps(res);
+  if(saveBtn){
+    saveBtn.onclick = async () => {
 
-  };
-}
+      const res = await api({
+        action:"saveSessionProgress"
+      });
 
-if(saveBtn){
-  saveBtn.onclick = async () => {
+      if(!res.ok){
+        alert(res.error || "Save failed");
+        return;
+      }
 
-    const pass = prompt("Enter Admin Password");
+      alert("Session progress saved");
 
-    if(!pass) return;
+      handleSessionHighlightUpdate();
 
-    const res = await api({
-      action:"saveSessionProgress",
-      password: pass
-    });
-
-    if(!res.ok){
-      alert(res.error || "Save failed");
-      return;
-    }
-
-    alert("Session progress saved");
-
-    handleSessionHighlightUpdate();
-
-  };
-}
+    };
+  }
 
 if(copyBtn){
   copyBtn.onclick = async () => {
 
-const sessionCard = document.getElementById("sessionCaptureArea");
+const sessionCard = document.getElementById("sessionMapsContainer");
 
 if(!sessionCard){
   alert("Session maps not found");
@@ -1986,8 +1894,7 @@ deleteBtns.forEach(btn => btn.style.display = "none");
 const wrapper = document.createElement("div");
 wrapper.style.padding = "30px";
 wrapper.style.background = "#000";
-wrapper.style.borderRadius = "12px"; // 🔥 ADD THIS
-    
+
 /* 🔥 FIX WIDTH */
 wrapper.style.width = sessionCard.offsetWidth + "px";
 wrapper.style.display = "block";
@@ -1997,14 +1904,7 @@ wrapper.appendChild(sessionCard);
 
 const canvas = await html2canvas(wrapper, {
   backgroundColor: null,
-
-  scale: window.devicePixelRatio * 2, // 🔥 SUPER SHARP
-
-  useCORS: true, // 🔥 fixes font/image rendering
-  allowTaint: true,
-
-  width: wrapper.offsetWidth,
-  height: wrapper.offsetHeight
+  scale: 2
 });
 
 // 🔥 move card back to original place
