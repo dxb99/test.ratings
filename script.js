@@ -1,6 +1,7 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbzIyBeXAVeSLtxW8jR9OnQL_Iz6cawGiaZSlkoZ2hTYy5dwo-0n_GH6F15H7tfXojIl/exec";
 
 let allPlayers = [];
+let mapListGlobal = null;
 let adminLoaded = false;
 let countdownTimer = null;
 let lastMatchTimestamp = null;
@@ -130,6 +131,7 @@ if(!data.ok){
 }
 
 allPlayers = data.players || [];
+mapListGlobal = data.mapList || null;
 
 populatePlayers(allPlayers);
 
@@ -1668,12 +1670,8 @@ if(overlay){
     return;
   }
 
-  const initialData = await api({
-  action:"getInitialData"
-});
-
-if(initialData.ok && initialData.mapList){
-  renderMasterMapList(initialData.mapList);
+if(mapListGlobal){
+  renderMasterMapList(mapListGlobal);
 }
 
 // 🔥 NOW render session AFTER master exists
