@@ -308,13 +308,21 @@ function renderMatchup(match){
       </div>
     `;
 
-  el.innerHTML = `
-    <div class="matchCard unifiedMatchCard">
-      ${headerHTML}
-      ${teamsHTML}
-      ${metaHTML}
+el.innerHTML = `
+  <div class="matchCard unifiedMatchCard">
+
+    ${headerHTML}
+
+    ${teamsHTML}
+
+    ${metaHTML}
+
+    <div class="matchMapsSection">
+      <div id="matchupSessionMapsInline"></div>
     </div>
-  `;
+
+  </div>
+`;
 
   countdown.innerHTML = "";
 
@@ -1664,7 +1672,7 @@ function renderSessionMaps(data){
   renderUnifiedSessionMaps(data);
 
 // 🔥 ALSO RENDER INTO MATCHUP TAB
-const matchupContainer = document.getElementById("matchupSessionMaps");
+const matchupContainer = document.getElementById("matchupSessionMapsInline");
 
 if(matchupContainer){
 
