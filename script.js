@@ -1347,9 +1347,12 @@ if(data.ok){
     ? getMatchKey(newMatch.redTeam, newMatch.blueTeam)
     : null;
 
-  if(newKey !== currentMatchKeyFromServer){
-    renderMatchup(newMatch);
-  }
+if(newKey !== currentMatchKeyFromServer){
+  renderMatchup(newMatch);
+
+  // 🔥 RE-INJECT SESSION MAPS AFTER MATCH RENDER
+  await loadSessionMaps();
+}
 
 }
 
