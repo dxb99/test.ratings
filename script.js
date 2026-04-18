@@ -40,7 +40,7 @@ setTimeout(() => {
   document.getElementById("loadingScreen").style.display = "none";
   document.getElementById("app").classList.remove("hidden");
 
-}, 200);
+}, 500);
 
 /* 🔥 FORCE SCROLL TO TOP ON LOAD */
 window.scrollTo({
