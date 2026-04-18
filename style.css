@@ -937,11 +937,7 @@ transform:none;
     rgba(255,255,255,0.2),
     transparent
   );
-  margin:4px 0 2px 0; /* 🔥 tighter spacing */
-}
-
-.matchMapsSection{
-  margin-top:4px; /* 🔥 controls gap from Difference row */
+  margin:6px 0;
 }
 
 .matchHeader{
