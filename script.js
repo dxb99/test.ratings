@@ -197,169 +197,137 @@ function populatePlayers(players){
 
 function renderMatchup(match){
 
-  const el=document.getElementById("matchupContent");
-  const countdown=document.getElementById("matchCountdown");
+  const el = document.getElementById("matchupContent");
+  const countdown = document.getElementById("matchCountdown");
 
-// 🔥 RESET server key if no matchup
-currentMatchKeyFromServer = null;
-  
-if(!match){
+  // 🔥 always reset server key first
+  currentMatchKeyFromServer = null;
+
+  let isExpired = false;
+  let expiry = null;
+
+  if(match && match.expiresAt){
+    expiry = new Date(match.expiresAt);
+    const now = new Date();
+
+    if(expiry <= now){
+      isExpired = true;
+    }
+  }
+
+  const hasActiveMatch = !!match && !isExpired;
 
   if(countdownTimer){
     clearInterval(countdownTimer);
     countdownTimer = null;
   }
 
-  el.innerHTML=`
-
-  <div class="matchCard">
-    <div class="matchHeader">
-      NO CURRENT MATCHUP
-    </div>
-
-    <button id="getStartedBtn" class="getStartedBtn">
-      CLICK TO GET STARTED
-    </button>
-
-  </div>
-
-  `;
-
-  countdown.innerHTML="";
-
-/* 🔥 GET STARTED BUTTON CLICK */
-setTimeout(() => {
-  const btn = document.getElementById("getStartedBtn");
-  if(btn){
-    btn.onclick = () => {
-      const generatorBtn = document.querySelector('.tabButton[onclick*="generatorTab"]');
-      showTab("generatorTab", generatorBtn);
-    };
-  }
-}, 0);
-
-return;
-}
-
-el.innerHTML=`
-
-<div class="matchCard">
-
-<div class="matchHeader">
-  Match Maker: <strong>${match.matchMaker}</strong>
-
-  <span class="midTag">
-    MID# ${String(match.MID || "----").padStart(4, "0")}
-  </span>
-</div>
-
-  <div class="teamsRow">
-
-    <div class="team red">
-  <div class="teamTitle">
-    RED TEAM <span class="teamBadge">${match.redSkill}</span>
-  </div>
-      <div class="teamPlayers">
-        ${match.redTeam.map(name => {
-
-  const player = allPlayers.find(p => p.name === name);
-
-  return `
-    <div class="playerRow">
-      ${name}
-      <span class="skillMedal">${player ? player.skill : ""}</span>
-    </div>
-  `;
-
-}).join("")}
+  const headerHTML = hasActiveMatch
+    ? `
+      <div class="matchHeader">
+        <span>Match Maker: <strong>${match.matchMaker}</strong></span>
+        <span class="midTag">MID# ${String(match.MID || "----").padStart(4, "0")}</span>
       </div>
-    </div>
-
-    <div class="vs">VS</div>
-
-    <div class="team blue">
-  <div class="teamTitle">
-    BLUE TEAM <span class="teamBadge">${match.blueSkill}</span>
-  </div>
-      <div class="teamPlayers">
-        ${match.blueTeam.map(name => {
-
-  const player = allPlayers.find(p => p.name === name);
-
-  return `
-    <div class="playerRow">
-      ${name}
-      <span class="skillMedal">${player ? player.skill : ""}</span>
-    </div>
-  `;
-
-}).join("")}
+    `
+    : `
+      <div class="matchHeader">
+        <span>Match Maker: <strong>—</strong></span>
+        <span class="midTag">MID# ----</span>
       </div>
+    `;
+
+  const teamsHTML = hasActiveMatch
+    ? `
+      <div class="teamsRow">
+
+        <div class="team red">
+          <div class="teamTitle">
+            RED TEAM <span class="teamBadge">${match.redSkill}</span>
+          </div>
+
+          <div class="teamPlayers">
+            ${match.redTeam.map(name => {
+
+              const player = allPlayers.find(p => p.name === name);
+
+              return `
+                <div class="playerRow">
+                  ${name}
+                  <span class="skillMedal">${player ? player.skill : ""}</span>
+                </div>
+              `;
+
+            }).join("")}
+          </div>
+        </div>
+
+        <div class="vs">VS</div>
+
+        <div class="team blue">
+          <div class="teamTitle">
+            BLUE TEAM <span class="teamBadge">${match.blueSkill}</span>
+          </div>
+
+          <div class="teamPlayers">
+            ${match.blueTeam.map(name => {
+
+              const player = allPlayers.find(p => p.name === name);
+
+              return `
+                <div class="playerRow">
+                  ${name}
+                  <span class="skillMedal">${player ? player.skill : ""}</span>
+                </div>
+              `;
+
+            }).join("")}
+          </div>
+        </div>
+
+      </div>
+    `
+    : `
+      <div class="emptyState">
+        NO ACTIVE MATCHUP
+      </div>
+    `;
+
+  const metaHTML = hasActiveMatch
+    ? `
+      <div class="matchFooter metaRow">
+        <span class="diff diff-${match.skillGap}">
+          Difference: ${match.skillGap}
+        </span>
+        <span id="matchCountdownInline">Expires in: --:--:--</span>
+      </div>
+    `
+    : `
+      <div class="matchFooter metaRow">
+        <span>Difference: —</span>
+        <span>Expires in: —</span>
+      </div>
+    `;
+
+  el.innerHTML = `
+    <div class="matchCard unifiedMatchCard">
+      ${headerHTML}
+      ${teamsHTML}
+      ${metaHTML}
     </div>
-
-  </div>
-
-  <div class="matchFooter">
-    <span class="diff diff-${match.skillGap}">
-  Difference: ${match.skillGap}
-</span>
-  </div>
-
-</div>
-
-`;
-
-const expiry = new Date(match.expiresAt);
-const now = new Date();
-
-if(expiry <= now){
-
-  // 🔥 CLEAR SERVER MATCH KEY (THIS FIXES YOUR ISSUE)
-  currentMatchKeyFromServer = null;
-
-  el.innerHTML=`
-
-  <div class="matchCard">
-    <div class="matchHeader">
-      NO CURRENT MATCHUP
-    </div>
-
-    <button id="getStartedBtn" class="getStartedBtn">
-      CLICK TO GET STARTED
-    </button>
-
-  </div>
-
   `;
 
-  countdown.innerHTML="";
+  countdown.innerHTML = "";
 
-  /* 🔥 GET STARTED BUTTON CLICK */
-  setTimeout(() => {
-    const btn = document.getElementById("getStartedBtn");
-    if(btn){
-      btn.onclick = () => {
-        const generatorBtn = document.querySelector('.tabButton[onclick*="generatorTab"]');
-        showTab("generatorTab", generatorBtn);
-      };
+  if(hasActiveMatch){
+    currentMatchKeyFromServer = getMatchKey(match.redTeam, match.blueTeam);
+
+    if(match.selectedAt !== lastMatchTimestamp){
+      lastMatchTimestamp = match.selectedAt;
+      startCountdown(expiry);
+    } else {
+      startCountdown(expiry);
     }
-  }, 0);
-
-  return;
-
-}
-
-// 🔥 BUILD KEY FROM SERVER MATCH (ONLY IF NOT EXPIRED)
-currentMatchKeyFromServer = getMatchKey(match.redTeam, match.blueTeam);
-
-if(match.selectedAt !== lastMatchTimestamp){
-
-  lastMatchTimestamp = match.selectedAt;
-
-  startCountdown(expiry);
-
-}
-
+  }
 }
 
 document.getElementById("generateButton").onclick = generateMatchups;
