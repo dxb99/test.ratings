@@ -321,6 +321,8 @@ el.innerHTML = `
 
   <div class="matchDivider"></div>
 
+  <div class="sessionMapsHeader">SESSION MAPS</div>
+
   <div id="matchupSessionMapsInline"></div>
 
 </div>
