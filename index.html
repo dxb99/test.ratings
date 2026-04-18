@@ -9,10 +9,14 @@
 
 <title>DXB99 Matchup Generator</title>
 
-<link rel="stylesheet" href="style.css?v=2">
-  
-<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script>
+  const style = document.createElement("link");
+  style.rel = "stylesheet";
+  style.href = "style.css?v=" + new Date().getTime();
+  document.head.appendChild(style);
+</script>
 
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 
 <body>
@@ -77,8 +81,6 @@ MAP LIST
 
 <div id="matchupTab" class="tabContent active">
 
-<div id="matchupSessionMaps"></div>
-  
 <h2>CURRENT MATCHUP</h2>
 
 <div id="matchupContent">
@@ -246,18 +248,11 @@ CLICK TO GENERATE MATCHUP
 <div id="mapListLayout">
 
   <!-- LEFT: SESSION MAPS -->
-<div id="mapSessionPanel">
+  <div id="mapSessionPanel">
 
-  <!-- 🔥 COPY WRAPPER START -->
-  <div id="sessionCaptureArea">
-
-    <div class="sessionMapsHeading">SESSION MAPS</div>
-
-    <div id="matchMakerCycle" class="sessionSubtext">
-      Match Maker: Not Selected
-    </div>
-
-    <div id="sessionMapsContainer">
+  <div class="sessionMapsHeading">SESSION MAPS</div>
+    
+<div id="sessionMapsContainer">
 
   <!-- NEW VISIBLE SINGLE CARD -->
   <div id="sessionMapsUnifiedCard" class="mapMasterColumn">
@@ -288,8 +283,6 @@ CLICK TO GENERATE MATCHUP
   </div>
 
 </div>
-
-</div> <!-- 🔥 COPY WRAPPER END -->
 
     <div id="sessionControls">
 
@@ -348,12 +341,6 @@ document.querySelectorAll(".tabButton").forEach(x=>x.classList.remove("active"))
 document.getElementById(tab).classList.add("active");
 
 if(btn) btn.classList.add("active");
-
-/* 🔥 FORCE SCROLL TO TOP */
-window.scrollTo({
-  top: 0,
-  behavior: "smooth"
-});
 
 }
 
