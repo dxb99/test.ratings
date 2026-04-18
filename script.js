@@ -1696,27 +1696,29 @@ const source = document.getElementById("sessionCaptureArea");
 
 if(source){
 
-  // 🔥 CLONE (not direct copy)
-  const clone = source.cloneNode(true);
+// 🔥 CLONE (not direct copy)
+const clone = source.cloneNode(true);
 
-  // 🔥 REMOVE DELETE BUTTONS
-  clone.querySelectorAll(".mapDeleteMini").forEach(btn => btn.remove());
+// 🔥 REMOVE DELETE BUTTONS
+clone.querySelectorAll(".mapDeleteMini").forEach(btn => btn.remove());
 
-  // 🔥 REMOVE MATCH MAKER TEXT
-  const makerEl = clone.querySelector("#matchMakerCycle");
-  if(makerEl){
-    makerEl.remove();
-  }
+// 🔥 REMOVE MATCH MAKER TEXT
+const makerEl = clone.querySelector("#matchMakerCycle");
+if(makerEl){
+  makerEl.remove();
+}
 
-  // 🔥 REMOVE EMPTY SUBTEXT WRAPPER (THIS FIXES THE GAP)
-  clone.querySelectorAll(".sessionSubtext").forEach(el => el.remove());
+// 🔥 REMOVE EMPTY SUBTEXT WRAPPER
+clone.querySelectorAll(".sessionSubtext").forEach(el => el.remove());
 
-  // 🔥 REMOVE DUPLICATE ID (VERY IMPORTANT)
-  clone.removeAttribute("id");
+// 🔥 REMOVE SESSION MAPS HEADING (THIS FIXES THE GAP)
+clone.querySelectorAll(".sessionMapsHeading").forEach(el => el.remove());
 
-  matchupContainer.innerHTML = "";
-  matchupContainer.appendChild(clone);
+// 🔥 REMOVE DUPLICATE ID
+clone.removeAttribute("id");
 
+matchupContainer.innerHTML = "";
+matchupContainer.appendChild(clone);
 }
 
 }
