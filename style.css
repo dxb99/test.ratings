@@ -16,10 +16,6 @@ min-height:100dvh; /* 🔥 MOBILE FIX */
 
 header{
 
-position:sticky;   /* 🔥 KEY LINE */
-top:0;             /* 🔥 stick to top */
-z-index:1000;      /* 🔥 stay above everything */
-
 padding:20px;
 background:#000;
 border-bottom:1px solid #333;
@@ -94,6 +90,8 @@ background:#ffffff;
 border-radius:2px;
 
 }
+
+/* TABS CONTENT */
 
 .tabContent{
 
@@ -1087,20 +1085,6 @@ font-weight:600;
 
 /* ADMIN */
 
-#adminTable{
-  margin: 0 auto;        /* 🔥 centers the table */
-  width: auto;           /* keeps it tight instead of full width */
-}
-
-#adminTable td,
-#adminTable th{
-
-  padding:8px;
-  font-size:13px;
-  line-height:1.3;
-
-}
-
 .status-active{
 
 color:#22c55e;
@@ -1132,8 +1116,21 @@ flex-shrink:0;
 
 }
 
+table{
+
+margin:20px auto;
+border-collapse:collapse;
+width:95%;
+
+}
+
 td,th{
-  border:1px solid #444;
+
+border:1px solid #444;
+padding:6px;
+font-size:13px;
+line-height:1.2;
+
 }
 
 .admin-inline-btn{
@@ -1683,21 +1680,6 @@ white-space:nowrap;
 #historyTable td:nth-child(5) {
   min-width: 55px; /* Gap */
 }
-
-.mapMasterRow{
-  font-size:12px;
-  padding:6px 8px;
-}
-
-.mapSessionSectionTitle{
-  font-size:14px;
-  padding:9px 10px;
-}
-
-.mapSessionName,
-.mapSessionEmpty{
-  font-size:13px;
-}
   
 }
 
@@ -1733,8 +1715,8 @@ line-height:1.2;
 /* 🔥 HISTORY TABLE STYLE */
 
 #historyTable {
-  width: auto;            /* 🔥 THIS is the key change */
-  margin: 20px auto;      /* keeps it centered */
+  width: 95%;
+  margin: 20px auto;
   border-collapse: collapse;
   font-size: 14px;
 }
@@ -1880,25 +1862,6 @@ line-height:1.2;
   color:#888;
   letter-spacing:0.5px;
   white-space:nowrap;
-}
-
-.sessionSubtext{
-  font-size:11px;
-  font-weight:400;
-  color:#888;
-  letter-spacing:0.5px;
-  white-space:nowrap;
-
-  text-align:center;
-  margin-top:-20px; /* 🔥 aligns like right side */
-  margin-bottom:10px;
-
-  cursor:pointer;
-  transition:all 0.15s ease;
-}
-
-.sessionSubtext:hover{
-  color:#22c55e;
 }
 
 .sessionMapsHeading{
@@ -2079,12 +2042,8 @@ line-height:1.2;
   flex-direction:column;
   gap:14px;
 
-  width:100%;
-  max-width:380px;
-}
-
-#sessionControls .btn{
-  width:100%;
+  width:100%;              /* 🔥 match card width */
+  max-width:380px;         /* 🔥 same as left column */
 }
 
 #sessionControls .btn{
@@ -2219,62 +2178,45 @@ line-height:1.2;
 
 @media(max-width:1000px){
 
-  /* 🔥 MOBILE MAP LAYOUT FIX */
   #mapListLayout{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:20px;
-
-    width:100%;
-    padding:0 12px;
-    box-sizing:border-box;
-  }
-
-  /* 🔥 FORCE COMPLETE MAP LIST TO STACK */
-  #mapMasterList{
-    display:grid;
     grid-template-columns:1fr;
-    width:100%;
-    max-width:600px;
   }
 
-  /* BOTH SECTIONS MATCH WIDTH */
+  #mapMasterList{
+    grid-template-columns:1fr;
+  }
+
   #mapSessionPanel{
     width:100%;
     max-width:600px;
+    margin:0 auto;
   }
 
-  /* ENSURE CARDS FILL */
-  .mapMasterColumn,
-  #sessionMapsUnifiedCard{
-    width:100%;
-  }
-
-  /* BUTTONS FULL WIDTH */
-  #sessionControls{
-    width:100%;
-  }
-
-  #sessionControls .btn{
-    width:100%;
-  }
+.sessionMapsHeading{
+  font-size:18px;
+  font-weight:bold;
+  margin:0 0 16px 0;
+  text-align:center;
+  letter-spacing:1px;
+}
 
 }
 
-/* 🔥 MATCHUP TAB - SESSION MAP CARD FIX */
-#matchupSessionMaps{
-  display:flex;
-  justify-content:center;
-  margin-bottom:25px;
-}
+@media(max-width:700px){
 
-/* 🔥 HIDE MATCH MAKER TEXT IN MATCHUP TAB */
-#matchupSessionMaps .sessionSubtext{
-  display:none;
-}
+  .mapMasterRow{
+    font-size:12px;
+    padding:6px 8px;
+  }
 
-#matchupSessionMaps > div{
-  width:100%;
-  max-width:420px; /* 🔥 controls card width */
-}
+  .mapSessionSectionTitle{
+    font-size:14px;
+    padding:9px 10px;
+  }
+
+  .mapSessionName,
+  .mapSessionEmpty{
+    font-size:13px;
+  }
+
+  }
