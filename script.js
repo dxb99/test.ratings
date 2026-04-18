@@ -1757,21 +1757,26 @@ row.setAttribute("data-index", masterIndex);
        <button class="mapDeleteMini">✕</button>
      `;
 
-      row.querySelector(".mapDeleteMini").onclick = async () => {
+row.querySelector(".mapDeleteMini").onclick = async () => {
 
-        const res = await api({
-          action:"deleteSessionMap",
-          mode: section.mode,
-          slot: index + 1
-        });
+  const res = await api({
+    action:"deleteSessionMap",
+    mode: section.mode,
+    slot: index + 1
+  });
 
-        if(!res.ok){
-          alert(res.error || "Delete failed");
-          return;
-        }
+  if(!res.ok){
+    alert(res.error || "Delete failed");
+    return;
+  }
 
-        renderSessionMaps(res);
-      };
+  // 🔥 RE-RENDER SESSION
+  renderSessionMaps(res);
+
+  // 🔥 RE-APPLY HIGHLIGHTS (THIS WAS MISSING)
+  handleSessionHighlightUpdate();
+
+};
 
       container.appendChild(row);
 
@@ -1822,22 +1827,26 @@ if(masterContainer){
       <button class="mapDeleteMini">✕</button>
     `;
 
-    row.querySelector(".mapDeleteMini").onclick = async () => {
+row.querySelector(".mapDeleteMini").onclick = async () => {
 
-      const res = await api({
-        action:"deleteSessionMap",
-        mode: mode,
-        slot: index + 1
-      });
+  const res = await api({
+    action:"deleteSessionMap",
+    mode: mode,
+    slot: index + 1
+  });
 
-      if(!res.ok){
-        alert(res.error || "Delete failed");
-        return;
-      }
+  if(!res.ok){
+    alert(res.error || "Delete failed");
+    return;
+  }
 
-      renderSessionMaps(res);
+  // 🔥 RE-RENDER SESSION
+  renderSessionMaps(res);
 
-    };
+  // 🔥 RE-APPLY HIGHLIGHTS
+  handleSessionHighlightUpdate();
+
+};
 
     card.appendChild(row);
 
