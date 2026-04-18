@@ -1679,11 +1679,8 @@ if(initialData.ok && initialData.mapList){
 // 🔥 NOW render session AFTER master exists
 renderSessionMaps(sessionData);
 
-  // 🔥 APPLY HIGHLIGHT AFTER LOAD
-setTimeout(()=>{
-  handleSessionHighlightUpdate();
-}, 100);
-
+// 🔥 APPLY HIGHLIGHT AFTER LOAD
+handleSessionHighlightUpdate();
 // 🔥 HIDE LOADER
 if(overlay){
   overlay.style.display = "none";
