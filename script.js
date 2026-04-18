@@ -1711,9 +1711,6 @@ if(makerEl){
 // 🔥 REMOVE EMPTY SUBTEXT WRAPPER
 clone.querySelectorAll(".sessionSubtext").forEach(el => el.remove());
 
-// 🔥 REMOVE SESSION MAPS HEADING (THIS FIXES THE GAP)
-clone.querySelectorAll(".sessionMapsHeading").forEach(el => el.remove());
-
 // 🔥 REMOVE DUPLICATE ID
 clone.removeAttribute("id");
 
