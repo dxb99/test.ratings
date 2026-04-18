@@ -317,11 +317,15 @@ el.innerHTML = `
 
     ${metaHTML}
 
-    <div class="matchMapsSection">
-      <div id="matchupSessionMapsInline"></div>
-    </div>
+<div class="matchMapsSection">
 
-  </div>
+  <div class="matchDivider"></div>
+
+  <div id="matchupSessionMapsInline"></div>
+
+</div>
+
+</div>
 `;
 
   countdown.innerHTML = "";
