@@ -940,6 +940,19 @@ transform:none;
   margin:6px 0;
 }
 
+.sessionMapsHeader{
+
+  text-align:center;
+  font-size:14px;
+  font-weight:600;
+
+  margin:6px 0 10px 0;
+
+  letter-spacing:1px;
+  color:#aaa;
+
+}
+
 .matchHeader{
   font-size:18px;
   margin-bottom:15px;
