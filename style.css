@@ -553,6 +553,18 @@ opacity:0.9;
 pointer-events:none;
 }
 
+/* 🔥 ARMED CARD (CONFIRM STATE) */
+.matchOption.armedCard{
+
+border:1px solid rgba(34,197,94,0.8);
+
+box-shadow:
+0 0 10px rgba(34,197,94,0.7);
+
+transform:scale(1.01);
+
+}
+
 /* 🔥 HOVER GLOW EFFECT */
 .matchOption:not(.selectedCard):hover{
 
@@ -744,6 +756,132 @@ box-shadow:0 2px 6px rgba(34,197,94,0.4);
 
 }
 
+/* 🔥 selected state */
+
+/* 🔥 CONFIRM STATE (LOADING FILL EFFECT) */
+
+.selectMatch.confirming{
+
+position:relative;
+overflow:hidden;
+
+background:#fde68a;
+color:black;
+
+animation:none;
+
+box-shadow:0 0 8px rgba(255,215,0,0.4);
+
+z-index:2;
+
+/* 🔥 ADD THESE */
+display:flex;
+align-items:center;
+justify-content:center;
+
+animation:confirmGlow 2.5s ease-in-out infinite;
+  
+}
+
+@keyframes confirmGlow{
+
+0%{
+  box-shadow:0 0 6px rgba(255,215,0,0.3);
+}
+
+50%{
+  box-shadow:0 0 16px rgba(255,215,0,0.9);
+}
+
+100%{
+  box-shadow:0 0 6px rgba(255,215,0,0.3);
+}
+
+}
+
+/* 🔥 FILL ANIMATION LAYER */
+.selectMatch.confirming::before{
+
+content:"";
+position:absolute;
+top:0;
+left:0;
+height:100%;
+width:0%;
+
+/* 🔥 base fill */
+background:linear-gradient(
+  90deg,
+  #facc15 0%,
+  #fde68a 50%,
+  #d4af37 100%
+);
+
+/* 🔥 under text */
+z-index:-1;
+
+/* 🔥 animation */
+animation:confirmFill 4s ease-in-out infinite;
+
+}
+
+.selectMatch.confirming::after{
+
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+
+/* 🔥 light sweep */
+background:linear-gradient(
+  120deg,
+  transparent,
+  rgba(255,255,255,0.4),
+  transparent
+);
+
+z-index:0;
+
+animation:confirmShimmer 2.5s linear infinite;
+
+}
+
+/* 🔥 KEYFRAMES */
+@keyframes confirmFill{
+
+0%{ 
+  width:0%;
+  left:0%;
+}
+
+/* fill left → right */
+40%{ 
+  width:100%;
+  left:0%;
+}
+
+/* hold */
+50%{ 
+  width:100%;
+  left:0%;
+}
+
+/* drain right → left */
+90%{ 
+  width:0%;
+  left:100%;
+}
+
+/* reset */
+100%{ 
+  width:0%;
+  left:0%;
+}
+
+}
+
 .selectMatch.selected{
 
 background:linear-gradient(180deg,#facc15,#d4af37);
@@ -784,39 +922,6 @@ transform:none;
   width:clamp(320px, 90%, 650px);
   margin:20px auto;
   box-shadow:0 0 15px rgba(0,0,0,0.6);
-
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-}
-
-.matchDivider{
-  width:100%;
-  height:1px;
-  background:linear-gradient(
-    to right,
-    transparent,
-    rgba(255,255,255,0.2),
-    transparent
-  );
-  margin:6px 0;
-}
-
-.sessionMapsHeader{
-
-  text-align:center;
-  font-size:14px;
-  font-weight:600;
-
-  margin:6px 0 10px 0;
-
-  letter-spacing:1px;
-  color:#aaa;
-
-}
-
-.unifiedMatchCard .mapDeleteMini{
-  display:none !important;
 }
 
 .matchHeader{
@@ -902,16 +1007,9 @@ transform:none;
 }
 
 .matchFooter{
-  margin-top:8px;
+  margin-top:15px;
   font-size:14px;
-}
-
-.metaRow {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-}
+  }
 
 /* HISTORY */
 
@@ -1133,6 +1231,18 @@ box-shadow:0 4px 10px rgba(34,197,94,0.4);
   100%{
     transform:translateX(-50%);
   }
+
+}
+
+@keyframes confirmShimmer{
+
+0%{
+  left:-120%;
+}
+
+100%{
+  left:120%;
+}
 
 }
 
@@ -1795,7 +1905,7 @@ line-height:1.2;
   font-size:18px;
   font-weight:bold;
 
-  margin:12px 0 10px 0;
+  margin:0 0 10px 0;
 
   text-align:center;
   letter-spacing:1px;
