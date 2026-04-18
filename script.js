@@ -1,7 +1,6 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbzIyBeXAVeSLtxW8jR9OnQL_Iz6cawGiaZSlkoZ2hTYy5dwo-0n_GH6F15H7tfXojIl/exec";
 
 let allPlayers = [];
-let mapListGlobal = null;
 let adminLoaded = false;
 let countdownTimer = null;
 let lastMatchTimestamp = null;
@@ -16,19 +15,16 @@ let currentHistorySort = {
   key: "date",
   direction: "desc"
 };
+let armedMatchKey = null; // 🔥 tracks first click before confirm
 
 window.addEventListener("load", async () => {
 
 sessionStorage.removeItem("selectedMatchMaker");
 sessionStorage.removeItem("selectedPlayers");
 
-try {
+  try {
 
-  // 🔥 LOAD MAPS FIRST (CRITICAL)
-  await loadSessionMaps();
-
-  // 🔥 THEN LOAD MATCH DATA
-  await loadInitialData();
+    await loadInitialData();
 
 /* 🔥 HIDE BLITZ ON LOAD */
 
@@ -37,8 +33,8 @@ if(blitzContainer){
   blitzContainer.style.display = "none";
 }
 
-document.getElementById("loadingScreen").style.display = "none";
-document.getElementById("app").classList.remove("hidden");
+    document.getElementById("loadingScreen").style.display = "none";
+    document.getElementById("app").classList.remove("hidden");
 
 /* 🔥 FORCE SCROLL TO TOP ON LOAD */
 window.scrollTo({
@@ -134,7 +130,6 @@ if(!data.ok){
 }
 
 allPlayers = data.players || [];
-mapListGlobal = data.mapList || null;
 
 populatePlayers(allPlayers);
 
@@ -202,151 +197,169 @@ function populatePlayers(players){
 
 function renderMatchup(match){
 
-  const el = document.getElementById("matchupContent");
-  const countdown = document.getElementById("matchCountdown");
+  const el=document.getElementById("matchupContent");
+  const countdown=document.getElementById("matchCountdown");
 
-  // 🔥 always reset server key first
-  currentMatchKeyFromServer = null;
-
-  let isExpired = false;
-  let expiry = null;
-
-  if(match && match.expiresAt){
-    expiry = new Date(match.expiresAt);
-    const now = new Date();
-
-    if(expiry <= now){
-      isExpired = true;
-    }
-  }
-
-  const hasActiveMatch = !!match && !isExpired;
+// 🔥 RESET server key if no matchup
+currentMatchKeyFromServer = null;
+  
+if(!match){
 
   if(countdownTimer){
     clearInterval(countdownTimer);
     countdownTimer = null;
   }
 
-  const headerHTML = hasActiveMatch
-    ? `
-      <div class="matchHeader">
-        <span>Match Maker: <strong>${match.matchMaker}</strong></span>
-        <span class="midTag">MID# ${String(match.MID || "----").padStart(4, "0")}</span>
+  el.innerHTML=`
+
+  <div class="matchCard">
+    <div class="matchHeader">
+      NO CURRENT MATCHUP
+    </div>
+
+    <button id="getStartedBtn" class="getStartedBtn">
+      CLICK TO GET STARTED
+    </button>
+
+  </div>
+
+  `;
+
+  countdown.innerHTML="";
+
+/* 🔥 GET STARTED BUTTON CLICK */
+setTimeout(() => {
+  const btn = document.getElementById("getStartedBtn");
+  if(btn){
+    btn.onclick = () => {
+      const generatorBtn = document.querySelector('.tabButton[onclick*="generatorTab"]');
+      showTab("generatorTab", generatorBtn);
+    };
+  }
+}, 0);
+
+return;
+}
+
+el.innerHTML=`
+
+<div class="matchCard">
+
+<div class="matchHeader">
+  Match Maker: <strong>${match.matchMaker}</strong>
+
+  <span class="midTag">
+    MID# ${String(match.MID || "----").padStart(4, "0")}
+  </span>
+</div>
+
+  <div class="teamsRow">
+
+    <div class="team red">
+  <div class="teamTitle">
+    RED TEAM <span class="teamBadge">${match.redSkill}</span>
+  </div>
+      <div class="teamPlayers">
+        ${match.redTeam.map(name => {
+
+  const player = allPlayers.find(p => p.name === name);
+
+  return `
+    <div class="playerRow">
+      ${name}
+      <span class="skillMedal">${player ? player.skill : ""}</span>
+    </div>
+  `;
+
+}).join("")}
       </div>
-    `
-    : `
-      <div class="matchHeader">
-        <span>Match Maker: <strong>—</strong></span>
-        <span class="midTag">MID# ----</span>
+    </div>
+
+    <div class="vs">VS</div>
+
+    <div class="team blue">
+  <div class="teamTitle">
+    BLUE TEAM <span class="teamBadge">${match.blueSkill}</span>
+  </div>
+      <div class="teamPlayers">
+        ${match.blueTeam.map(name => {
+
+  const player = allPlayers.find(p => p.name === name);
+
+  return `
+    <div class="playerRow">
+      ${name}
+      <span class="skillMedal">${player ? player.skill : ""}</span>
+    </div>
+  `;
+
+}).join("")}
       </div>
-    `;
+    </div>
 
-  const teamsHTML = hasActiveMatch
-    ? `
-      <div class="teamsRow">
+  </div>
 
-        <div class="team red">
-          <div class="teamTitle">
-            RED TEAM <span class="teamBadge">${match.redSkill}</span>
-          </div>
-
-          <div class="teamPlayers">
-            ${match.redTeam.map(name => {
-
-              const player = allPlayers.find(p => p.name === name);
-
-              return `
-                <div class="playerRow">
-                  ${name}
-                  <span class="skillMedal">${player ? player.skill : ""}</span>
-                </div>
-              `;
-
-            }).join("")}
-          </div>
-        </div>
-
-        <div class="vs">VS</div>
-
-        <div class="team blue">
-          <div class="teamTitle">
-            BLUE TEAM <span class="teamBadge">${match.blueSkill}</span>
-          </div>
-
-          <div class="teamPlayers">
-            ${match.blueTeam.map(name => {
-
-              const player = allPlayers.find(p => p.name === name);
-
-              return `
-                <div class="playerRow">
-                  ${name}
-                  <span class="skillMedal">${player ? player.skill : ""}</span>
-                </div>
-              `;
-
-            }).join("")}
-          </div>
-        </div>
-
-      </div>
-    `
-    : `
-      <div class="emptyState">
-        NO ACTIVE MATCHUP
-      </div>
-    `;
-
-  const metaHTML = hasActiveMatch
-    ? `
-      <div class="matchFooter metaRow">
-        <span class="diff diff-${match.skillGap}">
-          Difference: ${match.skillGap}
-        </span>
-        <span id="matchCountdownInline">Expires in: --:--:--</span>
-      </div>
-    `
-    : `
-      <div class="matchFooter metaRow">
-        <span>Difference: —</span>
-        <span>Expires in: —</span>
-      </div>
-    `;
-
-el.innerHTML = `
-  <div class="matchCard unifiedMatchCard">
-
-    ${headerHTML}
-
-    ${teamsHTML}
-
-    ${metaHTML}
-
-<div class="matchMapsSection">
-
-  <div class="matchDivider"></div>
-
-  <div class="sessionMapsHeader">SESSION MAPS</div>
-
-  ${getSessionMapsHTML()}
+  <div class="matchFooter">
+    <span class="diff diff-${match.skillGap}">
+  Difference: ${match.skillGap}
+</span>
+  </div>
 
 </div>
 
-</div>
 `;
 
-  countdown.innerHTML = "";
+const expiry = new Date(match.expiresAt);
+const now = new Date();
 
-  if(hasActiveMatch){
-    currentMatchKeyFromServer = getMatchKey(match.redTeam, match.blueTeam);
+if(expiry <= now){
 
-    if(match.selectedAt !== lastMatchTimestamp){
-      lastMatchTimestamp = match.selectedAt;
-      startCountdown(expiry);
-    } else {
-      startCountdown(expiry);
+  // 🔥 CLEAR SERVER MATCH KEY (THIS FIXES YOUR ISSUE)
+  currentMatchKeyFromServer = null;
+
+  el.innerHTML=`
+
+  <div class="matchCard">
+    <div class="matchHeader">
+      NO CURRENT MATCHUP
+    </div>
+
+    <button id="getStartedBtn" class="getStartedBtn">
+      CLICK TO GET STARTED
+    </button>
+
+  </div>
+
+  `;
+
+  countdown.innerHTML="";
+
+  /* 🔥 GET STARTED BUTTON CLICK */
+  setTimeout(() => {
+    const btn = document.getElementById("getStartedBtn");
+    if(btn){
+      btn.onclick = () => {
+        const generatorBtn = document.querySelector('.tabButton[onclick*="generatorTab"]');
+        showTab("generatorTab", generatorBtn);
+      };
     }
-  }
+  }, 0);
+
+  return;
+
+}
+
+// 🔥 BUILD KEY FROM SERVER MATCH (ONLY IF NOT EXPIRED)
+currentMatchKeyFromServer = getMatchKey(match.redTeam, match.blueTeam);
+
+if(match.selectedAt !== lastMatchTimestamp){
+
+  lastMatchTimestamp = match.selectedAt;
+
+  startCountdown(expiry);
+
+}
+
 }
 
 document.getElementById("generateButton").onclick = generateMatchups;
@@ -439,6 +452,8 @@ function renderGeneratedMatchups(matchups){
 
   const container=document.getElementById("generatedMatchups");
 
+  armedMatchKey = null; // 🔥 reset when rendering new matchups
+
   container.innerHTML="";
 
   matchups.forEach(m=>{
@@ -521,16 +536,39 @@ btn.onclick = () => {
     return;
   }
 
-  // 🔥 NEW CONFIRMATION FLOW
-  const confirmSave = confirm("Are you sure you want to select this matchup?");
+// 🔥 FIRST CLICK → ARM
+if(armedMatchKey !== key){
 
-  if(!confirmSave) return;
+  // 🔥 RESET GLOBAL STATE FIRST
+  armedMatchKey = null;
 
-  // 🔥 DIRECT SAVE
+  document.querySelectorAll(".matchOption").forEach(card=>{
+    card.classList.remove("armedCard");
+  });
+
+  document.querySelectorAll(".selectMatch").forEach(b=>{
+    if(b.disabled) return;
+
+    b.classList.remove("selected");
+    b.classList.remove("confirming");
+    b.innerText = "CLICK TO SELECT";
+  });
+
+  // 🔥 NOW SET NEW ONE
+  armedMatchKey = key;
+
+  div.classList.add("armedCard");
+  btn.innerText = "CONFIRM SELECTION";
+  btn.classList.add("confirming");
+
+  return;
+}
+
+  // 🔥 SECOND CLICK → SAVE
   selectMatchup(m, key, btn, div);
 
 };
-    
+
 // 🔥 MAKE ENTIRE CARD CLICKABLE (SAME AS BUTTON)
 div.onclick = (e) => {
 
@@ -584,13 +622,15 @@ const data = await api({
 currentMatchKeyFromServer = key; // 🔥 FORCE SYNC IMMEDIATELY
 
 document.querySelectorAll(".matchOption").forEach(card=>{
+  card.classList.remove("armedCard");
   card.classList.remove("selectedCard");
 });
 
 document.querySelectorAll(".selectMatch").forEach(b=>{
   b.classList.remove("selected");
+  b.classList.remove("confirming"); // 🔥 ADD
   b.innerText = "CLICK TO SELECT";
-  b.disabled = false;
+  b.disabled = false; // 🔥 reset disabled state
   b.style.cursor = "pointer";
 });
 
@@ -610,7 +650,7 @@ overlay.querySelector(".generatingText").innerHTML = "SAVED ✓";
 
 setTimeout(async () => {
 
-  // 🔥 KEEP OVERLAY VISIBLE WHILE LOADING
+  overlay.style.display = "none";
 
   // 🔥 REFRESH HISTORY
   const historyData = await api({ action: "getHistory" });
@@ -618,45 +658,42 @@ setTimeout(async () => {
     matchHistory = historyData.history || [];
   }
 
-  // 🔥 UPDATE COUNTS BEFORE SWITCH
-  lastGeneratedMatchups.forEach(m => {
+// ✅ UPDATE PICK COUNTS WITHOUT REGENERATING
 
-    const redNames = m.redTeam.map(p=>p.name).sort().join(",");
-    const blueNames = m.blueTeam.map(p=>p.name).sort().join(",");
+lastGeneratedMatchups.forEach(m => {
 
-    let count = 0;
+  const redNames = m.redTeam.map(p=>p.name).sort().join(",");
+  const blueNames = m.blueTeam.map(p=>p.name).sort().join(",");
 
-    matchHistory.forEach(h => {
+  let count = 0;
 
-      const hRed = h.redTeam.split(", ").sort().join(",");
-      const hBlue = h.blueTeam.split(", ").sort().join(",");
+  matchHistory.forEach(h => {
 
-      if(
-        (hRed === redNames && hBlue === blueNames) ||
-        (hRed === blueNames && hBlue === redNames)
-      ){
-        count++;
-      }
+    const hRed = h.redTeam.split(", ").sort().join(",");
+    const hBlue = h.blueTeam.split(", ").sort().join(",");
 
-    });
-
-    m.pickCount = count;
+    if(
+      (hRed === redNames && hBlue === blueNames) ||
+      (hRed === blueNames && hBlue === redNames)
+    ){
+      count++;
+    }
 
   });
 
-  updateGapCounts();
-  applyGapFilter();
+  m.pickCount = count;
 
-  // 🔥 LOAD EVERYTHING FIRST
-  await loadInitialData();
-  await loadSessionMaps();
+});
 
-  // 🔥 NOW SWITCH TAB (READY STATE)
+updateGapCounts();
+applyGapFilter();  
+
+  // 🔥 NOW GO TO MATCHUP TAB
   const matchupBtn = document.querySelector('.tabButton[onclick*="matchupTab"]');
   showTab("matchupTab", matchupBtn);
 
-  // 🔥 NOW HIDE OVERLAY LAST
-  document.getElementById("savingMatchOverlay").style.display = "none";
+  // 🔥 REFRESH CURRENT MATCH DISPLAY
+  await loadInitialData();
 
 }, 1000);
 
@@ -668,11 +705,9 @@ function startCountdown(expiry){
   clearInterval(countdownTimer);
 }
 
-  const el = document.getElementById("matchCountdownInline");
+  const el=document.getElementById("matchCountdown");
 
   countdownTimer = setInterval(()=>{
-
-  if(!el) return;
 
     const now=new Date();
 
@@ -695,7 +730,7 @@ function startCountdown(expiry){
     const mins=Math.floor((diff%3600000)/60000);
     const secs=Math.floor((diff%60000)/1000);
 
-    el.innerHTML = `Expires in: ${hours}:${mins}:${secs}`;
+    el.innerHTML=`MATCHUP EXPIRES IN ${hours}:${mins}:${secs}`;
 
   },1000);
 
@@ -1236,20 +1271,6 @@ function formatDate(date){
 
 }
 
-function getSessionMapsHTML(){
-
-  const source = document.getElementById("sessionMapsUnifiedCard");
-
-  if(!source) return "";
-
-  const clone = source.cloneNode(true);
-
-  // 🔥 remove ID
-  clone.removeAttribute("id");
-
-  return clone.outerHTML;
-}
-
 document.getElementById("clearHistoryBtn").onclick = clearHistory;
 
 async function clearHistory(){
@@ -1332,33 +1353,11 @@ function startMatchAutoRefresh(){
         action:"getInitialData"
       });
 
-if(data.ok){
+      if(data.ok){
 
-  const newMatch = data.currentMatchup;
+        renderMatchup(data.currentMatchup);
 
-  // 🔥 only re-render if match actually changed
-  const newKey = newMatch
-    ? getMatchKey(newMatch.redTeam, newMatch.blueTeam)
-    : null;
-
-// 🔥 HANDLE NULL MATCH ONLY IF STATE CHANGED
-if(!newMatch && currentMatchKeyFromServer !== null){
-  renderMatchup(null);
-  currentMatchKeyFromServer = null;
-
-  await loadSessionMaps();
-  return;
-}
-
-// 🔥 ONLY UPDATE IF MATCH CHANGED
-if(newKey !== currentMatchKeyFromServer){
-  renderMatchup(newMatch);
-
-  // 🔥 RE-INJECT SESSION MAPS AFTER MATCH RENDER
-  await loadSessionMaps();
-}
-
-}
+      }
 
     }catch(e){
 
@@ -1645,20 +1644,8 @@ if(blitzToggle && blitzContainer){
 // 🔥 LOAD CURRENT SESSION MAPS
 async function loadSessionMaps(){
 
-// 🔥 FORCE CLEAN UI RESET FIRST
-const unified = document.getElementById("sessionMapsUnifiedRows");
-if(unified) unified.innerHTML = "";
-
-const el = document.getElementById("eliminationSessionList");
-const bl = document.getElementById("blitzSessionList");
-const ct = document.getElementById("ctfSessionList");
-
-if(el) el.innerHTML = "";
-if(bl) bl.innerHTML = "";
-if(ct) ct.innerHTML = "";
-
 const overlay = document.getElementById("mapListLoadingOverlay");
-  
+
 if(overlay){
   overlay.style.display = "flex";
 }
@@ -1672,15 +1659,22 @@ if(overlay){
     return;
   }
 
-if(mapListGlobal){
-  renderMasterMapList(mapListGlobal);
+  const initialData = await api({
+  action:"getInitialData"
+});
+
+if(initialData.ok && initialData.mapList){
+  renderMasterMapList(initialData.mapList);
 }
 
 // 🔥 NOW render session AFTER master exists
 renderSessionMaps(sessionData);
 
-// 🔥 APPLY HIGHLIGHT AFTER LOAD
-handleSessionHighlightUpdate();
+  // 🔥 APPLY HIGHLIGHT AFTER LOAD
+setTimeout(()=>{
+  handleSessionHighlightUpdate();
+}, 100);
+
 // 🔥 HIDE LOADER
 if(overlay){
   overlay.style.display = "none";
@@ -1698,6 +1692,32 @@ function renderSessionMaps(data){
 
   // Render new visible single-card layout
   renderUnifiedSessionMaps(data);
+
+// 🔥 ALSO RENDER INTO MATCHUP TAB
+const matchupContainer = document.getElementById("matchupSessionMaps");
+
+if(matchupContainer){
+
+const source = document.getElementById("sessionCaptureArea");
+
+if(source){
+
+  // 🔥 CLONE (not direct copy)
+  const clone = source.cloneNode(true);
+
+  // 🔥 REMOVE DELETE BUTTONS
+  clone.querySelectorAll(".mapDeleteMini").forEach(btn => btn.remove());
+
+  // 🔥 REMOVE DUPLICATE ID (VERY IMPORTANT)
+  clone.removeAttribute("id");
+
+  matchupContainer.innerHTML = "";
+  matchupContainer.appendChild(clone);
+
+}
+
+}
+
 }
 
 function renderUnifiedSessionMaps(data){
@@ -1769,23 +1789,21 @@ row.setAttribute("data-index", masterIndex);
        <button class="mapDeleteMini">✕</button>
      `;
 
-row.querySelector(".mapDeleteMini").onclick = async () => {
+      row.querySelector(".mapDeleteMini").onclick = async () => {
 
-  const res = await api({
-    action:"deleteSessionMap",
-    mode: section.mode,
-    slot: index + 1
-  });
+        const res = await api({
+          action:"deleteSessionMap",
+          mode: section.mode,
+          slot: index + 1
+        });
 
-  if(!res.ok){
-    alert(res.error || "Delete failed");
-    return;
-  }
+        if(!res.ok){
+          alert(res.error || "Delete failed");
+          return;
+        }
 
-  // 🔥 FORCE FULL REFRESH FROM SHEET
-  await loadSessionMaps();
-
-};
+        renderSessionMaps(res);
+      };
 
       container.appendChild(row);
 
@@ -1836,23 +1854,22 @@ if(masterContainer){
       <button class="mapDeleteMini">✕</button>
     `;
 
-row.querySelector(".mapDeleteMini").onclick = async () => {
+    row.querySelector(".mapDeleteMini").onclick = async () => {
 
-  const res = await api({
-    action:"deleteSessionMap",
-    mode: mode,
-    slot: index + 1
-  });
+      const res = await api({
+        action:"deleteSessionMap",
+        mode: mode,
+        slot: index + 1
+      });
 
-  if(!res.ok){
-    alert(res.error || "Delete failed");
-    return;
-  }
+      if(!res.ok){
+        alert(res.error || "Delete failed");
+        return;
+      }
 
-  // 🔥 FORCE FULL REFRESH FROM SHEET
-  await loadSessionMaps();
+      renderSessionMaps(res);
 
-};
+    };
 
     card.appendChild(row);
 
