@@ -1645,8 +1645,20 @@ if(blitzToggle && blitzContainer){
 // 🔥 LOAD CURRENT SESSION MAPS
 async function loadSessionMaps(){
 
-const overlay = document.getElementById("mapListLoadingOverlay");
+// 🔥 FORCE CLEAN UI RESET FIRST
+const unified = document.getElementById("sessionMapsUnifiedRows");
+if(unified) unified.innerHTML = "";
 
+const el = document.getElementById("eliminationSessionList");
+const bl = document.getElementById("blitzSessionList");
+const ct = document.getElementById("ctfSessionList");
+
+if(el) el.innerHTML = "";
+if(bl) bl.innerHTML = "";
+if(ct) ct.innerHTML = "";
+
+const overlay = document.getElementById("mapListLoadingOverlay");
+  
 if(overlay){
   overlay.style.display = "flex";
 }
