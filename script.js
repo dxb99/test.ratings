@@ -610,7 +610,7 @@ overlay.querySelector(".generatingText").innerHTML = "SAVED ✓";
 
 setTimeout(async () => {
 
-  overlay.style.display = "none";
+  // 🔥 KEEP OVERLAY VISIBLE WHILE LOADING
 
   // 🔥 REFRESH HISTORY
   const historyData = await api({ action: "getHistory" });
@@ -618,45 +618,45 @@ setTimeout(async () => {
     matchHistory = historyData.history || [];
   }
 
-// ✅ UPDATE PICK COUNTS WITHOUT REGENERATING
+  // 🔥 UPDATE COUNTS BEFORE SWITCH
+  lastGeneratedMatchups.forEach(m => {
 
-lastGeneratedMatchups.forEach(m => {
+    const redNames = m.redTeam.map(p=>p.name).sort().join(",");
+    const blueNames = m.blueTeam.map(p=>p.name).sort().join(",");
 
-  const redNames = m.redTeam.map(p=>p.name).sort().join(",");
-  const blueNames = m.blueTeam.map(p=>p.name).sort().join(",");
+    let count = 0;
 
-  let count = 0;
+    matchHistory.forEach(h => {
 
-  matchHistory.forEach(h => {
+      const hRed = h.redTeam.split(", ").sort().join(",");
+      const hBlue = h.blueTeam.split(", ").sort().join(",");
 
-    const hRed = h.redTeam.split(", ").sort().join(",");
-    const hBlue = h.blueTeam.split(", ").sort().join(",");
+      if(
+        (hRed === redNames && hBlue === blueNames) ||
+        (hRed === blueNames && hBlue === redNames)
+      ){
+        count++;
+      }
 
-    if(
-      (hRed === redNames && hBlue === blueNames) ||
-      (hRed === blueNames && hBlue === redNames)
-    ){
-      count++;
-    }
+    });
+
+    m.pickCount = count;
 
   });
 
-  m.pickCount = count;
+  updateGapCounts();
+  applyGapFilter();
 
-});
+  // 🔥 LOAD EVERYTHING FIRST
+  await loadInitialData();
+  await loadSessionMaps();
 
-updateGapCounts();
-applyGapFilter();  
-
-  // 🔥 NOW GO TO MATCHUP TAB
+  // 🔥 NOW SWITCH TAB (READY STATE)
   const matchupBtn = document.querySelector('.tabButton[onclick*="matchupTab"]');
   showTab("matchupTab", matchupBtn);
 
-  // 🔥 REFRESH CURRENT MATCH DISPLAY
-  await loadInitialData();
-
-  // 🔥 FORCE RELOAD SESSION MAPS INTO CARD
-  await loadSessionMaps();
+  // 🔥 NOW HIDE OVERLAY LAST
+  document.getElementById("savingMatchOverlay").style.display = "none";
 
 }, 1000);
 
