@@ -1027,6 +1027,13 @@ transform:none;
   font-size:14px;
 }
 
+.metaRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
 /* HISTORY */
 
 .historyControls{
