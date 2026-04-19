@@ -896,9 +896,8 @@ document.getElementById("savePlayers").onclick = savePlayers;
 
 async function savePlayers(){
 
-  const pass = prompt("Enter Admin Password");
-
-  if(!pass) return;
+const pass = await getAdminPassword();
+if(!pass) return;
 
   document.getElementById("savingOverlay").style.display = "flex";
 
@@ -1244,9 +1243,8 @@ document.getElementById("clearHistoryBtn").onclick = clearHistory;
 
 async function clearHistory(){
 
-  const pass = prompt("Enter Admin Password");
-
-  if(!pass) return;
+const pass = await getAdminPassword();
+if(!pass) return;
 
   /* SHOW CLEARING OVERLAY */
 
@@ -1910,8 +1908,8 @@ setTimeout(()=>{
 if(saveBtn){
   saveBtn.onclick = async () => {
 
-    const pass = prompt("Enter Admin Password");
-    if(!pass) return;
+const pass = await getAdminPassword();
+if(!pass) return;
 
     const res = await api({
       action:"saveSessionProgress",
