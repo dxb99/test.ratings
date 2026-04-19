@@ -1754,7 +1754,7 @@ if(!pass) return;
 const res = await api({
   action:"deleteSessionMap",
   mode: section.mode,
-  slot: index + 1
+  slot: index + 1,
   password: pass
 });
 
@@ -1829,7 +1829,7 @@ if(!pass) return;
 const res = await api({
   action:"deleteSessionMap",
   mode: mode,
-  slot: index + 1
+  slot: index + 1,
   password: pass
 });
 
