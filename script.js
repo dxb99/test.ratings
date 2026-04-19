@@ -1903,6 +1903,8 @@ if(!pass) return;
       return;
     }
 
+    sessionStorage.setItem("adminPass", pass);
+
 renderSessionMaps(res);
 
 /* 🔥 RE-RUN HIGHLIGHT AFTER GENERATE */
