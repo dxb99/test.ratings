@@ -60,6 +60,7 @@ window.addEventListener("load", async () => {
 
 sessionStorage.removeItem("selectedMatchMaker");
 sessionStorage.removeItem("selectedPlayers");
+sessionStorage.removeItem("adminPass");
 
   try {
 
