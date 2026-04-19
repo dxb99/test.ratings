@@ -35,19 +35,7 @@ async function getAdminPassword(){
     // ❌ user cancelled
     if(!pass) return null;
 
-const test = await api({
-  action:"generateSessionMaps",
-  password: pass
-});
-
-    if(test && test.ok){
-      // ✅ correct → store + return
-      sessionStorage.setItem("adminPass", pass);
-      return pass;
-    }
-
-    // ❌ wrong → retry
-    alert("Wrong password. Try again.");
+return pass; // 🔥 let real API validate it
   }
 }
 
