@@ -35,10 +35,10 @@ async function getAdminPassword(){
     // ❌ user cancelled
     if(!pass) return null;
 
-    const test = await api({
-      action:"getSessionMaps",
-      password: pass
-    });
+const test = await api({
+  action:"generateSessionMaps",
+  password: pass
+});
 
     if(test && test.ok){
       // ✅ correct → store + return
