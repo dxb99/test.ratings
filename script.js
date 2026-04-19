@@ -1842,41 +1842,49 @@ function setupMapListButtons(){
   const saveBtn = document.getElementById("saveSessionProgressBtn");
   const copyBtn = document.getElementById("copySessionMapsBtn");
 
-  if(generateBtn){
-    generateBtn.onclick = async () => {
+if(generateBtn){
+  generateBtn.onclick = async () => {
 
-      const res = await api({
-        action:"generateSessionMaps"
-      });
+    const pass = prompt("Enter Admin Password");
+    if(!pass) return;
 
-      if(!res.ok){
-        alert(res.error || "Generate failed");
-        return;
-      }
+    const res = await api({
+      action:"generateSessionMaps",
+      password: pass
+    });
 
-      renderSessionMaps(res);
+    if(!res.ok){
+      alert(res.error || "Generate failed");
+      return;
+    }
 
-    };
-  }
+    renderSessionMaps(res);
 
-  if(saveBtn){
-    saveBtn.onclick = async () => {
+  };
+}
 
-      const res = await api({
-        action:"saveSessionProgress"
-      });
+if(saveBtn){
+  saveBtn.onclick = async () => {
 
-      if(!res.ok){
-        alert(res.error || "Save failed");
-        return;
-      }
+    const pass = prompt("Enter Admin Password");
+    if(!pass) return;
 
-      alert("Session progress saved");
+    const res = await api({
+      action:"saveSessionProgress",
+      password: pass
+    });
 
-      handleSessionHighlightUpdate();
+    if(!res.ok){
+      alert(res.error || "Save failed");
+      return;
+    }
 
-    };
-  }
+    alert("Session progress saved");
+
+    handleSessionHighlightUpdate();
+
+  };
+}
 
 if(copyBtn){
   copyBtn.onclick = async () => {
