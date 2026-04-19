@@ -1737,11 +1737,15 @@ row.setAttribute("data-index", masterIndex);
 
 row.querySelector(".mapDeleteMini").onclick = async () => {
 
-  const res = await api({
-    action:"deleteSessionMap",
-    mode: section.mode,
-    slot: index + 1
-  });
+const pass = await getAdminPassword();
+if(!pass) return;
+
+const res = await api({
+  action:"deleteSessionMap",
+  mode: section.mode,
+  slot: index + 1
+  password: pass
+});
 
   if(!res.ok){
     alert(res.error || "Delete failed");
@@ -1808,11 +1812,15 @@ if(masterContainer){
 
 row.querySelector(".mapDeleteMini").onclick = async () => {
 
-  const res = await api({
-    action:"deleteSessionMap",
-    mode: mode,
-    slot: index + 1
-  });
+const pass = await getAdminPassword();
+if(!pass) return;
+
+const res = await api({
+  action:"deleteSessionMap",
+  mode: mode,
+  slot: index + 1
+  password: pass
+});
 
   if(!res.ok){
     alert(res.error || "Delete failed");
