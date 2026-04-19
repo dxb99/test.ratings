@@ -35,7 +35,17 @@ async function getAdminPassword(){
     // ❌ user cancelled
     if(!pass) return null;
 
-return pass; // 🔥 let real API validate it
+const test = await api({
+  action:"verifyAdminPassword",
+  password: pass
+});
+
+if(test && test.ok){
+  sessionStorage.setItem("adminPass", pass);
+  return pass;
+}
+
+alert("Wrong password. Try again.");
   }
 }
 
@@ -929,16 +939,19 @@ if(!pass) return;
 
   document.getElementById("savingOverlay").style.display = "none";
 
-  if(!data.ok){
+if(!data.ok){
 
-    alert(data.error);
-    return;
+  alert(data.error);
+  return;
 
-  }
+}
 
-  alert("Players saved successfully");
+// 🔥 ADD THIS
+sessionStorage.setItem("adminPass", pass);
 
-  openAdminTab();
+alert("Players saved successfully");
+
+openAdminTab();
 
 }
 
@@ -1266,6 +1279,9 @@ if(!data.ok){
   return;
 
 }
+
+// 🔥 ADD THIS
+sessionStorage.setItem("adminPass", pass);
 
 /* CHANGE OVERLAY TEXT TO CLEARED */
 
@@ -1737,27 +1753,29 @@ row.setAttribute("data-index", masterIndex);
 
 row.querySelector(".mapDeleteMini").onclick = async () => {
 
-const pass = await getAdminPassword();
-if(!pass) return;
+  const pass = await getAdminPassword();
+  if(!pass) return;
 
-const res = await api({
-  action:"deleteSessionMap",
-  mode: section.mode,
-  slot: index + 1,
-  password: pass
-});
+  const res = await api({
+    action:"deleteSessionMap",
+    mode: section.mode,
+    slot: index + 1,
+    password: pass
+  });
 
   if(!res.ok){
     alert(res.error || "Delete failed");
     return;
   }
 
+  // 🔥 ADD THIS
+  sessionStorage.setItem("adminPass", pass);
+
   renderSessionMaps(res);
 
-/* 🔥 FIX: UPDATE HIGHLIGHT AFTER DELETE */
-setTimeout(()=>{
-  handleSessionHighlightUpdate();
-}, 50);
+  setTimeout(()=>{
+    handleSessionHighlightUpdate();
+  }, 50);
 
 };
       
@@ -1812,27 +1830,29 @@ if(masterContainer){
 
 row.querySelector(".mapDeleteMini").onclick = async () => {
 
-const pass = await getAdminPassword();
-if(!pass) return;
+  const pass = await getAdminPassword();
+  if(!pass) return;
 
-const res = await api({
-  action:"deleteSessionMap",
-  mode: mode,
-  slot: index + 1,
-  password: pass
-});
+  const res = await api({
+    action:"deleteSessionMap",
+    mode: mode,
+    slot: index + 1,
+    password: pass
+  });
 
   if(!res.ok){
     alert(res.error || "Delete failed");
     return;
   }
 
+  // 🔥 ADD THIS
+  sessionStorage.setItem("adminPass", pass);
+
   renderSessionMaps(res);
 
-/* 🔥 FIX: UPDATE HIGHLIGHT AFTER DELETE */
-setTimeout(()=>{
-  handleSessionHighlightUpdate();
-}, 50);
+  setTimeout(()=>{
+    handleSessionHighlightUpdate();
+  }, 50);
 
 };
     
@@ -1916,26 +1936,29 @@ setTimeout(()=>{
 }
 
 if(saveBtn){
-  saveBtn.onclick = async () => {
+saveBtn.onclick = async () => {
 
-const pass = await getAdminPassword();
-if(!pass) return;
+  const pass = await getAdminPassword();
+  if(!pass) return;
 
-    const res = await api({
-      action:"saveSessionProgress",
-      password: pass
-    });
+  const res = await api({
+    action:"saveSessionProgress",
+    password: pass
+  });
 
-    if(!res.ok){
-      alert(res.error || "Save failed");
-      return;
-    }
+  if(!res.ok){
+    alert(res.error || "Save failed");
+    return;
+  }
 
-    alert("Session progress saved");
+  // 🔥 ADD THIS
+  sessionStorage.setItem("adminPass", pass);
 
-    handleSessionHighlightUpdate();
+  alert("Session progress saved");
 
-  };
+  handleSessionHighlightUpdate();
+
+};
 }
 
 if(copyBtn){
