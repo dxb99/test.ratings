@@ -21,34 +21,34 @@ let armedMatchKey = null; // 🔥 tracks first click before confirm
 
 async function getAdminPassword(){
 
-  let pass = sessionStorage.getItem("adminPass");
+  let stored = sessionStorage.getItem("adminPass");
 
-  // 🔥 if already stored, use it
-  if(pass){
-    return pass;
+  // ✅ If already unlocked → reuse
+  if(stored){
+    return stored;
   }
 
-  // 🔥 ask user
-  pass = prompt("Enter Admin Password");
+  while(true){
 
-  if(!pass) return null;
+    let pass = prompt("Enter Admin Password");
 
-  // 🔥 TEST PASSWORD with backend BEFORE saving
-  const test = await api({
-    action:"getSessionMaps", // harmless call
-    password: pass
-  });
+    // ❌ user cancelled
+    if(!pass) return null;
 
-  // 🔥 If backend rejects, do NOT store
-  if(!test || test.ok === false){
-    alert("Wrong password");
-    return null;
+    const test = await api({
+      action:"getSessionMaps",
+      password: pass
+    });
+
+    if(test && test.ok){
+      // ✅ correct → store + return
+      sessionStorage.setItem("adminPass", pass);
+      return pass;
+    }
+
+    // ❌ wrong → retry
+    alert("Wrong password. Try again.");
   }
-
-  // 🔥 store ONLY if valid
-  sessionStorage.setItem("adminPass", pass);
-
-  return pass;
 }
 
 // 🔥 lock function (for later button)
