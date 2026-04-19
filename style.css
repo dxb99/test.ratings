@@ -20,6 +20,13 @@ padding:20px;
 background:#000;
 border-bottom:1px solid #333;
 
+/* 🔥 MAKE HEADER STICKY */
+position:fixed;
+top:0;
+left:0;
+width:100%;
+z-index:1500;
+
 }
 
 h1{
@@ -97,6 +104,9 @@ border-radius:2px;
 
 display:none;
 padding:25px;
+
+/* 🔥 PUSH CONTENT BELOW FIXED HEADER */
+margin-top:110px;
 
 }
 
