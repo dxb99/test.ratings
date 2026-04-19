@@ -1976,11 +1976,17 @@ function processMode(mode, sessionId, masterId){
   if(!sessionContainer || !masterContainer) return;
 
   // 🔥 get session maps
-  const sessionMaps = Array.from(
-    sessionContainer.querySelectorAll(".mapSessionName")
-  ).map(el => el.innerText.trim());
+const sessionMaps = Array.from(
+  sessionContainer.querySelectorAll(".mapSessionName")
+).map(el => el.innerText.trim());
 
-  if(sessionMaps.length === 0) return;
+/* 🔥 ALWAYS CLEAR OLD HIGHLIGHTS FIRST */
+masterContainer.querySelectorAll(".mapMasterRow").forEach(row=>{
+  row.classList.remove("lastPlayedMap");
+});
+
+/* 🔥 IF NO SESSION MAPS → STOP HERE (NO HIGHLIGHT) */
+if(sessionMaps.length === 0) return;
 
   const firstMap = sessionMaps[0];
 
