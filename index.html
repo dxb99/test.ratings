@@ -342,6 +342,12 @@ document.getElementById(tab).classList.add("active");
 
 if(btn) btn.classList.add("active");
 
+/* 🔥 ALWAYS SCROLL TO TOP ON TAB CHANGE */
+window.scrollTo({
+  top: 0,
+  behavior: "instant" // use "smooth" if you want animation
+});
+
 }
 
 </script>
