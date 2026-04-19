@@ -1884,8 +1884,8 @@ function setupMapListButtons(){
 if(generateBtn){
   generateBtn.onclick = async () => {
 
-    const pass = prompt("Enter Admin Password");
-    if(!pass) return;
+const pass = await getAdminPassword();
+if(!pass) return;
 
     const res = await api({
       action:"generateSessionMaps",
