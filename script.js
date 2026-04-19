@@ -1858,7 +1858,12 @@ if(generateBtn){
       return;
     }
 
-    renderSessionMaps(res);
+renderSessionMaps(res);
+
+/* 🔥 RE-RUN HIGHLIGHT AFTER GENERATE */
+setTimeout(()=>{
+  handleSessionHighlightUpdate();
+}, 50);
 
   };
 }
