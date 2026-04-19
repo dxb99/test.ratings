@@ -36,6 +36,8 @@ if(blitzContainer){
     document.getElementById("loadingScreen").style.display = "none";
     document.getElementById("app").classList.remove("hidden");
 
+window.scrollTo(0, 0);
+
     document.querySelectorAll('input[name="gapFilter"]').forEach(radio => {
       radio.addEventListener("change", applyGapFilter);
     });
