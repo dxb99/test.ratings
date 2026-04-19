@@ -17,6 +17,34 @@ let currentHistorySort = {
 };
 let armedMatchKey = null; // 🔥 tracks first click before confirm
 
+/* 🔓 ADMIN UNLOCK SYSTEM */
+
+async function getAdminPassword(){
+
+  // 🔥 check if already unlocked
+  let pass = sessionStorage.getItem("adminPass");
+
+  if(pass){
+    return pass;
+  }
+
+  // 🔥 ask user
+  pass = prompt("Enter Admin Password");
+
+  if(!pass) return null;
+
+  // 🔥 store for session
+  sessionStorage.setItem("adminPass", pass);
+
+  return pass;
+
+}
+
+// 🔥 lock function (for later button)
+function clearAdminSession(){
+  sessionStorage.removeItem("adminPass");
+}
+
 window.addEventListener("load", async () => {
 
 sessionStorage.removeItem("selectedMatchMaker");
