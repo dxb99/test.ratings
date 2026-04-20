@@ -2186,6 +2186,7 @@ line-height:1.2;
 }
 
 .mapDeleteMini{
+
   justify-self:end;
 
   background:none;
@@ -2197,11 +2198,21 @@ line-height:1.2;
   width:16px;
   height:16px;
 
-  display:flex;
+  display:none; /* 🔥 HIDDEN BY DEFAULT */
+
   align-items:center;
   justify-content:center;
 
   padding:0;
+}
+
+/* 🔥 SHOW ONLY WHEN ADMIN MODE IS ACTIVE */
+body.admin-unlocked .mapDeleteMini{
+  display:flex;
+}
+
+.mapDeleteMini:hover{
+  color:#ff4b4b;
 }
 
 .mapDeleteMini:hover{
