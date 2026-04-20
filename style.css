@@ -65,6 +65,7 @@ padding:0 10px;
 /* 🔥 STATUS TEXT */
 #adminStatus{
   font-weight:600;
+  cursor:pointer;
 }
 
 /* 🔥 LOCK BUTTON */
