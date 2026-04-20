@@ -2320,3 +2320,13 @@ body.admin-unlocked .mapDeleteMini{
   }
 
   }
+
+/* 🔐 HIDE DELETE BUTTONS WHEN LOCKED */
+body.admin-locked .mapDeleteMini {
+  display: none !important;
+}
+
+/* 🔓 SHOW DELETE BUTTONS WHEN UNLOCKED */
+body.admin-unlocked .mapDeleteMini {
+  display: flex !important;
+}
