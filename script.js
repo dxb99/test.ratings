@@ -1145,7 +1145,7 @@ row.innerHTML = `
     <span class="expandIcon">▶</span>
     ${formatDate(match.selectedAt)}
   </td>
-  <td>${String(match.MID || "----").padStart(4, "0")}</td>
+  <td>${match.MID ? "MID_" + String(match.MID).replace("MID_","").padStart(4,"0") : "----"}</td>
   <td>${match.matchMaker}</td>
   <td>${count}</td>
   <td>${match.skillGap}</td>
