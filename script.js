@@ -89,6 +89,20 @@ if(generateBtn && saveBtn){
 
 }
 
+// 🔥 CLICK LOCK STATUS TO UNLOCK
+status.onclick = async () => {
+
+  // only allow unlock when locked
+  if(sessionStorage.getItem("adminPass")) return;
+
+  const pass = await getAdminPassword();
+  if(!pass) return;
+
+  sessionStorage.setItem("adminPass", pass);
+  updateAdminBar();
+
+};
+  
 }
 
 function isAdminUnlocked(){
