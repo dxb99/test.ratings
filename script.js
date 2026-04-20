@@ -119,6 +119,8 @@ blitzToggle.addEventListener("change", () => {
 
     setupMapListButtons();
     await loadSessionMaps();
+
+    document.getElementById("adminLockBtn").onclick = clearAdminSession;
     
     startMatchAutoRefresh();
 
