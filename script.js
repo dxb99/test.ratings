@@ -314,9 +314,9 @@ el.innerHTML=`
 <div class="matchHeader">
   Match Maker: <strong>${match.matchMaker}</strong>
 
-  <span class="midTag">
-    MID# ${match.MID ? "MID_" + String(match.MID).replace("MID_","").padStart(4,"0") : "----"}
-  </span>
+<span class="midTag">
+  ${match.MID ? "MID_" + String(match.MID).replace("MID_","").padStart(4,"0") : "----"}
+</span>
 </div>
 
   <div class="teamsRow">
