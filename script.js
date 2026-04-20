@@ -75,6 +75,10 @@ function updateAdminBar(){
 
 }
 
+function isAdminUnlocked(){
+  return !!sessionStorage.getItem("adminPass");
+}
+
 window.addEventListener("load", async () => {
 
 sessionStorage.removeItem("selectedMatchMaker");
@@ -1779,6 +1783,11 @@ row.setAttribute("data-index", masterIndex);
 
 row.querySelector(".mapDeleteMini").onclick = async () => {
 
+  if(!isAdminUnlocked()){
+  alert("Unlock admin mode first.");
+  return;
+}
+
   const pass = await getAdminPassword();
   if(!pass) return;
 
@@ -1856,6 +1865,11 @@ if(masterContainer){
     `;
 
 row.querySelector(".mapDeleteMini").onclick = async () => {
+
+  if(!isAdminUnlocked()){
+  alert("Unlock admin mode first.");
+  return;
+}
 
   const pass = await getAdminPassword();
   if(!pass) return;
@@ -1938,6 +1952,11 @@ function setupMapListButtons(){
 if(generateBtn){
   generateBtn.onclick = async () => {
 
+    if(!isAdminUnlocked()){
+  alert("Unlock admin mode first.");
+  return;
+}
+
 const pass = await getAdminPassword();
 if(!pass) return;
 
@@ -1966,6 +1985,11 @@ setTimeout(()=>{
 
 if(saveBtn){
 saveBtn.onclick = async () => {
+
+  if(!isAdminUnlocked()){
+  alert("Unlock admin mode first.");
+  return;
+}
 
   const pass = await getAdminPassword();
   if(!pass) return;
