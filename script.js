@@ -315,7 +315,7 @@ el.innerHTML=`
   Match Maker: <strong>${match.matchMaker}</strong>
 
   <span class="midTag">
-    MID# ${String(match.MID || "----").padStart(4, "0")}
+    MID# ${match.MID ? "MID_" + String(match.MID).replace("MID_","").padStart(4,"0") : "----"}
   </span>
 </div>
 
