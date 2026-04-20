@@ -73,6 +73,22 @@ function updateAdminBar(){
     lockBtn.style.display = "none";
   }
 
+  // 🔥 disable session buttons when locked
+const generateBtn = document.getElementById("generateSessionMapsBtn");
+const saveBtn = document.getElementById("saveSessionProgressBtn");
+
+if(generateBtn && saveBtn){
+
+  if(pass){
+    generateBtn.classList.remove("disabled");
+    saveBtn.classList.remove("disabled");
+  }else{
+    generateBtn.classList.add("disabled");
+    saveBtn.classList.add("disabled");
+  }
+
+}
+
 }
 
 function isAdminUnlocked(){
