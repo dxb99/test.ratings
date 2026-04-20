@@ -65,13 +65,18 @@ function updateAdminBar(){
 
   const pass = sessionStorage.getItem("adminPass");
 
-  if(pass){
-    status.textContent = "🔓 ADMIN MODE ACTIVE";
-    lockBtn.style.display = "inline-flex";
-  }else{
-    status.textContent = "🔒 LOCKED";
-    lockBtn.style.display = "none";
-  }
+if(pass){
+  status.textContent = "🔓 ADMIN MODE ACTIVE";
+  lockBtn.style.display = "inline-flex";
+
+  document.body.classList.add("admin-unlocked"); // 🔥 ADD THIS
+
+}else{
+  status.textContent = "🔒 LOCKED";
+  lockBtn.style.display = "none";
+
+  document.body.classList.remove("admin-unlocked"); // 🔥 ADD THIS
+}
 
   // 🔥 disable session buttons when locked
 const generateBtn = document.getElementById("generateSessionMapsBtn");
