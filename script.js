@@ -42,6 +42,7 @@ const test = await api({
 
 if(test && test.ok){
   sessionStorage.setItem("adminPass", pass);
+  updateAdminBar();
   return pass;
 }
 
@@ -52,6 +53,26 @@ alert("Wrong password. Try again.");
 // 🔥 lock function (for later button)
 function clearAdminSession(){
   sessionStorage.removeItem("adminPass");
+  updateAdminBar();
+}
+
+function updateAdminBar(){
+
+  const status = document.getElementById("adminStatus");
+  const lockBtn = document.getElementById("adminLockBtn");
+
+  if(!status || !lockBtn) return;
+
+  const pass = sessionStorage.getItem("adminPass");
+
+  if(pass){
+    status.textContent = "🔓 ADMIN MODE ACTIVE";
+    lockBtn.style.display = "inline-flex";
+  }else{
+    status.textContent = "🔒 LOCKED";
+    lockBtn.style.display = "none";
+  }
+
 }
 
 window.addEventListener("load", async () => {
@@ -73,6 +94,7 @@ if(blitzContainer){
 
     document.getElementById("loadingScreen").style.display = "none";
     document.getElementById("app").classList.remove("hidden");
+    updateAdminBar();
 
 window.scrollTo(0, 0);
 
@@ -948,6 +970,7 @@ if(!data.ok){
 
 // 🔥 ADD THIS
 sessionStorage.setItem("adminPass", pass);
+updateAdminBar();
 
 alert("Players saved successfully");
 
@@ -1282,6 +1305,7 @@ if(!data.ok){
 
 // 🔥 ADD THIS
 sessionStorage.setItem("adminPass", pass);
+updateAdminBar();
 
 /* CHANGE OVERLAY TEXT TO CLEARED */
 
@@ -1770,6 +1794,7 @@ row.querySelector(".mapDeleteMini").onclick = async () => {
 
   // 🔥 ADD THIS
   sessionStorage.setItem("adminPass", pass);
+  updateAdminBar();
 
   renderSessionMaps(res);
 
@@ -1847,6 +1872,7 @@ row.querySelector(".mapDeleteMini").onclick = async () => {
 
   // 🔥 ADD THIS
   sessionStorage.setItem("adminPass", pass);
+  updateAdminBar();
 
   renderSessionMaps(res);
 
@@ -1924,6 +1950,7 @@ if(!pass) return;
     }
 
     sessionStorage.setItem("adminPass", pass);
+    updateAdminBar();
 
 renderSessionMaps(res);
 
@@ -1953,6 +1980,7 @@ saveBtn.onclick = async () => {
 
   // 🔥 ADD THIS
   sessionStorage.setItem("adminPass", pass);
+  updateAdminBar();
 
   alert("Session progress saved");
 
