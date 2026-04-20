@@ -69,16 +69,18 @@ if(pass){
   status.textContent = "🔓 ADMIN MODE ACTIVE";
   lockBtn.style.display = "inline-flex";
 
-  document.body.classList.add("admin-unlocked"); // 🔥 ADD THIS
+  document.body.classList.remove("admin-locked");
+  document.body.classList.add("admin-unlocked");
 
 }else{
   status.textContent = "🔒 LOCKED";
   lockBtn.style.display = "none";
 
-  document.body.classList.remove("admin-unlocked"); // 🔥 ADD THIS
+  document.body.classList.remove("admin-unlocked");
+  document.body.classList.add("admin-locked");
 }
-
-  // 🔥 disable session buttons when locked
+  
+// 🔥 disable session buttons when locked
 const generateBtn = document.getElementById("generateSessionMapsBtn");
 const saveBtn = document.getElementById("saveSessionProgressBtn");
 
