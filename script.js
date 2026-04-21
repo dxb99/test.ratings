@@ -647,12 +647,7 @@ btn.onclick = () => {
   }
 
 // 🔥 CUSTOM MODAL CONFIRM
-showModal(
-  "Are you sure you want to select this matchup?",
-  "confirm",
-  "Select Matchup",
-  "Cancel"
-)
+showModal("Are you sure you want to select this matchup?", "confirm")
 .then(confirmSelection => {
 
   if(!confirmSelection){
