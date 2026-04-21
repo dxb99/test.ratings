@@ -2448,3 +2448,38 @@ body.admin-unlocked .mapDeleteMini {
 
   display:none;
 }
+
+.mapMakerContainer{
+  width:100%;
+  text-align:center;
+  margin-top:-15px;
+  margin-bottom:15px;
+}
+
+.mapMatchMakerSelect{
+  font-size:12px;
+  padding:6px 10px;
+
+  border-radius:6px;
+  background:#1a1a1a;
+  color:#aaa;
+
+  border:1px solid #333;
+
+  text-align:center;
+  min-width:180px;
+
+  opacity:0.8;
+}
+
+/* subtle helper text style */
+.mapMakerContainer::after{
+  content:"CURRENT MATCH MAKER";
+
+  display:block;
+  margin-top:4px;
+
+  font-size:10px;
+  color:#666;
+  letter-spacing:0.5px;
+}
