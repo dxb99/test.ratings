@@ -646,16 +646,18 @@ btn.onclick = () => {
     return;
   }
 
-// 🔥 CONFIRM BEFORE SAVING
-const confirmSelection = confirm("Are you sure you want to select this matchup?");
+// 🔥 CUSTOM MODAL CONFIRM
+showModal("Are you sure you want to select this matchup?", "confirm")
+.then(confirmSelection => {
 
-if(!confirmSelection){
-  return;
-}
-  
-// 🔥 SAVE DIRECTLY (NO ARM STEP)
-selectMatchup(m, key, btn, div);
+  if(!confirmSelection){
+    return;
+  }
 
+  // 🔥 SAVE DIRECTLY
+  selectMatchup(m, key, btn, div);
+
+});
 };
 
 // 🔥 MAKE ENTIRE CARD CLICKABLE (SAME AS BUTTON)
