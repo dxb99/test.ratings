@@ -19,7 +19,7 @@ let armedMatchKey = null; // 🔥 tracks first click before confirm
 
 /* 🔥 GLOBAL MODAL SYSTEM */
 
-function showModal(message, type = "alert"){
+function showModal(message, type = "alert", confirmText = "Confirm", cancelText = "Cancel", withInput = false){
 
   return new Promise((resolve)=>{
 
@@ -27,8 +27,15 @@ function showModal(message, type = "alert"){
     const msg = document.getElementById("modalMessage");
     const confirmBtn = document.getElementById("modalConfirm");
     const cancelBtn = document.getElementById("modalCancel");
+    const input = document.getElementById("modalInput");
 
     msg.innerText = message;
+
+    confirmBtn.innerText = confirmText;
+    cancelBtn.innerText = cancelText;
+
+    input.style.display = withInput ? "block" : "none";
+    input.value = "";
 
     modal.style.display = "flex";
 
@@ -45,13 +52,14 @@ function showModal(message, type = "alert"){
     };
 
     confirmBtn.onclick = () => {
+      const value = withInput ? input.value : true;
       cleanup();
-      resolve(true);
+      resolve(value);
     };
 
     cancelBtn.onclick = () => {
       cleanup();
-      resolve(false);
+      resolve(null);
     };
 
   });
