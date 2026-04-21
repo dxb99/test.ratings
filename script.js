@@ -605,34 +605,15 @@ btn.onclick = () => {
     return;
   }
 
-  // 🔥 FIRST CLICK → ARM
-  if(armedMatchKey !== key){
+// 🔥 CONFIRM BEFORE SAVING
+const confirmSelection = confirm("Are you sure you want to select this matchup?");
 
-  armedMatchKey = key;
-
-  document.querySelectorAll(".matchOption").forEach(card=>{
-  card.classList.remove("armedCard");
-});
-
-document.querySelectorAll(".selectMatch").forEach(b=>{
-
-  if(b.disabled) return;
-
-  b.classList.remove("selected");
-  b.classList.remove("confirming"); // 🔥 ADD THIS
-  b.innerText = "CLICK TO SELECT";
-
-});
-
-div.classList.add("armedCard");
-btn.innerText = "CONFIRM SELECTION";
-btn.classList.add("confirming"); // 🔥 NEW CLASS
-
-return;
-  }
-
-  // 🔥 SECOND CLICK → SAVE
-  selectMatchup(m, key, btn, div);
+if(!confirmSelection){
+  return;
+}
+  
+// 🔥 SAVE DIRECTLY (NO ARM STEP)
+selectMatchup(m, key, btn, div);
 
 };
 
