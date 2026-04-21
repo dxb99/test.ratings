@@ -839,6 +839,20 @@ function renderPlayers(players){
   maker.innerHTML="";
   if(mapMaker) mapMaker.innerHTML="";
   list.innerHTML="";
+
+  // 🔥 ADD PLACEHOLDER (DEFAULT BLANK OPTION)
+
+const placeholder = document.createElement("option");
+placeholder.value = "";
+placeholder.textContent = "Select Match Maker";
+placeholder.disabled = true;
+placeholder.selected = true;
+
+maker.appendChild(placeholder);
+
+if(mapMaker){
+  mapMaker.appendChild(placeholder.cloneNode(true));
+}
   
   const placeholder = document.createElement("option");
   placeholder.value = "";
