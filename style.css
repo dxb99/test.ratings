@@ -2370,13 +2370,18 @@ body.admin-unlocked .mapDeleteMini {
 
 .modalInput{
   width:100%;
+  box-sizing:border-box;
+  display:block;
+
   padding:10px;
-  margin-bottom:15px;
+  margin:0 auto 15px auto;
+
   border-radius:6px;
   border:1px solid #444;
   background:#1a1a1a;
   color:white;
   font-size:16px;
   text-align:center;
+
   display:none;
 }
