@@ -31,8 +31,8 @@ function showModal(message, type = "alert", confirmText = "Confirm", cancelText 
 
     msg.innerText = message;
 
-    confirmBtn.innerText = confirmText;
-    cancelBtn.innerText = cancelText;
+    confirmBtn.innerHTML = confirmText === "Confirm" ? "✓" : confirmText;
+    cancelBtn.innerHTML = cancelText === "Cancel" ? "✕" : cancelText;
 
     input.style.display = withInput ? "block" : "none";
     input.value = "";
