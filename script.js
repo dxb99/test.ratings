@@ -142,11 +142,23 @@ const saveBtn = document.getElementById("saveSessionProgressBtn");
 if(generateBtn && saveBtn){
 
   if(pass){
+
     generateBtn.classList.remove("disabled");
     saveBtn.classList.remove("disabled");
+
+    // ✅ remove tooltip when unlocked
+    generateBtn.removeAttribute("title");
+    saveBtn.removeAttribute("title");
+
   }else{
+
     generateBtn.classList.add("disabled");
     saveBtn.classList.add("disabled");
+
+    // 🔒 tooltip when locked
+    generateBtn.title = "🔒 Admin mode required";
+    saveBtn.title = "🔒 Admin mode required";
+
   }
 
 }
