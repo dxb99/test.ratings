@@ -429,8 +429,8 @@ transition:all 0.15s ease;
 }
 
 .btn.disabled{
-  opacity:0.4;
   cursor:not-allowed;
+  filter:brightness(0.6); /* 🔥 visually dim without affecting children */
 }
 
 /* GREEN (positive actions) */
