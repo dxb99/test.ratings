@@ -1964,13 +1964,13 @@ line-height:1.2;
 #mapMasterList{
   display:grid;
 
-  grid-column: span 3; /* 🔥 ADDED */
+  grid-column: span 3;
 
   grid-template-columns:repeat(3, minmax(0, 1fr));
   gap:18px;
 
   width:100%;
-  padding-top:0;
+  padding-top:14px; /* 🔥 ADD THIS */
 }
 
 .completeMapHeader{
