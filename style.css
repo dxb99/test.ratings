@@ -393,12 +393,15 @@ transition:all 0.15s ease;
   left:50%;
   transform:translateX(-50%) translateY(5px);
 
-  background:#111;
+  background:#2a2a2a; /* 🔥 DARK GREY INSTEAD OF BLACK */
   color:#fff;
   font-size:12px;
   padding:6px 10px;
   border-radius:6px;
   white-space:nowrap;
+
+  border:1px solid #444; /* 🔥 subtle edge */
+  box-shadow:0 4px 10px rgba(0,0,0,0.6); /* 🔥 depth */
 
   opacity:0;
   pointer-events:none;
