@@ -854,13 +854,6 @@ if(mapMaker){
   mapMaker.appendChild(placeholder.cloneNode(true));
 }
   
-  const placeholder = document.createElement("option");
-  placeholder.value = "";
-  placeholder.textContent = "Select Match Maker";
-  placeholder.selected = true;
-  placeholder.disabled = true;
-  maker.appendChild(placeholder);
-
 players.forEach(p=>{
 
   const opt=document.createElement("option");
