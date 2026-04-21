@@ -147,8 +147,8 @@ if(generateBtn && saveBtn){
     saveBtn.classList.remove("disabled");
 
     // ✅ remove tooltip when unlocked
-    generateBtn.removeAttribute("title");
-    saveBtn.removeAttribute("title");
+    generateBtn.removeAttribute("data-tooltip");
+    saveBtn.removeAttribute("data-tooltip");
 
   }else{
 
@@ -156,8 +156,8 @@ if(generateBtn && saveBtn){
     saveBtn.classList.add("disabled");
 
     // 🔒 tooltip when locked
-    generateBtn.title = "🔒 Admin mode required";
-    saveBtn.title = "🔒 Admin mode required";
+    generateBtn.setAttribute("data-tooltip", "🔒 Admin mode required");
+    saveBtn.setAttribute("data-tooltip", "🔒 Admin mode required");
 
   }
 
