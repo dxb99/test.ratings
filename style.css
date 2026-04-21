@@ -2330,3 +2330,40 @@ body.admin-locked .mapDeleteMini {
 body.admin-unlocked .mapDeleteMini {
   display: flex !important;
 }
+
+/* 🔥 CUSTOM MODAL */
+
+.modalOverlay{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:3000;
+}
+
+.modalBox{
+  background:#111;
+  border:1px solid #333;
+  border-radius:10px;
+  padding:25px;
+  width:90%;
+  max-width:400px;
+  text-align:center;
+  box-shadow:0 0 20px rgba(0,0,0,0.6);
+}
+
+.modalMessage{
+  font-size:18px;
+  margin-bottom:20px;
+}
+
+.modalButtons{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+}
