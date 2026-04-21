@@ -82,7 +82,7 @@ async function getAdminPassword(){
 let pass = await showModal(
   "Enter Admin Password",
   "confirm",
-  "Unlock",
+  "Confirm",
   "Cancel",
   true
 );    
