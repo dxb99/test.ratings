@@ -2452,34 +2452,39 @@ body.admin-unlocked .mapDeleteMini {
 .mapMakerContainer{
   width:100%;
   text-align:center;
-  margin-top:-15px;
-  margin-bottom:15px;
+
+  margin:0; /* 🔥 REMOVE EXTRA SPACE */
+
+  position:relative;
 }
 
 .mapMatchMakerSelect{
-  font-size:12px;
-  padding:6px 10px;
+  font-size:11px; /* 🔥 MATCH RIGHT SIDE SCALE */
+  padding:4px 8px;
 
   border-radius:6px;
   background:#1a1a1a;
-  color:#aaa;
+  color:#ccc;
 
   border:1px solid #333;
 
   text-align:center;
   min-width:180px;
 
-  opacity:0.8;
+  opacity:1; /* 🔥 REMOVE FADED LOOK */
 }
 
 /* subtle helper text style */
-.mapMakerContainer::after{
-  content:"CURRENT MATCH MAKER";
+.mapMakerContainer::before{
+  content:"MATCH MAKER";
 
   display:block;
-  margin-top:4px;
 
-  font-size:10px;
-  color:#666;
+  font-size:11px;
+  font-weight:400;
+  color:#888;
+
   letter-spacing:0.5px;
+
+  margin-bottom:4px;
 }
