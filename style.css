@@ -380,7 +380,7 @@ transition:all 0.15s ease;
 
 .btn.disabled{
   opacity:0.4;
-  pointer-events:none;
+  cursor:not-allowed;
 }
 
 /* GREEN (positive actions) */
