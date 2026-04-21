@@ -79,10 +79,16 @@ async function getAdminPassword(){
 
   while(true){
 
-    let pass = prompt("Enter Admin Password");
+let pass = await showModal(
+  "Enter Admin Password",
+  "confirm",
+  "Unlock",
+  "Cancel",
+  true
+);    
 
-    // ❌ user cancelled
-    if(!pass) return null;
+// ❌ user cancelled
+if(!pass) return null;
 
 const test = await api({
   action:"verifyAdminPassword",
