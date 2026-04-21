@@ -1970,14 +1970,14 @@ line-height:1.2;
   gap:18px;
 
   width:100%;
-  padding-top:28px; /* 🔥 MATCHES NEW SPACING */
+  padding-top:14px;
 }
 
 .completeMapHeader{
   grid-column:1 / -1;
   font-size:18px;
   font-weight:bold;
-  margin:0 0 0px 0;
+  margin:0 0 15px 0; /* 🔥 ADD REAL SPACING */
   text-align:center;
   letter-spacing:1px;
 
@@ -1994,7 +1994,7 @@ line-height:1.2;
   top:100%;
   transform:translateX(-50%);
 
-  margin-top:0px;
+  margin-top:6px;
 
   display:block;
 
@@ -2458,7 +2458,7 @@ body.admin-unlocked .mapDeleteMini {
 
   gap:8px;
 
-  margin-top:-5px; /* 🔥 pulls it closer to header */
+  margin-top:-2px;
 }
 
 .mapMatchMakerLabel{
