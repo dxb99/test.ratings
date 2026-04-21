@@ -87,7 +87,7 @@ if(test && test.ok){
   return pass;
 }
 
-alert("Wrong password. Try again.");
+await showModal("Wrong password. Try again.", "alert");
   }
 }
 
@@ -209,7 +209,7 @@ blitzToggle.addEventListener("change", () => {
   } catch (err) {
 
     console.error(err);
-    alert("Startup error. Open console (F12).");
+    await showModal("Startup error. Open console (F12).", "alert");
 
   }
 
@@ -481,7 +481,7 @@ async function generateMatchups(){
   const maker = document.getElementById("matchMakerSelect").value;
 
 if(!maker){
-  alert("Select Match Maker first.");
+  showModal("Select Match Maker first.", "alert");
   return;
 }
 
@@ -492,7 +492,7 @@ if(!maker){
   document.getElementById("generatingOverlay").style.display = "flex";
   
   if(selectedPlayers.length < 2){
-    alert("Select at least 2 players.");
+    showModal("Select at least 2 players.", "alert");
     return;
   }
 
@@ -642,7 +642,7 @@ btn.onclick = () => {
   const maker = document.getElementById("matchMakerSelect").value;
 
   if(!maker){
-    alert("Select Match Maker first.");
+    showModal("Select Match Maker first.", "alert");
     return;
   }
 
@@ -681,7 +681,7 @@ async function selectMatchup(match, key, btn, div){
   const maker=document.getElementById("matchMakerSelect").value;
 
   if(!maker){
-    alert("Select Match Maker first.");
+    showModal("Select Match Maker first.", "alert");
     return;
   }
 
@@ -703,7 +703,7 @@ const data = await api({
 
   document.getElementById("savingMatchOverlay").style.display = "none";
 
-  alert(data.error);
+  showModal(data.error, "alert");
 
   return;
 
@@ -915,7 +915,7 @@ async function openAdminTab(btn){
   document.getElementById("historyLoadingOverlay").style.display = "none";
 
   if(!data.ok){
-    alert("Failed loading players");
+    showModal("Failed loading players", "alert");
     return;
   }
 
@@ -1030,7 +1030,7 @@ if(!pass) return;
 
 if(!data.ok){
 
-  alert(data.error);
+  showModal(data.error, "alert");
   return;
 
 }
@@ -1039,7 +1039,7 @@ if(!data.ok){
 sessionStorage.setItem("adminPass", pass);
 updateAdminBar();
 
-alert("Players saved successfully");
+showModal("Players saved successfully", "alert");
 
 openAdminTab();
 
@@ -1057,7 +1057,7 @@ async function openHistoryTab(btn){
 
   if(!data.ok){
 
-    alert("Could not load history");
+    showModal("Could not load history", "alert");
     return;
 
   }
@@ -1365,7 +1365,7 @@ if(!data.ok){
 
   document.getElementById("clearHistoryOverlay").style.display = "none";
 
-  alert(data.error);
+  showModal(data.error, "alert");
   return;
 
 }
@@ -1845,7 +1845,7 @@ row.setAttribute("data-index", masterIndex);
 row.querySelector(".mapDeleteMini").onclick = async () => {
 
   if(!isAdminUnlocked()){
-  alert("Unlock admin mode first.");
+  showModal("Unlock admin mode first.", "alert");
   return;
 }
 
@@ -1860,7 +1860,7 @@ row.querySelector(".mapDeleteMini").onclick = async () => {
   });
 
   if(!res.ok){
-    alert(res.error || "Delete failed");
+    showModal(res.error || "Delete failed", "alert");
     return;
   }
 
@@ -1928,7 +1928,7 @@ if(masterContainer){
 row.querySelector(".mapDeleteMini").onclick = async () => {
 
   if(!isAdminUnlocked()){
-  alert("Unlock admin mode first.");
+  showModal("Unlock admin mode first.", "alert");
   return;
 }
 
@@ -1943,7 +1943,7 @@ row.querySelector(".mapDeleteMini").onclick = async () => {
   });
 
   if(!res.ok){
-    alert(res.error || "Delete failed");
+    showModal(res.error || "Delete failed", "alert");
     return;
   }
 
@@ -2014,7 +2014,7 @@ if(generateBtn){
   generateBtn.onclick = async () => {
 
     if(!isAdminUnlocked()){
-  alert("Unlock admin mode first.");
+  showModal("Unlock admin mode first.", "alert");
   return;
 }
 
@@ -2027,7 +2027,7 @@ if(!pass) return;
     });
 
     if(!res.ok){
-      alert(res.error || "Generate failed");
+      showModal(res.error || "Generate failed", "alert");
       return;
     }
 
@@ -2048,7 +2048,7 @@ if(saveBtn){
 saveBtn.onclick = async () => {
 
   if(!isAdminUnlocked()){
-  alert("Unlock admin mode first.");
+  showModal("Unlock admin mode first.", "alert");
   return;
 }
 
@@ -2061,7 +2061,7 @@ saveBtn.onclick = async () => {
   });
 
   if(!res.ok){
-    alert(res.error || "Save failed");
+    showModal(res.error || "Save failed", "alert");
     return;
   }
 
@@ -2069,7 +2069,7 @@ saveBtn.onclick = async () => {
   sessionStorage.setItem("adminPass", pass);
   updateAdminBar();
 
-  alert("Session progress saved");
+  showModal("Session progress saved", "alert");
 
   handleSessionHighlightUpdate();
 
@@ -2082,7 +2082,7 @@ if(copyBtn){
 const sessionCard = document.getElementById("sessionMapsContainer");
 
 if(!sessionCard){
-  alert("Session maps not found");
+  showModal("Session maps not found", "alert");
   return;
 }
 
@@ -2121,10 +2121,10 @@ wrapper.remove();
           new ClipboardItem({ "image/png": blob })
         ]);
 
-        alert("Session maps copied as image ✅");
+        showModal("Session maps copied as image ✅", "alert");
 
       }catch(err){
-        alert("Copy image failed. Your browser may not support it.");
+        showModal("Copy image failed. Your browser may not support it.", "alert");
       }
 
     });
