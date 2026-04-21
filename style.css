@@ -2368,6 +2368,19 @@ body.admin-unlocked .mapDeleteMini {
   gap:15px;
 }
 
+.modalIconBtn{
+  font-size:18px;
+  font-weight:bold;
+  width:44px;
+  height:36px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:0;
+}
+
 .modalInput{
   width:100%;
   box-sizing:border-box;
