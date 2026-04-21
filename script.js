@@ -922,6 +922,11 @@ if(savedMaker){
   if(mapMaker) mapMaker.value = savedMaker;
 }
 
+  // 🔥 FORCE MAP LIST TO START BLANK
+if(mapMaker){
+  mapMaker.value = "";
+}
+
 /* 🔥 AND THIS BLOCK */
 
 maker.onchange = function(){
