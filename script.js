@@ -2140,7 +2140,7 @@ saveBtn.onclick = async () => {
 if(copyBtn){
   copyBtn.onclick = async () => {
 
-const sessionCard = document.getElementById("sessionMapsContainer");
+const sessionCard = document.getElementById("sessionMapsUnifiedRows");
 
 if(!sessionCard){
   showModal("Session maps not found", "alert");
@@ -2156,8 +2156,14 @@ const wrapper = document.createElement("div");
 wrapper.style.padding = "30px";
 wrapper.style.background = "#000";
 
+wrapper.style.height = "auto";
+wrapper.style.minHeight = sessionCard.scrollHeight + "px";
+wrapper.style.overflow = "visible";
+
+wrapper.style.borderRadius = "12px";
+
 /* 🔥 FIX WIDTH */
-wrapper.style.width = sessionCard.offsetWidth + "px";
+wrapper.style.width = sessionCard.scrollWidth + "px";
 wrapper.style.display = "block";
 
 sessionCard.parentNode.insertBefore(wrapper, sessionCard);
