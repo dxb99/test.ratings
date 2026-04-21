@@ -2015,7 +2015,7 @@ line-height:1.2;
   width:100%;
   display:block;
 
-  padding-bottom:25px; /* 🔥 increased for perfect alignment */
+  padding-bottom:5px;
 }
 
 .mapMasterColumn{
@@ -2449,42 +2449,24 @@ body.admin-unlocked .mapDeleteMini {
   display:none;
 }
 
-.mapMakerContainer{
-  width:100%;
-  text-align:center;
+.mapMatchMakerRow{
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-  margin:0; /* 🔥 REMOVE EXTRA SPACE */
+  gap:8px;
 
-  position:relative;
+  margin-top:-5px; /* 🔥 pulls it closer to header */
 }
 
-.mapMatchMakerSelect{
-  font-size:11px; /* 🔥 MATCH RIGHT SIDE SCALE */
-  padding:4px 8px;
-
-  border-radius:6px;
-  background:#1a1a1a;
-  color:#ccc;
-
-  border:1px solid #333;
-
-  text-align:center;
-  min-width:180px;
-
-  opacity:1; /* 🔥 REMOVE FADED LOOK */
-}
-
-/* subtle helper text style */
-.mapMakerContainer::before{
-  content:"MATCH MAKER";
-
-  display:block;
-
+.mapMatchMakerLabel{
   font-size:11px;
-  font-weight:400;
   color:#888;
-
   letter-spacing:0.5px;
+}
 
-  margin-bottom:4px;
+#mapMatchMakerSelect{
+  font-size:12px;
+  padding:4px 8px;
+  min-width:160px;
 }
