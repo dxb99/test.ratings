@@ -647,16 +647,12 @@ btn.onclick = () => {
   }
 
 // 🔥 CUSTOM MODAL CONFIRM
-const modalMessage = `
-Are you sure you want to select this matchup?
-
-RED TEAM: ${m.redTeam.map(p=>p.name).join(", ")}
-BLUE TEAM: ${m.blueTeam.map(p=>p.name).join(", ")}
-
-Difference: ${m.skillGap}
-`;
-
-showModal(modalMessage, "confirm", "Select Matchup", "Cancel")
+showModal(
+  "Are you sure you want to select this matchup?",
+  "confirm",
+  "Select Matchup",
+  "Cancel"
+)
 .then(confirmSelection => {
 
   if(!confirmSelection){
