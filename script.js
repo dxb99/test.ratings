@@ -833,11 +833,13 @@ function startCountdown(expiry){
 function renderPlayers(players){
 
   const maker = document.getElementById("matchMakerSelect");
+  const mapMaker = document.getElementById("mapMatchMakerSelect");
   const list = document.getElementById("playersCheckboxes");
 
   maker.innerHTML="";
+  if(mapMaker) mapMaker.innerHTML="";
   list.innerHTML="";
-
+  
   const placeholder = document.createElement("option");
   placeholder.value = "";
   placeholder.textContent = "Select Match Maker";
@@ -853,6 +855,11 @@ players.forEach(p=>{
   opt.innerText=p.name;
 
   maker.appendChild(opt);
+
+  if(mapMaker){
+  const opt2 = opt.cloneNode(true);
+  mapMaker.appendChild(opt2);
+}
 
   const div=document.createElement("div");
 
@@ -905,6 +912,7 @@ const savedMaker = sessionStorage.getItem("selectedMatchMaker");
 
 if(savedMaker){
   maker.value = savedMaker;
+  if(mapMaker) mapMaker.value = savedMaker;
 }
 
 /* 🔥 AND THIS BLOCK */
@@ -913,12 +921,27 @@ maker.onchange = function(){
 
   sessionStorage.setItem("selectedMatchMaker", this.value);
 
-  /* 🔥 RESET GENERATOR STATE */
+  if(mapMaker){
+    mapMaker.value = this.value;
+  }
+
   resetGeneratedMatchups();
   lastSelectedPlayers = [];
   selectedMatchKey = null;
 
 };
+
+if(mapMaker){
+
+  mapMaker.onchange = function(){
+
+    sessionStorage.setItem("selectedMatchMaker", this.value);
+
+    maker.value = this.value;
+
+  };
+
+}
 
 updateSelectedPlayerCount();
 
