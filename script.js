@@ -17,6 +17,47 @@ let currentHistorySort = {
 };
 let armedMatchKey = null; // 🔥 tracks first click before confirm
 
+/* 🔥 GLOBAL MODAL SYSTEM */
+
+function showModal(message, type = "alert"){
+
+  return new Promise((resolve)=>{
+
+    const modal = document.getElementById("customModal");
+    const msg = document.getElementById("modalMessage");
+    const confirmBtn = document.getElementById("modalConfirm");
+    const cancelBtn = document.getElementById("modalCancel");
+
+    msg.innerText = message;
+
+    modal.style.display = "flex";
+
+    if(type === "alert"){
+      cancelBtn.style.display = "none";
+    }else{
+      cancelBtn.style.display = "inline-flex";
+    }
+
+    const cleanup = () => {
+      modal.style.display = "none";
+      confirmBtn.onclick = null;
+      cancelBtn.onclick = null;
+    };
+
+    confirmBtn.onclick = () => {
+      cleanup();
+      resolve(true);
+    };
+
+    cancelBtn.onclick = () => {
+      cleanup();
+      resolve(false);
+    };
+
+  });
+
+}
+
 /* 🔓 ADMIN UNLOCK SYSTEM */
 
 async function getAdminPassword(){
