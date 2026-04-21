@@ -1970,9 +1970,6 @@ line-height:1.2;
   gap:18px;
 
   width:100%;
-  padding-top:14px;
-
-  margin-top:18px;
 }
 
 .completeMapHeader{
@@ -1985,6 +1982,8 @@ line-height:1.2;
 
   position:relative;
   width:100%;
+
+  margin-bottom:18px;
 }
 
 /* 🔥 SUBTEXT (DOES NOT PUSH LAYOUT) */
