@@ -2140,7 +2140,7 @@ saveBtn.onclick = async () => {
 if(copyBtn){
   copyBtn.onclick = async () => {
 
-const sessionCard = document.getElementById("sessionMapsUnifiedRows");
+const sessionCard = document.getElementById("sessionMapsContainer");
 
 if(!sessionCard){
   showModal("Session maps not found", "alert");
