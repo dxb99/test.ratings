@@ -2378,4 +2378,5 @@ body.admin-unlocked .mapDeleteMini {
   color:white;
   font-size:16px;
   text-align:center;
+  display:none;
 }
