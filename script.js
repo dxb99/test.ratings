@@ -330,6 +330,8 @@ function renderMatchup(match){
 
   const el=document.getElementById("matchupContent");
   const countdown=document.getElementById("matchCountdown");
+  const upcomingHeading = document.getElementById("upcomingHeading");
+
 
 // 🔥 RESET server key if no matchup
 currentMatchKeyFromServer = null;
@@ -340,6 +342,8 @@ if(!match){
     clearInterval(countdownTimer);
     countdownTimer = null;
   }
+
+  if(upcomingHeading) upcomingHeading.textContent = "UPCOMING";
 
   el.innerHTML=`
 
@@ -450,6 +454,8 @@ if(expiry <= now){
   // 🔥 CLEAR SERVER MATCH KEY (THIS FIXES YOUR ISSUE)
   currentMatchKeyFromServer = null;
 
+  if(upcomingHeading) upcomingHeading.textContent = "UPCOMING";
+
   el.innerHTML=`
 
   <div class="matchCard">
@@ -487,6 +493,8 @@ const redKey = match.redTeam.slice().sort().join("|");
 const blueKey = match.blueTeam.slice().sort().join("|");
 
 currentMatchKeyFromServer = redKey + "-" + blueKey;
+
+if(upcomingHeading) upcomingHeading.textContent = "CURRENT";
 
 if(match.selectedAt !== lastMatchTimestamp){
 
