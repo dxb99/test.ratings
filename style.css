@@ -2660,16 +2660,26 @@ body.admin-unlocked .mapDeleteMini {
 
   #sessionMapsUnifiedCard{
     width:100%;
+    max-width:none;
+    margin:0;
+  }
+
+  #mapSessionPanel .mapMasterColumn{
+    width:100%;
+    max-width:none;
+    margin:0;
   }
 
   #sessionControls{
     width:100%;
     max-width:none;
+    margin-top:16px;
   }
 
   #sessionControls .btn{
     width:100%;
     max-width:none;
+    min-width:0;
     display:flex;
     justify-content:center;
   }
