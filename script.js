@@ -2140,7 +2140,8 @@ saveBtn.onclick = async () => {
 if(copyBtn){
   copyBtn.onclick = async () => {
 
-const sessionCard = document.getElementById("sessionMapsContainer");
+const originalCard = document.querySelector("#sessionMapsContainer").closest("div");
+const sessionCard = originalCard.cloneNode(true);
 
 if(!sessionCard){
   showModal("Session maps not found", "alert");
@@ -2151,6 +2152,12 @@ if(!sessionCard){
 const deleteBtns = sessionCard.querySelectorAll(".mapDeleteMini");
 deleteBtns.forEach(btn => btn.style.display = "none");
 
+// 🔥 attach clone off-screen so html2canvas captures full layout
+sessionCard.style.position = "absolute";
+sessionCard.style.left = "-9999px";
+sessionCard.style.top = "0";
+document.body.appendChild(sessionCard);
+    
 // 🔥 wrap in temp container for padding
 const wrapper = document.createElement("div");
 wrapper.style.padding = "30px";
@@ -2179,6 +2186,9 @@ wrapper.parentNode.insertBefore(sessionCard, wrapper);
 wrapper.remove();
 
     canvas.toBlob(async (blob) => {
+
+    // 🔥 remove cloned element after capture
+    sessionCard.remove();
 
     // 🔥 restore delete buttons after capture
     deleteBtns.forEach(btn => btn.style.display = "flex");
