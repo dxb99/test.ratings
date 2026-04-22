@@ -2334,25 +2334,43 @@ body.admin-unlocked .mapDeleteMini{
 
   #mapListLayout{
     grid-template-columns:1fr;
+    gap:18px;
   }
 
   #mapMasterList{
     grid-template-columns:1fr;
   }
 
-  #mapSessionPanel{
+  #mapSessionPanel,
+  #sessionMapsContainer,
+  #sessionMapsUnifiedCard,
+  #mapSessionPanel .mapMasterColumn,
+  #sessionControls{
     width:100%;
-    max-width:600px;
-    margin:0 auto;
+    max-width:none;
+    margin-left:0;
+    margin-right:0;
+    box-sizing:border-box;
   }
 
-.sessionMapsHeading{
-  font-size:18px;
-  font-weight:bold;
-  margin:0 0 16px 0;
-  text-align:center;
-  letter-spacing:1px;
-}
+  #mapSessionPanel{
+    margin:0;
+  }
+
+  #sessionControls .btn{
+    width:100%;
+    min-width:0;
+    box-sizing:border-box;
+    display:block;
+  }
+
+  .sessionMapsHeading{
+    font-size:18px;
+    font-weight:bold;
+    margin:0 0 16px 0;
+    text-align:center;
+    letter-spacing:1px;
+  }
 
 }
 
@@ -2642,48 +2660,6 @@ body.admin-unlocked .mapDeleteMini {
 }
 
 @media(max-width:700px){
-
-  #mapListTab{
-    padding-left:10px;
-    padding-right:10px;
-  }
-
-  #mapListLayout{
-    width:100%;
-    max-width:none;
-    margin:8px auto 0 auto;
-    grid-template-columns:1fr;
-    gap:18px;
-  }
-
-  #mapSessionPanel{
-    width:100%;
-    max-width:none;
-    margin:0;
-    grid-column:auto;
-  }
-
-  #sessionMapsContainer,
-  #sessionMapsUnifiedCard,
-  #mapSessionPanel .mapMasterColumn,
-  #sessionControls{
-    width:100%;
-    max-width:none;
-    margin:0;
-    box-sizing:border-box;
-  }
-
-  #sessionControls{
-    margin-top:16px;
-  }
-
-  #sessionControls .btn{
-    width:100%;
-    min-width:0;
-    box-sizing:border-box;
-    display:flex;
-    justify-content:center;
-  }
 
   .upcomingSection{
     margin:30px auto 0 auto;
