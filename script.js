@@ -2325,6 +2325,7 @@ function setupMapListButtons(){
 
   const generateBtn = document.getElementById("generateSessionMapsBtn");
   const saveBtn = document.getElementById("saveSessionProgressBtn");
+  const clearSessionBtn = document.getElementById("clearSessionMapsBtn");
   const buildCustomBtn = document.getElementById("buildCustomSessionBtn");
   const saveCustomBtn = document.getElementById("saveCustomSessionBtn");
   const clearCustomBtn = document.getElementById("clearCustomSessionBtn");
@@ -2394,6 +2395,52 @@ saveBtn.onclick = async () => {
   handleSessionHighlightUpdate();
 
 };
+}
+
+if(clearSessionBtn){
+  clearSessionBtn.onclick = async () => {
+
+    if(!isAdminUnlocked()){
+      showModal("Unlock admin mode first.", "alert");
+      return;
+    }
+
+    if(customSessionActive){
+
+      customSessionData = normalizeSessionData({
+        elimination: [],
+        blitz: [],
+        ctf: []
+      });
+
+      renderAllSessionViews();
+      showModal("Custom session maps cleared", "alert");
+      return;
+
+    }
+
+    const pass = await getAdminPassword();
+    if(!pass) return;
+
+    const res = await api({
+      action:"clearSessionMaps",
+      password: pass
+    });
+
+    if(!res || !res.ok){
+      showModal(res.error || "Clear session maps failed", "alert");
+      return;
+    }
+
+    sessionStorage.setItem("adminPass", pass);
+    updateAdminBar();
+
+    currentSessionMaps = normalizeSessionData(res);
+    renderAllSessionViews();
+
+    showModal("Session maps cleared", "alert");
+
+  };
 }
 
 if(buildCustomBtn){
