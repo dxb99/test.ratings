@@ -2481,7 +2481,7 @@ if(clearCustomBtn){
     updateCustomSessionButtons();
     renderAllSessionViews();
 
-    showModal("Custom session cleared", "alert");
+    showModal("Exited custom session", "alert");
 
   };
 }
