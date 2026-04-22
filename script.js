@@ -332,7 +332,6 @@ function renderMatchup(match){
 
 const el=document.getElementById("matchupContent");
 const countdown=document.getElementById("matchCountdown");
-const upcomingHeading = document.getElementById("upcomingHeading");
 const upcomingSessionMaker = document.getElementById("upcomingSessionMaker");
 
 // 🔥 RESET server key if no matchup
@@ -345,7 +344,6 @@ if(!match){
     countdownTimer = null;
   }
 
-  if(upcomingHeading) upcomingHeading.textContent = "UPCOMING";
   if(upcomingSessionMaker) upcomingSessionMaker.style.display = "";
 
   el.innerHTML=`
@@ -457,7 +455,6 @@ if(expiry <= now){
   // 🔥 CLEAR SERVER MATCH KEY (THIS FIXES YOUR ISSUE)
   currentMatchKeyFromServer = null;
 
-  if(upcomingHeading) upcomingHeading.textContent = "UPCOMING";
   if(upcomingSessionMaker) upcomingSessionMaker.style.display = "";
 
   el.innerHTML=`
@@ -498,7 +495,6 @@ const blueKey = match.blueTeam.slice().sort().join("|");
 
 currentMatchKeyFromServer = redKey + "-" + blueKey;
 
-if(upcomingHeading) upcomingHeading.textContent = "CURRENT";
 if(upcomingSessionMaker) upcomingSessionMaker.style.display = "none";
 
 if(match.selectedAt !== lastMatchTimestamp){
