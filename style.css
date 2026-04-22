@@ -1215,6 +1215,46 @@ flex-shrink:0;
 
 }
 
+.adminDirtyStatus{
+display:none;
+font-size:12px;
+color:#facc15;
+font-weight:600;
+white-space:nowrap;
+}
+
+.skillAdjuster{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:6px;
+}
+
+.skillAdjustBtn{
+width:26px;
+height:26px;
+border:none;
+border-radius:4px;
+background:#222;
+color:white;
+cursor:pointer;
+font-size:11px;
+line-height:1;
+}
+
+.skillAdjustBtn:hover{
+background:#333;
+}
+
+.skillValueCell{
+min-width:36px;
+text-align:center;
+padding:4px 6px;
+border:1px solid #444;
+border-radius:4px;
+background:#111;
+}
+
 table{
 
 margin:20px auto;
