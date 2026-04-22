@@ -2337,24 +2337,32 @@ body.admin-unlocked .mapDeleteMini{
     gap:18px;
   }
 
+  #mapSessionPanel,
+  #mapMasterList{
+    width:100%;
+    min-width:0;
+    max-width:none;
+    margin:0;
+    justify-self:stretch;
+  }
+
   #mapMasterList{
     grid-template-columns:1fr;
   }
 
-  #mapSessionPanel,
   #sessionMapsContainer,
   #sessionMapsUnifiedCard,
   #mapSessionPanel .mapMasterColumn,
   #sessionControls{
     width:100%;
+    min-width:0;
     max-width:none;
-    margin-left:0;
-    margin-right:0;
+    margin:0;
     box-sizing:border-box;
   }
 
-  #mapSessionPanel{
-    margin:0;
+  #sessionControls{
+    margin-top:16px;
   }
 
   #sessionControls .btn{
