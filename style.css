@@ -1048,6 +1048,11 @@ transform:none;
   font-size:14px;
 }
 
+#matchCountdown{
+  margin-top:6px;
+  font-size:14px;
+}
+
 /* HISTORY */
 
 .historyControls{
