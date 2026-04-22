@@ -2641,6 +2641,10 @@ body.admin-unlocked .mapDeleteMini {
 
 @media(max-width:700px){
 
+  #mapListLayout{
+    margin:8px auto 0 auto;
+  }
+
   .upcomingSection{
     margin:30px auto 0 auto;
     padding-bottom:20px;
