@@ -1475,11 +1475,11 @@ line-height:1.2;
   width:100%;
   max-width:1400px;
 
-  margin:30px auto 0 auto;
+  margin:24px auto 0 auto;
 
   display:grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap:28px;
+  grid-template-columns: minmax(320px, 1fr) minmax(0, 3fr);
+  gap:22px;
 
   align-items:start;
 }
@@ -1487,7 +1487,7 @@ line-height:1.2;
 #mapMasterList{
   display:grid;
 
-  grid-column: span 3;
+  grid-column:auto;
 
   grid-template-columns:repeat(3, minmax(0, 1fr));
   gap:18px;
@@ -1612,7 +1612,8 @@ line-height:1.2;
   border:none;
   box-shadow:none;
   padding:0;
-  grid-column: span 1;
+  grid-column:auto;
+  align-self:start;
 }
 
 .mapSessionSection{
@@ -1692,10 +1693,10 @@ line-height:1.2;
   margin-top:16px;
   display:flex;
   flex-direction:column;
-  gap:14px;
+  gap:12px;
 
   width:100%;
-  max-width:380px;
+  max-width:none;
 }
 
 #sessionControls .btn{
