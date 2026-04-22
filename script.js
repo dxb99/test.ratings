@@ -1902,6 +1902,43 @@ function getActiveSessionMaps(){
     : normalizeSessionData(currentSessionMaps);
 }
 
+function updateCustomSessionButtons(){
+
+  const buildBtn = document.getElementById("buildCustomSessionBtn");
+  const saveBtn = document.getElementById("saveCustomSessionBtn");
+  const clearBtn = document.getElementById("clearCustomSessionBtn");
+  const generateBtn = document.getElementById("generateSessionMapsBtn");
+  const progressBtn = document.getElementById("saveSessionProgressBtn");
+
+  if(!buildBtn || !saveBtn || !clearBtn || !generateBtn || !progressBtn) return;
+
+  if(customSessionActive){
+    buildBtn.style.display = "none";
+    saveBtn.style.display = "inline-flex";
+    clearBtn.style.display = "inline-flex";
+    generateBtn.style.display = "none";
+    progressBtn.style.display = "none";
+  }else{
+    buildBtn.style.display = "inline-flex";
+    saveBtn.style.display = "none";
+    clearBtn.style.display = "none";
+    generateBtn.style.display = "inline-flex";
+    progressBtn.style.display = "inline-flex";
+  }
+
+}
+
+function renderAllSessionViews(){
+  const activeSession = getActiveSessionMaps();
+
+  renderSessionMaps(activeSession);
+  renderUpcomingSessionCard(activeSession);
+
+  setTimeout(()=>{
+    handleSessionHighlightUpdate();
+  }, 50);
+}
+
 async function loadCustomSessionState(){
 
   const res = await api({
@@ -1949,16 +1986,8 @@ if(initialData.ok && initialData.mapList){
   renderMasterMapList(initialData.mapList);
 }
 
-// 🔥 NOW render session AFTER master exists
-const activeSession = getActiveSessionMaps();
-
-renderSessionMaps(activeSession);
-renderUpcomingSessionCard(activeSession);
-
-// 🔥 APPLY HIGHLIGHT AFTER LOAD
-setTimeout(()=>{
-  handleSessionHighlightUpdate();
-}, 100);
+updateCustomSessionButtons();
+renderAllSessionViews();
 
 // 🔥 HIDE LOADER
 if(overlay){
@@ -2225,6 +2254,9 @@ function setupMapListButtons(){
 
   const generateBtn = document.getElementById("generateSessionMapsBtn");
   const saveBtn = document.getElementById("saveSessionProgressBtn");
+  const buildCustomBtn = document.getElementById("buildCustomSessionBtn");
+  const saveCustomBtn = document.getElementById("saveCustomSessionBtn");
+  const clearCustomBtn = document.getElementById("clearCustomSessionBtn");
   const copyBtn = document.getElementById("copySessionMapsBtn");
 
 if(generateBtn){
@@ -2293,6 +2325,96 @@ saveBtn.onclick = async () => {
 };
 }
 
+if(buildCustomBtn){
+  buildCustomBtn.onclick = async () => {
+
+    if(!isAdminUnlocked()){
+      showModal("Unlock admin mode first.", "alert");
+      return;
+    }
+
+    customSessionActive = true;
+    customSessionData = normalizeSessionData(currentSessionMaps);
+
+    updateCustomSessionButtons();
+    renderAllSessionViews();
+
+    showModal("Custom session mode enabled", "alert");
+
+  };
+}
+
+if(saveCustomBtn){
+  saveCustomBtn.onclick = async () => {
+
+    if(!isAdminUnlocked()){
+      showModal("Unlock admin mode first.", "alert");
+      return;
+    }
+
+    const pass = await getAdminPassword();
+    if(!pass) return;
+
+    const res = await api({
+      action:"saveCustomSession",
+      password: pass,
+      session: customSessionData
+    });
+
+    if(!res || !res.ok){
+      showModal(res.error || "Save custom session failed", "alert");
+      return;
+    }
+
+    sessionStorage.setItem("adminPass", pass);
+    updateAdminBar();
+
+    customSessionActive = !!res.active;
+    customSessionData = normalizeSessionData(res.session);
+
+    updateCustomSessionButtons();
+    renderAllSessionViews();
+
+    showModal("Custom session saved", "alert");
+
+  };
+}
+
+if(clearCustomBtn){
+  clearCustomBtn.onclick = async () => {
+
+    if(!isAdminUnlocked()){
+      showModal("Unlock admin mode first.", "alert");
+      return;
+    }
+
+    const pass = await getAdminPassword();
+    if(!pass) return;
+
+    const res = await api({
+      action:"clearCustomSession",
+      password: pass
+    });
+
+    if(!res || !res.ok){
+      showModal(res.error || "Clear custom session failed", "alert");
+      return;
+    }
+
+    sessionStorage.setItem("adminPass", pass);
+    updateAdminBar();
+
+    customSessionActive = false;
+    customSessionData = normalizeSessionData(res.session);
+
+    updateCustomSessionButtons();
+    renderAllSessionViews();
+
+    showModal("Custom session cleared", "alert");
+
+  };
+}
+  
 if(copyBtn){
   copyBtn.onclick = async () => {
 
