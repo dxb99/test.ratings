@@ -92,7 +92,7 @@ box-shadow:0 0 6px rgba(239,68,68,0.6);
 
 h2{
 
-margin-bottom:5px;
+margin:0 0 5px 0;
 
 }
 
@@ -157,7 +157,7 @@ border-radius:2px;
 .tabContent{
 
 display:none;
-padding:25px;
+padding:12px 25px 25px 25px;
 
 /* 🔥 PUSH CONTENT BELOW FIXED HEADER */
 margin-top:110px;
@@ -1578,7 +1578,7 @@ line-height:1.2;
   width:100%;
   max-width:1400px;
 
-  margin:24px auto 0 auto;
+  margin:0 auto 0 auto;
 
   display:grid;
   grid-template-columns: minmax(320px, 1fr) minmax(0, 3fr);
@@ -2415,11 +2415,10 @@ body.admin-unlocked .mapDeleteMini {
     padding:10px 10px 10px 10px;
   }
 
-  .tabContent{
-    margin-top:78px;
-    padding-top:6px;
-    padding-bottom:90px;
-  }
+.tabContent{
+  margin-top:78px;
+  padding:10px 10px 90px 10px;
+}
 
   #generatedMatchups{
 
