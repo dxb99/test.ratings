@@ -951,6 +951,12 @@ if(mapMaker){
 
     maker.value = this.value;
 
+    renderUpcomingSessionCard({
+      elimination: Array.from(document.querySelectorAll("#eliminationSessionList .mapSessionName")).map(x => x.innerText.trim()),
+      blitz: Array.from(document.querySelectorAll("#blitzSessionList .mapSessionName")).map(x => x.innerText.trim()),
+      ctf: Array.from(document.querySelectorAll("#ctfSessionList .mapSessionName")).map(x => x.innerText.trim())
+    });
+
   };
 
 }
@@ -1808,8 +1814,9 @@ if(initialData.ok && initialData.mapList){
 
 // 🔥 NOW render session AFTER master exists
 renderSessionMaps(sessionData);
+renderUpcomingSessionCard(sessionData);
 
-  // 🔥 APPLY HIGHLIGHT AFTER LOAD
+// 🔥 APPLY HIGHLIGHT AFTER LOAD
 setTimeout(()=>{
   handleSessionHighlightUpdate();
 }, 100);
@@ -1833,6 +1840,19 @@ function renderSessionMaps(data){
   renderUnifiedSessionMaps(data);
 
 }
+
+function renderUpcomingSessionCard(data){
+
+  const matchMakerSelect = document.getElementById("mapMatchMakerSelect");
+  const matchMaker = matchMakerSelect ? matchMakerSelect.value.trim() : "";
+
+  buildCopySessionCard(data, matchMaker, {
+    makerId: "upcomingSessionMaker",
+    bodyId: "upcomingSessionBody"
+  });
+
+}
+
 
 function renderUnifiedSessionMaps(data){
 
@@ -2202,10 +2222,13 @@ if(copyBtn){
 
 }
 
-function buildCopySessionCard(data, matchMaker){
+function buildCopySessionCard(data, matchMaker, options = {}){
 
-  const makerEl = document.getElementById("copySessionMaker");
-  const bodyEl = document.getElementById("copySessionBody");
+  const makerId = options.makerId || "copySessionMaker";
+  const bodyId = options.bodyId || "copySessionBody";
+
+  const makerEl = document.getElementById(makerId);
+  const bodyEl = document.getElementById(bodyId);
 
   if(!makerEl || !bodyEl) return;
 
@@ -2231,11 +2254,11 @@ function buildCopySessionCard(data, matchMaker){
 
   bodyEl.innerHTML = sections.map(section => {
     const rows = section.maps.length
-  ? section.maps.map(mapName => `
-    <div class="copySessionRow">
-      <span class="copySessionName">${mapName}</span>
-    </div>
-  `).join("")
+      ? section.maps.map(mapName => `
+        <div class="copySessionRow">
+          <span class="copySessionName">${mapName}</span>
+        </div>
+      `).join("")
       : `
         <div class="copySessionEmpty">-</div>
       `;
@@ -2249,7 +2272,6 @@ function buildCopySessionCard(data, matchMaker){
   }).join("");
 
 }
-
 
 function handleSessionHighlightUpdate(){
 
