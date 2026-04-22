@@ -488,6 +488,9 @@ background:#111;
 border:1px solid #333;
 border-radius:6px;
 
+font-size:inherit;
+font-weight:400;
+
 box-shadow:0 0 8px rgba(0,0,0,0.25);
 transition:all 0.15s ease;
 }
@@ -1379,6 +1382,9 @@ border:1px solid #444;
 border-radius:6px;
 white-space:nowrap;
 cursor:pointer;
+
+font-size:inherit;
+font-weight:400;
 
 }
 
@@ -2319,17 +2325,19 @@ body.admin-unlocked .mapDeleteMini {
     cursor:not-allowed;
   }
 
-  .playerSort{
-    font-size:14px;
-  }
+.playerSort{
+  font-size:14px;
+}
 
-  #matchMakerSelect{
-    font-size:14px;
-  }
+#matchMakerSelect{
+  font-size:14px;
+}
 
-  #playersCheckboxes label{
-    font-size:14px;
-  }
+#playersCheckboxes label,
+.radioRow label{
+  font-size:14px;
+  font-weight:400;
+}
 
   .historyItem{
     font-size:clamp(11px, 3vw, 13px);
