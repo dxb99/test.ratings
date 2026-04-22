@@ -1819,6 +1819,52 @@ white-space:nowrap;
 #historyTable td:nth-child(5) {
   min-width: 55px; /* Gap */
 }
+
+  .upcomingSection{
+    margin:30px auto 0 auto;
+    padding-bottom:20px;
+  }
+
+  .upcomingSessionCard{
+    width:100%;
+    max-width:340px;
+  }
+
+  .upcomingSessionCard.copySessionShell{
+    padding:12px 10px 10px 10px;
+    border-radius:12px;
+  }
+
+  .upcomingSessionCard .copySessionTitle{
+    font-size:16px;
+    margin-bottom:8px;
+  }
+
+  .upcomingSessionCard .copySessionMaker{
+    font-size:12px;
+    margin-bottom:8px;
+  }
+
+  .upcomingSessionCard .copySessionBody{
+    gap:8px;
+  }
+
+  .upcomingSessionCard .copySessionSection{
+    border-radius:8px;
+  }
+
+  .upcomingSessionCard .copySessionSectionHeader{
+    font-size:14px;
+    padding:7px 8px;
+  }
+
+  .upcomingSessionCard .copySessionRow{
+    padding:4px 6px;
+  }
+
+  .upcomingSessionCard .copySessionName{
+    font-size:14px;
+  }
   
 }
 
