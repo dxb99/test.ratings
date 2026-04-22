@@ -1933,10 +1933,75 @@ function renderAllSessionViews(){
 
   renderSessionMaps(activeSession);
   renderUpcomingSessionCard(activeSession);
+  updateCustomMapHighlights();
 
   setTimeout(()=>{
     handleSessionHighlightUpdate();
   }, 50);
+}
+
+function getCustomSessionLimit(mode){
+  if(mode === "elimination") return 2;
+  if(mode === "blitz") return 2;
+  if(mode === "ctf") return 5;
+  return 0;
+}
+
+function isMapSelectedInCustomSession(mode, mapName){
+  const list = customSessionData[mode] || [];
+  return list.includes(mapName);
+}
+
+async function toggleCustomSessionMap(mode, mapName){
+
+  if(!customSessionActive){
+    return;
+  }
+
+  const current = [...(customSessionData[mode] || [])];
+  const existingIndex = current.indexOf(mapName);
+
+  if(existingIndex !== -1){
+    current.splice(existingIndex, 1);
+  }else{
+    const limit = getCustomSessionLimit(mode);
+
+    if(current.length >= limit){
+      const modeLabel =
+        mode === "ctf" ? "CTF" :
+        mode.charAt(0).toUpperCase() + mode.slice(1);
+
+      await showModal(`${modeLabel} already has ${limit} maps selected.`, "alert");
+      return;
+    }
+
+    current.push(mapName);
+  }
+
+  customSessionData = {
+    ...customSessionData,
+    [mode]: current
+  };
+
+  renderAllSessionViews();
+
+}
+
+function updateCustomMapHighlights(){
+
+  document.querySelectorAll(".mapMasterRow").forEach(row => {
+    const mode = row.getAttribute("data-mode");
+    const mapName = row.getAttribute("data-map-name");
+
+    if(!mode || !mapName) return;
+
+    row.classList.toggle("customMapSelectable", customSessionActive);
+    row.classList.toggle(
+      "customMapSelected",
+      customSessionActive && isMapSelectedInCustomSession(mode, mapName)
+    );
+  });
+
 }
 
 async function loadCustomSessionState(){
@@ -2221,14 +2286,14 @@ row.querySelector(".mapDeleteMini").onclick = async () => {
 // 🔥 RENDER FULL MASTER MAP LIST
 function renderMasterMapList(mapList){
 
-  renderMasterModeList("eliminationMasterList", mapList.elimination || []);
-  renderMasterModeList("blitzMasterList", mapList.blitz || []);
-  renderMasterModeList("ctfMasterList", mapList.ctf || []);
+  renderMasterModeList("eliminationMasterList", mapList.elimination || [], "elimination");
+  renderMasterModeList("blitzMasterList", mapList.blitz || [], "blitz");
+  renderMasterModeList("ctfMasterList", mapList.ctf || [], "ctf");
 
 }
 
 // 🔥 RENDER ONE MASTER MODE COLUMN
-function renderMasterModeList(containerId, maps){
+function renderMasterModeList(containerId, maps, mode){
 
   const container = document.getElementById(containerId);
 
@@ -2242,6 +2307,12 @@ function renderMasterModeList(containerId, maps){
     row.className = "mapMasterRow";
     row.textContent = mapName;
     row.setAttribute("data-index", index + 1);
+    row.setAttribute("data-mode", mode);
+    row.setAttribute("data-map-name", mapName);
+
+    row.onclick = async () => {
+      await toggleCustomSessionMap(mode, mapName);
+    };
 
     container.appendChild(row);
 
