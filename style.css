@@ -1836,13 +1836,17 @@ white-space:nowrap;
   }
 
   .upcomingSessionCard .copySessionTitle{
-    font-size:16px;
+    font-size:14px;
+    font-weight:400;
     margin-bottom:8px;
+    letter-spacing:0;
   }
 
   .upcomingSessionCard .copySessionMaker{
     font-size:12px;
+    font-weight:400;
     margin-bottom:8px;
+    letter-spacing:0;
   }
 
   .upcomingSessionCard .copySessionBody{
@@ -1854,16 +1858,20 @@ white-space:nowrap;
   }
 
   .upcomingSessionCard .copySessionSectionHeader{
-    font-size:14px;
+    font-size:13px;
+    font-weight:bold;
     padding:7px 8px;
   }
 
   .upcomingSessionCard .copySessionRow{
+    min-height:auto;
     padding:4px 6px;
   }
 
   .upcomingSessionCard .copySessionName{
     font-size:12px;
+    font-weight:400;
+    line-height:1.2;
   }
   
 }
