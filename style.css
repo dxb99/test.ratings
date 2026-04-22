@@ -336,24 +336,20 @@ animation:shineMove 3s ease-in-out infinite;
   left:-120%;
 }
 
-/* 🔥 HOLD BEFORE SWEEP */
 40%{
   left:-120%;
 }
 
-/* 🔥 FAST SWEEP */
 55%{
   left:120%;
 }
 
-/* 🔥 HOLD AFTER */
 100%{
   left:120%;
 }
 
 }
 
-/* OPTIONAL: subtle hover feedback */
 .getStartedBtn:hover{
 border-color:rgba(255,255,255,0.4);
 transform:translateY(-1px);
@@ -414,9 +410,8 @@ transition:all 0.15s ease;
   visibility:hidden;
   pointer-events:none;
 
-  z-index:9999; /* 🔥 FORCE ON TOP */
+  z-index:9999;
 
-  /* 🔥 KILL ANY BLENDING EFFECTS */
   filter:none !important;
   backdrop-filter:none !important;
   mix-blend-mode:normal !important;
@@ -430,10 +425,8 @@ transition:all 0.15s ease;
 
 .btn.disabled{
   cursor:not-allowed;
-  filter:brightness(0.6); /* 🔥 visually dim without affecting children */
+  filter:brightness(0.6);
 }
-
-/* GREEN (positive actions) */
 
 .btn-green{
 background:#15803d;
@@ -444,8 +437,6 @@ background:#166534;
 box-shadow:0 0 6px rgba(34,197,94,0.6);
 }
 
-/* BLUE (add/create) */
-
 .btn-blue{
 background:#2563eb;
 }
@@ -455,8 +446,6 @@ background:#1d4ed8;
 box-shadow:0 0 6px rgba(59,130,246,0.6);
 }
 
-/* ORANGE (utility) */
-
 .btn-orange{
 background:#ea580c;
 }
@@ -465,8 +454,6 @@ background:#ea580c;
 background:#c2410c;
 box-shadow:0 0 6px rgba(249,115,22,0.6);
 }
-
-/* RED (danger) */
 
 .btn-red{
 background:#dc2626;
@@ -486,8 +473,6 @@ justify-content:space-evenly;
 gap:12px;
 width:100%;
 padding:0 20px;
-
-/* 🔥 FIX OVERFLOW */
 box-sizing:border-box;
 
 }
@@ -508,7 +493,6 @@ max-width: calc(100% - 40px);
 margin:16px auto;
 box-sizing:border-box;
 
-/* 🔥 NEW BACKGROUND CARD */
 background:linear-gradient(
   180deg,
   rgba(255, 235, 59, 0.45),
@@ -519,27 +503,23 @@ border:1px solid rgba(255, 235, 59, 0.9);
 
 border-radius:6px;
 
-/* 🔥 ANIMATION DEFAULT (HIDDEN STATE) */
 opacity:0;
 transform:none;
 transition:none;
 
 }
 
-/* 🔥 SCROLL CONTAINER */
 .blitzScroll{
-  flex:1;              /* 🔥 TAKE REMAINING SPACE */
+  flex:1;
   overflow:hidden;
 }
 
-/* 🔥 TRACK (MOVES) */
 .blitzTrack{
   display:flex;
   width:max-content;
   animation: blitzScroll 26s linear infinite;
 }
 
-/* 🔥 WHEN ACTIVE (FADE IN) */
 .blitzToggle.show{
 opacity:1;
 }
@@ -547,12 +527,8 @@ opacity:1;
 .blitzToggle label{
   display:flex;
   align-items:center;
-
   gap:12px;
-
   width:100%;
-
-  /* 🔥 KEY FIX */
   justify-content:flex-start;
 }
 
@@ -560,9 +536,7 @@ opacity:1;
   width:18px;
   height:18px;
   cursor:pointer;
-
-  align-self:center; /* 🔥 THIS FIXES VERTICAL ALIGN */
-
+  align-self:center;
   accent-color:#1a1a1a;
 }
 
@@ -604,8 +578,6 @@ justify-content:space-evenly;
 gap:12px;
 width:100%;
 padding:0 20px;
-
-/* 🔥 FIX OVERFLOW */
 box-sizing:border-box;
 
 }
@@ -620,8 +592,6 @@ gap:20px;
 width:100%;
 margin:20px 0;
 padding:0 20px;
-
-/* 🔥 FIX OVERFLOW */
 box-sizing:border-box;
 
 }
@@ -633,16 +603,12 @@ margin:0;
 padding: clamp(10px, 1.2vw, 15px);
 background:#111;
 border-radius:6px;
-
-/* 🔥 FIXED SCALING (NO MORE JUMPING) */
 font-size: clamp(11px, 1.2rem, 14px);
-
 cursor:pointer;
 transition:all 0.2s ease;
 
 }
 
-/* 🔥 SELECTED CARD (ACTIVE MATCHUP) */
 .matchOption.selectedCard{
 
 border:1px solid rgba(255,215,0,0.8);
@@ -659,8 +625,6 @@ box-shadow:
 0 0 25px rgba(255,215,0,0.4);
 
 transform:scale(1.01);
-
-/* 🔥 ADD THESE */
 cursor:not-allowed;
 opacity:0.9;
 
@@ -670,7 +634,6 @@ opacity:0.9;
 pointer-events:none;
 }
 
-/* 🔥 ARMED CARD (CONFIRM STATE) */
 .matchOption.armedCard{
 
 border:1px solid rgba(34,197,94,0.8);
@@ -682,7 +645,6 @@ transform:scale(1.01);
 
 }
 
-/* 🔥 HOVER GLOW EFFECT */
 .matchOption:not(.selectedCard):hover{
 
 transform:translateY(-2px);
@@ -691,8 +653,7 @@ box-shadow:0 0 12px rgba(34,197,94,0.6);
 }
 
 .matchCompact{
-  position: relative;   /* 🔥 ADD THIS */
-
+  position: relative;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
@@ -715,8 +676,6 @@ color:#ff4b4b;
 white-space:nowrap;
 text-align:left;
 flex-shrink:0;
-
-/* 🔥 FIX */
 min-width: max-content;
 margin-right:8px;
 
@@ -728,8 +687,6 @@ color:#4ba3ff;
 white-space:nowrap;
 text-align:left;
 flex-shrink:0;
-
-/* 🔥 FIX */
 min-width: max-content;
 margin-right:8px;
 
@@ -786,9 +743,7 @@ color:#ef4444;
 background:transparent;
 }
 
-/* DIFFERENCE COLORS (MATCHUP CARD) */
-
-.diff-0{ color:#22c55e; }   /* green */
+.diff-0{ color:#22c55e; }
 .diff-1{ color:#84cc16; }
 .diff-2{ color:#eab308; }
 .diff-3{ color:#f97316; }
@@ -801,8 +756,6 @@ color:#ccc;
 background:transparent;
 
 }
-
-/* Color Skill Gap filter labels */
 
 .radioRow label:has(input[value="0"]){
 color:#2563eb;
@@ -823,8 +776,6 @@ color:#f97316;
 .radioRow label:has(input[value="4"]){
 color:#ef4444;
 }
-
-/* FORCE DISABLED RADIO TEXT TO GREY (OVERRIDE COLORS) */
 
 .radioRow label.disabled{
 color:#888 !important;
@@ -847,17 +798,12 @@ box-shadow:0 4px 10px rgba(34,197,94,0.4);
 transition:all 0.15s ease;
 
 animation:generateGlow 3s infinite;
-
-/* 🔥 ADD THIS */
 position:relative;
 z-index:1;
-
-/* 🔥 ADD THIS (VERY IMPORTANT) */
 isolation:isolate;
 
 }
 
-/* 🔥 hover (lift effect) */
 .selectMatch:hover{
 
 transform:translateY(-2px);
@@ -865,17 +811,12 @@ box-shadow:0 6px 14px rgba(34,197,94,0.6);
 
 }
 
-/* 🔥 click press effect */
 .selectMatch:active{
 
 transform:translateY(1px);
 box-shadow:0 2px 6px rgba(34,197,94,0.4);
 
 }
-
-/* 🔥 selected state */
-
-/* 🔥 CONFIRM STATE (LOADING FILL EFFECT) */
 
 .selectMatch.confirming{
 
@@ -890,8 +831,6 @@ animation:none;
 box-shadow:0 0 8px rgba(255,215,0,0.4);
 
 z-index:2;
-
-/* 🔥 ADD THESE */
 display:flex;
 align-items:center;
 justify-content:center;
@@ -916,7 +855,6 @@ animation:confirmGlow 2.5s ease-in-out infinite;
 
 }
 
-/* 🔥 FILL ANIMATION LAYER */
 .selectMatch.confirming::before{
 
 content:"";
@@ -926,7 +864,6 @@ left:0;
 height:100%;
 width:0%;
 
-/* 🔥 base fill */
 background:linear-gradient(
   90deg,
   #facc15 0%,
@@ -934,10 +871,7 @@ background:linear-gradient(
   #d4af37 100%
 );
 
-/* 🔥 under text */
 z-index:-1;
-
-/* 🔥 animation */
 animation:confirmFill 4s ease-in-out infinite;
 
 }
@@ -951,7 +885,6 @@ left:-100%;
 width:100%;
 height:100%;
 
-/* 🔥 light sweep */
 background:linear-gradient(
   120deg,
   transparent,
@@ -960,12 +893,10 @@ background:linear-gradient(
 );
 
 z-index:0;
-
 animation:confirmShimmer 2.5s linear infinite;
 
 }
 
-/* 🔥 KEYFRAMES */
 @keyframes confirmFill{
 
 0%{ 
@@ -973,25 +904,21 @@ animation:confirmShimmer 2.5s linear infinite;
   left:0%;
 }
 
-/* fill left → right */
 40%{ 
   width:100%;
   left:0%;
 }
 
-/* hold */
 50%{ 
   width:100%;
   left:0%;
 }
 
-/* drain right → left */
 90%{ 
   width:0%;
   left:100%;
 }
 
-/* reset */
 100%{ 
   width:0%;
   left:0%;
@@ -1004,11 +931,8 @@ animation:confirmShimmer 2.5s linear infinite;
 background:linear-gradient(180deg,#facc15,#d4af37);
 color:black;
 cursor:default;
-
-/* 🔥 REMOVE GREEN GLOW */
 animation:none;
 
-/* 🔥 STRONG GOLD GLOW */
 box-shadow:
 0 0 12px rgba(255,215,0,0.9),
 0 0 25px rgba(255,215,0,0.5);
@@ -1075,8 +999,6 @@ transform:none;
   background:#333;
 }
 
-/* MATCHUP: WHITE TEAM BADGE */
-
 .matchCard .teamBadge{
   background:rgba(255,255,255,0.06);
   color:#ffffff;
@@ -1107,8 +1029,6 @@ transform:none;
   text-align:center;
 }
 
-/* REMOVE CHIP STYLE ONLY IN MATCHUP CARD */
-
 .matchCard .playerRow{
   background:none;
   padding:0;
@@ -1126,7 +1046,7 @@ transform:none;
 .matchFooter{
   margin-top:15px;
   font-size:14px;
-  }
+}
 
 /* HISTORY */
 
@@ -1147,7 +1067,7 @@ height:36px;
 font-size:13px;
 padding:0 10px;
 border-radius:6px;
-background:#2a2a2a; /* 🔥 match medium grey */
+background:#2a2a2a;
 color:white;
 border:1px solid #666;
 min-width:140px;
@@ -1170,12 +1090,12 @@ flex-shrink:0;
 .historyItem{
 
 border-bottom:1px solid #333;
-padding:6px 10px; /* 🔥 REDUCE SIDE PUSH */
+padding:6px 10px;
 width:100%;
 text-align:left;
 line-height:1.3;
 font-size:14px;
-overflow:hidden; /* 🔥 PREVENT HORIZONTAL SCROLL */
+overflow:hidden;
 
 }
 
@@ -1269,7 +1189,7 @@ background:#992222;
 
 }
 
-/* GENERATING OVERLAY */
+/* OVERLAYS */
 
 #generatingOverlay,
 #historyLoadingOverlay,
@@ -1301,8 +1221,6 @@ align-items:center;
 gap:20px;
 
 }
-
-/* SPINNER */
 
 .spinner{
 
@@ -1340,13 +1258,13 @@ box-shadow:0 4px 10px rgba(34,197,94,0.4);
 
 @keyframes blitzScroll{
 
-  0%{
-    transform:translateX(0); /* 🔥 START VISIBLE */
-  }
+0%{
+  transform:translateX(0);
+}
 
-  100%{
-    transform:translateX(-50%);
-  }
+100%{
+  transform:translateX(-50%);
+}
 
 }
 
@@ -1362,7 +1280,7 @@ box-shadow:0 4px 10px rgba(34,197,94,0.4);
 
 }
 
-/* GAMING TROPHY BADGE */
+/* BADGES */
 
 .skillMedal{
 
@@ -1388,8 +1306,6 @@ border-radius:6px;
 box-shadow:0 0 4px rgba(255,255,255,0.25);
 
 }
-
-/* REMOVE BADGE GLOW IN MATCHUP CARD ONLY */
 
 .matchCard .skillMedal{
   box-shadow:none;
@@ -1419,7 +1335,7 @@ margin-right:6px;
 
 }
 
-/* MATCH MAKER DROPDOWN */
+/* DROPDOWNS */
 
 #matchMakerSelect{
 
@@ -1427,7 +1343,7 @@ font-size:18px;
 padding:8px 12px;
 margin-top:10px;
 border-radius:6px;
-background:#2a2a2a; /* 🔥 medium grey */
+background:#2a2a2a;
 color:white;
 border:1px solid #666;
 text-align:center;
@@ -1435,392 +1351,16 @@ min-width:220px;
 
 }
 
-/* 🔥 APPLY SAME DARK STYLE TO ALL DROPDOWNS */
-
 select{
 
-background:#2a2a2a; /* 🔥 medium grey */
+background:#2a2a2a;
 color:white;
 border:1px solid #666;
 
 }
 
 #matchMakerSelect option{
-
 text-align:center;
-
-}
-
-/* MOBILE */
-
-@media(max-width:700px){
-
-/* 🔥 ADMIN BAR MOBILE FIX */
-
-#adminBar{
-
-top:8px;
-right:10px;
-
-justify-content:center;
-font-size:11px;
-gap:6px;
-
-}
-
-#adminLockBtn{
-
-padding:3px 8px;
-font-size:10px;
-
-}
-
-/* 🔥 MOBILE BLITZ LAYOUT */
-.blitzToggle{
-  max-width:500px;
-  margin:16px auto;
-  padding:12px;
-}
-
-.blitzToggle label{
-  justify-content:flex-start;
-
-  flex-wrap:wrap; /* 🔥 ALLOW WRAP ON MOBILE */
-}
-
-.blitzText{
-  white-space:normal;
-
-  flex-basis:100%; /* 🔥 DROP TO NEXT LINE */
-
-  text-align:center;
-  font-size:13px;
-  line-height:1.3;
-}
-
-/* 🔥 FIX: prevent horizontal scroll breaking layout */
-
-html, body {
-  overflow-x: hidden;
-  max-width: 100vw; /* 🔥 LOCK TO VIEWPORT */
-}
-
-/* Keep main title on one line */
-
-h1{
-
-white-space:nowrap;
-font-size:20px;
-
-}
-
-/* Scale down other text on mobile */
-
-h2{
-font-size:16px;
-}
-
-.historyControls,
-.adminControls{
-flex-wrap:nowrap;
-overflow-x:hidden;
-}
-  
-.historyControls .btn,
-.adminControls .btn{
-
-min-width:120px;
-height:34px;
-font-size:12px;
-
-}
-
-#generateButton{
-font-size:14px;
-}
-
-.radioRow{
-
-font-size:14px;
-display:grid;
-grid-template-columns:repeat(2, minmax(0,1fr));
-row-gap:8px;
-column-gap:8px;
-
-width:100%;
-max-width:500px; /* 🔥 same centering logic */
-margin:20px auto 0 auto;
-
-padding:0;
-text-align:center;
-
-}
-
-.radioRow label{
-
-display:flex;
-align-items:center;
-justify-content:flex-start;
-white-space:nowrap;
-
-padding:4px 6px; /* 🔥 adds balance inside cell */
-
-}
-
-.radioRow label.disabled{
-opacity:0.4;
-}
-
-.radioRow input:disabled{
-cursor:not-allowed;
-}
-
-.playerSort{
-font-size:14px;
-}
-
-#matchMakerSelect{
-font-size:14px;
-}
-
-#playersCheckboxes label{
-font-size:14px;
-}
-
-.historyItem{
-font-size:clamp(11px, 3vw, 13px);
-line-height:1.2;
-letter-spacing:-0.2px;
-}
-
-.historyLine1{
-white-space:nowrap;
-}
-
-.historyLine2,
-.historyLine3{
-
-display:block;
-white-space:nowrap;
-
-}
-
-td, th{
-
-font-size:clamp(10px, 2.5vw, 12px);
-padding:4px;
-white-space:nowrap;
-
-}
-
-#adminTable td{
-
-white-space:nowrap;
-overflow:hidden;
-text-overflow:ellipsis;
-
-}
-
-header{
-  padding:10px 10px 10px 10px;
-}
-
-/* 🔥 FIX: prevent bottom nav overlap on mobile */
-
-.tabContent{
-  margin-top:78px;
-  padding-top:6px;
-  padding-bottom:90px; /* 🔥 MATCH NAV HEIGHT */
-}
-
-/* Matchups become 1 per row */
-
-#generatedMatchups{
-
-grid-template-columns:1fr;
-
-width:100%;
-max-width:500px; /* 🔥 center alignment fix */
-margin:20px auto; /* 🔥 centers container */
-
-padding:0; /* 🔥 remove side bias */
-
-}
-
-/* Move navigation to bottom */
-
-.tabs{
-
-position:fixed;
-bottom:0;
-left:0;
-right:0;
-width:100%;
-height:70px; /* 🔥 FINAL HEIGHT */
-background:#000;
-display:flex;
-justify-content:space-around;
-align-items:center;
-border-top:1px solid #333;
-padding:0; /* 🔥 REMOVE EXTRA HEIGHT */
-z-index:2000;
-
-}
-
-/* Mobile tab buttons */
-
-.tabButton{
-
-display:flex;
-flex-direction:column;
-align-items:center;
-font-size:12px;
-padding:6px 4px;
-margin:0;
-background:none;
-
-}
-
-/* Show icons */
-
-.tabIcon{
-
-display:block;
-font-size:26px;
-margin-bottom:2px;
-
-}
-
-/* Player grid on mobile */
-
-#playersCheckboxes{
-
-display:grid;
-grid-template-columns:repeat(2, 1fr);
-gap:10px;
-
-width:100%;
-max-width:500px; /* 🔥 controls centering */
-margin:0 auto;   /* 🔥 centers grid */
-
-padding:0;
-
-}
-
-#playersCheckboxes label{
-
-display:flex;
-align-items:center;
-justify-content:flex-start; /* 🔥 LEFT ALIGN */
-text-align:left;
-
-}
-
-/* Limit matchup display height on mobile */
-
-.matchCompact{
-
-gap:4px;
-
-}
-
-.teamLine{
-
-display:grid;
-grid-template-columns:auto 1fr;
-align-items:center;
-column-gap:6px;
-
-}
-
-.teamPlayers{
-
-white-space:nowrap;
-overflow:hidden;
-text-overflow:ellipsis;
-font-size:clamp(10px,3vw,13px);
-
-}
-
-.badges{
-
-display:flex;
-flex-wrap:nowrap;
-justify-content:space-between;
-align-items:center;
-gap:6px;
-
-}
-
-.badge{
-
-white-space:nowrap;
-font-size:12px;
-padding:3px 8px;
-
-}
-
-.selectMatch{
-
-white-space:nowrap;
-font-size:12px;
-padding:3px 8px;
-
-}
-
-/* Reduce team label size on mobile */
-
-.redTeam,
-.blueTeam{
-
-font-size:clamp(10px,3vw,13px);
-font-weight:600;
-white-space:nowrap;
-
-}
-
-/* 🔥 HISTORY TABLE MOBILE (TIGHT + SCROLL BACKUP) */
-
-#historyTable {
-  display: block;
-  overflow-x: auto;
-  width: 100%;
-}
-
-/* tighter text */
-#historyTable th,
-#historyTable td {
-  font-size: 10px;
-  padding: 4px 3px;
-  white-space: nowrap;
-}
-
-/* shrink columns intelligently */
-#historyTable th:nth-child(1),
-#historyTable td:nth-child(1) {
-  min-width: 95px; /* Date */
-}
-
-#historyTable th:nth-child(2),
-#historyTable td:nth-child(2) {
-  min-width: 60px; /* MID */
-}
-
-#historyTable th:nth-child(3),
-#historyTable td:nth-child(3) {
-  min-width: 90px; /* Maker */
-}
-
-#historyTable th:nth-child(4),
-#historyTable td:nth-child(4) {
-  min-width: 70px; /* Picked */
-}
-
-#historyTable th:nth-child(5),
-#historyTable td:nth-child(5) {
-  min-width: 55px; /* Gap */
-}
-
 }
 
 .blitzText{
@@ -1852,7 +1392,7 @@ line-height:1.2;
   padding: 3px 8px;
 }
 
-/* 🔥 HISTORY TABLE STYLE */
+/* HISTORY TABLE STYLE */
 
 #historyTable {
   width: 95%;
@@ -1861,8 +1401,6 @@ line-height:1.2;
   font-size: 14px;
 }
 
-/* HEADER */
-
 #historyTable th {
   background: #111;
   border-bottom: 2px solid #333;
@@ -1870,14 +1408,11 @@ line-height:1.2;
   cursor: pointer;
   user-select: none;
   transition: all 0.15s ease;
-  position: relative;
-
   position: sticky;
   top: 0;
   z-index: 5;
 }
 
-/* 🔥 subtle underline base */
 #historyTable th::after {
   content: "";
   position: absolute;
@@ -1889,53 +1424,42 @@ line-height:1.2;
   transition: all 0.2s ease;
 }
 
-/* 🔥 underline appears on hover */
 #historyTable th:hover::after {
   background: #22c55e;
 }
 
-/* 🔥 HEADER HOVER */
 #historyTable th:hover {
   background: #1a1a1a;
   color: #22c55e;
 }
-
-/* ROWS */
 
 #historyTable td {
   padding: 10px;
   border-bottom: 1px solid #333;
 }
 
-/* 🔥 LEFT ALIGN FIRST COLUMN (DATE/TIME ONLY) */
 #historyTable td:first-child {
   text-align: left;
 }
 
-/* 🔥 CLICKABLE ROW */
 #historyTable tbody tr:not(.historyDetailRow) {
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
-/* 🔥 ROW HOVER EFFECT */
 #historyTable tbody tr:not(.historyDetailRow):hover {
   background: #1a1a1a;
   box-shadow: inset 0 0 10px rgba(34,197,94,0.2);
 }
 
-/* DETAIL ROW (EXPANDED MATCH) */
 .historyDetailRow td {
   background: #0b0b0b;
   padding: 15px;
 }
 
-/* MATCH CARD INSIDE TABLE */
 .historyDetailRow .matchCard {
   margin: 10px auto;
 }
-
-/* 🔥 EXPAND ICON */
 
 .expandIcon {
   display: inline-block;
@@ -1945,7 +1469,7 @@ line-height:1.2;
   font-size: 12px;
 }
 
-/* 🔥 MAPLIST TAB */
+/* MAPLIST TAB */
 
 #mapListLayout{
   width:100%;
@@ -1954,13 +1478,11 @@ line-height:1.2;
   margin:30px auto 0 auto;
 
   display:grid;
-  grid-template-columns: repeat(4, 1fr); /* 🔥 PERFECT ALIGNMENT */
+  grid-template-columns: repeat(4, 1fr);
   gap:28px;
 
   align-items:start;
 }
-
-/* LEFT: MASTER MAP LIST */
 
 #mapMasterList{
   display:grid;
@@ -1977,17 +1499,15 @@ line-height:1.2;
   grid-column:1 / -1;
   font-size:18px;
   font-weight:bold;
-  margin:0 0 15px 0; /* 🔥 ADD REAL SPACING */
+  margin:0 0 15px 0;
   text-align:center;
   letter-spacing:1px;
 
   position:relative;
   width:100%;
-
   margin-bottom:18px;
 }
 
-/* 🔥 SUBTEXT (DOES NOT PUSH LAYOUT) */
 .completeMapHeader::after{
   content:"LAST PLAYED MAPS ARE HIGHLIGHTED";
 
@@ -2037,9 +1557,9 @@ line-height:1.2;
 }
 
 .mapMasterRow{
-  display:flex;               /* 🔥 ADD */
-  align-items:center;         /* 🔥 ADD */
-  justify-content:center;     /* 🔥 ADD */
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
   padding:7px 10px;
   font-size:13px;
@@ -2048,7 +1568,7 @@ line-height:1.2;
   line-height:1.2;
   background:#111;
 
-  position:relative;          /* 🔥 ADD */
+  position:relative;
 }
 
 .mapMasterRow::before{
@@ -2068,13 +1588,11 @@ line-height:1.2;
   opacity:1;
 }
 
-/* 🔥 LAST PLAYED MAP HIGHLIGHT */
 .mapMasterRow.lastPlayedMap{
   background:rgba(34,197,94,0.12);
 
   border-left:3px solid #22c55e;
 
-  /* 🔥 remove full border */
   border-top:none;
   border-right:none;
   border-bottom:1px solid rgba(255,255,255,0.05);
@@ -2089,26 +1607,21 @@ line-height:1.2;
   border-bottom:none;
 }
 
-/* RIGHT: SESSION PANEL */
-
 #mapSessionPanel{
   background:transparent;
   border:none;
   box-shadow:none;
-
   padding:0;
-
-  grid-column: span 1; /* 🔥 ADDED */
+  grid-column: span 1;
 }
 
 .mapSessionSection{
-  background:#111; /* 🔥 match right cards */
+  background:#111;
   border:1px solid #333;
   border-radius:10px;
   overflow:hidden;
 
-  padding:0; /* 🔥 match right */
-
+  padding:0;
   margin-bottom:14px;
 
   box-shadow:0 0 10px rgba(0,0,0,0.35);
@@ -2117,8 +1630,6 @@ line-height:1.2;
 .mapSessionSection:last-of-type{
   margin-bottom:18px;
 }
-
-/* 🔥 UNIFIED SESSION MAP CARD */
 
 #sessionMapsUnifiedCard{
   width:100%;
@@ -2129,7 +1640,6 @@ line-height:1.2;
   flex-direction:column;
 }
 
-/* Mode headers should be the same height as map rows */
 .sessionUnifiedHeader,
 .sessionUnifiedRow{
   box-sizing:border-box;
@@ -2140,9 +1650,8 @@ line-height:1.2;
   align-items:center;
   justify-content:center;
 
-  padding:7px 10px; /* 🔥 SAME AS ROWS */
-
-  font-size:13px; /* 🔥 SAME AS ROWS */
+  padding:7px 10px;
+  font-size:13px;
   font-weight:bold;
 
   border-bottom:1px solid rgba(255,255,255,0.08);
@@ -2157,7 +1666,7 @@ line-height:1.2;
   grid-template-columns:1fr 24px;
   align-items:center;
 
-  padding:7px 10px; /* 🔥 EXACT MATCH */
+  padding:7px 10px;
   font-size:13px;
   line-height:1.2;
 
@@ -2185,8 +1694,8 @@ line-height:1.2;
   flex-direction:column;
   gap:14px;
 
-  width:100%;              /* 🔥 match card width */
-  max-width:380px;         /* 🔥 same as left column */
+  width:100%;
+  max-width:380px;
 }
 
 #sessionControls .btn{
@@ -2211,7 +1720,7 @@ line-height:1.2;
 
   border-bottom:1px solid rgba(255,255,255,0.08);
 
-  margin:0; /* 🔥 match right */
+  margin:0;
 }
 
 .mapSessionList{
@@ -2220,8 +1729,6 @@ line-height:1.2;
   gap:8px;
 }
 
-/* 🔥 FIX SESSION ROW STRUCTURE */
-
 .mapSessionCompactRow{
   display:grid;
   grid-template-columns: 1fr 24px;
@@ -2229,10 +1736,10 @@ line-height:1.2;
 
   width:100%;
 
-  padding:7px 10px; /* 🔥 MATCH RIGHT ROW HEIGHT */
+  padding:7px 10px;
   font-size:13px;
 
-  border-bottom:1px solid #222; /* 🔥 match right rows */
+  border-bottom:1px solid #222;
 }
 
 .mapSessionCompactRow:last-child{
@@ -2252,7 +1759,7 @@ line-height:1.2;
   width:16px;
   height:16px;
 
-  display:none; /* 🔥 HIDDEN BY DEFAULT */
+  display:none;
 
   align-items:center;
   justify-content:center;
@@ -2260,13 +1767,8 @@ line-height:1.2;
   padding:0;
 }
 
-/* 🔥 SHOW ONLY WHEN ADMIN MODE IS ACTIVE */
 body.admin-unlocked .mapDeleteMini{
   display:flex;
-}
-
-.mapDeleteMini:hover{
-  color:#ff4b4b;
 }
 
 .mapDeleteMini:hover{
@@ -2295,12 +1797,9 @@ body.admin-unlocked .mapDeleteMini{
   color:#ff4b4b;
 }
 
-/* SHARED MODE HEADER LOOK */
-
 .mapModeHeader{
-  padding:7px 10px; /* 🔥 MATCH LEFT HEADER HEIGHT */
-
-  font-size:13px; /* 🔥 MATCH LEFT TEXT SIZE */
+  padding:7px 10px;
+  font-size:13px;
   font-weight:bold;
   text-align:center;
 
@@ -2328,89 +1827,15 @@ body.admin-unlocked .mapDeleteMini{
   background:linear-gradient(180deg, rgba(75,163,255,0.18), rgba(75,163,255,0.06));
 }
 
-/* MOBILE */
-
-@media(max-width:1000px){
-
-  #mapListLayout{
-    grid-template-columns:1fr;
-    gap:18px;
-  }
-
-  #mapSessionPanel,
-  #mapMasterList{
-    width:100%;
-    max-width:none;
-    margin:0;
-    min-width:0;
-  }
-
-  #mapMasterList{
-    grid-template-columns:1fr;
-  }
-
-  #sessionMapsContainer,
-  #sessionMapsUnifiedCard,
-  #mapSessionPanel .mapMasterColumn,
-  #sessionControls{
-    width:100%;
-    max-width:none;
-    margin:0;
-    min-width:0;
-    box-sizing:border-box;
-  }
-
-  #sessionControls{
-    margin-top:16px;
-  }
-
-  #sessionControls .btn{
-    width:100%;
-    min-width:0;
-    box-sizing:border-box;
-    display:block;
-  }
-
-  .sessionMapsHeading{
-    font-size:18px;
-    font-weight:bold;
-    margin:0 0 16px 0;
-    text-align:center;
-    letter-spacing:1px;
-  }
-
-}
-
-@media(max-width:700px){
-
-  .mapMasterRow{
-    font-size:12px;
-    padding:6px 8px;
-  }
-
-  .mapSessionSectionTitle{
-    font-size:14px;
-    padding:9px 10px;
-  }
-
-  .mapSessionName,
-  .mapSessionEmpty{
-    font-size:13px;
-  }
-
-  }
-
-/* 🔐 HIDE DELETE BUTTONS WHEN LOCKED */
 body.admin-locked .mapDeleteMini {
   display: none !important;
 }
 
-/* 🔓 SHOW DELETE BUTTONS WHEN UNLOCKED */
 body.admin-unlocked .mapDeleteMini {
   display: flex !important;
 }
 
-/* 🔥 CUSTOM MODAL */
+/* CUSTOM MODAL */
 
 .modalOverlay{
   position:fixed;
@@ -2666,7 +2091,397 @@ body.admin-unlocked .mapDeleteMini {
   line-height:1.2;
 }
 
+/* MOBILE */
+
+@media(max-width:1000px){
+
+  #mapListTab{
+    padding-left:10px;
+    padding-right:10px;
+  }
+
+  #mapListLayout{
+    width:100%;
+    max-width:none;
+    margin:8px auto 0 auto;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+
+  #mapSessionPanel{
+    width:100%;
+    max-width:none;
+    margin:0;
+    order:1;
+  }
+
+  #mapMasterList{
+    width:100%;
+    max-width:none;
+    margin:0;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:18px;
+    order:2;
+  }
+
+  #sessionMapsContainer,
+  #sessionMapsUnifiedCard,
+  #mapSessionPanel .mapMasterColumn,
+  #sessionControls{
+    width:100%;
+    max-width:none;
+    margin:0;
+    box-sizing:border-box;
+  }
+
+  #sessionControls{
+    margin-top:16px;
+  }
+
+  #sessionControls .btn{
+    width:100%;
+    min-width:0;
+    box-sizing:border-box;
+    display:block;
+  }
+
+  .sessionMapsHeading{
+    font-size:18px;
+    font-weight:bold;
+    margin:0 0 16px 0;
+    text-align:center;
+    letter-spacing:1px;
+  }
+
+}
+
 @media(max-width:700px){
+
+  #adminBar{
+
+    top:8px;
+    right:10px;
+
+    justify-content:center;
+    font-size:11px;
+    gap:6px;
+
+  }
+
+  #adminLockBtn{
+
+    padding:3px 8px;
+    font-size:10px;
+
+  }
+
+  .blitzToggle{
+    max-width:500px;
+    margin:16px auto;
+    padding:12px;
+  }
+
+  .blitzToggle label{
+    justify-content:flex-start;
+    flex-wrap:wrap;
+  }
+
+  .blitzText{
+    white-space:normal;
+    flex-basis:100%;
+    text-align:center;
+    font-size:13px;
+    line-height:1.3;
+  }
+
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  h1{
+    white-space:nowrap;
+    font-size:20px;
+  }
+
+  h2{
+    font-size:16px;
+  }
+
+  .historyControls,
+  .adminControls{
+    flex-wrap:nowrap;
+    overflow-x:hidden;
+  }
+    
+  .historyControls .btn,
+  .adminControls .btn{
+
+    min-width:120px;
+    height:34px;
+    font-size:12px;
+
+  }
+
+  #generateButton{
+    font-size:14px;
+  }
+
+  .radioRow{
+
+    font-size:14px;
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0,1fr));
+    row-gap:8px;
+    column-gap:8px;
+
+    width:100%;
+    max-width:500px;
+    margin:20px auto 0 auto;
+
+    padding:0;
+    text-align:center;
+
+  }
+
+  .radioRow label{
+
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    white-space:nowrap;
+
+    padding:4px 6px;
+
+  }
+
+  .radioRow label.disabled{
+    opacity:0.4;
+  }
+
+  .radioRow input:disabled{
+    cursor:not-allowed;
+  }
+
+  .playerSort{
+    font-size:14px;
+  }
+
+  #matchMakerSelect{
+    font-size:14px;
+  }
+
+  #playersCheckboxes label{
+    font-size:14px;
+  }
+
+  .historyItem{
+    font-size:clamp(11px, 3vw, 13px);
+    line-height:1.2;
+    letter-spacing:-0.2px;
+  }
+
+  .historyLine1{
+    white-space:nowrap;
+  }
+
+  .historyLine2,
+  .historyLine3{
+    display:block;
+    white-space:nowrap;
+  }
+
+  td, th{
+    font-size:clamp(10px, 2.5vw, 12px);
+    padding:4px;
+    white-space:nowrap;
+  }
+
+  #adminTable td{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  header{
+    padding:10px 10px 10px 10px;
+  }
+
+  .tabContent{
+    margin-top:78px;
+    padding-top:6px;
+    padding-bottom:90px;
+  }
+
+  #generatedMatchups{
+
+    grid-template-columns:1fr;
+
+    width:100%;
+    max-width:500px;
+    margin:20px auto;
+
+    padding:0;
+
+  }
+
+  .tabs{
+
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    width:100%;
+    height:70px;
+    background:#000;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    border-top:1px solid #333;
+    padding:0;
+    z-index:2000;
+
+  }
+
+  .tabButton{
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    font-size:12px;
+    padding:6px 4px;
+    margin:0;
+    background:none;
+
+  }
+
+  .tabIcon{
+
+    display:block;
+    font-size:26px;
+    margin-bottom:2px;
+
+  }
+
+  #playersCheckboxes{
+
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:10px;
+
+    width:100%;
+    max-width:500px;
+    margin:0 auto;
+
+    padding:0;
+
+  }
+
+  #playersCheckboxes label{
+
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    text-align:left;
+
+  }
+
+  .matchCompact{
+    gap:4px;
+  }
+
+  .teamLine{
+
+    display:grid;
+    grid-template-columns:auto 1fr;
+    align-items:center;
+    column-gap:6px;
+
+  }
+
+  .teamPlayers{
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size:clamp(10px,3vw,13px);
+
+  }
+
+  .badges{
+
+    display:flex;
+    flex-wrap:nowrap;
+    justify-content:space-between;
+    align-items:center;
+    gap:6px;
+
+  }
+
+  .badge{
+
+    white-space:nowrap;
+    font-size:12px;
+    padding:3px 8px;
+
+  }
+
+  .selectMatch{
+
+    white-space:nowrap;
+    font-size:12px;
+    padding:3px 8px;
+
+  }
+
+  .redTeam,
+  .blueTeam{
+
+    font-size:clamp(10px,3vw,13px);
+    font-weight:600;
+    white-space:nowrap;
+
+  }
+
+  #historyTable {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  #historyTable th,
+  #historyTable td {
+    font-size: 10px;
+    padding: 4px 3px;
+    white-space: nowrap;
+  }
+
+  #historyTable th:nth-child(1),
+  #historyTable td:nth-child(1) {
+    min-width: 95px;
+  }
+
+  #historyTable th:nth-child(2),
+  #historyTable td:nth-child(2) {
+    min-width: 60px;
+  }
+
+  #historyTable th:nth-child(3),
+  #historyTable td:nth-child(3) {
+    min-width: 90px;
+  }
+
+  #historyTable th:nth-child(4),
+  #historyTable td:nth-child(4) {
+    min-width: 70px;
+  }
+
+  #historyTable th:nth-child(5),
+  #historyTable td:nth-child(5) {
+    min-width: 55px;
+  }
 
   .upcomingSection{
     margin:30px auto 0 auto;
