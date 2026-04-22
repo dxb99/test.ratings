@@ -2576,3 +2576,14 @@ body.admin-unlocked .mapDeleteMini {
   color:#777;
   font-size:22px;
 }
+
+.upcomingSection{
+  width:100%;
+  max-width:760px;
+  margin:40px auto 0 auto;
+}
+
+.upcomingSessionCard{
+  width:100%;
+  box-sizing:border-box;
+}
