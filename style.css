@@ -1821,7 +1821,7 @@ white-space:nowrap;
   min-width: 55px; /* Gap */
 }
 
-}.blitzText{
+.blitzText{
 
 font-weight:600;
 color:#1a1a1a;
@@ -2643,12 +2643,19 @@ body.admin-unlocked .mapDeleteMini {
 
   #mapListLayout{
     margin:8px auto 0 auto;
+    grid-template-columns:1fr;
+    gap:18px;
   }
 
   #mapSessionPanel{
     width:100%;
     max-width:none;
     margin:0;
+    grid-column:auto;
+  }
+
+  #sessionMapsContainer{
+    width:100%;
   }
 
   #sessionMapsUnifiedCard{
@@ -2658,6 +2665,13 @@ body.admin-unlocked .mapDeleteMini {
   #sessionControls{
     width:100%;
     max-width:none;
+  }
+
+  #sessionControls .btn{
+    width:100%;
+    max-width:none;
+    display:flex;
+    justify-content:center;
   }
 
   .upcomingSection{
