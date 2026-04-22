@@ -334,8 +334,6 @@ const el=document.getElementById("matchupContent");
 const countdown=document.getElementById("matchCountdown");
 const upcomingSessionMaker = document.getElementById("upcomingSessionMaker");
 
-countdown.innerHTML = "MATCHUP EXPIRES IN --:--:--";
-
 // 🔥 RESET server key if no matchup
 currentMatchKeyFromServer = null;
   
@@ -811,6 +809,8 @@ function startCountdown(expiry){
 }
 
   const el=document.getElementById("matchCountdown");
+
+  el.innerHTML = "MATCHUP EXPIRES IN --:--:--";
 
   countdownTimer = setInterval(()=>{
 
