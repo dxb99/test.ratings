@@ -2140,70 +2140,47 @@ saveBtn.onclick = async () => {
 if(copyBtn){
   copyBtn.onclick = async () => {
 
-const originalCard = document.getElementById("mapSessionPanel");
-const sessionCard = originalCard.cloneNode(true);
+    const sessionCard = document.getElementById("mapSessionPanel");
 
-if(!sessionCard){
-  showModal("Session maps not found", "alert");
-  return;
-}
+    if(!sessionCard){
+      showModal("Session maps not found", "alert");
+      return;
+    }
 
-// 🔥 temporarily hide delete buttons
-const deleteBtns = sessionCard.querySelectorAll(".mapDeleteMini");
-deleteBtns.forEach(btn => btn.style.display = "none");
+    sessionCard.classList.add("copyCaptureMode");
 
-// 🔥 attach clone off-screen so html2canvas captures full layout
-sessionCard.style.position = "absolute";
-sessionCard.style.left = "-9999px";
-sessionCard.style.top = "0";
-document.body.appendChild(sessionCard);
-    
-// 🔥 wrap in temp container for padding
-const wrapper = document.createElement("div");
-wrapper.style.padding = "30px";
-wrapper.style.background = "#000";
+    try{
 
-wrapper.style.height = "auto";
-wrapper.style.minHeight = sessionCard.scrollHeight + "px";
-wrapper.style.overflow = "visible";
+      await new Promise(resolve => requestAnimationFrame(() => resolve()));
 
-wrapper.style.borderRadius = "12px";
+      const canvas = await html2canvas(sessionCard, {
+        backgroundColor: "#000",
+        scale: 2,
+        useCORS: true
+      });
 
-/* 🔥 FIX WIDTH */
-wrapper.style.width = sessionCard.scrollWidth + "px";
-wrapper.style.display = "block";
+      const blob = await new Promise(resolve => canvas.toBlob(resolve, "image/png"));
 
-wrapper.appendChild(sessionCard);
-document.body.appendChild(wrapper);
-
-const canvas = await html2canvas(wrapper, {
-  backgroundColor: null,
-  scale: 2
-});
-
-// 🔥 move card back to original place
-wrapper.remove();
-
-    canvas.toBlob(async (blob) => {
-
-    // 🔥 remove cloned element after capture
-    sessionCard.remove();
-
-    // 🔥 restore delete buttons after capture
-    deleteBtns.forEach(btn => btn.style.display = "flex");
-
-      try{
-        await navigator.clipboard.write([
-          new ClipboardItem({ "image/png": blob })
-        ]);
-
-        showModal("Session maps copied as image ✅", "alert");
-
-      }catch(err){
-        showModal("Copy image failed. Your browser may not support it.", "alert");
+      if(!blob){
+        throw new Error("Canvas export failed");
       }
 
-    });
+      await navigator.clipboard.write([
+        new ClipboardItem({ "image/png": blob })
+      ]);
+
+      showModal("Session maps copied as image ✅", "alert");
+
+    }catch(err){
+
+      console.error(err);
+      showModal("Copy image failed. Your browser may not support it.", "alert");
+
+    }finally{
+
+      sessionCard.classList.remove("copyCaptureMode");
+
+    }
 
   };
 }
