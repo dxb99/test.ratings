@@ -16,6 +16,7 @@ let currentHistorySort = {
   direction: "desc"
 };
 let globalMapMatchMaker = "";
+let adminHasUnsavedChanges = false;
 let armedMatchKey = null; // 🔥 tracks first click before confirm
 
 /* 🔥 GLOBAL MODAL SYSTEM */
@@ -978,6 +979,68 @@ updateSelectedPlayerCount();
 
 }
 
+function markAdminDirty(isDirty = true){
+  adminHasUnsavedChanges = isDirty;
+
+  const status = document.getElementById("adminDirtyStatus");
+  if(!status) return;
+
+  status.style.display = isDirty ? "inline-block" : "none";
+}
+
+function createSkillAdjuster(value){
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "skillAdjuster";
+
+  const downBtn = document.createElement("button");
+  downBtn.className = "skillAdjustBtn";
+  downBtn.type = "button";
+  downBtn.textContent = "▼";
+
+  const cell = document.createElement("div");
+  cell.className = "skillValueCell";
+  cell.contentEditable = "true";
+  cell.textContent = value;
+
+  const upBtn = document.createElement("button");
+  upBtn.className = "skillAdjustBtn";
+  upBtn.type = "button";
+  upBtn.textContent = "▲";
+
+  const clampAndSet = (nextValue) => {
+    const numeric = parseInt(nextValue, 10);
+    cell.textContent = Number.isNaN(numeric) ? "0" : String(numeric);
+    markAdminDirty(true);
+  };
+
+  downBtn.onclick = () => {
+    const current = parseInt(cell.textContent.trim(), 10) || 0;
+    cell.textContent = String(current - 1);
+    markAdminDirty(true);
+  };
+
+  upBtn.onclick = () => {
+    const current = parseInt(cell.textContent.trim(), 10) || 0;
+    cell.textContent = String(current + 1);
+    markAdminDirty(true);
+  };
+
+  cell.addEventListener("input", () => {
+    markAdminDirty(true);
+  });
+
+  cell.addEventListener("blur", () => {
+    clampAndSet(cell.textContent.trim());
+  });
+
+  wrapper.appendChild(downBtn);
+  wrapper.appendChild(cell);
+  wrapper.appendChild(upBtn);
+
+  return wrapper;
+}
+
 async function openAdminTab(btn){
 
   showTab("adminTab", btn);
@@ -1011,16 +1074,23 @@ async function openAdminTab(btn){
 
     <td contenteditable="true">${p.name}</td>
 
-    <td contenteditable="true">${p.skill}</td>
+    <td class="skillCell"></td>
 
     <td><button class="btn btn-red remove">REMOVE</button></td>
 
     `;
 
+    row.cells[0].addEventListener("input", () => {
+      markAdminDirty(true);
+    });
+
+    row.querySelector(".skillCell").appendChild(createSkillAdjuster(p.skill));
+
     row.querySelector(".remove").onclick=()=>{
 
       row.remove();
       updatePlayerCount();
+      markAdminDirty(true);
 
     };
 
@@ -1029,6 +1099,7 @@ async function openAdminTab(btn){
   });
 
   updatePlayerCount();
+  markAdminDirty(false);
 
 }
 
@@ -1050,22 +1121,30 @@ function addAdminPlayerRow(){
 
   <td contenteditable="true"></td>
 
-  <td contenteditable="true">0</td>
+  <td class="skillCell"></td>
 
   <td><button class="btn btn-red remove">REMOVE</button></td>
 
   `;
 
+  row.cells[0].addEventListener("input", () => {
+    markAdminDirty(true);
+  });
+
+  row.querySelector(".skillCell").appendChild(createSkillAdjuster(0));
+
   row.querySelector(".remove").onclick = () => {
 
     row.remove();
     updatePlayerCount();
+    markAdminDirty(true);
 
   };
 
   table.appendChild(row);
 
   updatePlayerCount();
+  markAdminDirty(true);
 
 }
 
@@ -1085,13 +1164,14 @@ if(!pass) return;
   document.querySelectorAll("#adminTable tbody tr").forEach(row=>{
 
     const name = row.cells[0].innerText.trim();
-    const skill = parseInt(row.cells[1].innerText.trim());
+    const skillCell = row.querySelector(".skillValueCell");
+    const skill = parseInt(skillCell ? skillCell.innerText.trim() : "0", 10);
 
     if(!name) return;
 
     players.push({
       name:name,
-      skill:skill
+      skill:Number.isNaN(skill) ? 0 : skill
     });
 
   });
@@ -1118,6 +1198,8 @@ if(!data.ok){
 // 🔥 ADD THIS
 sessionStorage.setItem("adminPass", pass);
 updateAdminBar();
+
+markAdminDirty(false);
 
 showModal("Players saved successfully", "alert");
 
