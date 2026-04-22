@@ -334,6 +334,8 @@ const el=document.getElementById("matchupContent");
 const countdown=document.getElementById("matchCountdown");
 const upcomingSessionMaker = document.getElementById("upcomingSessionMaker");
 
+countdown.innerHTML = "MATCHUP EXPIRES IN --:--:--";
+
 // 🔥 RESET server key if no matchup
 currentMatchKeyFromServer = null;
   
@@ -361,7 +363,7 @@ if(!match){
 
   `;
 
-  countdown.innerHTML="";
+  countdown.innerHTML = "MATCHUP EXPIRES IN --:--:--";
 
 /* 🔥 GET STARTED BUTTON CLICK */
 setTimeout(() => {
@@ -472,7 +474,7 @@ if(expiry <= now){
 
   `;
 
-  countdown.innerHTML="";
+  countdown.innerHTML = "MATCHUP EXPIRES IN --:--:--";
 
   /* 🔥 GET STARTED BUTTON CLICK */
   setTimeout(() => {
@@ -818,12 +820,10 @@ function startCountdown(expiry){
 
     if(diff<=0){
 
-  /* 🔥 STOP TIMER */
   clearInterval(countdownTimer);
   countdownTimer = null;
 
-  /* 🔥 CLEAR TEXT */
-  el.innerHTML="";
+  el.innerHTML = "MATCHUP EXPIRES IN --:--:--";
 
   return;
 
