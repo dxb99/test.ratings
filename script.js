@@ -2173,8 +2173,8 @@ wrapper.style.borderRadius = "12px";
 wrapper.style.width = sessionCard.scrollWidth + "px";
 wrapper.style.display = "block";
 
-sessionCard.parentNode.insertBefore(wrapper, sessionCard);
 wrapper.appendChild(sessionCard);
+document.body.appendChild(wrapper);
 
 const canvas = await html2canvas(wrapper, {
   backgroundColor: null,
@@ -2182,7 +2182,6 @@ const canvas = await html2canvas(wrapper, {
 });
 
 // 🔥 move card back to original place
-wrapper.parentNode.insertBefore(sessionCard, wrapper);
 wrapper.remove();
 
     canvas.toBlob(async (blob) => {
