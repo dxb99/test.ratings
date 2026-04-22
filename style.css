@@ -2724,3 +2724,18 @@ body.admin-unlocked .mapDeleteMini {
   }
 
 }
+
+@media(max-width:1000px){
+  #mapSessionPanel{
+    outline:2px solid red;
+  }
+
+  #sessionMapsUnifiedCard{
+    outline:2px solid lime;
+  }
+
+  #sessionControls{
+    outline:2px solid cyan;
+  }
+}
+
