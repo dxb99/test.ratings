@@ -2585,37 +2585,53 @@ body.admin-unlocked .mapDeleteMini {
 }
 
 .upcomingSessionCard{
-  width:720px;
+  width:430px;
   max-width:100%;
   margin:0 auto;
   box-sizing:border-box;
-  transform:scale(0.60);
-  transform-origin:top center;
+}
+
+.upcomingSessionCard .copySessionShell,
+.upcomingSessionCard{
+  padding:0;
+}
+
+.upcomingSessionCard.copySessionShell{
+  padding:16px 14px 14px 14px;
+  border-radius:14px;
 }
 
 .upcomingSessionCard .copySessionTitle{
   font-size:18px;
   font-weight:400;
-  margin-bottom:15px;
+  margin-bottom:10px;
   letter-spacing:0;
 }
 
 .upcomingSessionCard .copySessionMaker{
   font-size:14px;
   font-weight:400;
-  margin-bottom:15px;
+  margin-bottom:10px;
   letter-spacing:0;
+}
+
+.upcomingSessionCard .copySessionBody{
+  gap:10px;
+}
+
+.upcomingSessionCard .copySessionSection{
+  border-radius:10px;
 }
 
 .upcomingSessionCard .copySessionSectionHeader{
   font-size:16px;
   font-weight:bold;
-  padding:9px 12px;
+  padding:8px 10px;
 }
 
 .upcomingSessionCard .copySessionRow{
   min-height:auto;
-  padding:6px 10px;
+  padding:5px 8px;
 }
 
 .upcomingSessionCard .copySessionName{
