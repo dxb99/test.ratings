@@ -1706,6 +1706,21 @@ line-height:1.2;
   font-weight:600;
 }
 
+.mapMasterRow.customMapSelectable{
+  cursor:pointer;
+}
+
+.mapMasterRow.customMapSelectable:hover{
+  background:#171717;
+}
+
+.mapMasterRow.customMapSelected{
+  background:rgba(250,204,21,0.12);
+  border-left:3px solid #facc15;
+  color:#facc15;
+  font-weight:600;
+}
+
 .mapMasterRow:last-child{
   border-bottom:none;
 }
