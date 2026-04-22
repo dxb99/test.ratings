@@ -157,7 +157,7 @@ border-radius:2px;
 .tabContent{
 
 display:none;
-padding:12px 25px 25px 25px;
+padding:25px;
 
 /* 🔥 PUSH CONTENT BELOW FIXED HEADER */
 margin-top:110px;
