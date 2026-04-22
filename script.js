@@ -2140,22 +2140,36 @@ saveBtn.onclick = async () => {
 if(copyBtn){
   copyBtn.onclick = async () => {
 
-    const sessionCard = document.getElementById("mapSessionPanel");
+    const matchMakerSelect = document.getElementById("mapMatchMakerSelect");
+    const matchMaker = matchMakerSelect ? matchMakerSelect.value.trim() : "";
 
-    if(!sessionCard){
-      showModal("Session maps not found", "alert");
+    const sessionData = await api({
+      action:"getSessionMaps"
+    });
+
+    if(!sessionData || !sessionData.ok){
+      showModal("Could not load session maps", "alert");
       return;
     }
 
-    sessionCard.classList.add("copyCaptureMode");
+    const copyCard = document.getElementById("copySessionCard");
+
+    if(!copyCard){
+      showModal("Copy card not found", "alert");
+      return;
+    }
+
+    buildCopySessionCard(sessionData, matchMaker);
+
+    copyCard.classList.add("show");
 
     try{
 
       await new Promise(resolve => requestAnimationFrame(() => resolve()));
 
-      const canvas = await html2canvas(sessionCard, {
-        backgroundColor: "#000",
-        scale: 2,
+      const canvas = await html2canvas(copyCard, {
+        backgroundColor: null,
+        scale: 4,
         useCORS: true
       });
 
@@ -2178,14 +2192,65 @@ if(copyBtn){
 
     }finally{
 
-      sessionCard.classList.remove("copyCaptureMode");
+      copyCard.classList.remove("show");
 
     }
 
   };
 }
 
+
 }
+
+function buildCopySessionCard(data, matchMaker){
+
+  const makerEl = document.getElementById("copySessionMaker");
+  const bodyEl = document.getElementById("copySessionBody");
+
+  if(!makerEl || !bodyEl) return;
+
+  makerEl.textContent = "MATCH MAKER: " + (matchMaker || "Not selected");
+
+  const sections = [
+    {
+      label: "Elimination",
+      className: "eliminationHeader",
+      maps: (data.elimination || []).filter(Boolean)
+    },
+    {
+      label: "Blitz",
+      className: "blitzHeader",
+      maps: (data.blitz || []).filter(Boolean)
+    },
+    {
+      label: "CTF",
+      className: "ctfHeader",
+      maps: (data.ctf || []).filter(Boolean)
+    }
+  ];
+
+  bodyEl.innerHTML = sections.map(section => {
+    const rows = section.maps.length
+      ? section.maps.map((mapName, index) => `
+        <div class="copySessionRow">
+          <span class="copySessionIndex">${index + 1}.</span>
+          <span class="copySessionName">${mapName}</span>
+        </div>
+      `).join("")
+      : `
+        <div class="copySessionEmpty">-</div>
+      `;
+
+    return `
+      <div class="copySessionSection">
+        <div class="copySessionSectionHeader ${section.className}">${section.label}</div>
+        <div class="copySessionRows">${rows}</div>
+      </div>
+    `;
+  }).join("");
+
+}
+
 
 function handleSessionHighlightUpdate(){
 
