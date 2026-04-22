@@ -1628,7 +1628,8 @@ header{
 /* 🔥 FIX: prevent bottom nav overlap on mobile */
 
 .tabContent{
-  padding-top:10px;
+  margin-top:78px;
+  padding-top:6px;
   padding-bottom:90px; /* 🔥 MATCH NAV HEIGHT */
 }
 
