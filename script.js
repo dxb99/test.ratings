@@ -186,7 +186,7 @@ function isAdminUnlocked(){
 
 window.addEventListener("load", async () => {
 
-sessionStorage.removeItem("selectedMatchMaker");
+sessionStorage.removeItem("selectedGeneratorMatchMaker");
 sessionStorage.removeItem("selectedPlayers");
 sessionStorage.removeItem("adminPass");
 
