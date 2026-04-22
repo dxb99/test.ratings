@@ -15,6 +15,7 @@ let currentHistorySort = {
   key: "date",
   direction: "desc"
 };
+let globalMapMatchMaker = "";
 let armedMatchKey = null; // 🔥 tracks first click before confirm
 
 /* 🔥 GLOBAL MODAL SYSTEM */
@@ -261,6 +262,7 @@ if(!data.ok){
 }
 
 allPlayers = data.players || [];
+globalMapMatchMaker = data.mapMatchMaker || "";
 
 populatePlayers(allPlayers);
 
@@ -927,14 +929,13 @@ sessionStorage.setItem(
 /* 🔥 ADD THIS BLOCK */
 
 const savedGeneratorMaker = sessionStorage.getItem("selectedGeneratorMatchMaker");
-const savedMapMaker = sessionStorage.getItem("selectedMapMatchMaker");
 
 if(savedGeneratorMaker){
   maker.value = savedGeneratorMaker;
 }
 
-if(mapMaker && savedMapMaker){
-  mapMaker.value = savedMapMaker;
+if(mapMaker && globalMapMatchMaker){
+  mapMaker.value = globalMapMatchMaker;
 }
 
 /* 🔥 AND THIS BLOCK */
@@ -951,9 +952,21 @@ maker.onchange = function(){
 
 if(mapMaker){
 
-  mapMaker.onchange = function(){
+  mapMaker.onchange = async function(){
 
-    sessionStorage.setItem("selectedMapMatchMaker", this.value);
+    const selectedName = this.value;
+
+    const res = await api({
+      action:"saveGlobalMapMatchMaker",
+      matchMaker: selectedName
+    });
+
+    if(!res || !res.ok){
+      showModal("Could not save map list match maker", "alert");
+      return;
+    }
+
+    globalMapMatchMaker = res.matchMaker || "";
 
     renderUpcomingSessionCard({
       elimination: Array.from(document.querySelectorAll("#eliminationSessionList .mapSessionName")).map(x => x.innerText.trim()),
@@ -1847,17 +1860,14 @@ function renderSessionMaps(data){
 
 function renderUpcomingSessionCard(data){
 
-  const matchMakerSelect = document.getElementById("mapMatchMakerSelect");
-  const matchMaker = matchMakerSelect ? matchMakerSelect.value.trim() : "";
-
-  buildCopySessionCard(data, matchMaker, {
+  buildCopySessionCard(data, globalMapMatchMaker, {
     makerId: "upcomingSessionMaker",
     bodyId: "upcomingSessionBody"
   });
 
 }
 
-
+// 🔥 RENDER SESSION MAPS
 function renderUnifiedSessionMaps(data){
 
   const container = document.getElementById("sessionMapsUnifiedRows");
@@ -2164,8 +2174,7 @@ saveBtn.onclick = async () => {
 if(copyBtn){
   copyBtn.onclick = async () => {
 
-    const matchMakerSelect = document.getElementById("mapMatchMakerSelect");
-    const matchMaker = matchMakerSelect ? matchMakerSelect.value.trim() : "";
+    const matchMaker = globalMapMatchMaker;
 
     const sessionData = await api({
       action:"getSessionMaps"
