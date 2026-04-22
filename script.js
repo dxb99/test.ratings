@@ -2209,7 +2209,7 @@ function buildCopySessionCard(data, matchMaker){
 
   if(!makerEl || !bodyEl) return;
 
-  makerEl.textContent = "MATCH MAKER: " + (matchMaker || "Not selected");
+  makerEl.textContent = "Match Maker: " + (matchMaker || "Not selected");
 
   const sections = [
     {
