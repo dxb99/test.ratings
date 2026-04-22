@@ -2340,10 +2340,9 @@ body.admin-unlocked .mapDeleteMini{
   #mapSessionPanel,
   #mapMasterList{
     width:100%;
-    min-width:0;
     max-width:none;
     margin:0;
-    justify-self:stretch;
+    min-width:0;
   }
 
   #mapMasterList{
@@ -2355,9 +2354,9 @@ body.admin-unlocked .mapDeleteMini{
   #mapSessionPanel .mapMasterColumn,
   #sessionControls{
     width:100%;
-    min-width:0;
     max-width:none;
     margin:0;
+    min-width:0;
     box-sizing:border-box;
   }
 
@@ -2724,18 +2723,3 @@ body.admin-unlocked .mapDeleteMini {
   }
 
 }
-
-@media(max-width:1000px){
-  #mapSessionPanel{
-    outline:2px solid red;
-  }
-
-  #sessionMapsUnifiedCard{
-    outline:2px solid lime;
-  }
-
-  #sessionControls{
-    outline:2px solid cyan;
-  }
-}
-
