@@ -17,6 +17,17 @@ let currentHistorySort = {
 };
 let globalMapMatchMaker = "";
 let adminHasUnsavedChanges = false;
+let customSessionActive = false;
+let customSessionData = {
+  elimination: [],
+  blitz: [],
+  ctf: []
+};
+let currentSessionMaps = {
+  elimination: [],
+  blitz: [],
+  ctf: []
+};
 let armedMatchKey = null; // 🔥 tracks first click before confirm
 
 /* 🔥 GLOBAL MODAL SYSTEM */
@@ -965,11 +976,7 @@ if(mapMaker){
 
     globalMapMatchMaker = res.matchMaker || "";
 
-    renderUpcomingSessionCard({
-      elimination: Array.from(document.querySelectorAll("#eliminationSessionList .mapSessionName")).map(x => x.innerText.trim()),
-      blitz: Array.from(document.querySelectorAll("#blitzSessionList .mapSessionName")).map(x => x.innerText.trim()),
-      ctf: Array.from(document.querySelectorAll("#ctfSessionList .mapSessionName")).map(x => x.innerText.trim())
-    });
+    renderUpcomingSessionCard(getActiveSessionMaps());
 
   };
 
@@ -1881,6 +1888,38 @@ if(blitzToggle && blitzContainer){
 
 }
 
+function normalizeSessionData(data = {}){
+  return {
+    elimination: Array.isArray(data.elimination) ? data.elimination.filter(Boolean) : [],
+    blitz: Array.isArray(data.blitz) ? data.blitz.filter(Boolean) : [],
+    ctf: Array.isArray(data.ctf) ? data.ctf.filter(Boolean) : []
+  };
+}
+
+function getActiveSessionMaps(){
+  return customSessionActive
+    ? normalizeSessionData(customSessionData)
+    : normalizeSessionData(currentSessionMaps);
+}
+
+async function loadCustomSessionState(){
+
+  const res = await api({
+    action:"getCustomSession"
+  });
+
+  if(!res || !res.ok){
+    console.log("Failed loading custom session");
+    customSessionActive = false;
+    customSessionData = normalizeSessionData();
+    return;
+  }
+
+  customSessionActive = !!res.active;
+  customSessionData = normalizeSessionData(res.session);
+
+}
+
 // 🔥 LOAD CURRENT SESSION MAPS
 async function loadSessionMaps(){
 
@@ -1899,6 +1938,9 @@ if(overlay){
     return;
   }
 
+  await loadCustomSessionState();
+  currentSessionMaps = normalizeSessionData(sessionData);
+
   const initialData = await api({
   action:"getInitialData"
 });
@@ -1908,8 +1950,10 @@ if(initialData.ok && initialData.mapList){
 }
 
 // 🔥 NOW render session AFTER master exists
-renderSessionMaps(sessionData);
-renderUpcomingSessionCard(sessionData);
+const activeSession = getActiveSessionMaps();
+
+renderSessionMaps(activeSession);
+renderUpcomingSessionCard(activeSession);
 
 // 🔥 APPLY HIGHLIGHT AFTER LOAD
 setTimeout(()=>{
@@ -2254,14 +2298,11 @@ if(copyBtn){
 
     const matchMaker = globalMapMatchMaker;
 
-    const sessionData = await api({
-      action:"getSessionMaps"
-    });
+    await loadCustomSessionState();
 
-    if(!sessionData || !sessionData.ok){
-      showModal("Could not load session maps", "alert");
-      return;
-    }
+    const sessionData = customSessionActive
+      ? normalizeSessionData(customSessionData)
+      : getActiveSessionMaps();
 
     const copyCard = document.getElementById("copySessionCard");
 
