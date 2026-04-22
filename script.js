@@ -2140,7 +2140,7 @@ saveBtn.onclick = async () => {
 if(copyBtn){
   copyBtn.onclick = async () => {
 
-const originalCard = document.querySelector("#sessionMapsContainer").closest("div");
+const originalCard = document.getElementById("mapSessionPanel");
 const sessionCard = originalCard.cloneNode(true);
 
 if(!sessionCard){
