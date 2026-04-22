@@ -2473,3 +2473,18 @@ body.admin-unlocked .mapDeleteMini {
   padding:4px 8px;
   min-width:160px;
 }
+
+.copyCaptureMode{
+  background:#000;
+  padding:12px;
+  border-radius:10px;
+}
+
+.copyCaptureMode #sessionControls{
+  display:none !important;
+}
+
+.copyCaptureMode .mapDeleteMini{
+  display:none !important;
+}
+
