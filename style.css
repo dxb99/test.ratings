@@ -2649,32 +2649,23 @@ body.admin-unlocked .mapDeleteMini {
     gap:18px;
   }
 
+  #mapSessionPanel,
+  #sessionMapsContainer,
+  #sessionMapsUnifiedCard,
+  #mapSessionPanel .mapMasterColumn,
+  #sessionControls{
+    width:calc(100vw - 20px);
+    max-width:calc(100vw - 20px);
+    margin-left:auto;
+    margin-right:auto;
+    box-sizing:border-box;
+  }
+
   #mapSessionPanel{
-    width:100%;
-    max-width:none;
-    margin:0;
     grid-column:auto;
   }
 
-  #sessionMapsContainer{
-    width:100%;
-  }
-
-  #sessionMapsUnifiedCard{
-    width:100%;
-    max-width:none;
-    margin:0;
-  }
-
-  #mapSessionPanel .mapMasterColumn{
-    width:100%;
-    max-width:none;
-    margin:0;
-  }
-
   #sessionControls{
-    width:100%;
-    max-width:none;
     margin-top:16px;
   }
 
@@ -2684,6 +2675,7 @@ body.admin-unlocked .mapDeleteMini {
     min-width:0;
     display:flex;
     justify-content:center;
+    box-sizing:border-box;
   }
 
   .upcomingSection{
