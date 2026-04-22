@@ -328,10 +328,10 @@ function populatePlayers(players){
 
 function renderMatchup(match){
 
-  const el=document.getElementById("matchupContent");
-  const countdown=document.getElementById("matchCountdown");
-  const upcomingHeading = document.getElementById("upcomingHeading");
-
+const el=document.getElementById("matchupContent");
+const countdown=document.getElementById("matchCountdown");
+const upcomingHeading = document.getElementById("upcomingHeading");
+const upcomingSessionMaker = document.getElementById("upcomingSessionMaker");
 
 // 🔥 RESET server key if no matchup
 currentMatchKeyFromServer = null;
@@ -344,6 +344,7 @@ if(!match){
   }
 
   if(upcomingHeading) upcomingHeading.textContent = "UPCOMING";
+  if(upcomingSessionMaker) upcomingSessionMaker.style.display = "";
 
   el.innerHTML=`
 
@@ -455,6 +456,7 @@ if(expiry <= now){
   currentMatchKeyFromServer = null;
 
   if(upcomingHeading) upcomingHeading.textContent = "UPCOMING";
+  if(upcomingSessionMaker) upcomingSessionMaker.style.display = "";
 
   el.innerHTML=`
 
@@ -495,6 +497,7 @@ const blueKey = match.blueTeam.slice().sort().join("|");
 currentMatchKeyFromServer = redKey + "-" + blueKey;
 
 if(upcomingHeading) upcomingHeading.textContent = "CURRENT";
+if(upcomingSessionMaker) upcomingSessionMaker.style.display = "none";
 
 if(match.selectedAt !== lastMatchTimestamp){
 
@@ -923,27 +926,22 @@ sessionStorage.setItem(
 
 /* 🔥 ADD THIS BLOCK */
 
-const savedMaker = sessionStorage.getItem("selectedMatchMaker");
+const savedGeneratorMaker = sessionStorage.getItem("selectedGeneratorMatchMaker");
+const savedMapMaker = sessionStorage.getItem("selectedMapMatchMaker");
 
-if(savedMaker){
-  maker.value = savedMaker;
-  if(mapMaker) mapMaker.value = savedMaker;
+if(savedGeneratorMaker){
+  maker.value = savedGeneratorMaker;
 }
 
-  // 🔥 FORCE MAP LIST TO START BLANK
-if(mapMaker){
-  mapMaker.value = "";
+if(mapMaker && savedMapMaker){
+  mapMaker.value = savedMapMaker;
 }
 
 /* 🔥 AND THIS BLOCK */
 
 maker.onchange = function(){
 
-  sessionStorage.setItem("selectedMatchMaker", this.value);
-
-  if(mapMaker){
-    mapMaker.value = this.value;
-  }
+  sessionStorage.setItem("selectedGeneratorMatchMaker", this.value);
 
   resetGeneratedMatchups();
   lastSelectedPlayers = [];
@@ -955,9 +953,7 @@ if(mapMaker){
 
   mapMaker.onchange = function(){
 
-    sessionStorage.setItem("selectedMatchMaker", this.value);
-
-    maker.value = this.value;
+    sessionStorage.setItem("selectedMapMatchMaker", this.value);
 
     renderUpcomingSessionCard({
       elimination: Array.from(document.querySelectorAll("#eliminationSessionList .mapSessionName")).map(x => x.innerText.trim()),
