@@ -2601,7 +2601,7 @@ body.admin-unlocked .mapDeleteMini {
 }
 
 .upcomingSessionCard .copySessionMaker{
-  font-size:18px;
+  font-size:14px;
   font-weight:400;
   margin-bottom:15px;
   letter-spacing:0;
@@ -2614,7 +2614,7 @@ body.admin-unlocked .mapDeleteMini {
 }
 
 .upcomingSessionCard .copySessionRow{
-  min-height:32px;
+  min-height:auto;
   padding:6px 10px;
 }
 
