@@ -2645,6 +2645,21 @@ body.admin-unlocked .mapDeleteMini {
     margin:8px auto 0 auto;
   }
 
+  #mapSessionPanel{
+    width:100%;
+    max-width:none;
+    margin:0;
+  }
+
+  #sessionMapsUnifiedCard{
+    width:100%;
+  }
+
+  #sessionControls{
+    width:100%;
+    max-width:none;
+  }
+
   .upcomingSection{
     margin:30px auto 0 auto;
     padding-bottom:20px;
