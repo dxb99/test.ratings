@@ -1114,6 +1114,9 @@ align-items:center;
 justify-content:center;
 gap:10px;
 flex-wrap:nowrap;
+width:95%;
+margin-left:auto;
+margin-right:auto;
 
 }
 
@@ -1132,7 +1135,8 @@ min-width:140px;
 
 .historyControls .btn{
 
-min-width:140px;
+width:100%;
+min-width:0;
 height:36px;
 font-size:13px;
 padding:0 12px;
