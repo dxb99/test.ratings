@@ -2581,6 +2581,8 @@ body.admin-unlocked .mapDeleteMini {
   width:100%;
   margin:40px auto 0 auto;
   text-align:center;
+  height:520px;
+  overflow:hidden;
 }
 
 .upcomingSessionCard{
@@ -2588,4 +2590,6 @@ body.admin-unlocked .mapDeleteMini {
   max-width:100%;
   margin:0 auto;
   box-sizing:border-box;
+  transform:scale(0.72);
+  transform-origin:top center;
 }
