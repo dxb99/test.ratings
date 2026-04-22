@@ -2231,12 +2231,11 @@ function buildCopySessionCard(data, matchMaker){
 
   bodyEl.innerHTML = sections.map(section => {
     const rows = section.maps.length
-      ? section.maps.map((mapName, index) => `
-        <div class="copySessionRow">
-          <span class="copySessionIndex">${index + 1}.</span>
-          <span class="copySessionName">${mapName}</span>
-        </div>
-      `).join("")
+  ? section.maps.map(mapName => `
+    <div class="copySessionRow">
+      <span class="copySessionName">${mapName}</span>
+    </div>
+  `).join("")
       : `
         <div class="copySessionEmpty">-</div>
       `;
