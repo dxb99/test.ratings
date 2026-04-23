@@ -2736,17 +2736,28 @@ body.admin-unlocked .mapDeleteMini {
     padding:14px 8px;
   }
 
-  #matchupDashboardCard .matchHeader{
+    #matchupDashboardCard .matchHeader{
     font-size:15px;
     line-height:1.2;
-    padding-right:58px;
+    padding-right:0;
+    text-align:center;
+
+    display:flex;
+    flex-direction:column-reverse;
+    align-items:center;
+    gap:6px;
   }
 
   #matchupDashboardCard .midTag{
-    top:14px;
-    right:8px;
-    font-size:10px;
+    position:static;
+    display:block;
+    width:max-content;
+
+    margin:0 auto;
     padding:2px 4px;
+
+    font-size:10px;
+    transform:none;
   }
 
   #matchupDashboardCard .teamsRow{
