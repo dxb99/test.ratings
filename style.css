@@ -582,11 +582,11 @@ box-sizing:border-box;
 
 background:linear-gradient(
   180deg,
-  rgba(255, 235, 59, 0.45),
-  rgba(255, 235, 59, 0.65)
+  rgba(250, 204, 21, 0.28),
+  rgba(212, 175, 55, 0.38)
 );
 
-border:1px solid rgba(255, 235, 59, 0.9);
+border:1px solid rgba(250, 204, 21, 0.55);
 
 border-radius:6px;
 
