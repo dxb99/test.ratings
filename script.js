@@ -2000,6 +2000,14 @@ function updateCustomMapHighlights(){
       "customMapSelected",
       customSessionActive && isMapSelectedInCustomSession(mode, mapName)
     );
+
+    row.classList.remove("customSelectedElimination", "customSelectedBlitz", "customSelectedCtf");
+
+    if(customSessionActive && isMapSelectedInCustomSession(mode, mapName)){
+      if(mode === "elimination") row.classList.add("customSelectedElimination");
+      if(mode === "blitz") row.classList.add("customSelectedBlitz");
+      if(mode === "ctf") row.classList.add("customSelectedCtf");
+    }
   });
 
 }
