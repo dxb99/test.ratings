@@ -68,6 +68,27 @@ display:flex;
 align-items:center;
 justify-content:flex-end;
 gap:10px;
+flex-shrink:0;
+}
+
+.customSessionBadge{
+display:inline-flex;
+align-items:center;
+justify-content:flex-start;
+
+color:#facc15;
+font-size:12px;
+font-weight:600;
+letter-spacing:0;
+white-space:nowrap;
+
+opacity:0;
+visibility:hidden;
+}
+
+.customSessionBadge.active{
+opacity:1;
+visibility:visible;
 }
 
 /* 🔥 STATUS TEXT */
@@ -1656,26 +1677,6 @@ line-height:1.2;
   display:block;
 
   padding-bottom:5px;
-}
-
-.customSessionBadge{
-  display:inline-flex;
-  align-items:center;
-  justify-content:flex-start;
-
-  color:#facc15;
-  font-size:12px;
-  font-weight:600;
-  letter-spacing:0;
-  white-space:nowrap;
-
-  opacity:0;
-  visibility:hidden;
-}
-
-.customSessionBadge.active{
-  opacity:1;
-  visibility:visible;
 }
 
 .mapMasterColumn{
