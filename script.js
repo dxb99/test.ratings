@@ -151,28 +151,33 @@ if(pass){
 // 🔥 disable session buttons when locked
 const generateBtn = document.getElementById("generateSessionMapsBtn");
 const saveBtn = document.getElementById("saveSessionProgressBtn");
+const clearSessionBtn = document.getElementById("clearSessionMapsBtn");
+const buildCustomBtn = document.getElementById("buildCustomSessionBtn");
 
-if(generateBtn && saveBtn){
+const protectedSessionButtons = [
+  generateBtn,
+  saveBtn,
+  clearSessionBtn,
+  buildCustomBtn
+].filter(Boolean);
 
-  if(pass){
+if(protectedSessionButtons.length){
 
-    generateBtn.classList.remove("disabled");
-    saveBtn.classList.remove("disabled");
+  protectedSessionButtons.forEach(btn => {
 
-    // ✅ remove tooltip when unlocked
-    generateBtn.removeAttribute("data-tooltip");
-    saveBtn.removeAttribute("data-tooltip");
+    if(pass){
 
-  }else{
+      btn.classList.remove("disabled");
+      btn.removeAttribute("data-tooltip");
 
-    generateBtn.classList.add("disabled");
-    saveBtn.classList.add("disabled");
+    }else{
 
-    // 🔒 tooltip when locked
-    generateBtn.setAttribute("data-tooltip", "🔒 Admin mode required");
-    saveBtn.setAttribute("data-tooltip", "🔒 Admin mode required");
+      btn.classList.add("disabled");
+      btn.setAttribute("data-tooltip", "🔒 Admin mode required");
 
-  }
+    }
+
+  });
 
 }
 
