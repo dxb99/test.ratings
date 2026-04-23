@@ -47,8 +47,12 @@ LOADING<span class="dots"></span>
 <h1>DXB99 MATCHUP GENERATOR</h1>
 
 <div id="adminBar">
-  <span id="adminStatus">🔒 LOCKED</span>
-  <button id="adminLockBtn" style="display:none;">LOCK</button>
+  <span id="customSessionBadge" class="customSessionBadge">CUSTOM SESSION ACTIVE</span>
+
+  <div class="adminStatusGroup">
+    <span id="adminStatus">🔒 LOCKED</span>
+    <button id="adminLockBtn" style="display:none;">LOCK</button>
+  </div>
 </div>
 
 <div class="tabs">
@@ -251,11 +255,7 @@ CLICK TO GENERATE MATCHUP
   <!-- LEFT: SESSION MAPS -->
 <div id="mapSessionPanel">
 
-  <div class="mapSessionTopBar">
-    <div id="customSessionBadge" class="customSessionBadge">CUSTOM SESSION ACTIVE</div>
-  </div>
-
-  <div class="sessionMapsHeading">SESSION MAPS</div>
+<div class="sessionMapsHeading">SESSION MAPS</div>
 
 <div class="mapMatchMakerRow">
   <span class="mapMatchMakerLabel">MATCH MAKER:</span>
