@@ -2099,6 +2099,11 @@ body.admin-unlocked .mapDeleteMini {
   min-width:160px;
 }
 
+#mapMatchMakerSelect.disabled{
+  cursor:not-allowed;
+  filter:brightness(0.6);
+}
+
 .copySessionCard{
   position:fixed;
   left:-99999px;
