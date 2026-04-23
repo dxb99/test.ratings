@@ -2142,11 +2142,12 @@ body.admin-unlocked .mapDeleteMini {
 
 .copySessionMaker{
   text-align:center;
-  font-size:16px;
-  font-weight:600;
-  color:#b6b6b6;
+  font-size:24px;
+  font-weight:700;
+  color:#ffffff;
   margin-bottom:20px;
-  letter-spacing:0.6px;
+  letter-spacing:0;
+  line-height:1.2;
 }
 
 .copySessionBody{
@@ -2239,10 +2240,11 @@ body.admin-unlocked .mapDeleteMini {
 }
 
 .upcomingSessionCard .copySessionMaker{
-  font-size:14px;
+  font-size:16px;
   font-weight:400;
   margin-bottom:10px;
   letter-spacing:0;
+  line-height:1.2;
 }
 
 .upcomingSessionCard .copySessionBody{
@@ -2685,12 +2687,13 @@ body.admin-unlocked .mapDeleteMini {
     letter-spacing:0;
   }
 
-  .upcomingSessionCard .copySessionMaker{
-    font-size:14px;
-    font-weight:400;
-    margin-bottom:8px;
-    letter-spacing:0;
-  }
+.upcomingSessionCard .copySessionMaker{
+  font-size:13px;
+  font-weight:400;
+  margin-bottom:8px;
+  letter-spacing:0;
+  line-height:1.2;
+}
 
   .upcomingSessionCard .copySessionBody{
     gap:8px;
