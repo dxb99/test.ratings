@@ -153,6 +153,7 @@ const generateBtn = document.getElementById("generateSessionMapsBtn");
 const saveBtn = document.getElementById("saveSessionProgressBtn");
 const clearSessionBtn = document.getElementById("clearSessionMapsBtn");
 const buildCustomBtn = document.getElementById("buildCustomSessionBtn");
+const mapMakerSelect = document.getElementById("mapMatchMakerSelect");
 
 const protectedSessionButtons = [
   generateBtn,
@@ -178,6 +179,24 @@ if(protectedSessionButtons.length){
     }
 
   });
+
+}
+
+if(mapMakerSelect){
+
+  if(pass){
+
+    mapMakerSelect.disabled = false;
+    mapMakerSelect.classList.remove("disabled");
+    mapMakerSelect.removeAttribute("data-tooltip");
+
+  }else{
+
+    mapMakerSelect.disabled = true;
+    mapMakerSelect.classList.add("disabled");
+    mapMakerSelect.setAttribute("data-tooltip", "🔒 Admin mode required");
+
+  }
 
 }
 
