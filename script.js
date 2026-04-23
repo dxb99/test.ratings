@@ -1919,14 +1919,14 @@ function updateCustomSessionButtons(){
     clearBtn.style.display = "inline-flex";
     generateBtn.style.display = "none";
     progressBtn.style.display = "none";
-    if(badge) badge.style.display = "inline-flex";
+    if(badge) badge.classList.add("active");
   }else{
     buildBtn.style.display = "inline-flex";
     saveBtn.style.display = "none";
     clearBtn.style.display = "none";
     generateBtn.style.display = "inline-flex";
     progressBtn.style.display = "inline-flex";
-    if(badge) badge.style.display = "none";
+    if(badge) badge.classList.remove("active");
   }
 
 }
