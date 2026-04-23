@@ -1645,13 +1645,20 @@ line-height:1.2;
   padding-bottom:5px;
 }
 
+.mapSessionTopBar{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  width:100%;
+  margin:0 0 8px 0;
+}
+
 .customSessionBadge{
   display:none;
   align-items:center;
   justify-content:center;
 
-  margin:0 auto 10px auto;
-  padding:6px 10px;
+  padding:4px 10px;
 
   width:fit-content;
   max-width:100%;
