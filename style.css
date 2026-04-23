@@ -1225,64 +1225,6 @@ transform:none;
   font-size:14px;
 }
 
-/* HELP */
-
-.helpCard{
-  width:clamp(320px, 92%, 760px);
-  margin:0 auto 30px auto;
-  padding:24px 22px;
-
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015)),
-    linear-gradient(135deg, #080808 0%, #111111 55%, #090909 100%);
-
-  border:1px solid rgba(255,255,255,0.10);
-  border-radius:16px;
-
-  box-shadow:
-    0 18px 45px rgba(0,0,0,0.45),
-    inset 0 1px 0 rgba(255,255,255,0.06);
-
-  box-sizing:border-box;
-  text-align:left;
-}
-
-.helpTitle{
-  text-align:center;
-  font-size:28px;
-  font-weight:800;
-  letter-spacing:1px;
-  margin-bottom:22px;
-}
-
-.helpSection{
-  padding:16px 0;
-  border-top:1px solid rgba(255,255,255,0.08);
-}
-
-.helpSection:first-of-type{
-  border-top:none;
-  padding-top:0;
-}
-
-.helpSectionTitle{
-  font-size:17px;
-  font-weight:700;
-  margin-bottom:10px;
-  color:#f5f5f5;
-}
-
-.helpSection p{
-  margin:0 0 8px 0;
-  font-size:15px;
-  line-height:1.5;
-  color:#d6d6d6;
-}
-
-.helpSection p:last-child{
-  margin-bottom:0;
-}
-
 /* HISTORY */
 
 .historyControls{
@@ -3049,33 +2991,6 @@ body.admin-unlocked .mapDeleteMini {
 
   #matchupDashboardCard .upcomingSessionCard .copySessionRow{
     padding:4px 6px;
-  }
-
-  .helpCard{
-    width:100%;
-    margin:0 auto 20px auto;
-    padding:18px 14px;
-  }
-
-  .helpTitle{
-    font-size:22px;
-    margin-bottom:16px;
-    letter-spacing:0.5px;
-  }
-
-  .helpSection{
-    padding:14px 0;
-  }
-
-  .helpSectionTitle{
-    font-size:15px;
-    margin-bottom:8px;
-  }
-
-  .helpSection p{
-    font-size:13px;
-    line-height:1.45;
-    margin-bottom:7px;
-  }
+  }    
   
 }
