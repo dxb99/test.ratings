@@ -1867,13 +1867,19 @@ line-height:1.2;
 }
 
 #sessionControls .btn{
-  background:#2563eb;
-  border:none;
+  background:#15803d;
+  border:1px solid transparent;
   color:white;
 
   height:40px;
   font-size:13px;
   letter-spacing:0.5px;
+}
+
+#sessionControls .btn:hover{
+  background:#166534;
+  border-color:#22c55e;
+  box-shadow:0 0 6px rgba(34,197,94,0.6);
 }
 
 #sessionControls .btn:hover{
