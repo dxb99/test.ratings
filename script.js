@@ -2028,7 +2028,7 @@ async function loadCustomSessionState(){
     return;
   }
 
-  customSessionActive = !!res.active;
+  customSessionActive = false;
   customSessionData = normalizeSessionData(res.session);
 
 }
@@ -2549,11 +2549,7 @@ if(copyBtn){
 
     const matchMaker = globalMapMatchMaker;
 
-    await loadCustomSessionState();
-
-    const sessionData = customSessionActive
-      ? normalizeSessionData(customSessionData)
-      : getActiveSessionMaps();
+    const sessionData = getActiveSessionMaps();
 
     const copyCard = document.getElementById("copySessionCard");
 
