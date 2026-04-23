@@ -1076,18 +1076,22 @@ transform:none;
 
 #matchupDashboardCard .upcomingSessionCard{
   width:100%;
-  max-width:728px;
   margin:0 auto;
   box-sizing:border-box;
 
-  border:1px solid rgba(255,255,255,0.08);
+  border:none;
   box-shadow:none;
-  background:#111;
+  background:transparent;
 }
 
 #matchupDashboardCard .upcomingSessionCard.copySessionShell{
-  padding:16px 14px 14px 14px;
-  border-radius:10px;
+  padding:0 16px;
+  border-radius:0;
+}
+
+#matchupDashboardCard .upcomingSessionCard .copySessionSection{
+  box-shadow:none;
+  border-color:rgba(255,255,255,0.08);
 }
 
 /* MATCHUP CARD */
