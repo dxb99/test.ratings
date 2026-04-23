@@ -379,6 +379,11 @@ color:white;
 white-space:nowrap;
 transition:all 0.15s ease;
 
+display:inline-flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+
 }
 
 /* 🔥 CUSTOM TOOLTIP */
@@ -2303,12 +2308,12 @@ body.admin-unlocked .mapDeleteMini {
     margin-top:16px;
   }
 
-  #sessionControls .btn{
-    width:100%;
-    min-width:0;
-    box-sizing:border-box;
-    display:block;
-  }
+#sessionControls .btn{
+  width:100%;
+  min-width:0;
+  box-sizing:border-box;
+  display:flex;
+}
 
   .sessionMapsHeading{
     font-size:18px;
