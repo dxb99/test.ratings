@@ -1652,32 +1652,16 @@ line-height:1.2;
   padding-bottom:5px;
 }
 
-.mapSessionTopBar{
-  display:flex;
-  align-items:center;
-  justify-content:flex-start;
-  width:100%;
-  margin:0 0 8px 0;
-}
-
 .customSessionBadge{
   display:none;
   align-items:center;
   justify-content:center;
 
-  padding:4px 10px;
-
-  width:fit-content;
-  max-width:100%;
-
-  border-radius:999px;
-  border:1px solid rgba(250,204,21,0.45);
-  background:rgba(250,204,21,0.12);
-
   color:#facc15;
-  font-size:11px;
+  font-size:12px;
   font-weight:700;
-  letter-spacing:0.8px;
+  letter-spacing:0.5px;
+  white-space:nowrap;
 }
 
 .mapMasterColumn{
@@ -2328,16 +2312,16 @@ body.admin-unlocked .mapDeleteMini {
 
 @media(max-width:700px){
 
-  #adminBar{
+#adminBar{
 
-    top:8px;
-    right:10px;
+  top:8px;
+  right:10px;
 
-    justify-content:center;
-    font-size:11px;
-    gap:6px;
+  justify-content:space-between;
+  font-size:10px;
+  gap:6px;
 
-  }
+}
 
   #adminLockBtn{
 
