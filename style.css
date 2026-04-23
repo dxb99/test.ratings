@@ -1715,10 +1715,25 @@ line-height:1.2;
 }
 
 .mapMasterRow.customMapSelected{
+  font-weight:600;
+}
+
+.mapMasterRow.customSelectedElimination{
+  background:rgba(255,75,75,0.12);
+  border-left:3px solid #ff4b4b;
+  color:#ff4b4b;
+}
+
+.mapMasterRow.customSelectedBlitz{
   background:rgba(250,204,21,0.12);
   border-left:3px solid #facc15;
   color:#facc15;
-  font-weight:600;
+}
+
+.mapMasterRow.customSelectedCtf{
+  background:rgba(75,163,255,0.12);
+  border-left:3px solid #4ba3ff;
+  color:#4ba3ff;
 }
 
 .mapMasterRow:last-child{
