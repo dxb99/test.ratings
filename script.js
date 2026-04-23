@@ -334,9 +334,9 @@ if(historyData.ok){
 
 function populatePlayers(players){
 
-  window.allPlayers = players;
+  window.allPlayers = [...players].sort((a,b)=>a.name.localeCompare(b.name));
 
-  renderPlayers(players);
+  renderPlayers(window.allPlayers);
 
   document.getElementById("playerSort").onchange = function(){
 
