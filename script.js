@@ -1489,18 +1489,21 @@ detailRow.innerHTML = `
           </div>
 
           <div class="teamPlayers">
-            ${match.redTeam.split(", ").map(name => {
+${match.redTeam
+  .split(", ")
+  .sort((a,b)=>a.localeCompare(b))
+  .map(name => {
 
-              const player = allPlayers.find(p => p.name === name);
+  const player = allPlayers.find(p => p.name === name);
 
-              return `
-                <div class="playerRow">
-                  ${name}
-                  <span class="skillMedal">${player ? player.skill : ""}</span>
-                </div>
-              `;
+  return `
+    <div class="playerRow">
+      ${name}
+      <span class="skillMedal">${player ? player.skill : ""}</span>
+    </div>
+  `;
 
-            }).join("")}
+}).join("")}
           </div>
         </div>
 
@@ -1512,18 +1515,21 @@ detailRow.innerHTML = `
           </div>
 
           <div class="teamPlayers">
-            ${match.blueTeam.split(", ").map(name => {
+${match.blueTeam
+  .split(", ")
+  .sort((a,b)=>a.localeCompare(b))
+  .map(name => {
 
-              const player = allPlayers.find(p => p.name === name);
+  const player = allPlayers.find(p => p.name === name);
 
-              return `
-                <div class="playerRow">
-                  ${name}
-                  <span class="skillMedal">${player ? player.skill : ""}</span>
-                </div>
-              `;
+  return `
+    <div class="playerRow">
+      ${name}
+      <span class="skillMedal">${player ? player.skill : ""}</span>
+    </div>
+  `;
 
-            }).join("")}
+}).join("")}
           </div>
         </div>
 
