@@ -2408,17 +2408,18 @@ body.admin-unlocked .mapDeleteMini {
   display:flex;
 }
 
-  .sessionMapsHeading{
+  #mapSessionPanel .sessionMapsHeading{
     font-size:18px;
     font-weight:bold;
-    margin:0 0 6px 0;
+    margin:0;
+    padding-bottom:0;
+    line-height:1.1;
     text-align:center;
     letter-spacing:1px;
   }
 
-  .mapMatchMakerRow{
-    margin-top:0;
-    margin-bottom:12px;
+  #mapSessionPanel .mapMatchMakerRow{
+    margin:-10px 0 14px 0;
   }
 
 }
