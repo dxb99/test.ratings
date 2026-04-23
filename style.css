@@ -1451,6 +1451,17 @@ line-height:1.2;
 
 }
 
+.adminSortable{
+cursor:pointer;
+user-select:none;
+transition:all 0.15s ease;
+}
+
+.adminSortable:hover{
+background:#1a1a1a;
+color:#22c55e;
+}
+
 .admin-inline-btn{
 
 background:#333;
