@@ -17,6 +17,7 @@ min-height:100dvh; /* 🔥 MOBILE FIX */
 header{
 
 padding:16px;
+box-sizing:border-box;
 background:#000;
 border-bottom:1px solid #333;
 
