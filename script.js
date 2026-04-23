@@ -2110,6 +2110,12 @@ if(initialData.ok && initialData.mapList){
 updateCustomSessionButtons();
 renderAllSessionViews();
 
+const matchupDashboard = document.getElementById("matchupDashboardCard");
+if(matchupDashboard){
+  matchupDashboard.classList.remove("loading");
+  matchupDashboard.classList.add("ready");
+}
+
 // 🔥 HIDE LOADER
 if(overlay){
   overlay.style.display = "none";
