@@ -2885,4 +2885,37 @@ body.admin-unlocked .mapDeleteMini {
     line-height:1.2;
   }
 
+  #matchupDashboardCard .upcomingSessionCard .copySessionTitle{
+    font-size:15px;
+    font-weight:500;
+    margin-bottom:8px;
+    letter-spacing:1px;
+  }
+
+  #matchupDashboardCard .upcomingSessionCard .copySessionMaker{
+    width:100%;
+    display:block;
+    text-align:center;
+
+    font-size:12px;
+    font-weight:400;
+    margin:0 auto 8px auto;
+    line-height:1.2;
+  }
+
+  #matchupDashboardCard .upcomingSessionCard .copySessionSectionHeader{
+    font-size:13px;
+    padding:7px 8px;
+  }
+
+  #matchupDashboardCard .upcomingSessionCard .copySessionName{
+    font-size:12px;
+    font-weight:400;
+    line-height:1.2;
+  }
+
+  #matchupDashboardCard .upcomingSessionCard .copySessionRow{
+    padding:4px 6px;
+  }
+
 }
