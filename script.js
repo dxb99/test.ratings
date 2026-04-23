@@ -986,6 +986,11 @@ if(mapMaker){
 
   mapMaker.onchange = async function(){
 
+    if(!isAdminUnlocked()){
+      showModal("Unlock admin mode first.", "alert");
+      return;
+    }
+
     const selectedName = this.value;
 
     const res = await api({
