@@ -1867,7 +1867,7 @@ line-height:1.2;
 }
 
 #sessionControls .btn{
-  background:#15803d;
+  background:#2563eb;
   border:1px solid transparent;
   color:white;
 
@@ -1877,7 +1877,7 @@ line-height:1.2;
 }
 
 #sessionControls .btn:hover{
-  background:#166534;
+  background:#2563eb;
   border-color:#22c55e;
   box-shadow:0 0 6px rgba(34,197,94,0.6);
 }
