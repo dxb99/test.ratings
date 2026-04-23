@@ -1653,15 +1653,25 @@ line-height:1.2;
 }
 
 .customSessionBadge{
-  display:none;
+  display:inline-flex;
   align-items:center;
-  justify-content:center;
+  justify-content:flex-start;
+
+  min-width:150px;
 
   color:#facc15;
   font-size:12px;
   font-weight:700;
   letter-spacing:0.5px;
   white-space:nowrap;
+
+  opacity:0;
+  visibility:hidden;
+}
+
+.customSessionBadge.active{
+  opacity:1;
+  visibility:visible;
 }
 
 .mapMasterColumn{
