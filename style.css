@@ -2411,7 +2411,7 @@ body.admin-unlocked .mapDeleteMini {
   #mapSessionPanel .sessionMapsHeading{
     font-size:18px;
     font-weight:bold;
-    margin:0;
+    margin:0 0 10px 0;
     padding-bottom:0;
     line-height:1.1;
     text-align:center;
@@ -2419,7 +2419,7 @@ body.admin-unlocked .mapDeleteMini {
   }
 
   #mapSessionPanel .mapMatchMakerRow{
-    margin:-10px 0 14px 0;
+    margin:0 0 16px 0;
   }
 
 }
