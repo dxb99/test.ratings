@@ -581,9 +581,9 @@ if(blitzToggle && blitzContainer){
     /* SHOW with animation */
     blitzContainer.style.display = "flex";
 
-    setTimeout(()=>{
+requestAnimationFrame(() => {
   blitzContainer.classList.add("show");
-},2000);
+});
 
   }else{
 
