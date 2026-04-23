@@ -2411,9 +2411,14 @@ body.admin-unlocked .mapDeleteMini {
   .sessionMapsHeading{
     font-size:18px;
     font-weight:bold;
-    margin:0 0 16px 0;
+    margin:0 0 6px 0;
     text-align:center;
     letter-spacing:1px;
+  }
+
+  .mapMatchMakerRow{
+    margin-top:0;
+    margin-bottom:12px;
   }
 
 }
