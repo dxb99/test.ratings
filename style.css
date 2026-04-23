@@ -2547,6 +2547,7 @@ body.admin-unlocked .mapDeleteMini {
 
 #matchMakerSelect{
   font-size:14px;
+  margin-bottom:10px;
 }
 
 #playersCheckboxes label,
