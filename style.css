@@ -1094,8 +1094,24 @@ transform:none;
 }
 
 #matchupDashboardCard .upcomingSessionCard .copySessionSection{
+  overflow:hidden;
   box-shadow:none;
-  border-color:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:8px;
+  background:#111;
+}
+
+#matchupDashboardCard .upcomingSessionCard .copySessionSectionHeader{
+  border-top-left-radius:8px;
+  border-top-right-radius:8px;
+}
+
+#matchupDashboardCard .upcomingSessionCard .copySessionRow:last-child{
+  border-bottom:none;
+}
+
+#matchupDashboardCard .upcomingSessionCard .copySessionBody{
+  gap:12px;
 }
 
 /* MATCHUP CARD */
