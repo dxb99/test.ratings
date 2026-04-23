@@ -2991,6 +2991,11 @@ body.admin-unlocked .mapDeleteMini {
 
   #matchupDashboardCard .upcomingSessionCard .copySessionRow{
     padding:4px 6px;
-  }    
+  }
+
+   .helpImageWrap{
+    width:100%;
+    margin:0 auto 20px auto;
+  }
   
 }
