@@ -184,17 +184,15 @@ if(protectedSessionButtons.length){
 
 if(mapMakerSelect){
 
+  mapMakerSelect.disabled = false;
+
   if(pass){
 
-    mapMakerSelect.disabled = false;
     mapMakerSelect.classList.remove("disabled");
-    mapMakerSelect.removeAttribute("data-tooltip");
 
   }else{
 
-    mapMakerSelect.disabled = true;
     mapMakerSelect.classList.add("disabled");
-    mapMakerSelect.setAttribute("data-tooltip", "🔒 Admin mode required");
 
   }
 
@@ -983,6 +981,24 @@ maker.onchange = function(){
 };
 
 if(mapMaker){
+
+  mapMaker.onmousedown = function(e){
+
+    if(isAdminUnlocked()) return;
+
+    e.preventDefault();
+    showModal("Unlock admin mode first.", "alert");
+
+  };
+
+  mapMaker.ontouchstart = function(e){
+
+    if(isAdminUnlocked()) return;
+
+    e.preventDefault();
+    showModal("Unlock admin mode first.", "alert");
+
+  };
 
   mapMaker.onchange = async function(){
 
