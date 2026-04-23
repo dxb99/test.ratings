@@ -1056,39 +1056,40 @@ transform:none;
   border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
-#matchupDashboardCard #matchupContent{
+#matchupDashboardCard #matchupContent,
+#matchupDashboardCard .upcomingSection{
   padding:16px;
+  box-sizing:border-box;
+}
+
+#matchupDashboardCard #matchupContent{
   border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
-#matchupDashboardCard .matchCard{
+#matchupDashboardCard .matchCard,
+#matchupDashboardCard .upcomingSessionCard{
   width:100%;
-  max-width:728px;
+  max-width:none;
   margin:0 auto;
   box-sizing:border-box;
+}
+
+#matchupDashboardCard .matchCard{
   border:none;
   box-shadow:none;
 }
 
 #matchupDashboardCard .upcomingSection{
   margin:0;
-  padding:16px;
 }
 
 #matchupDashboardCard .upcomingSessionCard{
-  width:100%;
-  margin:0 auto;
-  box-sizing:border-box;
-
   border:none;
   box-shadow:none;
   background:transparent;
 }
 
 #matchupDashboardCard .upcomingSessionCard.copySessionShell{
-  width:100%;
-  max-width:728px;
-  margin:0 auto;
   padding:0;
   border-radius:0;
 }
@@ -1101,17 +1102,12 @@ transform:none;
   background:#111;
 }
 
-#matchupDashboardCard .upcomingSessionCard .copySessionSectionHeader{
-  border-top-left-radius:8px;
-  border-top-right-radius:8px;
+#matchupDashboardCard .upcomingSessionCard .copySessionBody{
+  gap:12px;
 }
 
 #matchupDashboardCard .upcomingSessionCard .copySessionRow:last-child{
   border-bottom:none;
-}
-
-#matchupDashboardCard .upcomingSessionCard .copySessionBody{
-  gap:12px;
 }
 
 /* MATCHUP CARD */
