@@ -2722,6 +2722,76 @@ body.admin-unlocked .mapDeleteMini {
 
   }
 
+    #matchupDashboardCard{
+    width:100%;
+    margin:0 auto 20px auto;
+  }
+
+  #matchupDashboardCard #matchupContent,
+  #matchupDashboardCard .upcomingSection{
+    padding:12px;
+  }
+
+  #matchupDashboardCard .matchCard{
+    padding:14px 8px;
+  }
+
+  #matchupDashboardCard .matchHeader{
+    font-size:15px;
+    line-height:1.2;
+    padding-right:58px;
+  }
+
+  #matchupDashboardCard .midTag{
+    top:14px;
+    right:8px;
+    font-size:10px;
+    padding:2px 4px;
+  }
+
+  #matchupDashboardCard .teamsRow{
+    gap:6px;
+    align-items:flex-start;
+  }
+
+  #matchupDashboardCard .team{
+    min-width:0;
+  }
+
+  #matchupDashboardCard .teamTitle{
+    font-size:13px;
+    gap:4px;
+  }
+
+  #matchupDashboardCard .teamBadge{
+    margin-left:4px;
+    padding:1px 5px;
+    font-size:10px;
+  }
+
+  #matchupDashboardCard .playerRow{
+    font-size:12px;
+    line-height:1.25;
+    white-space:nowrap;
+  }
+
+  #matchupDashboardCard .skillMedal{
+    font-size:0.62em;
+    padding:1px 4px;
+    margin-left:3px;
+  }
+
+  #matchupDashboardCard .vs{
+    font-size:22px;
+    min-width:30px;
+    letter-spacing:1px;
+  }
+
+  #matchupDashboardCard .matchFooter{
+    font-size:13px;
+    margin-top:12px;
+  }
+
   #historyTable {
     display: block;
     overflow-x: auto;
