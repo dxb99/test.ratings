@@ -1225,6 +1225,23 @@ transform:none;
   font-size:14px;
 }
 
+/* HELP */
+
+.helpImageWrap{
+  width:clamp(320px, 92%, 760px);
+  margin:0 auto 30px auto;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.helpImage{
+  display:block;
+  width:min(100%, 420px);
+  height:auto;
+  max-width:100%;
+}
+
 /* HISTORY */
 
 .historyControls{
