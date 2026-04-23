@@ -82,6 +82,11 @@ PLAYERS
 MAP LIST
 </button>
 
+<button onclick="showTab('helpTab', this)" class="tabButton">
+<span class="tabIcon">❓</span>
+HELP
+</button>
+
 </div>
 
 </header>
@@ -337,6 +342,100 @@ CLICK TO GENERATE MATCHUP
       <div id="ctfMasterList" class="mapMasterRows"></div>
     </div>
 
+  </div>
+
+</div>
+
+</div>
+
+<div id="helpTab" class="tabContent">
+
+<div class="helpCard">
+
+  <div class="helpTitle">HOW TO USE THIS APP</div>
+
+  <div class="helpSection">
+    <div class="helpSectionTitle">1. MATCHUP TAB</div>
+    <p>The Matchup tab is the home screen.</p>
+    <p>It shows the current active matchup, the timer, and the session maps.</p>
+    <p>If no matchup has been picked yet, you will see <strong>NO CURRENT MATCHUP</strong>.</p>
+    <p>Press <strong>CLICK TO GET STARTED</strong> to go to the Generator tab.</p>
+  </div>
+
+  <div class="helpSection">
+    <div class="helpSectionTitle">2. GENERATOR TAB</div>
+    <p>This is where you create balanced teams.</p>
+    <p>First choose a Match Maker.</p>
+    <p>Then select the players who are playing.</p>
+    <p>Press <strong>CLICK TO GENERATE MATCHUP</strong> to see team options.</p>
+    <p>Lower <strong>Difference</strong> numbers mean more balanced teams.</p>
+    <p><strong>Difference 0</strong> means the teams are perfectly balanced.</p>
+    <p>If the number of players is uneven, a Blitz option may appear.</p>
+    <p>This lets you only show recommended matchups for uneven teams when available.</p>
+  </div>
+
+  <div class="helpSection">
+    <div class="helpSectionTitle">3. PICKING A MATCHUP</div>
+    <p>When you find a matchup you like, press <strong>CLICK TO SELECT</strong>.</p>
+    <p>The app will save it and send you back to the Matchup tab.</p>
+    <p>The timer will start, and everyone can see the active matchup.</p>
+  </div>
+
+  <div class="helpSection">
+    <div class="helpSectionTitle">4. HISTORY TAB</div>
+    <p>This tab shows old matchups.</p>
+    <p>You can see the date, Match ID, Match Maker, how many times it was picked, and the Difference.</p>
+    <p>Tap a row to open it and see the full team details.</p>
+  </div>
+
+  <div class="helpSection">
+    <div class="helpSectionTitle">5. PLAYERS TAB</div>
+    <p>This is where you manage players and skill levels.</p>
+    <p>You can add players, remove players, and change skills.</p>
+    <p>If you edit something, the app will show <strong>Changes not saved</strong>.</p>
+    <p>Press <strong>SAVE</strong> to keep your changes.</p>
+  </div>
+
+  <div class="helpSection">
+    <div class="helpSectionTitle">6. MAP LIST TAB</div>
+    <p>This tab shows the current session maps and the full map list.</p>
+    <p>The session maps are grouped into Elimination, Blitz, and CTF.</p>
+    <p><strong>GENERATE SESSION MAPS</strong> makes a fresh session.</p>
+    <p><strong>SAVE SESSION PROGRESS</strong> remembers where the session should continue next time.</p>
+    <p><strong>CLEAR SESSION MAPS</strong> removes the current session maps.</p>
+    <p><strong>COPY SESSION MAPS</strong> copies the session maps as an image.</p>
+  </div>
+
+  <div class="helpSection">
+    <div class="helpSectionTitle">7. CUSTOM SESSION</div>
+    <p><strong>BUILD CUSTOM SESSION</strong> lets you pick maps yourself.</p>
+    <p>Tap maps from the master list to build your own session.</p>
+    <p>Press <strong>SAVE CUSTOM SESSION</strong> to save it.</p>
+    <p>Press <strong>EXIT CUSTOM SESSION</strong> when you are done.</p>
+  </div>
+
+  <div class="helpSection">
+    <div class="helpSectionTitle">8. LOCKED / ADMIN MODE</div>
+    <p>If the app says <strong>LOCKED</strong>, you can still view things but you cannot change protected settings.</p>
+    <p>Tap the lock text and enter the admin password to unlock admin mode.</p>
+    <p>When finished, press <strong>LOCK</strong> to leave admin mode.</p>
+  </div>
+
+  <div class="helpSection">
+    <div class="helpSectionTitle">9. EASY EVERYDAY FLOW</div>
+    <p>Go to Map List and check the session maps.</p>
+    <p>Go to Generator and choose the Match Maker.</p>
+    <p>Select the players, generate matchup options, and pick the best one.</p>
+    <p>Then go back to Matchup to see the live result.</p>
+  </div>
+
+  <div class="helpSection">
+    <div class="helpSectionTitle">10. SIMPLE RULES TO REMEMBER</div>
+    <p>Lower Difference is better.</p>
+    <p>Always press Save after changing players.</p>
+    <p>Session maps stay visible on the Matchup tab.</p>
+    <p>History is saved automatically.</p>
+    <p>Locked mode is for viewing. Admin mode is for changing protected settings.</p>
   </div>
 
 </div>
