@@ -1795,9 +1795,12 @@ matchHistory.forEach(h=>{
 
 });
 
+const redSorted = [...red].sort((a,b)=>a.name.localeCompare(b.name));
+const blueSorted = [...blue].sort((a,b)=>a.name.localeCompare(b.name));
+
 results.push({
-  redTeam:red,
-  blueTeam:blue,
+  redTeam:redSorted,
+  blueTeam:blueSorted,
   redSkill:redSkill,
   blueSkill:blueSkill,
   skillGap:gap,
