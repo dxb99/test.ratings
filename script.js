@@ -17,6 +17,10 @@ let currentHistorySort = {
 };
 let globalMapMatchMaker = "";
 let adminHasUnsavedChanges = false;
+let currentAdminSort = {
+  key: null,
+  direction: "asc"
+};
 let customSessionActive = false;
 let customSessionData = {
   elimination: [],
@@ -1151,6 +1155,8 @@ async function openAdminTab(btn){
   });
 
   updatePlayerCount();
+  setupAdminSorting();
+  sortAdminTableRows();
   markAdminDirty(false);
 
 }
@@ -1160,6 +1166,80 @@ function updatePlayerCount(){
   const rows = document.querySelectorAll("#adminTable tbody tr").length;
 
   document.getElementById("playerCount").innerText = "Players: " + rows;
+
+}
+
+function sortAdminTableRows(){
+
+  const tbody = document.querySelector("#adminTable tbody");
+  if(!tbody || !currentAdminSort.key) return;
+
+  const rows = Array.from(tbody.querySelectorAll("tr"));
+
+  rows.sort((a, b) => {
+
+    let valA = "";
+    let valB = "";
+
+    if(currentAdminSort.key === "name"){
+      valA = a.cells[0].innerText.trim().toLowerCase();
+      valB = b.cells[0].innerText.trim().toLowerCase();
+    }
+
+    if(currentAdminSort.key === "skill"){
+      valA = parseInt(a.querySelector(".skillValueCell")?.innerText.trim() || "0", 10);
+      valB = parseInt(b.querySelector(".skillValueCell")?.innerText.trim() || "0", 10);
+    }
+
+    if(valA < valB) return currentAdminSort.direction === "asc" ? -1 : 1;
+    if(valA > valB) return currentAdminSort.direction === "asc" ? 1 : -1;
+    return 0;
+
+  });
+
+  rows.forEach(row => tbody.appendChild(row));
+
+}
+
+function updateAdminSortIndicators(){
+
+  const headers = document.querySelectorAll("#adminTable th[data-sort]");
+
+  headers.forEach(th => {
+    const key = th.dataset.sort;
+    const base = key === "name" ? "Name" : "Skill";
+
+    if(currentAdminSort.key === key){
+      th.innerText = base + (currentAdminSort.direction === "asc" ? " ▲" : " ▼");
+    }else{
+      th.innerText = base + " ▴▾";
+    }
+  });
+
+}
+
+function setupAdminSorting(){
+
+  const headers = document.querySelectorAll("#adminTable th[data-sort]");
+
+  headers.forEach(th => {
+    th.onclick = () => {
+      const key = th.dataset.sort;
+
+      if(currentAdminSort.key === key){
+        currentAdminSort.direction =
+          currentAdminSort.direction === "asc" ? "desc" : "asc";
+      }else{
+        currentAdminSort.key = key;
+        currentAdminSort.direction = "asc";
+      }
+
+      sortAdminTableRows();
+      updateAdminSortIndicators();
+    };
+  });
+
+  updateAdminSortIndicators();
 
 }
 
