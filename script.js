@@ -18,7 +18,7 @@ let currentHistorySort = {
 let globalMapMatchMaker = "";
 let adminHasUnsavedChanges = false;
 let currentAdminSort = {
-  key: null,
+  key: "name",
   direction: "asc"
 };
 let customSessionActive = false;
