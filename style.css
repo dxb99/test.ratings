@@ -2919,3 +2919,165 @@ main{
     border-radius:999px 999px 0 0;
   }
 }
+
+/* WINDOWS 11 NAVIGATION VIEW DESKTOP PASS */
+
+@media(min-width:1100px){
+  #app{
+    min-height:100vh;
+    display:grid;
+    grid-template-columns:280px minmax(0, 1fr);
+    column-gap:28px;
+    padding:24px 28px 28px 24px;
+  }
+
+  header{
+    position:sticky;
+    top:24px;
+    align-self:start;
+    height:calc(100vh - 52px);
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+    padding:18px;
+    border:1px solid rgba(148,163,184,0.24);
+    border-radius:18px;
+    background:rgba(255,255,255,0.74);
+    box-shadow:0 18px 44px rgba(15,23,42,0.10), inset 0 1px 0 rgba(255,255,255,0.95);
+    backdrop-filter:blur(22px) saturate(150%);
+  }
+
+  .brand{
+    justify-content:flex-start;
+    align-items:center;
+    gap:12px;
+    padding:4px 2px 12px 2px;
+    border-bottom:1px solid rgba(148,163,184,0.18);
+  }
+
+  .brand img{
+    width:46px;
+    height:46px;
+  }
+
+  h1{
+    font-size:22px;
+    line-height:1.05;
+    white-space:normal;
+  }
+
+  .tabs{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    width:100%;
+    margin:0;
+    padding:0;
+    border:none;
+    border-radius:0;
+    background:transparent;
+    box-shadow:none;
+  }
+
+  .tabButton{
+    min-height:44px;
+    justify-content:flex-start;
+    padding:0 14px;
+    border-radius:8px;
+    color:#334155;
+    font-size:13px;
+    font-weight:600;
+    text-align:left;
+    position:relative;
+  }
+
+  .tabButton::before{
+    content:"";
+    width:3px;
+    height:18px;
+    border-radius:999px;
+    background:transparent;
+    margin-right:10px;
+  }
+
+  .tabButton.active{
+    color:#0f172a;
+    background:#eaf3ff;
+    box-shadow:none;
+  }
+
+  .tabButton.active::before{
+    background:#2563eb;
+  }
+
+  .tabButton:hover{
+    color:#0f172a;
+    background:#f1f5f9;
+    box-shadow:none;
+  }
+
+  main{
+    width:100%;
+    margin:0;
+    padding:4px 0 48px 0;
+  }
+
+  .tabContent.active{
+    animation:win11FadeIn 0.18s ease-out;
+  }
+
+  @keyframes win11FadeIn{
+    from{
+      opacity:0;
+      transform:translateY(4px);
+    }
+    to{
+      opacity:1;
+      transform:none;
+    }
+  }
+
+  .heroPanel{
+    min-height:calc(100vh - 84px);
+    padding:48px;
+    justify-content:center;
+  }
+
+  .versionButtons{
+    grid-template-columns:repeat(3, minmax(220px, 1fr));
+    max-width:980px;
+  }
+
+  .sectionHeader{
+    min-height:86px;
+    padding:2px 2px 0 2px;
+  }
+
+  .sectionHeader h2{
+    font-size:36px;
+  }
+
+  .raterCard{
+    grid-template-columns:150px minmax(240px, 320px) minmax(360px, 1fr);
+  }
+
+  .ratingTableShell,
+  .resultsShell,
+  .statusShell{
+    box-shadow:0 12px 32px rgba(15,23,42,0.08), inset 0 1px 0 rgba(255,255,255,0.95);
+  }
+
+  .applyRatingsPanel{
+    display:grid;
+    grid-template-columns:minmax(260px, 1fr) minmax(0, auto);
+    padding:14px 16px;
+  }
+
+  .applyRatingsControls{
+    grid-template-columns:260px 180px 170px;
+  }
+
+  .sectionActions{
+    margin-right:0;
+  }
+}
