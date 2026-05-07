@@ -2624,3 +2624,298 @@ button:disabled{
     justify-content:center;
   }
 }
+
+/* WINDOWS 11 INSPIRED LAYOUT PASS */
+
+body{
+  font-family:"Segoe UI Variable", "Segoe UI", Arial, Helvetica, sans-serif;
+}
+
+header{
+  display:grid;
+  grid-template-columns:minmax(240px, auto) minmax(0, 1fr);
+  align-items:center;
+  gap:24px;
+}
+
+.brand{
+  justify-content:flex-start;
+  min-width:0;
+}
+
+.brand img{
+  width:52px;
+  height:52px;
+}
+
+h1{
+  font-size:clamp(24px, 3vw, 36px);
+  letter-spacing:0.2px;
+  font-weight:700;
+}
+
+.tabs{
+  margin:0;
+  max-width:none;
+  border-radius:12px;
+  padding:4px;
+  gap:4px;
+  box-shadow:0 8px 22px rgba(15,23,42,0.06), inset 0 1px 0 rgba(255,255,255,0.95);
+}
+
+.tabButton{
+  min-height:38px;
+  border-radius:8px;
+  font-size:12px;
+  font-weight:650;
+  letter-spacing:0;
+}
+
+.tabButton.active,
+.tabButton:hover{
+  box-shadow:0 6px 18px rgba(37,99,235,0.18);
+}
+
+main{
+  width:min(1120px, calc(100% - 40px));
+  margin:24px auto 72px auto;
+}
+
+.heroPanel{
+  min-height:360px;
+  align-items:flex-start;
+  text-align:left;
+  padding:44px;
+}
+
+.heroKicker,
+.sectionKicker{
+  font-size:12px;
+  letter-spacing:0.7px;
+  margin-bottom:8px;
+}
+
+.heroPanel h2{
+  font-size:clamp(36px, 5vw, 60px);
+  max-width:720px;
+}
+
+.versionButtons{
+  width:100%;
+  margin-top:30px;
+}
+
+.versionLaunch{
+  min-height:132px;
+  text-align:left;
+  border-radius:12px;
+  padding:20px 18px;
+  background:linear-gradient(180deg, #ffffff, #f8fafc);
+  color:#0f172a;
+  border-color:rgba(148,163,184,0.26);
+  box-shadow:0 12px 28px rgba(15,23,42,0.08), inset 0 1px 0 rgba(255,255,255,0.95);
+}
+
+.versionLaunch::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:16px;
+  bottom:16px;
+  width:4px;
+  border-radius:0 999px 999px 0;
+  background:#2563eb;
+}
+
+.versionLaunch span:not(.versionInfoBtn){
+  color:#0f172a;
+  font-size:24px;
+  font-weight:700;
+}
+
+.versionLaunch small{
+  color:#475569;
+}
+
+.versionLaunch:hover{
+  transform:translateY(-1px);
+  border-color:rgba(37,99,235,0.32);
+  box-shadow:0 16px 34px rgba(37,99,235,0.13);
+}
+
+.sectionHeader{
+  align-items:flex-start;
+  margin-bottom:16px;
+}
+
+.sectionHeader h2{
+  font-size:clamp(26px, 3vw, 34px);
+  font-weight:700;
+  letter-spacing:0;
+}
+
+.raterCard,
+.applyRatingsPanel{
+  padding:16px;
+  border-radius:12px;
+}
+
+.raterCard{
+  grid-template-columns:160px minmax(240px, 340px) minmax(260px, 1fr);
+  align-items:start;
+}
+
+.raterCard label{
+  padding-top:12px;
+}
+
+.verificationPanel{
+  grid-column:auto;
+  width:100%;
+  padding:12px;
+}
+
+.ratingTableShell,
+.resultsShell,
+.statusShell{
+  border-radius:12px;
+}
+
+.ratingTableHeader,
+.resultsHeader,
+.statusHeader{
+  min-height:48px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:0;
+}
+
+.ratingRow,
+.version2ModePlayerRow,
+.version3CategoryPlayerRow{
+  min-height:66px;
+  padding:12px 16px;
+}
+
+.sliderCell,
+.categorySliderCell{
+  background:#ffffff;
+  border-color:rgba(148,163,184,0.22);
+  border-radius:9px;
+}
+
+.valueBox{
+  height:34px;
+  border-radius:8px;
+}
+
+.submitRow{
+  justify-content:flex-end;
+  gap:10px;
+}
+
+.submitBtn,
+.resetBtn,
+.clearSavedBtn,
+.smallBtn,
+.btn,
+.emailCopyOption{
+  min-height:38px;
+  border-radius:8px;
+  font-size:13px;
+  font-weight:650;
+  letter-spacing:0;
+}
+
+.submitBtn{
+  min-width:190px;
+}
+
+.resetBtn,
+.clearSavedBtn{
+  min-width:130px;
+}
+
+.applyRatingsPanel{
+  align-items:center;
+}
+
+.applyRatingsControls{
+  grid-template-columns:260px 190px 170px;
+}
+
+.resultsHeader,
+.statusHeader{
+  background:#eef4ff;
+}
+
+.resultsRow,
+.statusRow{
+  font-size:14px;
+}
+
+.resultsRow:hover,
+.statusRow:hover,
+.ratingRow:hover,
+.version2ModePlayerRow:hover,
+.version3CategoryPlayerRow:hover{
+  background:#f8fbff;
+}
+
+@media(max-width:980px) and (orientation:landscape){
+  header{
+    grid-template-columns:auto minmax(0, 1fr);
+  }
+
+  .brand img{
+    width:40px;
+    height:40px;
+  }
+}
+
+@media(max-width:640px) and (orientation:portrait){
+  header{
+    display:block;
+  }
+
+  .brand{
+    justify-content:center;
+  }
+
+  .tabs{
+    margin-top:10px;
+  }
+
+  main{
+    width:calc(100% - 18px);
+    margin-top:14px;
+  }
+
+  .heroPanel{
+    padding:28px 18px;
+    text-align:center;
+    align-items:center;
+  }
+
+  .raterCard{
+    grid-template-columns:1fr;
+  }
+
+  .verificationPanel{
+    grid-column:1;
+  }
+
+  .versionLaunch{
+    text-align:center;
+  }
+
+  .versionLaunch::before{
+    top:auto;
+    left:18px;
+    right:18px;
+    bottom:0;
+    width:auto;
+    height:4px;
+    border-radius:999px 999px 0 0;
+  }
+}
