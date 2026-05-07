@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DXB99 Ratings Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script>
+    const style = document.createElement("link");
+    style.rel = "stylesheet";
+    style.href = "style.css?v=" + new Date().getTime();
+    document.head.appendChild(style);
+  </script>
+</head>
+<body>
+
+<div id="loadingScreen">
+  <div class="loadingLogo">DXB<span>99</span></div>
+  <div class="loadingText">LOADING<span class="dots"></span></div>
+</div>
+
+<div id="startupErrorScreen">
+  <div class="startupErrorCard">
+    <div class="startupErrorTitle">DXB99 RATINGS COULD NOT LOAD</div>
+    <p>Please check your internet connection and try again.</p>
+    <p>If this keeps happening, contact admin.</p>
+    <button id="startupRetryBtn" class="smallBtn">TRY AGAIN</button>
+  </div>
+</div>
+
+<div id="app" class="hidden">
+
+  <header>
+    <div class="brand">
+      <img src="DXB99.MATCHUP.png" alt="DXB99">
+      <div>
+        <h1>DXB99 RATINGS LAB</h1>
+      </div>
+    </div>
+
+    <nav class="tabs" aria-label="Ratings tabs">
+      <button class="tabButton active" data-tab="homeTab" data-mobile-label="HOME">HOME</button>
+      <button class="tabButton" data-tab="version1Tab" data-mobile-label="V1">VERSION 1</button>
+      <button class="tabButton" data-tab="version2Tab" data-mobile-label="V2">VERSION 2</button>
+      <button class="tabButton" data-tab="version3Tab" data-mobile-label="V3">VERSION 3</button>
+      <button class="tabButton" data-tab="resultsTab" data-mobile-label="RESULTS">RESULTS</button>
+      <button class="tabButton" data-tab="statusTab" data-mobile-label="STATUS">STATUS</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="homeTab" class="tabContent active">
+      <div class="heroPanel">
+        <div class="heroKicker">PLAYER RATINGS</div>
+        <h2>CHOOSE A RATING METHOD</h2>
+
+        <div class="versionButtons">
+          <button class="versionLaunch" data-tab="version1Tab">
+            <span class="versionInfoBtn" data-version-info="1" role="button" tabindex="0" aria-label="Version 1 information">i</span>
+            <span>VERSION 1</span>
+            <small>Single overall score</small>
+          </button>
+
+          <button class="versionLaunch" data-tab="version2Tab">
+            <span class="versionInfoBtn" data-version-info="2" role="button" tabindex="0" aria-label="Version 2 information">i</span>
+            <span>VERSION 2</span>
+            <small>Elimination, Blitz, CTF</small>
+          </button>
+
+          <button class="versionLaunch" data-tab="version3Tab">
+            <span class="versionInfoBtn" data-version-info="3" role="button" tabindex="0" aria-label="Version 3 information">i</span>
+            <span>VERSION 3</span>
+            <small>Six gameplay categories</small>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="version1Tab" class="tabContent">
+      <div class="sectionHeader">
+        <div>
+          <button class="sectionKicker versionKickerInfo" type="button" data-version-info="1">
+            <span class="homeInfoIcon">i</span>
+            <span>VERSION 1</span>
+          </button>
+          <h2>OVERALL PLAYER RATING</h2>
+          <p>Rate each player with one 0-10 score.</p>
+        </div>
+      </div>
+
+      <div class="raterCard">
+        <label for="version1Rater">YOUR NAME (RATER)</label>
+        <select id="version1Rater" class="raterSelect"></select>
+        <div id="version1Verification" class="verificationPanel" data-version="1"></div>
+      </div>
+
+      <div class="ratingTableShell">
+        <div class="ratingTableHeader v1Header">
+          <div class="versionSectionTitleGroup">
+            <span class="categoryTip" data-tip="One overall score for each player.">i</span>
+            <span class="versionSectionTitle">OVERALL RATING</span>
+            <span class="versionSectionRange">0-10</span>
+          </div>
+        </div>
+        <div id="version1Rows" class="ratingRows"></div>
+      </div>
+
+      <div class="submitRow">
+        <button id="resetVersion1Btn" class="resetBtn">CLEAR FORM</button>
+        <button id="clearSavedVersion1Btn" class="clearSavedBtn">CLEAR SAVED</button>
+        <button id="submitVersion1Btn" class="submitBtn">SUBMIT VERSION 1</button>
+        <label class="emailCopyOption">
+          <input id="emailCopyVersion1" type="checkbox" checked>
+          <span>Email me a copy</span>
+        </label>
+      </div>
+    </section>
+
+    <section id="version2Tab" class="tabContent">
+      <div class="sectionHeader">
+        <div>
+          <button class="sectionKicker versionKickerInfo" type="button" data-version-info="2">
+            <span class="homeInfoIcon">i</span>
+            <span>VERSION 2</span>
+          </button>
+          <h2>GAME MODE RATINGS</h2>
+          <p>Rate each player separately for Elimination, Blitz, and Capture the Flag.</p>
+        </div>
+      </div>
+
+      <div class="raterCard">
+        <label for="version2Rater">YOUR NAME (RATER)</label>
+        <select id="version2Rater" class="raterSelect"></select>
+        <div id="version2Verification" class="verificationPanel" data-version="2"></div>
+      </div>
+
+      <div class="ratingTableShell">
+        <div id="version2Rows" class="ratingRows"></div>
+      </div>
+
+      <div class="submitRow">
+        <button id="resetVersion2Btn" class="resetBtn">CLEAR FORM</button>
+        <button id="clearSavedVersion2Btn" class="clearSavedBtn">CLEAR SAVED</button>
+        <button id="submitVersion2Btn" class="submitBtn">SUBMIT VERSION 2</button>
+        <label class="emailCopyOption">
+          <input id="emailCopyVersion2" type="checkbox" checked>
+          <span>Email me a copy</span>
+        </label>
+      </div>
+    </section>
+
+    <section id="version3Tab" class="tabContent">
+      <div class="sectionHeader">
+        <div>
+          <button class="sectionKicker versionKickerInfo" type="button" data-version-info="3">
+            <span class="homeInfoIcon">i</span>
+            <span>VERSION 3</span>
+          </button>
+          <h2>BREAKDOWN RATING</h2>
+          <p>Rate each player across six gameplay categories.</p>
+        </div>
+      </div>
+
+      <div class="raterCard">
+        <label for="version3Rater">YOUR NAME (RATER)</label>
+        <select id="version3Rater" class="raterSelect"></select>
+        <div id="version3Verification" class="verificationPanel" data-version="3"></div>
+      </div>
+
+      <div class="ratingTableShell">
+        <div id="version3Rows" class="ratingRows"></div>
+      </div>
+
+      <div class="submitRow">
+        <button id="resetVersion3Btn" class="resetBtn">CLEAR FORM</button>
+        <button id="clearSavedVersion3Btn" class="clearSavedBtn">CLEAR SAVED</button>
+        <button id="submitVersion3Btn" class="submitBtn">SUBMIT VERSION 3</button>
+        <label class="emailCopyOption">
+          <input id="emailCopyVersion3" type="checkbox" checked>
+          <span>Email me a copy</span>
+        </label>
+      </div>
+    </section>
+
+    <section id="resultsTab" class="tabContent">
+      <div class="sectionHeader">
+        <div>
+          <div class="sectionKicker">RESULTS</div>
+          <h2>COMPARE FINAL OUTCOMES</h2>
+          <p>See each method's average, median, and the Version 3 weighted score.</p>
+        </div>
+        <div class="sectionActions">
+          <button id="homeInfoBtn" class="homeInfoBtn resultsInfoBtn" type="button">
+            <span class="homeInfoIcon">i</span>
+            <span>HOW RATING WORKS</span>
+          </button>
+          <button id="refreshResultsBtn" class="smallBtn">REFRESH RESULTS</button>
+        </div>
+      </div>
+
+      <div id="homeInfoPanel" class="homeInfoPanel">
+        <div class="homeInfoPad">
+          <button id="homeInfoCloseBtn" class="homeInfoCloseBtn" type="button">x</button>
+            <div class="homeInfoTitle">HOW RATING WORKS</div>
+          <p>Each result only uses submitted ratings. Missing votes are ignored and are not counted as zero.</p>
+          <div class="homeInfoExamples">
+            <div>
+              <strong>V1 AVG</strong>
+              <span>Version 1 uses one overall 0-10 score per player. Example: Xan rates Malcolm as 8. Other players rate Malcolm as 7, 9, 6, and 8. V1 AVG adds all submitted Version 1 scores for Malcolm: 8 + 7 + 9 + 6 + 8 = 38. Then it divides by 5 votes, so Malcolm's V1 AVG is 7.6.</span>
+            </div>
+            <div>
+              <strong>V1 MED</strong>
+              <span>Version 1 uses one overall 0-10 score per player. V1 MED sorts Malcolm's submitted Version 1 scores from lowest to highest and uses the middle score. Example: Xan and others give Malcolm 5, 6, 7, 8, and 10. The middle score is 7, so Malcolm's V1 MED is 7. If the middle scores are 7 and 8, the median is halfway between them: 7.5.</span>
+            </div>
+            <div>
+              <strong>V2 AVG</strong>
+              <span>Version 2 uses three mode scores: Elimination, Blitz, and CTF. First, each rater's three scores become one Version 2 score. Example: Xan rates Malcolm 6 in Elimination, 5 in Blitz, and 7 in CTF. That becomes (6 + 5 + 7) / 3 = 6. V2 AVG then averages Malcolm's final Version 2 scores from all voters.</span>
+            </div>
+            <div>
+              <strong>V2 MED</strong>
+              <span>Version 2 uses Elimination, Blitz, and CTF. First, each rater's three mode scores become one Version 2 score for Malcolm. Example: Xan's 6, 5, and 7 becomes 6. V2 MED then sorts Malcolm's final Version 2 scores from all voters. Example final scores: 5, 5, 6, 7, 8. The middle is 6, so Malcolm's V2 MED is 6.</span>
+            </div>
+            <div>
+              <strong>V3 AVG</strong>
+              <span>Version 3 uses six category scores from 0-10: Combat, Communication, Decision, Awareness, Movement, and Impact. First, each rater's six category scores become one Version 3 score. Example: Xan gives Malcolm 10, 8, 7, 5, 10, and 8. That becomes 48 / 6 = 8. V3 AVG then averages Malcolm's final Version 3 scores from all voters.</span>
+            </div>
+            <div>
+              <strong>V3 MED</strong>
+              <span>Version 3 uses six category scores from 0-10. First, each rater's six scores become one Version 3 score for Malcolm. Example: Xan's six category scores give Malcolm a final Version 3 score of 8. V3 MED then sorts Malcolm's final Version 3 scores from all voters. Example final scores: 6, 7, 7, 8, 9. The middle is 7, so Malcolm's V3 MED is 7.</span>
+            </div>
+            <div>
+              <strong>V3 WEIGHTED</strong>
+              <span>V3 Weighted uses the same six Version 3 categories, but some categories count more than others. Example: Xan rates Malcolm in Combat, Communication, Decision, Awareness, Movement, and Impact. Combat affects the score more than Communication because Combat has more weight.</span>
+              <div class="infoWeightsList">
+                <span>COMBAT SKILLS <strong>22%</strong></span>
+                <span>MOVEMENT / SPEED <strong>18%</strong></span>
+                <span>MAP AWARENESS <strong>18%</strong></span>
+                <span>DECISION MAKING <strong>17%</strong></span>
+                <span>TEAM IMPACT <strong>15%</strong></span>
+                <span>COMMUNICATION <strong>10%</strong></span>
+              </div>
+            </div>
+            <div>
+              <strong>APPLY TO PLAYERS</strong>
+              <span>Select one method, then Apply to Players. The Players sheet is backed up first, then the selected method becomes the current Skill value.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="applyRatingsPanel">
+        <div class="applyRatingsText">
+          <p>Select which rating method should be used to update player skill values.</p>
+        </div>
+        <div class="applyRatingsControls">
+          <select id="finalRatingMethodSelect">
+            <option value="" selected disabled>Select rating method</option>
+            <option value="v1Avg">Version 1 Average</option>
+            <option value="v1Med">Version 1 Median</option>
+            <option value="v2Avg">Version 2 Average</option>
+            <option value="v2Med">Version 2 Median</option>
+            <option value="v3Avg">Version 3 Average</option>
+            <option value="v3Med">Version 3 Median</option>
+            <option value="weighted">Version 3 Weighted</option>
+          </select>
+          <button id="ratingsLockToggleBtn" class="smallBtn ratingsLockBtn">LOCK RATINGS</button>
+          <button id="applyFinalRatingsBtn" class="smallBtn">APPLY TO PLAYERS</button>
+        </div>
+      </div>
+
+      <div class="resultsShell">
+        <div class="mobileResultsSort">
+          <label for="mobileResultsSortSelect">SORT RESULTS</label>
+          <div class="mobileResultsSortControls">
+            <select id="mobileResultsSortSelect">
+              <option value="player">Player</option>
+              <option value="v1Avg">V1 Average</option>
+              <option value="v1Med">V1 Median</option>
+              <option value="v2Avg">V2 Average</option>
+              <option value="v2Med">V2 Median</option>
+              <option value="v3Avg">V3 Average</option>
+              <option value="v3Med">V3 Median</option>
+              <option value="weighted">V3 Weighted</option>
+            </select>
+            <button id="mobileResultsSortDirection" type="button" class="mobileSortDirection">&#9650;</button>
+          </div>
+        </div>
+
+        <div class="resultsHeader">
+          <button type="button" class="resultsSortBtn" data-sort="player">PLAYER</button>
+          <button type="button" class="resultsSortBtn" data-sort="v1Avg">V1 AVG</button>
+          <button type="button" class="resultsSortBtn" data-sort="v1Med">V1 MED</button>
+          <button type="button" class="resultsSortBtn" data-sort="v2Avg">V2 AVG</button>
+          <button type="button" class="resultsSortBtn" data-sort="v2Med">V2 MED</button>
+          <button type="button" class="resultsSortBtn" data-sort="v3Avg">V3 AVG</button>
+          <button type="button" class="resultsSortBtn" data-sort="v3Med">V3 MED</button>
+          <button type="button" class="resultsSortBtn" data-sort="weighted">V3 WEIGHTED</button>
+        </div>
+        <div id="resultsRows"></div>
+      </div>
+    </section>
+
+    <section id="statusTab" class="tabContent">
+      <div class="sectionHeader">
+        <div>
+          <div class="sectionKicker">STATUS</div>
+          <h2>SUBMISSION STATUS</h2>
+          <p>Review player submission status across all three rating versions.</p>
+        </div>
+        <button id="refreshStatusBtn" class="smallBtn">REFRESH STATUS</button>
+      </div>
+
+      <div class="statusShell">
+        <div class="statusHeader">
+          <div>PLAYER</div>
+          <div>VOTED</div>
+          <div>V1</div>
+          <div>V1 UPD</div>
+          <div>V1 CLR</div>
+          <div>V2</div>
+          <div>V2 UPD</div>
+          <div>V2 CLR</div>
+          <div>V3</div>
+          <div>V3 UPD</div>
+          <div>V3 CLR</div>
+        </div>
+        <div id="statusRows"></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="busyOverlay">
+  <div class="busyBox">
+    <div class="spinner"></div>
+    <div id="busyText">WORKING<span class="dots"></span></div>
+  </div>
+</div>
+
+<div id="customModal" class="modalOverlay">
+  <div class="modalBox">
+    <div id="modalMessage" class="modalMessage"></div>
+    <input id="modalInput" class="modalInput" type="password" placeholder="Enter password">
+    <div class="modalButtons">
+      <button id="modalCancel" class="btn btn-red modalIconBtn">x</button>
+      <button id="modalConfirm" class="btn btn-green modalIconBtn">✓</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const script = document.createElement("script");
+  script.src = "script.js?v=" + new Date().getTime();
+  document.body.appendChild(script);
+</script>
+</body>
+</html>
