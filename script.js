@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbyOfQRKh_tj5sdISprAbO2GsS2dyjIE3u37woE2wjzORhWcenHi_FuKyUa20rKD0GpaZQ/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycby6dfbA1pmr-XhQeCFoIFQWFKmw32e4qlxApBeblxpyrj56PbtcQ_oa-rzVfCgI4Mhpyw/exec";
 const API_TIMEOUT_MS = 30000;
 
 let allPlayers = [];
