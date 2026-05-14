@@ -96,6 +96,7 @@ window.addEventListener("load", async () => {
     setupButtons();
     setupStartupRetry();
     await loadInitialData();
+    openInitialHashTab();
     document.getElementById("loadingScreen").style.display = "none";
     document.getElementById("app").classList.remove("hidden");
   }catch(err){
@@ -279,6 +280,33 @@ function setupTabs(){
   });
 }
 
+function getTabFromHash(){
+  const hash = window.location.hash.replace("#", "").trim().toLowerCase();
+
+  const hashMap = {
+    bonus: "bonusPollTab",
+    poll: "bonusPollTab",
+    v1: "version1Tab",
+    version1: "version1Tab",
+    v2: "version2Tab",
+    version2: "version2Tab",
+    v3: "version3Tab",
+    version3: "version3Tab",
+    results: "resultsTab",
+    status: "statusTab",
+    home: "homeTab"
+  };
+
+  return hashMap[hash] || "";
+}
+
+function openInitialHashTab(){
+  const tabId = getTabFromHash();
+  if(tabId && document.getElementById(tabId)){
+    showTab(tabId);
+  }
+}
+
 function getActiveTabId(){
   const activeTab = document.querySelector(".tabContent.active");
   return activeTab ? activeTab.id : "";
@@ -319,6 +347,14 @@ function showTab(tabId){
     btn.classList.toggle("active", btn.dataset.tab === tabId);
   });
 
+  if(tabId === "bonusPollTab" && window.location.hash !== "#bonus"){
+    history.replaceState(null, "", "#bonus");
+  }
+
+  if(tabId !== "bonusPollTab" && window.location.hash === "#bonus"){
+    history.replaceState(null, "", window.location.pathname + window.location.search);
+  }
+
   window.scrollTo({ top: 0, behavior: "instant" });
 
   if(tabId === "resultsTab"){
@@ -344,6 +380,7 @@ function setupButtons(){
   document.getElementById("refreshStatusBtn").onclick = refreshStatus;
   document.getElementById("ratingsLockToggleBtn").onclick = toggleRatingsLock;
   document.getElementById("applyFinalRatingsBtn").onclick = applyFinalRatingsToPlayers;
+  document.getElementById("submitBonusPollBtn").onclick = submitBonusPoll;
   setupVerificationControls();
   setupResultsSorting();
   startVerificationCountdownTimer();
@@ -1125,6 +1162,56 @@ function populateRaterSelects(){
       select.value = currentValue;
     }
   });
+}
+
+async function submitBonusPoll(){
+  const playerSelect = document.getElementById("bonusPollPlayer");
+  const voteInput = document.querySelector('input[name="bonusPollVote"]:checked');
+  const commentInput = document.getElementById("bonusPollComment");
+
+  const playerName = playerSelect ? playerSelect.value : "";
+  const vote = voteInput ? voteInput.value : "";
+  const comment = commentInput ? commentInput.value.trim() : "";
+
+  if(!playerName){
+    await showModal("Select your name before submitting the Bonus Poll.", "alert");
+    return;
+  }
+
+  if(!vote){
+    await showModal("Choose YES, NO, or NOT SURE before submitting the Bonus Poll.", "alert");
+    return;
+  }
+
+  const confirmed = await showModal(`Submit Bonus Poll vote for ${playerName}?`, "confirm");
+  if(!confirmed) return;
+
+  showBusy("SUBMITTING BONUS POLL");
+
+  try{
+    const res = await api({
+      action: "submitBonusPoll",
+      playerName,
+      vote,
+      comment
+    });
+
+    if(!res || !res.ok){
+      throw new Error((res && res.error) || "Bonus Poll did not save.");
+    }
+
+    await showModal(
+      res.updated
+        ? "BONUS POLL UPDATED\n\nYour previous Bonus Poll answer was updated."
+        : "BONUS POLL SUBMITTED\n\nThank you for sharing your opinion.",
+      "alert"
+    );
+
+  }catch(err){
+    await showModal(err.message || getSaveFailedMessage("BONUS POLL"), "alert");
+  }finally{
+    hideBusy();
+  }
 }
 
 function renderPlayerCell(player, index, selectedRater){
