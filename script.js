@@ -1302,40 +1302,26 @@ function renderBonusPollStatus(){
   if(!container) return;
 
   const byPlayer = getBonusVoteByPlayer();
-  const groups = [
-    { key: "Yes", label: "YES" },
-    { key: "No", label: "NO" },
-    { key: "", label: "NOT VOTED" }
-  ];
 
   container.innerHTML = "";
 
-  groups.forEach(group => {
-    const card = document.createElement("div");
-    card.className = "bonusPollStatusCard";
+  allPlayers
+    .slice()
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .forEach(player => {
+      const savedVote = byPlayer[player.name] ? byPlayer[player.name].vote : "";
+      const row = document.createElement("div");
+      row.className = "bonusPollStatusRow";
 
-    const players = allPlayers
-      .slice()
-      .sort((a, b) => a.name.localeCompare(b.name))
-      .filter(player => {
-        const savedVote = byPlayer[player.name] ? byPlayer[player.name].vote : "";
-        return group.key ? savedVote === group.key : !savedVote;
-      });
+      row.innerHTML = `
+        <span class="bonusPollStatusName">${player.name}</span>
+        <span class="bonusPollVoteMark ${savedVote === "Yes" ? "isYes" : ""}">${savedVote === "Yes" ? "&#10003;" : ""}</span>
+        <span class="bonusPollVoteMark ${savedVote === "No" ? "isNo" : ""}">${savedVote === "No" ? "&#10005;" : ""}</span>
+        <span class="bonusPollVoteMark ${!savedVote ? "isUnknown" : ""}">${!savedVote ? "?" : ""}</span>
+      `;
 
-    card.innerHTML = `
-      <div class="bonusPollStatusTitle">${group.label}</div>
-      <div class="bonusPollStatusCount">${players.length}</div>
-      <div class="bonusPollStatusNames">
-        ${
-          players.length
-            ? players.map(player => `<span>${player.name}</span>`).join("")
-            : `<em>-</em>`
-        }
-      </div>
-    `;
-
-    container.appendChild(card);
-  });
+      container.appendChild(row);
+    });
 }
 
 function renderPlayerCell(player, index, selectedRater){
