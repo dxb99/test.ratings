@@ -219,7 +219,7 @@ h3{
   width:100%;
   margin:16px auto 0 auto;
   display:grid;
-  grid-template-columns:repeat(6, minmax(0, 1fr));
+  grid-template-columns:repeat(7, minmax(0, 1fr));
   gap:6px;
   padding:5px;
   border-radius:14px;
@@ -283,6 +283,97 @@ main{
   align-items:center;
   text-align:center;
   padding:42px 24px;
+}
+
+.bonusPollPanel{
+  background:var(--ratings-panel-bg);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:16px;
+  box-shadow:0 18px 48px rgba(0,0,0,0.38), inset 0 1px 0 rgba(255,255,255,0.08);
+  padding:22px;
+  display:grid;
+  grid-template-columns:minmax(0, 0.9fr) minmax(320px, 1.1fr);
+  gap:22px;
+  align-items:start;
+}
+
+.bonusPollIntro{
+  text-align:left;
+  color:#dbeafe;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  line-height:1.48;
+}
+
+.bonusPollIntro p{
+  color:#dbeafe;
+}
+
+.bonusPollForm{
+  display:grid;
+  gap:12px;
+  text-align:left;
+}
+
+.bonusVoteOptions{
+  display:grid;
+  gap:10px;
+}
+
+.bonusVoteOptions label{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  column-gap:10px;
+  row-gap:2px;
+  align-items:center;
+  padding:12px;
+  border-radius:12px;
+  background:rgba(15,23,42,0.72);
+  border:1px solid rgba(96,165,250,0.24);
+  cursor:pointer;
+}
+
+.bonusVoteOptions input{
+  grid-row:1 / span 2;
+}
+
+.bonusVoteOptions span{
+  color:#fff;
+  font-size:16px;
+  font-weight:800;
+  letter-spacing:0.4px;
+}
+
+.bonusVoteOptions small{
+  color:#94a3b8;
+  font-size:13px;
+  line-height:1.25;
+  text-transform:none;
+  letter-spacing:0;
+}
+
+.bonusPollComment{
+  width:100%;
+  min-height:120px;
+  resize:vertical;
+  border:1px solid rgba(96,165,250,0.85);
+  border-radius:10px;
+  background:#e5e7eb;
+  color:#111827;
+  padding:12px;
+  font:inherit;
+  font-weight:700;
+}
+
+.bonusPollComment:focus{
+  outline:none;
+  border-color:#facc15;
+}
+
+.bonusPollSubmit{
+  width:100%;
+  margin-top:4px;
 }
 
 .heroKicker,
@@ -1686,7 +1777,7 @@ button:disabled{
   }
 
   .tabs{
-    grid-template-columns:repeat(6, minmax(0, 1fr));
+    grid-template-columns:repeat(7, minmax(0, 1fr));
     gap:4px;
     width:100%;
     margin:0;
@@ -2148,6 +2239,12 @@ button:disabled{
     padding:22px 18px;
   }
 
+  .bonusPollPanel{
+    grid-template-columns:1fr;
+    padding:16px;
+    gap:16px;
+  }
+
   .heroKicker,
   .sectionKicker{
     margin-bottom:8px;
@@ -2397,7 +2494,7 @@ button:disabled{
   }
 
   .tabs{
-    grid-template-columns:repeat(6, minmax(0, 1fr));
+    grid-template-columns:repeat(7, minmax(0, 1fr));
     gap:4px;
     width:100%;
     margin:0;
@@ -2430,6 +2527,12 @@ button:disabled{
   .heroPanel{
     min-height:auto;
     padding:28px 16px;
+  }
+
+  .bonusPollPanel{
+    grid-template-columns:1fr;
+    padding:16px;
+    gap:16px;
   }
 
   .heroKicker,
