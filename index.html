@@ -94,6 +94,16 @@
           <p>This poll is asking one simple thing: should the Match Maker of the day decide what the Bonus round will be?</p>
           <p>The mode could be Team Deathmatch, Solo Deathmatch, Instagib, standard Elimination, or any custom setup the Match Maker wants to prepare.</p>
           <p>This is not a vote for one specific mode. It is only a vote on whether the Match Maker should choose the Bonus round mode.</p>
+
+          <div class="bonusPollInlineStatus">
+            <div class="bonusPollInlineHeader">
+              <span>NAME</span>
+              <span>YES</span>
+              <span>NO</span>
+              <span>NOT VOTED</span>
+            </div>
+            <div id="bonusPollStatusGrid" class="bonusPollStatusGrid"></div>
+          </div>
         </div>
 
         <div class="bonusPollForm">
@@ -120,17 +130,6 @@
 
           <button id="submitBonusPollBtn" class="submitBtn bonusPollSubmit">SUBMIT BONUS POLL</button>
         </div>
-      </div>
-
-      <div class="bonusPollStatusPanel">
-        <div class="bonusPollStatusHeader">
-          <div>
-            <div class="sectionKicker">VOTE STATUS</div>
-            <h3>WHO HAS VOTED?</h3>
-          </div>
-        </div>
-
-        <div id="bonusPollStatusGrid" class="bonusPollStatusGrid"></div>
       </div>
     </section>
 
