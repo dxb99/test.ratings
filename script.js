@@ -5,6 +5,7 @@ let allPlayers = [];
 let latestResults = {};
 let latestStatus = [];
 let bonusPollVotes = [];
+let fullRatingsDataLoaded = false;
 let savedSubmissionState = {
   1: false,
   2: false,
@@ -96,7 +97,13 @@ window.addEventListener("load", async () => {
     setupTabs();
     setupButtons();
     setupStartupRetry();
-    await loadInitialData();
+
+    if(getTabFromHash() === "bonusPollTab"){
+      await loadBonusPollInitialData();
+    }else{
+      await loadInitialData();
+    }
+
     openInitialHashTab();
     document.getElementById("loadingScreen").style.display = "none";
     document.getElementById("app").classList.remove("hidden");
@@ -319,6 +326,20 @@ function getVersionFromTabId(tabId){
 }
 
 async function attemptShowTab(tabId){
+  if(tabId !== "bonusPollTab" && !fullRatingsDataLoaded){
+    showBusy("LOADING");
+
+    try{
+      await loadInitialData();
+    }catch(err){
+      await showModal(err.message || "Could not load ratings data.", "alert");
+      hideBusy();
+      return;
+    }
+
+    hideBusy();
+  }
+
   const currentTabId = getActiveTabId();
 
   if(currentTabId && currentTabId !== tabId){
@@ -497,6 +518,20 @@ async function loadInitialData(){
   renderVerificationPanels();
   updateSubmitButtons();
   updateRatingsLockUi();
+  fullRatingsDataLoaded = true;
+}
+
+async function loadBonusPollInitialData(){
+  const data = await api({ action: "getBonusPollData" });
+
+  if(!data || !data.ok){
+    throw new Error((data && data.error) || "Failed loading Bonus Poll data");
+  }
+
+  allPlayers = data.players || [];
+  bonusPollVotes = data.bonusPoll || [];
+  populateBonusPollSelect();
+  renderBonusPollStatus();
 }
 
 function setAllRaterSelects(rater){
@@ -1133,6 +1168,7 @@ function renderStatus(){
 
 function renderAllVersions(){
   populateRaterSelects();
+  populateBonusPollSelect();
   renderVersion1Rows();
   renderVersion2Rows();
   renderVersion3Rows();
@@ -1167,6 +1203,35 @@ function populateRaterSelects(){
   });
 }
 
+function populateBonusPollSelect(){
+  const select = document.getElementById("bonusPollPlayer");
+  if(!select) return;
+
+  const currentValue = select.value;
+  select.innerHTML = "";
+
+  const placeholder = document.createElement("option");
+  placeholder.value = "";
+  placeholder.textContent = "Select your name";
+  placeholder.disabled = true;
+  placeholder.selected = true;
+  select.appendChild(placeholder);
+
+  allPlayers
+    .slice()
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .forEach(player => {
+      const option = document.createElement("option");
+      option.value = player.name;
+      option.textContent = player.name;
+      select.appendChild(option);
+    });
+
+  if(currentValue){
+    select.value = currentValue;
+  }
+}
+
 async function submitBonusPoll(){
   const playerSelect = document.getElementById("bonusPollPlayer");
   const voteInput = document.querySelector('input[name="bonusPollVote"]:checked');
@@ -1182,7 +1247,7 @@ async function submitBonusPoll(){
   }
 
   if(!vote){
-    await showModal("Choose YES, NO, or NOT SURE before submitting the Bonus Poll.", "alert");
+    await showModal("Choose YES or NO before submitting the Bonus Poll.", "alert");
     return;
   }
 
@@ -1240,7 +1305,6 @@ function renderBonusPollStatus(){
   const groups = [
     { key: "Yes", label: "YES" },
     { key: "No", label: "NO" },
-    { key: "Not Sure", label: "NOT SURE" },
     { key: "", label: "NOT VOTED" }
   ];
 
