@@ -42,12 +42,12 @@
 
     <nav class="tabs" aria-label="Ratings tabs">
       <button class="tabButton active" data-tab="homeTab" data-mobile-label="HOME">HOME</button>
-      <button class="tabButton" data-tab="bonusPollTab" data-mobile-label="POLL">BONUS POLL</button>
       <button class="tabButton" data-tab="version1Tab" data-mobile-label="V1">VERSION 1</button>
       <button class="tabButton" data-tab="version2Tab" data-mobile-label="V2">VERSION 2</button>
       <button class="tabButton" data-tab="version3Tab" data-mobile-label="V3">VERSION 3</button>
       <button class="tabButton" data-tab="resultsTab" data-mobile-label="RESULTS">RESULTS</button>
       <button class="tabButton" data-tab="statusTab" data-mobile-label="STATUS">STATUS</button>
+      <button class="tabButton" data-tab="bonusPollTab" data-mobile-label="POLL">BONUS POLL</button>
     </nav>
   </header>
 
@@ -126,6 +126,17 @@
 
           <button id="submitBonusPollBtn" class="submitBtn bonusPollSubmit">SUBMIT BONUS POLL</button>
         </div>
+      </div>
+
+      <div class="bonusPollStatusPanel">
+        <div class="bonusPollStatusHeader">
+          <div>
+            <div class="sectionKicker">VOTE STATUS</div>
+            <h3>WHO HAS VOTED?</h3>
+          </div>
+        </div>
+
+        <div id="bonusPollStatusGrid" class="bonusPollStatusGrid"></div>
       </div>
     </section>
 
