@@ -42,6 +42,7 @@
 
     <nav class="tabs" aria-label="Ratings tabs">
       <button class="tabButton active" data-tab="homeTab" data-mobile-label="HOME">HOME</button>
+      <button class="tabButton" data-tab="bonusPollTab" data-mobile-label="POLL">BONUS POLL</button>
       <button class="tabButton" data-tab="version1Tab" data-mobile-label="V1">VERSION 1</button>
       <button class="tabButton" data-tab="version2Tab" data-mobile-label="V2">VERSION 2</button>
       <button class="tabButton" data-tab="version3Tab" data-mobile-label="V3">VERSION 3</button>
@@ -74,6 +75,56 @@
             <span>VERSION 3</span>
             <small>Six gameplay categories</small>
           </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="bonusPollTab" class="tabContent">
+      <div class="sectionHeader">
+        <div>
+          <div class="sectionKicker">BONUS POLL</div>
+          <h2>BONUS ROUND QUESTION</h2>
+          <p>Should the Match Maker choose the Bonus round mode for that day?</p>
+        </div>
+      </div>
+
+      <div class="bonusPollPanel">
+        <div class="bonusPollIntro">
+          <p>During each session, we usually play a Bonus round.</p>
+          <p>This poll is asking one simple thing: should the Match Maker of the day decide what the Bonus round will be?</p>
+          <p>The mode could be Team Deathmatch, Solo Deathmatch, Instagib, standard Elimination, or any custom setup the Match Maker wants to prepare.</p>
+          <p>This is not a vote for one specific mode. It is only a vote on whether the Match Maker should choose the Bonus round mode.</p>
+        </div>
+
+        <div class="bonusPollForm">
+          <label for="bonusPollPlayer">YOUR NAME</label>
+          <select id="bonusPollPlayer" class="raterSelect"></select>
+
+          <label>YOUR VOTE</label>
+          <div class="bonusVoteOptions">
+            <label>
+              <input type="radio" name="bonusPollVote" value="Yes">
+              <span>YES</span>
+              <small>Let the Match Maker choose.</small>
+            </label>
+
+            <label>
+              <input type="radio" name="bonusPollVote" value="No">
+              <span>NO</span>
+              <small>Keep Bonus round as the usual setup.</small>
+            </label>
+
+            <label>
+              <input type="radio" name="bonusPollVote" value="Not Sure">
+              <span>NOT SURE</span>
+              <small>I do not have a strong opinion.</small>
+            </label>
+          </div>
+
+          <label for="bonusPollComment">OPTIONAL COMMENT</label>
+          <textarea id="bonusPollComment" class="bonusPollComment" maxlength="500" placeholder="Any thoughts or suggestions?"></textarea>
+
+          <button id="submitBonusPollBtn" class="submitBtn bonusPollSubmit">SUBMIT BONUS POLL</button>
         </div>
       </div>
     </section>
