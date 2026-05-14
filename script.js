@@ -4,6 +4,7 @@ const API_TIMEOUT_MS = 30000;
 let allPlayers = [];
 let latestResults = {};
 let latestStatus = [];
+let bonusPollVotes = [];
 let savedSubmissionState = {
   1: false,
   2: false,
@@ -487,10 +488,12 @@ async function loadInitialData(){
   allPlayers = data.players || [];
   latestResults = data.results || {};
   latestStatus = data.status || [];
+  bonusPollVotes = data.bonusPoll || [];
   ratingsLocked = !!data.ratingsLocked;
   renderAllVersions();
   renderResults();
   renderStatus();
+  renderBonusPollStatus();
   renderVerificationPanels();
   updateSubmitButtons();
   updateRatingsLockUi();
@@ -1200,6 +1203,9 @@ async function submitBonusPoll(){
       throw new Error((res && res.error) || "Bonus Poll did not save.");
     }
 
+    bonusPollVotes = res.bonusPoll || bonusPollVotes;
+    renderBonusPollStatus();
+
     await showModal(
       res.updated
         ? "BONUS POLL UPDATED\n\nYour previous Bonus Poll answer was updated."
@@ -1212,6 +1218,60 @@ async function submitBonusPoll(){
   }finally{
     hideBusy();
   }
+}
+
+function getBonusVoteByPlayer(){
+  const byPlayer = {};
+
+  bonusPollVotes.forEach(row => {
+    if(row && row.playerName){
+      byPlayer[row.playerName] = row;
+    }
+  });
+
+  return byPlayer;
+}
+
+function renderBonusPollStatus(){
+  const container = document.getElementById("bonusPollStatusGrid");
+  if(!container) return;
+
+  const byPlayer = getBonusVoteByPlayer();
+  const groups = [
+    { key: "Yes", label: "YES" },
+    { key: "No", label: "NO" },
+    { key: "Not Sure", label: "NOT SURE" },
+    { key: "", label: "NOT VOTED" }
+  ];
+
+  container.innerHTML = "";
+
+  groups.forEach(group => {
+    const card = document.createElement("div");
+    card.className = "bonusPollStatusCard";
+
+    const players = allPlayers
+      .slice()
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .filter(player => {
+        const savedVote = byPlayer[player.name] ? byPlayer[player.name].vote : "";
+        return group.key ? savedVote === group.key : !savedVote;
+      });
+
+    card.innerHTML = `
+      <div class="bonusPollStatusTitle">${group.label}</div>
+      <div class="bonusPollStatusCount">${players.length}</div>
+      <div class="bonusPollStatusNames">
+        ${
+          players.length
+            ? players.map(player => `<span>${player.name}</span>`).join("")
+            : `<em>-</em>`
+        }
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
 }
 
 function renderPlayerCell(player, index, selectedRater){
