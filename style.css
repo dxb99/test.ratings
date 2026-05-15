@@ -323,6 +323,16 @@ main{
   background:rgba(15,23,42,0.58);
 }
 
+.bonusPollStatusTitle{
+  margin:0;
+  padding:12px 12px 8px 12px;
+  color:#facc15;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:0.7px;
+  text-align:left;
+}
+
 .bonusPollInlineHeader,
 .bonusPollStatusRow{
   display:grid;
