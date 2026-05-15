@@ -1339,8 +1339,7 @@ function renderBonusPollStatus(){
         commentBtn.onclick = () => {
           showInfoModal(`
             <div class="versionInfoModal bonusPollCommentModal">
-              <h3>${escapeHtml(player.name)} COMMENT</h3>
-              <p>${escapeHtml(comment)}</p>
+              <p><strong>${escapeHtml(player.name)}:</strong> "${escapeHtml(comment)}"</p>
             </div>
           `);
         };
