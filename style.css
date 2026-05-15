@@ -293,11 +293,15 @@ main{
   padding:22px;
   display:grid;
   grid-template-columns:minmax(0, 0.9fr) minmax(320px, 1.1fr);
+  grid-template-areas:
+    "intro form"
+    "status form";
   gap:22px;
   align-items:start;
 }
 
 .bonusPollIntro{
+  grid-area:intro;
   text-align:left;
   color:#dbeafe;
   display:flex;
@@ -311,6 +315,7 @@ main{
 }
 
 .bonusPollInlineStatus{
+  grid-area:status;
   margin-top:10px;
   border:1px solid rgba(96,165,250,0.24);
   border-radius:12px;
@@ -342,6 +347,7 @@ main{
 }
 
 .bonusPollForm{
+  grid-area:form;
   display:grid;
   gap:12px;
   text-align:left;
@@ -2356,6 +2362,10 @@ button:disabled{
 
   .bonusPollPanel{
     grid-template-columns:1fr;
+    grid-template-areas:
+      "intro"
+      "form"
+      "status";
     padding:16px;
     gap:16px;
   }
@@ -2652,6 +2662,10 @@ button:disabled{
 
   .bonusPollPanel{
     grid-template-columns:1fr;
+    grid-template-areas:
+      "intro"
+      "form"
+      "status";
     padding:16px;
     gap:16px;
   }
