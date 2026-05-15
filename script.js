@@ -1297,6 +1297,15 @@ function getBonusVoteByPlayer(){
   return byPlayer;
 }
 
+function escapeHtml(value){
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 function renderBonusPollStatus(){
   const container = document.getElementById("bonusPollStatusGrid");
   if(!container) return;
@@ -1309,7 +1318,9 @@ function renderBonusPollStatus(){
     .slice()
     .sort((a, b) => a.name.localeCompare(b.name))
     .forEach(player => {
-      const savedVote = byPlayer[player.name] ? byPlayer[player.name].vote : "";
+      const savedRow = byPlayer[player.name] || {};
+      const savedVote = savedRow.vote || "";
+      const comment = (savedRow.comment || "").trim();
       const row = document.createElement("div");
       row.className = "bonusPollStatusRow";
 
@@ -1317,8 +1328,23 @@ function renderBonusPollStatus(){
         <span class="bonusPollStatusName">${player.name}</span>
         <span class="bonusPollVoteMark ${savedVote === "Yes" ? "isYes" : ""}">${savedVote === "Yes" ? "&#10003;" : ""}</span>
         <span class="bonusPollVoteMark ${savedVote === "No" ? "isNo" : ""}">${savedVote === "No" ? "&#10005;" : ""}</span>
-        <span class="bonusPollVoteMark ${!savedVote ? "isUnknown" : ""}">${!savedVote ? "?" : ""}</span>
+        <button class="bonusPollCommentPreview ${comment ? "" : "isEmpty"}" type="button" title="${escapeHtml(comment || "No comment")}">
+          ${comment ? escapeHtml(comment) : "-"}
+        </button>
       `;
+
+      const commentBtn = row.querySelector(".bonusPollCommentPreview");
+
+      if(commentBtn && comment){
+        commentBtn.onclick = () => {
+          showInfoModal(`
+            <div class="versionInfoModal bonusPollCommentModal">
+              <h3>${escapeHtml(player.name)} COMMENT</h3>
+              <p>${escapeHtml(comment)}</p>
+            </div>
+          `);
+        };
+      }
 
       container.appendChild(row);
     });
