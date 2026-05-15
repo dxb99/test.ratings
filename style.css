@@ -321,9 +321,9 @@ main{
 .bonusPollInlineHeader,
 .bonusPollStatusRow{
   display:grid;
-  grid-template-columns:minmax(120px, 1fr) 58px 58px 92px;
+  grid-template-columns:minmax(92px, 0.65fr) 44px 44px minmax(150px, 1.55fr);
   align-items:center;
-  column-gap:8px;
+  column-gap:6px;
 }
 
 .bonusPollInlineHeader{
@@ -456,6 +456,39 @@ main{
   color:#facc15;
   background:rgba(250,204,21,0.1);
   border:1px solid rgba(250,204,21,0.36);
+}
+
+.bonusPollCommentPreview{
+  min-width:0;
+  width:100%;
+  padding:4px 8px;
+  border:1px solid rgba(96,165,250,0.22);
+  border-radius:8px;
+  background:rgba(2,6,23,0.35);
+  color:#dbeafe;
+  font:inherit;
+  font-size:11px;
+  font-weight:800;
+  text-align:left;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  cursor:pointer;
+}
+
+.bonusPollCommentPreview:hover{
+  color:#fff;
+  border-color:rgba(250,204,21,0.55);
+  background:rgba(15,23,42,0.82);
+}
+
+.bonusPollCommentPreview.isEmpty{
+  color:#64748b;
+  cursor:default;
+}
+
+.bonusPollCommentModal p{
+  white-space:pre-wrap;
 }
 
 .heroKicker,
@@ -2329,7 +2362,7 @@ button:disabled{
 
   .bonusPollInlineHeader,
   .bonusPollStatusRow{
-    grid-template-columns:minmax(90px, 1fr) 48px 48px 78px;
+    grid-template-columns:minmax(84px, 0.65fr) 40px 40px minmax(130px, 1.55fr);
     column-gap:6px;
   }
 
@@ -2625,7 +2658,7 @@ button:disabled{
 
   .bonusPollInlineHeader,
   .bonusPollStatusRow{
-    grid-template-columns:minmax(82px, 1fr) 40px 40px 66px;
+    grid-template-columns:minmax(70px, 0.6fr) 32px 32px minmax(118px, 1.7fr);
     column-gap:4px;
     padding-left:10px;
     padding-right:10px;
@@ -2644,6 +2677,11 @@ button:disabled{
     width:22px;
     height:22px;
     font-size:13px;
+  }
+
+  .bonusPollCommentPreview{
+    padding:4px 6px;
+    font-size:10px;
   }
 
   .heroKicker,
